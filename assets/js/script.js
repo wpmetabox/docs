@@ -15,7 +15,8 @@ function highlighCurrentDocs() {
 }
 
 function toggleDocsMenu() {
-	document.querySelector( '.docs-navigation' ).addEventListener( 'click', function( event ) {
+	var click = 'ontouchstart' in window ? 'touchstart' : 'click';
+	document.querySelector( '.docs-navigation' ).addEventListener( click, function( event ) {
 		if ( event.target.classList.contains( 'docs-navigation__heading' ) ) {
 			event.target.parentNode.classList.toggle( 'is-active' );
 		}
@@ -65,13 +66,19 @@ function filterDocs() {
 	input.addEventListener( 'keyup', filter );
 }
 
-// Generate table of content.
-tocbot.init( {
-	tocSelector: '.toc-navigation',
-	contentSelector: '.entry-content',
-	headingSelector: 'h2, h3, h4'
-} );
+function generateTOC() {
+	if ( null === document.querySelector( '.entry-content h2' ) ) {
+		document.querySelector( '.hentry' ).classList.add( 'no-toc' );
+	}
+	tocbot.init( {
+		tocSelector: '.toc-navigation',
+		contentSelector: '.entry-content',
+		headingSelector: 'h2, h3, h4'
+	} );
+}
+
 loadGoogleFonts();
 highlighCurrentDocs();
 toggleDocsMenu();
 filterDocs();
+generateTOC()

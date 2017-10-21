@@ -19,19 +19,21 @@ h1, h2, h3, h4 {
 	clear: both;
 	line-height: 1.2;
 	margin: 2.5em 0 1em;
-
+	text-transform: capitalize;
+}
+h1 {
+	font-size: 3rem;
 	.wf-active & {
 		font-family: "Roboto Slab", sans-serif;;
 	}
 }
-h1 {
-	font-size: 3rem;
-}
 h2 {
 	font-size: 2.4rem;
+	.wf-active & {
+		font-family: "Roboto Slab", sans-serif;;
+	}
 }
 h3 {
-	font-family: inherit;
 	font-size: 1.6rem;
 	text-transform: uppercase;
 	letter-spacing: 1px;
