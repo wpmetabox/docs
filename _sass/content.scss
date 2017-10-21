@@ -82,8 +82,21 @@
 }
 
 /**
- * Page content
+ * Main content
  */
-.page-title {
+.entry-header {
+	margin-bottom: 2em;
+	z-index: 2;
+	position: relative;
+}
+.icon-edit {
+	margin-right: 3px;
+	vertical-align: baseline;
+	width: 11px;
+	height: 11px;
+	top: 1px;
+	position: relative;
+}
+.entry-content > :first-child {
 	margin-top: 0;
 }

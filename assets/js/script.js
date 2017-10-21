@@ -68,7 +68,7 @@ function filterDocs() {
 // Generate table of content.
 tocbot.init( {
 	tocSelector: '.toc-navigation',
-	contentSelector: '.content',
+	contentSelector: '.entry-content',
 	headingSelector: 'h2, h3, h4'
 } );
 loadGoogleFonts();

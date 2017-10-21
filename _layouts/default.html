@@ -2,16 +2,23 @@
 
 <main id="main" class="site-content" role="main">
 	{% include docs-navigation.html %}
-	<article class="content">
-		<h1 class="page-title">{{ page.title }}</h1>
-		{{ content }}
-	</article>
-	<aside class="toc">
-		<div class="toc-wrapper">
-			<h4 class="toc-heading">Table Of Content</h4>
-			<nav class="toc-navigation" role="navigation"></nav>
+	<article class="hentry">
+		<header class="entry-header">
+			<h1 class="entry-title">{{ page.title }}</h1>
+			<a class="edit" target="_blank" href="https://github.com/wpmetabox/docs/edit/master/{{ page.path }}"><svg class="icon icon-edit" aria-hidden="true" role="img"><use href="#icon-edit" xlink:href="#icon-edit"></use></svg>Improve this page</a>
+		</header>
+		<div class="entry-body">
+			<div class="entry-content">
+				{{ content }}
+			</div>
+			<aside class="toc">
+				<div class="toc-wrapper">
+					<h4 class="toc-heading">Table Of Content</h4>
+					<nav class="toc-navigation" role="navigation"></nav>
+				</div>
+			</aside>
 		</div>
-	</aside>
+	</article>
 </main>
 
 {% include footer.html %}

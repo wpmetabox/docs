@@ -11,11 +11,13 @@
 		list-style: none;
 	}
 	&-wrapper {
-		position: sticky;
-		top: 188px;
-		background: #f6f6f6;
-		border-radius: 3px;
-		padding: 1em 1em 0;
+		@media (min-width: 1280px) {
+			background: #f6f6f6;
+			border-radius: 3px;
+			position: sticky;
+			top: 188px;
+			padding: 1em 1em 0;
+		}
 	}
 	&-heading {
 		border-bottom: 1px solid #ddd;
@@ -70,12 +72,13 @@
 /**
  * Fix for fixed header
  */
-.content h2::before,
-.content h3::before,
-.content h4::before {
+.entry-content h2::before,
+.entry-content h3::before,
+.entry-content h4::before {
 	display: block;
 	content: " ";
 	height: 90px;
 	margin-top: -90px;
 	visibility: hidden;
+	z-index: 1;
 }
