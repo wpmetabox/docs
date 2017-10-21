@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+	{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+	<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<div class="site">
+	<div class="top-bar">
+		<nav class="header-navigation top-bar-navigation" role="navigation">
+			<ul class="menu">
+				<li class="menu-item"><a href="http://demo.metabox.io">Demo</a></li>
+				<li class="menu-item"><a href="https://metabox.io/online-generator/">Online Generator</a></li>
+			</ul>
+		</nav>
+		<nav class="header-navigation top-bar-navigation" role="navigation">
+			<ul class="menu">
+				<li class="menu-item"><a href="https://metabox.io/my-account/">My Account</a></li>
+			</ul>
+		</nav>
+	</div>
+	<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<a href="https://metabox.io/" class="logo" rel="home"><img src="/assets/images/logo.png" class="logo" alt="Meta Box" width="46" height="46"></a>
+			<h1 class="site-title"><a href="https://metabox.io" rel="home">Meta Box</a></h1>
+		</div>
+
+		<nav id="site-navigation" class="main-navigation header-navigation" role="navigation">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">Menu</button>
+			<ul id="primary-menu" class="menu nav-menu" aria-expanded="false">
+				<li class="menu-item"><a href="https://metabox.io/meta-box/">Features</a></li>
+				<li class="menu-item"><a href="https://metabox.io/pricing/">Pricing</a></li>
+				<li class="menu-item"><a href="https://metabox.io/plugins/">Extensions</a></li>
+				<li class="menu-item current-menu-item menu-item-has-children"><a href="#">Support</a>
+					<ul class="sub-menu">
+						<li class="menu-item current-menu-item"><a href="/">Documentation</a></li>
+						<li class="menu-item"><a href="https://metabox.io/support/">Support Forum</a></li>
+					</ul>
+				</li>
+				<li class="menu-item"><a href="https://metabox.io/blog/">Blog</a></li>
+				<li class="menu-item"><a href="https://metabox.io/contact/">Contact</a></li>
+			</ul>
+		</nav>
+	</header>

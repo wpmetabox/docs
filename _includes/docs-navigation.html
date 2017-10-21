@@ -1,0 +1,15 @@
+<nav class="docs-navigation" role="navigation">
+	<input type="text" class="docs-navigation__filter" placeholder="Filter documentation">
+	<ul class="docs-navigation__menu">
+		{% for cat in site.data.docs %}
+			<li class="docs-navigation__cat">
+				<h4 class="docs-navigation__heading">{{ cat.title }}</h4>
+				<ul class="docs-navigation__list">
+					{% for item in cat.items %}
+						<li class="docs-navigation__item"><a class="docs-navigation__link" href="{{ item.url }}">{{ item.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+		{% endfor %}
+	</ul>
+</nav>

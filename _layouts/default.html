@@ -1,0 +1,17 @@
+{% include header.html %}
+
+<main id="main" class="site-content" role="main">
+	{% include docs-navigation.html %}
+	<article class="content">
+		<h1 class="page-title">{{ page.title }}</h1>
+		{{ content }}
+	</article>
+	<aside class="toc">
+		<div class="toc-wrapper">
+			<h4 class="toc-heading">Table Of Content</h4>
+			<nav class="toc-navigation" role="navigation"></nav>
+		</div>
+	</aside>
+</main>
+
+{% include footer.html %}

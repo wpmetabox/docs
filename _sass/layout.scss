@@ -1,0 +1,39 @@
+.site {
+	background: #fff;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+.container {
+	width: 1140px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.site-content {
+	display: flex;
+	padding: 0 70px;
+}
+.docs-navigation {
+	flex: 0 0 260px;
+	border-right: 1px solid #ddd;
+	padding: 70px 40px 70px 0;
+}
+.content {
+	padding: 70px 40px 70px 40px;
+	min-width: 0;
+}
+.toc {
+	flex: 0 0 200px;
+}
+
+@media (max-width: 1279px) {
+	.container {
+		width: 980px;
+	}
+}
+@media (max-width: 1023px) {
+	.container {
+		width: 100%;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}

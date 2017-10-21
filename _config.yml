@@ -1,0 +1,10 @@
+title: Meta Box Documentation
+sass:
+  style: compressed
+permalink: pretty
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"

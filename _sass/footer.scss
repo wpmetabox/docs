@@ -1,0 +1,58 @@
+.site-footer {
+	padding: 70px 0;
+	border-top: 1px solid #ddd;
+	font-size: 1.4rem;
+	font-weight: bold;
+
+	> .container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+.social-navigation {
+	font-size: 2rem;
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		border: none;
+		padding: 0;
+	}
+	li + li {
+		margin-left: 5px;
+	}
+	a:hover {
+		opacity: .85;
+	}
+	a {
+		color: inherit;
+	}
+}
+.icon {
+	color: inherit;
+	fill: currentColor;
+	height: 1em;
+	vertical-align: middle;
+	width: 1em;
+}
+.company {
+	display: block;
+
+	img {
+		display: inline-block;
+	}
+}
+
+@media (max-width: 767px) {
+	.site-info {
+		display: block;
+		text-align: center;
+
+		> * + * {
+			margin-top: 15px;
+		}
+	}
+}
