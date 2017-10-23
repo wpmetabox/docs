@@ -80,7 +80,7 @@ The code is very similar to get post meta. The differences are:
 - In the 2nd parameter, you need to pass `'object_type' => 'user'`, and
 - In the last parameter, you need to pass the user ID
 
-Other parameters are the same as for post. Please see [this documentation](/get-meta-value/) for details.
+Other parameters are the same as for post. Please see [this documentation](/displaying-fields/) for details.
 
 ### Manually retrieve value
 

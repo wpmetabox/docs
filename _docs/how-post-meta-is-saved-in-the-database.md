@@ -35,7 +35,7 @@ Field Type|Value stored in the database
 
 ## Notes
 
-Although you can use `get_post_meta` to retrieve meta value, it's recommended to [use plugin's helper function](/get-meta-value/) to get the value and display it in the frontend. The helper function takes care of all the logic above and returns to you the needed data in a correct format.
+Although you can use `get_post_meta` to retrieve meta value, it's recommended to [use plugin's helper function](/displaying-fields/) to get the value and display it in the frontend. The helper function takes care of all the logic above and returns to you the needed data in a correct format.
 
 To understand how the value is stored in the database, please use `print_r` function, like this:
 

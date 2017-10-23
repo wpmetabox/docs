@@ -1,5 +1,5 @@
 ---
-title: Get custom field value and display in the front end
+title: Displaying fields
 ---
 
 To get field meta value, use this function:

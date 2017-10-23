@@ -26,7 +26,7 @@ apply_filters( 'rwmb_shortcode', $content );
 
 ### `rwmb_meta`
 
-This filter is used to change the returned value of [helper function `rwmb_meta`](/get-meta-value/). It accepts 4 parameters:
+This filter is used to change the returned value of [helper function `rwmb_meta`](/displaying-fields/). It accepts 4 parameters:
 
 - `$meta`: the meta value returned by `rwmb_meta` function
 - `$key`: meta key (custom field ID)

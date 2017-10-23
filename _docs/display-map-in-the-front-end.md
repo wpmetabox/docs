@@ -2,7 +2,7 @@
 title: Display map in the front end
 ---
 
-To display `map` field in the frontend, we still use `rwmb_meta` function (see [this docs](/get-meta-value/)), but we need to add more parameters. Assume we have a `map` field with `id=loc`, this is how we display map:
+To display `map` field in the frontend, we still use `rwmb_meta` function (see [this docs](/displaying-fields/)), but we need to add more parameters. Assume we have a `map` field with `id=loc`, this is how we display map:
 
 ```php
 $args = array(

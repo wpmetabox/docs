@@ -269,19 +269,19 @@ Here is the result:
 
 ### Using helper function
 
-Since version 1.2, you're able to use [helper function `rwmb_meta`](/get-meta-value/) to get settings value.
+Since version 1.2, you're able to use [helper function `rwmb_meta`](/displaying-fields/) to get settings value.
 
 ```php
 $value = rwmb_meta( $field_id, array( 'object_type' => 'setting' ), $option_name );
 echo $value;
 ```
 
-The code is very similar to [get post meta](/get-meta-value/). The differences are:
+The code is very similar to [get post meta](/displaying-fields/). The differences are:
 
 - In the 2nd parameter, you need to pass `'object_type' => 'setting'`, and
 - In the last parameter, you need to pass the option name for the settings page
 
-Other parameters are the same as for post. Please see [this documentation](/get-meta-value/) for details.
+Other parameters are the same as for post. Please see [this documentation](/displaying-fields/) for details.
 
 ### Manually retrieve value
 

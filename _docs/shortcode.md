@@ -10,7 +10,7 @@ The shortcode take the following attributes:
 [rwmb_meta post_id="15" meta_key="field_id" type="image" size="thumbnail" ...]
 ```
 
-The `[rwmb_meta]` shortcode works exactly like `rwmb_meta` function (look at this [documentation](/get-meta-value/)). All attributes are the same.
+The `[rwmb_meta]` shortcode works exactly like `rwmb_meta` function (look at this [documentation](/displaying-fields/)). All attributes are the same.
 
 ## Shortcode attributes
 

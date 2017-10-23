@@ -65,22 +65,26 @@ function prefix_meta_boxes( $meta_boxes ) {
 }
 ```
 
-Copy and paste it into your theme's `functions.php` file (or a PHP file of your plugin) and go to **Posts &rarr; Add New**, you'll see a new meta box appears below the post editor:
+Copy and paste it into your theme's `functions.php` file.
+
+Each meta box and field has settings to customize how they look and how they function. To learn more about that, please read [meta box settings](/creating-meta-boxes/) and [field settings](/field-settings/) guides.
+
+## Creating content
+
+With the meta box created, it's time to start editing your content! All our fields are very intuitive to use and display seamlessly with the WordPress admin style. They will appear and function just like the post title and post content. Simply enter your content and update the post!
 
 ![meta box](https://i.imgur.com/NLlFkFM.png)
 
-To understand the code, check out [this documentation](/creating-meta-boxes/).
+## Displaying fields
 
-## Getting meta value
-
-To get the value of a field and display it in your theme, use the helper function `rwmb_meta`:
+Displaying field values is very easy with the helper function `rwmb_meta`. It takes the field ID and returns the field value:
 
 ```php
 $value = rwmb_meta( 'name' );
 echo $value;
 ```
 
-For more information on getting meta value, check out [this documentation](/getting-meta-value/).
+To learn more about the helper function, please see [this documentation](/displaying-fields/).
 
 ## More UI
 
@@ -89,16 +93,14 @@ If you prefer UI to create and manage custom meta boxes and custom fields or you
 - [MB Custom Post Type](https://metabox.io/plugins/custom-post-type/): Create and manage custom post types and custom taxonomies with nice UI
 - [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/): Create and manage custom meta boxes and custom fields with drag and drop UI. It's similar to the online generator, but integrated right in the WordPress admin area. So you don't need to copy and paste any more.
 
-## Demos
+## Code demos
 
-The Meta Box plugin has a [list of demos](https://github.com/wpmetabox/meta-box/tree/master/demo) which you can use as a starting point for your projects. The list is constantly updated with the new features or new demos in every new release of the plugin.
+In order to help our users to spend less time writing code for meta boxes and fields, we have created a [list of demos](https://github.com/wpmetabox/meta-box/tree/master/demo) which you can use as a starting point for your projects.
 
-You should start with `demo.php` by downloading it [here](https://github.com/wpmetabox/meta-box/blob/master/demo/demo.php) and put it in your theme folder. Then open the theme's `functions.php` file add the following code:
+You should start with the [main `demo.php` file](https://github.com/wpmetabox/meta-box/blob/master/demo/demo.php). It has all explanations for meta box settings and field settings in the comments.
 
-```php
-include 'demo.php';
-```
+## Next steps
 
-Now go to **Add New Post** page and you'll see a list of all field types.
+This guide covered all the basics for getting started with the Meta Box plugin, but it's just the first step. The real magic happens when you start using the plugin to create more complex meta boxes and taking advantage of all the awesome features, including the [premium extensions](https://metabox.io/plugins/).
 
-This file has all explanations in comments, so please read them carefully to understand field settings.
+If you have any questions that we haven't covered in this guide, please [file an issue](https://github.com/wpmetabox/docs/issues/new) on Github. Happy developing!
