@@ -96,10 +96,11 @@ code {
 	background: #f8f8f8;
 	padding: 2px 4px;
 	color: #d14;
-	font-size: 1.3rem;
+	font-size: .8125em;
+	text-transform: none;
+	font-weight: normal;
 }
 pre {
-	font-size: 1.4rem;
 	padding: 1em;
 	margin: 0 0 1.7em;
 	white-space: pre-wrap;

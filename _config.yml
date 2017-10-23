@@ -2,9 +2,21 @@ title: Meta Box Documentation
 sass:
   style: compressed
 permalink: pretty
+
+collections:
+  docs:
+    permalink: /:path/
+    output: true
+
 defaults:
   -
     scope:
       path: ""
+    values:
+      layout: "default"
+  -
+    scope:
+      path: "_docs"
+      type: "docs"
     values:
       layout: "default"

@@ -1,110 +1,62 @@
-- title: Basics
+- title: Getting Started
   items:
-  - title: Getting Started
-    url: /getting-started/
-  - title: Register Meta Boxes
-    url: /registering-meta-boxes/
-  - title: Define Fields
-    url: /define-fields/
-  - title: Get Meta Value
-    url: /docs/get-meta-value/
-  - title: Custom attributes for inputs
-    url: /custom-attributes-for-inputs/
-  - title: Display map in the front end
-    url: /display-map-in-the-front-end/
-  - title: Include Meta Box Plugin In Themes/Plugins
-    url: /include-meta-box-plugin-themes/
-  - title: Shortcode
-    url: /shortcode/
-  - title: Validation
-    url: /validation/
+  - title: Welcome
+    url: /
+  - quick-start-guide
+  - registering-meta-boxes
+  - define-fields
+  - docsget-meta-value
+  - custom-attributes-for-inputs
+  - display-map-in-the-front-end
+  - include-meta-box-plugin-themes
+  - shortcode
+  - validation
 - title: Extensions
   items:
-    - title: How to update extensions
-      url: /update-extensions/
-    - title: Include extensions in themes or plugins
-      url: /include-extensions-themes-plugins/
-    - title: MB Admin Columns
-      url: /mb-admin-columns/
-    - title: MB Custom Table
-      url: /mb-custom-table/
-    - title: MB Frontend Submission
-      url: /mb-frontend-submission/
-    - title: MB Revision
-      url: /mb-revision/
-    - title: MB Settings Page
-      url: /mb-settings-page/
-    - title: MB Term Meta
-      url: /mb-term-meta/
-    - title: MB User Meta
-      url: /mb-user-meta/
-    - title: Meta Box AIO
-      url: /meta-box-aio/
-    - title: Meta Box Builder
-      url: /meta-box-builder/
-    - title: Meta Box Columns
-      url: /meta-box-columns/
-    - title: Meta Box Conditional Logic
-      url: /meta-box-conditional-logic/
-    - title: Geolocation
-      url: /meta-box-geolocation/
-    - title: Group
-      url: /meta-box-group/
-    - title: Include Exclude
-      url: /meta-box-include-exclude/
-    - title: Show Hide
-      url: /extensions/show-hide/
-    - title: Tabs
-      url: /extensions/tabs/
-    - title: Template
-      url: /extensions/template/
-    - title: Tooltip
-      url: /extensions/tooltip/
-    - title: Updater
-      url: /extensions/updater/
+  -   include-extensions-themes-plugins
+  -   mb-admin-columns
+  -   mb-custom-table
+  -   mb-frontend-submission
+  -   mb-revision
+  -   mb-settings-page
+  -   mb-term-meta
+  -   mb-user-meta
+  -   meta-box-aio
+  -   meta-box-builder
+  -   meta-box-columns
+  -   meta-box-conditional-logic
+  -   meta-box-geolocation
+  -   meta-box-group
+  -   meta-box-include-exclude
+  -   extensionsshow-hide
+  -   extensionstabs
+  -   extensionstemplate
+  -   extensionstooltip
+  -   extensionsupdater
+  -   update-extensions
 - title: Advanced
   items:
-    - title: Create Your Own Field Type
-      url: /create-field-type/
-    - title: Edit / remove meta boxes added by a parent theme / plugin?
-      url: /edit-remove-meta-boxes/
-    - title: How post meta is saved in the database?
-      url: /how-post-meta-is-saved-in-the-database/
-    - title: How to create Columns in Meta Box Builder?
-      url: /how-to-create-meta-box-columns-in-meta-box-builder/
-    - title: How to create nested array field with Meta Box Builder
-      url: /how-to-create-nested-array-field-with-meta-box-builder/
-    - title: Looping through meta box’s fields
-      url: /looping-meta-box-fields/
+  -   create-field-type
+  -   edit-remove-meta-boxes
+  -   how-post-meta-is-saved-in-the-database
+  -   how-to-create-meta-box-columns-in-meta-box-builder
+  -   how-to-create-nested-array-field-with-meta-box-builder
+  -   looping-meta-box-fields
 - title: References
   items:
-    - title: Actions
-      url: /actions/
-    - title: Filters
-      url: /filters/
-    - title: RWMB_Field Class
-      url: /rwmb-field-class/
+  -   actions
+  -   filters
+  -   rwmb-field-class
 - title: Tutorials
   items:
-    - title: Conditional Logic &amp; Taxonomies
-      url: /conditional-logic-taxonomies/
-    - title: Custom Select / Checkbox Tree
-      url: /custom-select-checkbox-tree/
-    - title: Display date in one format and save in another format
-      url: /display-date-in-one-format-and-save-in-another-format/
-    - title: Hide Group with Conditional Logic
-      url: /hide-group-conditional-logic/
-    - title: Hide Tabs with Conditional Logic
-      url: /hide-meta-box-tabs-conditional-logic/
-    - title: How to display value of radio or checkbox list field?
-      url: /display-value-radio-checkbox-list-field/
-    - title: How to save WYSIWYG content as post content
-      url: /save-wysiwyg-content-post-content/
-    - title: How to set a field as read only?
-      url: /how-to-set-a-field-as-read-only/
-    - title: The difference between Include Exclude, Show Hide and Conditional Logic extensions
-      url: /difference-include-exclude-show-hide-conditional-logic-extensions/
-    - title: Using custom HTML field with callback to output anything
-      url: /using-custom-html-field-callback-output-anything/
-    - title: Using Meta Box with Composer
-      url: /using-meta-box-composer/
+  -   conditional-logic-taxonomies
+  -   custom-select-checkbox-tree
+  -   display-date-in-one-format-and-save-in-another-format
+  -   hide-group-conditional-logic
+  -   hide-meta-box-tabs-conditional-logic
+  -   display-value-radio-checkbox-list-field
+  -   save-wysiwyg-content-post-content
+  -   how-to-set-a-field-as-read-only
+  -   difference-include-exclude-show-hide-conditional-logic-extensions
+  -   using-custom-html-field-callback-output-anything
+  -   using-meta-box-composer
