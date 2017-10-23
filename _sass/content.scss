@@ -10,6 +10,7 @@
 		border-radius: 3px;
 		width: 100%;
 		margin-bottom: 2em;
+		font-size: inherit;
 	}
 	&__menu {
 		margin: 0;
@@ -100,4 +101,7 @@
 }
 .entry-content > :first-child {
 	margin-top: 0;
+}
+.entry-content img {
+	box-shadow: 0 0 2px rgba(0, 0, 0, .3);
 }
