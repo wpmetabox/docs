@@ -1,14 +1,40 @@
 .site-footer {
 	padding: 70px 0;
 	border-top: 1px solid #ddd;
-	font-size: 1.4rem;
-	font-weight: bold;
 
-	> .container {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+	.widget {
+		margin-bottom: 70px;
 	}
+	.widget-title {
+		border: 0;
+		padding: 0;
+		margin-top: 0;
+	}
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+
+		a {
+			color: inherit;
+		}
+	}
+	li {
+		padding-bottom: 5px;
+		margin-bottom: 5px;
+		border-bottom: 1px dotted #ddd;
+		display: block;
+	}
+}
+.site-info {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #ddd;
+	font-size: 1.4rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: bold;
 }
 .social-navigation {
 	font-size: 2rem;
@@ -20,6 +46,7 @@
 	li {
 		border: none;
 		padding: 0;
+		display: inline-block;
 	}
 	li + li {
 		margin-left: 5px;
@@ -37,6 +64,32 @@
 	img {
 		display: inline-block;
 	}
+}
+
+/**
+ * Scroll to top
+ */
+.scroll-to-top {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, .2);
+    text-decoration: none;
+    border-radius: 50%;
+}
+.scroll-to-top:hover {
+    background: rgba(0, 0, 0, .3);
+}
+.scroll-to-top:focus {
+    outline: none;
+}
+.scroll-to-top svg {
+    fill: #fff;
 }
 
 @media (max-width: 767px) {

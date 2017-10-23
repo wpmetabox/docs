@@ -106,7 +106,7 @@ Type|Description
 `id`|unique id of current location
 `url`|url of current location
 
-For more information about address components visit: [Google Address Component Types](http://code.google.com/apis/maps/documentation/geocoding/#Types)
+For more information about address components visit: [Google Address Component Types](https://code.google.com/apis/maps/documentation/geocoding/#Types)
 
 #### Auto Populate
 

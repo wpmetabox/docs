@@ -12,11 +12,11 @@ To create tabs for your meta box, you need to add 2 parameters to your meta box 
 
 - `tab_style`: Tab style. There are 3 styles available: `default` (like tabs for Categories), `box` (like tabs for Visual and Text modes of the main editor) or `left` (like tabs in Help screen). Optional. Default is `default`.
 
-![tab styles](http://i.imgur.com/7Oi5dx1.jpg)
+![tab styles](https://i.imgur.com/7Oi5dx1.jpg)
 
 - `tab_wrapper`: Whether or not show the meta box wrapper around tabs. Default is `true`. If set to `false`, then the wrapper will be hidden.
 
-![tab wrapper](http://i.imgur.com/IPzfyEY.jpg)
+![tab wrapper](https://i.imgur.com/IPzfyEY.jpg)
 
 - `tabs`: List of tabs, in one of the following formats:
 	- `'tab-id' => 'Tab label'`
@@ -58,7 +58,7 @@ function meta_box_tabs_demo_register( $meta_boxes ) {
 			),
 			'note'    => array(
 				'label' => __( 'Note', 'textdomain' ),
-				'icon'  => 'http://i.imgur.com/nJtag1q.png', // Custom icon, using image
+				'icon'  => 'https://i.imgur.com/nJtag1q.png', // Custom icon, using image
 			),
 		),
 

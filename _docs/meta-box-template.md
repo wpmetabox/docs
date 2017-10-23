@@ -8,7 +8,7 @@ title: Meta Box Template
 
 After installing, please go to **Settings \ Meta Box Template** to add the template for custom meta boxes and custom fields.
 
-The plugin uses YAML syntax to define meta boxes and custom fields. YAML is is a human-friendly format for data and is widely used to store configuration. For more information about YAML, please read on [its homepage](http://yaml.org).
+The plugin uses YAML syntax to define meta boxes and custom fields. YAML is is a human-friendly format for data and is widely used to store configuration. For more information about YAML, please read on [its homepage](https://yaml.org).
 
 ### Getting started with the syntax
 
@@ -139,7 +139,7 @@ array( 'fields' => array(
 - Comments can be added by adding `#` at the beginning of the line.
 - YAML accepts all data types string, number, booleans, etc.
 
-For more information about using YAML, the Symfony project wrote a very good guide to follow. Check it out [here](http://symfony.com/doc/current/components/yaml/yaml_format.html). If you want the full reference (you don't need to for Meta Box Template), you can read it at [YAML homepage](http://www.yaml.org/spec/1.2/spec.html).
+For more information about using YAML, the Symfony project wrote a very good guide to follow. Check it out [here](https://symfony.com/doc/current/components/yaml/yaml_format.html). If you want the full reference (you don't need to for Meta Box Template), you can read it at [YAML homepage](https://www.yaml.org/spec/1.2/spec.html).
 
 **Note:** To make you easier to type template for meta boxes and fields, the plugin added basic editing functionality like tab, auto closing brackets, etc.
 
@@ -231,8 +231,8 @@ Name|Description
 --|--
 `%wp-content%`|Path to `wp-content` directory, without trailing slash
 `%plugins%`|Path to `wp-content/plugins` directory, without trailing slash
-`%themes%`|Path to `wp-content/themes` directory. Same as [`get_theme_root()`](http://codex.wordpress.org/Function_Reference/get_theme_root) function, without trailing slash
-`%template%`|Path to current theme directory. Same as [`get_template_directory()`](http://codex.wordpress.org/Function_Reference/get_template_directory) function, without trailing slash
-`%stylesheet%`|Path to current child theme directory. Same as [`get_stylesheet_directory()`](http://codex.wordpress.org/Function_Reference/get_stylesheet_directory) function, without trailing slash
+`%themes%`|Path to `wp-content/themes` directory. Same as [`get_theme_root()`](https://codex.wordpress.org/Function_Reference/get_theme_root) function, without trailing slash
+`%template%`|Path to current theme directory. Same as [`get_template_directory()`](https://codex.wordpress.org/Function_Reference/get_template_directory) function, without trailing slash
+`%stylesheet%`|Path to current child theme directory. Same as [`get_stylesheet_directory()`](https://codex.wordpress.org/Function_Reference/get_stylesheet_directory) function, without trailing slash
 
 **Note:** when you change the configuration file, you have to click **Save changes** in the plugin settings page to force it re-parse the file content.

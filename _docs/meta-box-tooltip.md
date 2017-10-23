@@ -37,7 +37,7 @@ function meta_box_tooltip_demo_register( $meta_boxes ) {
 				// Add tooltip to field label, in one of following formats
 				// 1) 'tooltip' => 'Tooltip Content'
 				// 2) 'tooltip' => array( 'icon' => 'info', 'content' => 'Tooltip Content', 'position' => 'top' )
-				// 3) 'tooltip' => array( 'icon' => 'http://url-to-icon-image.png', 'content' => 'Tooltip Content', 'position' => 'top' )
+				// 3) 'tooltip' => array( 'icon' => 'https://url-to-icon-image.png', 'content' => 'Tooltip Content', 'position' => 'top' )
 				//
 				// In 1st format, icon will be 'info' by default
 				// In 2nd format, icon can be 'info' (default), 'help' or any Dashicons (see https://developer.wordpress.org/resource/dashicons/)
@@ -71,7 +71,7 @@ function meta_box_tooltip_demo_register( $meta_boxes ) {
 				'id'      => 'email',
 				'type'    => 'text',
 				'tooltip' => array(
-					'icon'     => 'http://i.imgur.com/ZQI2DNx.png',
+					'icon'     => 'https://i.imgur.com/ZQI2DNx.png',
 					'content'  => __( 'Custom icon', 'meta-box' ),
 					'position' => 'right',
 				),

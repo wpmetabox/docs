@@ -275,7 +275,7 @@ add_filter( 'rwmb_some_user_choice_label', 'some_user_filter', 10, 3);
 
 This filter accepts 1 param:
 
-- `$settings`: editor settings, which will be sent to [`wp_editor`](http://codex.wordpress.org/Function_Reference/wp_editor) function.
+- `$settings`: editor settings, which will be sent to [`wp_editor`](https://codex.wordpress.org/Function_Reference/wp_editor) function.
 
 ### `file` filters
 

@@ -2,11 +2,13 @@
   items:
   - title: Welcome
     url: /
+  - installation
   - quick-start-guide
-  - registering-meta-boxes
-  - define-fields
-  - docsget-meta-value
-  - custom-attributes-for-inputs
+  - register-meta-boxes
+  - field-types
+  - field-settings
+  - get-meta-value
+  - custom-attributes
   - display-map-in-the-front-end
   - include-meta-box-plugin-themes
   - shortcode

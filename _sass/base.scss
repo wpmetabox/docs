@@ -22,7 +22,7 @@ h1, h2, h3, h4 {
 	text-transform: capitalize;
 }
 h1 {
-	font-size: 3rem;
+	font-size: 3.6rem;
 	.wf-active & {
 		font-family: "Roboto Slab", sans-serif;;
 	}
@@ -101,9 +101,10 @@ code {
 	font-weight: normal;
 }
 pre {
-	padding: 1em;
+	padding: .6em 1em;
 	margin: 0 0 1.7em;
 	white-space: pre-wrap;
+	line-height: 1.4;
 }
 pre code {
 	padding: 0;
@@ -113,6 +114,7 @@ pre code {
 img {
 	max-width: 100%;
 	height: auto;
+	box-shadow: 0 0 2px rgba(0, 0, 0, .3);
 }
 ::placeholder {
 	color: #999;

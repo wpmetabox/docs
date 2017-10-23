@@ -8,7 +8,7 @@ Meta Box AIO is a part of [Developer Bundle](https://metabox.io/pricing/), which
 
 The extension has a settings page under *Settings &rarr; Meta Box AIO*, where you can enable/disable the modules you need/don't need.
 
-![settings page](http://i.imgur.com/rGbwDoB.png)
+![settings page](https://i.imgur.com/rGbwDoB.png)
 
 Simply check/uncheck the checkbox to enable/disable the corresponding extensions. Then click **Save Changes**.
 
@@ -16,7 +16,7 @@ Simply check/uncheck the checkbox to enable/disable the corresponding extensions
 
 Along with the premium extensions, Meta Box AIO allows you to load [free extensions from wordpress.org](https://profiles.wordpress.org/metabox#content-plugins). When activate the Meta Box AIO, you will see a notification at the top of the screen:
 
-![notification](http://i.imgur.com/jOs4Its.png)
+![notification](https://i.imgur.com/jOs4Its.png)
 
 Simply click on the **Begin installing plugins** to install them (if you haven't). And then click **Begin activating plugins** to activate them.
 

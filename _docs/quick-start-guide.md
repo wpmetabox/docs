@@ -1,20 +1,20 @@
 ---
-title: Quick Start Guide
+title: Quick start guide
 ---
 
-## Install
+After [installing Meta Box](/installation/), you won't see anything in the WordPress admin area. That's because the plugin doesn't have any admin page for configuration or settings. It only provides the API that you can use to speedup the process of creating meta boxes and custom fields.
 
-To install Meta Box plugin, please go to **Plugins &rarr; Add New** and search for **Meta Box**. Then click the button **Install** to install it. After that, click the button **Activate** to activate the plugin.
+It might take you a little time at first, but then you'll love the way it work because it helps you customize almost everything. Besides, working directly with code, it's lightweight and very fast.
 
-[![install](http://i.imgur.com/1YmG3EE.png)](http://i.imgur.com/1YmG3EE.png)
+It's great if you know a little PHP coding. But if you don't, you still can use our tool to make it work for you.
 
-## Getting Started With Online Generator
+## Online generator
 
-The fastest way to getting started with Meta Box is use our [online generator](https://metabox.io/online-generator/) to generate meta box with custom fields. The online generator provides a powerful and friendly UI for you to create meta boxes and custom fields just by drag and drop fields.
+The fastest way to getting started with Meta Box is use our online generator. It provides a friendly UI for you to create meta boxes and custom fields just by drag and drop fields.
 
-[![online generator](https://i.imgur.com/r6ITYZi.png)](https://i.imgur.com/r6ITYZi.png)
+![online generator](https://i.imgur.com/shvWYj4.png)
 
-Please follow the steps below:
+To use the online generator:
 
 - Go to [Online Generator](https://metabox.io/online-generator/) page
 - Fill in all the info of meta boxes and custom fields
@@ -23,17 +23,18 @@ Please follow the steps below:
 
 Now go to **Posts &rarr; Add New** and see the result.
 
-## Creating A Simple Meta Box Manually
+## Creating a meta box
 
-If you prefer working with the code manually, please just open your theme's `functions.php` file (or a PHP file of your plugin) and insert the following code:
+If you don't use the online generator, you can create meta boxes and custom fields with a little PHP coding.
+
+The code below registers a simple meta box with 4 fields: name, gender, email and biography.
 
 ```php
 add_filter( 'rwmb_meta_boxes', 'prefix_meta_boxes' );
 function prefix_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'      => __( 'Test Meta Box', 'textdomain' ),
-        'post_types' => 'post',
-        'fields'     => array(
+        'title'  => __( 'Test Meta Box', 'textdomain' ),
+        'fields' => array(
             array(
                 'id'   => 'name',
                 'name' => __( 'Name', 'textdomain' ),
@@ -64,34 +65,31 @@ function prefix_meta_boxes( $meta_boxes ) {
 }
 ```
 
-Then go to **Posts &rarr; Add New**, you will see a new meta box appears below the post editor:
+Copy and paste it to your theme's `functions.php` file (or a PHP file of your plugin) and go to **Posts &rarr; Add New**, you'll see a new meta box appears below the post editor:
 
-![meta box](http://i.imgur.com/NLlFkFM.png)
+![meta box](https://i.imgur.com/NLlFkFM.png)
 
-## Understand The Basics
+## More UI
 
-As you see in the both methods above, you need to copy some code and paste into your `functions.php` file. This is because Meta Box doesn't have any UI in the admin for you to create and manage custom meta boxes and custom fields. Instead of that, it provides you a *very* powerful API to quickly add custom fields to the editing pages. It might take you a little time at first, but then you will love the way it work because it helps you do and customize things very easily than any drag-and-drop plugins.
-
-But, if you prefer UI to create and manage custom meta boxes and custom fields or you don't want to touch code, you can just use our [Online Generator](https://metabox.io/online-generator/) or use one of the premium extensions below:
+If you prefer UI to create and manage custom meta boxes and custom fields or you don't want to touch code, you can just use our online generator or use one of the premium extensions below:
 
 - [MB Custom Post Type](https://metabox.io/plugins/custom-post-type/): Create and manage custom post types and custom taxonomies with nice UI
-- [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/): Create and manage custom meta boxes and custom fields with drag and drop UI. It's similar to [Online Generator](https://metabox.io/online-generator/), but integrated right in the WordPress admin area. So you don't need to copy and paste any more.
+- [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/): Create and manage custom meta boxes and custom fields with drag and drop UI. It's similar to the online generator, but integrated right in the WordPress admin area. So you don't need to copy and paste any more.
 
-## More Built-in Demos
+## Built-in demos
 
 The Meta Box plugin has a [list of demos](https://github.com/wpmetabox/meta-box/tree/master/demo) which you can use as a starting point for your projects. The list is constantly updated with the new features or new demos in every new release of the plugin.
 
-Firstly, you should **start with `demo.php`** by downloading it [here](https://github.com/wpmetabox/meta-box/blob/master/demo/demo.php). It is basic and **has all explanations in comments** (please read them *carefully* to understand how to write the script correctly).
+You should start with `demo.php` by downloading it [here](https://github.com/wpmetabox/meta-box/blob/master/demo/demo.php) and put it in your theme folder. Then open the theme's `functions.php` file add the following code:
 
-Here are steps to integrate the `demo.php` into your theme:
+```php
+include 'demo.php';
+```
 
-- Copy [`demo.php`](https://github.com/wpmetabox/meta-box/blob/master/demo/demo.php) file to your theme folder
-- Open `functions.php` file of your theme and add the following code: `include 'demo.php';`
+Now go to **Add New Post** page and you'll see a list of all field types.
 
-Now go to **Add New Post** page and see the result. If everything is ok, you'll see as the following screenshots:
+Please note that this file has all explanations in comments, so please read them carefully to understand how to write the code.
 
-![demo](http://i.imgur.com/7JbfV3D.png)
-
-## Going Further
+## Going further
 
 To customize fields and meta boxes, please look at the documentation on the left menu. Note that the documentation is regularly updated to cover the latest features of the plugin, so keep checking it when you have any troubles using the plugin.

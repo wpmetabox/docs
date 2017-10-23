@@ -9,7 +9,7 @@ The latest version of the [Meta Box premium extensions](https://metabox.io/plugi
 This method is highly recommended. Please follow these steps:
 
 1. Include the TGM Activation Class files into your themes/plugins.
-1. Download the [TGM Activation Class](http://tgmpluginactivation.com/).
+1. Download the [TGM Activation Class](https://tgmpluginactivation.com/).
 1. Add the following code into your theme's `functions.php` file or your plugin's main file
 
 ```php
@@ -32,7 +32,7 @@ function your_prefix_register_required_plugins() {
 }
 ```
 
-Remember to change the extension slug and name to the correct slug and name of the extension(s) you want to include. For more information about the syntax, please read [TGM Activation Class's documentation](http://tgmpluginactivation.com/configuration/).
+Remember to change the extension slug and name to the correct slug and name of the extension(s) you want to include. For more information about the syntax, please read [TGM Activation Class's documentation](https://tgmpluginactivation.com/configuration/).
 
 ### Include the extension directly
 

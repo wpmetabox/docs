@@ -6,7 +6,7 @@ The Meta Box plugin has **built-in validation** module for all fields. You can u
 
 **Technical note:**
 
-The validation module is built with the popular [Query validation plugin](http://jqueryvalidation.org/) which makes simple **client side form validation** easy, whilst still offering **plenty of customization options**. The plugin comes bundled with a useful set of validation methods, while providing an API to write your own methods. All bundled methods come with default error messages in English and translations into 37 other languages.
+The validation module is built with the popular [Query validation plugin](https://jqueryvalidation.org/) which makes simple **client side form validation** easy, whilst still offering **plenty of customization options**. The plugin comes bundled with a useful set of validation methods, while providing an API to write your own methods. All bundled methods come with default error messages in English and translations into 37 other languages.
 
 ## How to set validation rules
 
@@ -64,9 +64,9 @@ Name|Description
 `digits` | Makes the element require digits only.
 `creditcard` | Makes the element require a credit card number.
 `equalTo` | Requires the element to be the same as another one. Value must be the ID of another field.
-`remote` | Requests a resource to check the element for validity. Value can be URL of the resource to request for server side validation (string) or options to fully customize the request, see [jQuery.ajax](http://api.jquery.com/jQuery.ajax). The server side resource is called via jQuery.ajax and gets a key/value pair corresponding to the name of the validated element and its value as a GET parameter. The response is evaluated as JSON and must be `true` for valid elements, and can be any `false`, `undefined` or `null` for invalid elements, using the default message; or a string, eg. "That name is already taken, try peter123 instead" to display as the error message.
+`remote` | Requests a resource to check the element for validity. Value can be URL of the resource to request for server side validation (string) or options to fully customize the request, see [jQuery.ajax](https://api.jquery.com/jQuery.ajax). The server side resource is called via jQuery.ajax and gets a key/value pair corresponding to the name of the validated element and its value as a GET parameter. The response is evaluated as JSON and must be `true` for valid elements, and can be any `false`, `undefined` or `null` for invalid elements, using the default message; or a string, eg. "That name is already taken, try peter123 instead" to display as the error message.
 
-For more details about validation rules, please read the [documentation page of jQuery validation plugin](http://jqueryvalidation.org/documentation/).
+For more details about validation rules, please read the [documentation page of jQuery validation plugin](https://jqueryvalidation.org/documentation/).
 
 ## Error messages
 

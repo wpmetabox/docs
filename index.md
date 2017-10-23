@@ -4,19 +4,17 @@ title: Welcome
 
 This site aims to be a comprehensive guide to Meta Box plugin and extensions. We'll cover topics such as installation, creating custom meta boxes and fields, get meta value and give you some tutorials on using the plugins to speedup your development workflow.
 
+All the documentation are listed on the left navigation in order to be most easily understood. You can also use the search box to find the right documentation quickly.
+
 ## So what is Meta Box, exactly?
 
 Meta Box is a simple yet powerful plugin that helps developers build custom meta boxes and custom fields in WordPress fast and easily.
 
 The plugin lets you define custom meta boxes and custom fields via arrays and handles everything behind the scene automatically. It has a wide range of field types, field options and supports not only post meta, but also term meta, user meta, comment meta, settings pages and custom tables.
 
-## Documentation structure
-
-All the documentation are listed on the left navigation in order to be most easily understood. In each documentation, we try to provide as detailed as possible all the information, parameters and examples.
-
 ## Contribution
 
-Like Meta Box plugin, the documentation is [open sourced on Github](https://github.com/wpmetabox/docs). The website is powered by Jekyll and the content is written in Markdown.
+Like Meta Box plugin, this documentation is [open sourced on Github](https://github.com/wpmetabox/docs). The website is powered by Jekyll and the content is written in Markdown.
 
 On the top of each documentation page, there's a **Improve this page** link, which redirects you to the Github page where you can edit the content. If you find anything incorrect in the documentation or out-dated, please help us fix it.
 

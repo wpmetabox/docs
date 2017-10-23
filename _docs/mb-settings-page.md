@@ -34,8 +34,8 @@ Name|Description
 `menu_title`|Menu title. Optional. Takes `page_title` if missed.
 `page_title`|Page title. Optional. Takes `menu_title` if missed. Note: either `menu_title` or `page_title` (or both) must have value.
 `capability`|Required capability to access the settings page. Optional. Default `edit_theme_options`.
-`icon_url`|The icon for the menu. To use <a href="https://developer.wordpress.org/resource/dashicons/">a Dashicon</a>, set this to `dashicon-icon-name`. To use a SVG data image as a CSS background, set this to `data:image/svg+xml;base64...`. To use an image, set this to image URL. See `icon_url` parameter of <a href="http://codex.wordpress.org/Function_Reference/add_menu_page">add_menu_page()</a> function.
-`position`|Menu position. See `position` parameter of <a href="http://codex.wordpress.org/Function_Reference/add_menu_page">add_menu_page()</a> function.
+`icon_url`|The icon for the menu. To use <a href="https://developer.wordpress.org/resource/dashicons/">a Dashicon</a>, set this to `dashicon-icon-name`. To use a SVG data image as a CSS background, set this to `data:image/svg+xml;base64...`. To use an image, set this to image URL. See `icon_url` parameter of <a href="https://codex.wordpress.org/Function_Reference/add_menu_page">add_menu_page()</a> function.
+`position`|Menu position. See `position` parameter of <a href="https://codex.wordpress.org/Function_Reference/add_menu_page">add_menu_page()</a> function.
 `parent`|ID of the parent page. Optional. Can be WordPress menu or custom settings page menu. See examples below for more details.
 `submenu_title`|Set this to the default submenu title (first submenu) if the settings page is a top-level menu. Optional.
 `help_tabs`|List of help tabs. Array in format `'tab-id' => 'Tab Content'`. Optional.
@@ -78,7 +78,7 @@ function prefix_settings_pages( $settings_pages ) {
 
 Here is the result:
 
-![registrer settings pages](http://i.imgur.com/3nKuSE4.png)
+![registrer settings pages](https://i.imgur.com/3nKuSE4.png)
 
 Note that:
 
@@ -126,9 +126,9 @@ function prefix_options_meta_boxes( $meta_boxes ) {
                 'id'      => 'layout',
                 'type'    => 'image_select',
                 'options' => array(
-                    'sidebar-left'  => 'http://i.imgur.com/Y2sxQ2R.png',
-                    'sidebar-right' => 'http://i.imgur.com/h7ONxhz.png',
-                    'no-sidebar'    => 'http://i.imgur.com/m7oQKvk.png',
+                    'sidebar-left'  => 'https://i.imgur.com/Y2sxQ2R.png',
+                    'sidebar-right' => 'https://i.imgur.com/h7ONxhz.png',
+                    'no-sidebar'    => 'https://i.imgur.com/m7oQKvk.png',
                 ),
             ),
         ),
@@ -159,7 +159,7 @@ function prefix_options_meta_boxes( $meta_boxes ) {
         'fields'         => array(
             array(
                 'type' => 'custom_html',
-                'std'  => '<img src="http://placehold.it/260x150?text=Thumbnail">' . __( '<strong>%Name%</strong> is a responsive theme for businesses and agencies. Built with HTML5, SASS and other latest technologies.<br><br><a href="http://domain.com" target="_blank" class="button-primary">Learn more</a>', 'textdomain' ),
+                'std'  => '<img src="https://placehold.it/260x150?text=Thumbnail">' . __( '<strong>%Name%</strong> is a responsive theme for businesses and agencies. Built with HTML5, SASS and other latest technologies.<br><br><a href="https://domain.com" target="_blank" class="button-primary">Learn more</a>', 'textdomain' ),
             )
         ),
     );
@@ -218,9 +218,9 @@ function prefix_options_meta_boxes( $meta_boxes ) {
                 'id'      => 'layout',
                 'type'    => 'image_select',
                 'options' => array(
-                    'sidebar-left'  => 'http://i.imgur.com/Y2sxQ2R.png',
-                    'sidebar-right' => 'http://i.imgur.com/h7ONxhz.png',
-                    'no-sidebar'    => 'http://i.imgur.com/m7oQKvk.png',
+                    'sidebar-left'  => 'https://i.imgur.com/Y2sxQ2R.png',
+                    'sidebar-right' => 'https://i.imgur.com/h7ONxhz.png',
+                    'no-sidebar'    => 'https://i.imgur.com/m7oQKvk.png',
                 ),
             ),
         ),

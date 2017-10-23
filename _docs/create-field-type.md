@@ -88,6 +88,6 @@ $meta_boxes[] = array(
 
 Now when you go to edit post page, you'll see a new field like this:
 
-![new field type](http://i.imgur.com/lK8DRW7.png)
+![new field type](https://i.imgur.com/lK8DRW7.png)
 
 That's all for this simple field type. If you want to create a more complicated field, just overwrite methods from [`RWMB_Field` class](/rwmb-field-class/). You might want to enqueue scripts and styles, sanitizing field value before saving in the database, etc. The `RWMB_Field` class has all methods for that you just need to overwrite necessary methods.

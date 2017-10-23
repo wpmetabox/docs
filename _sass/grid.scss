@@ -1,0 +1,29 @@
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -40px 0 0 -40px;
+}
+.grid > * {
+    padding: 40px 0 0 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+    .grid--2 > *,
+    .grid--3 > *,
+    .grid--4 > * {
+        width: 50%;
+    }
+}
+
+/* Desktops */
+@media (min-width: 1024px) {
+    .grid--3 > * {
+        width: 33.3333%;
+    }
+    .grid--4 > * {
+        width: 25%;
+    }
+}

@@ -91,7 +91,7 @@ array(
     'ID'   => 123,
     'name' => 'intro.txt',
     'path' => '/var/www/wp-content/uploads/intro.txt',
-    'url' => 'http://example.com/wp-content/uploads/intro.txt',
+    'url' => 'https://example.com/wp-content/uploads/intro.txt',
     'title' => 'Introduction',
 );
 ```
@@ -125,17 +125,17 @@ array(
     'ID'   => 123,
     'name' => 'logo-150x80.png',
     'path' => '/var/www/wp-content/uploads/logo-150x80.png',
-    'url' => 'http://example.com/wp-content/uploads/logo-150x80.png',
+    'url' => 'https://example.com/wp-content/uploads/logo-150x80.png',
     'width' => 150,
     'height' => 80,
-    'full_url' => 'http://example.com/wp-content/uploads/logo.png',
+    'full_url' => 'https://example.com/wp-content/uploads/logo.png',
     'title' => 'Logo',
     'caption' => 'Logo caption',
     'description' => 'Used in the header',
     'alt' => 'Logo ALT text',
     'srcset' => 'large.jpg 1920w, medium.jpg 960w, small.jpg 480w' // List of responsive image src, added in 4.8.0
-    'sizes' => array(), // List of image sizes. See http://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
-    'image_meta' => array(), // List of image meta. See http://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
+    'sizes' => array(), // List of image sizes. See https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
+    'image_meta' => array(), // List of image meta. See https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
 )
 ```
 
@@ -218,7 +218,7 @@ To get the value stored in the custom field, e.g. the URL of the oembed object, 
 
 ```php
 $url = get_post_meta( get_the_ID(), 'field_id', true );
-// returns "http://youtube.com/watch?v=abcXYZ"
+// returns "https://youtube.com/watch?v=abcXYZ"
 ```
 
 ### Post

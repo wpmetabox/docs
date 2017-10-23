@@ -9,7 +9,7 @@ It's highly recommended **not** to include the plugin directly inside a WordPres
 - The plugin is being already installed on website
 - Maybe the plugin is included in another plugin. In this case, we can't be sure which version of the plugin is used and that can break the website (see this [discussion](https://github.com/wpmetabox/meta-box/issues/483))
 
-To avoid these problems, it's highly recommended using [TGM Activation Class](http://tgmpluginactivation.com/) to tell users that your theme/plugin needs the Meta Box plugin to run properly. This class is easy to use and configure (just follow the instruction at its homepage - simply copy and paste with small changes such as plugin name and slug).
+To avoid these problems, it's highly recommended using [TGM Activation Class](https://tgmpluginactivation.com/) to tell users that your theme/plugin needs the Meta Box plugin to run properly. This class is easy to use and configure (just follow the instruction at its homepage - simply copy and paste with small changes such as plugin name and slug).
 
 This is the sample code:
 

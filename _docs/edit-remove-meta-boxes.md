@@ -62,7 +62,7 @@ function prefix_register_meta_boxes( $meta_boxes ) {
 
 which are rendered as following:
 
-![meta boxes](http://i.imgur.com/VwDhVeD.png)
+![meta boxes](https://i.imgur.com/VwDhVeD.png)
 
 Now we will:
 
@@ -123,6 +123,6 @@ function prefix_edit_meta_boxes( $meta_boxes ) {
 
 Here is the result:
 
-![edit remove meta boxes](http://i.imgur.com/CxkIV6L.png)
+![edit remove meta boxes](https://i.imgur.com/CxkIV6L.png)
 
 [box]**Note:** It's always a good practice to set **meta box ID** (even when it's optional). In the code above we check meta boxes by ID to get the ones we want to edit or remove. It's fine to check by meta box title, but it will be harder if the website uses another language and the meta box title is translated.[/box]
