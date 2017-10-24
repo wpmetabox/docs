@@ -6,7 +6,7 @@ title: Meta Box Show Hide
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/define-fields/) before continuing!**
+**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
 
 To add show, hide conditions to your meta box, you need to add parameter `show` or `hide` accordingly to the meta box configuration.
 

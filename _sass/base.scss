@@ -125,3 +125,33 @@ img {
 	vertical-align: middle;
 	width: 1em;
 }
+.alert {
+	background: #64b5f6;
+	padding: 15px 15px 20px 55px;
+	margin: 0 0 1.7em;
+	color: #fff;
+	border-radius: 3px;
+	position: relative;
+
+	p {
+		margin: 0;
+	}
+	a {
+		color: inherit;
+		text-decoration: underline;
+	}
+	.icon {
+		position: absolute;
+		position: absolute;
+		top: 15px;
+		left: 18px;
+		width: 25px;
+		height: 40px;
+	}
+}
+.alert-warning {
+	background: #f6b664;
+}
+.alert-danger {
+	background: #f4645f;
+}

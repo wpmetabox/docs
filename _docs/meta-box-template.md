@@ -147,7 +147,7 @@ For more information about using YAML, the Symfony project wrote a very good gui
 
 Each meta box or custom field has a list of the parameters which is written in `key: value` pairs (associated arrays). We use YAML mapping for these parameters.
 
-Please see [this documentation](/registering-meta-boxes/) for list of meta box parameters and [this documentation](/define-fields/) for full list of custom fields parameters.
+Please see [this documentation](/registering-meta-boxes/) for list of meta box parameters and [this documentation](/field-settings/) for full list of custom fields parameters.
 
 To register multiple meta boxes or custom fields, we just need to use `- ` to add sequences (simple list).
 

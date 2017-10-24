@@ -7,7 +7,7 @@ title: MB Term Meta
 
 ## Add custom fields to terms
 
-Registering custom meta boxes and custom fields for taxonomy is similar to posts. See [this documentation](/registering-meta-boxes/) to know how to register a meta box, and [this documentation](/define-fields/) to know how to define fields.
+Registering custom meta boxes and custom fields for taxonomy is similar to posts. See [this documentation](/registering-meta-boxes/) to know how to register a meta box, and [this documentation](/field-settings/) to know how to define fields.
 
 The **only difference** here is when you **register a meta box for a taxonomy**, you need to specify a parameter `taxonomies` which the meta box will be added to. This parameter can be an array of taxonomy slugs or a string of single taxonomy slug. And you **have to** remove the parameter `post_types`.
 

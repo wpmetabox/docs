@@ -1,0 +1,8 @@
+<div class="alert{% if include.type %} alert-{{ include.type }}{% endif %}">
+	{% if include.type %}
+		<svg class="icon icon-{{ include.type }}" aria-hidden="true" role="img"><use href="#icon-{{ include.type }}" xlink:href="#icon-{{ include.type }}"></use></svg>
+	{% else %}
+		<svg class="icon icon-info" aria-hidden="true" role="img"><use href="#icon-info" xlink:href="#icon-info"></use></svg>
+	{% endif %}
+	{{ include.content | markdownify }}
+</div>

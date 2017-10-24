@@ -6,7 +6,7 @@ title: Meta Box Tabs
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/define-fields/) before continue!**
+**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continue!**
 
 To create tabs for your meta box, you need to add 2 parameters to your meta box configuration:
 

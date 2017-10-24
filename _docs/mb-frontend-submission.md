@@ -116,7 +116,7 @@ $field   = apply_filters( 'rwmb_frontend_post_content', array(
 ) );
 ```
 
-Each post field is treated as a normal Meta Box field (see here for full list of [field attributes](/docs/define-fields/)).
+Each post field is treated as a normal Meta Box field (see here for full list of [field attributes](/docs/field-settings/)).
 
 So, to make the post title required, you can do like this:
 

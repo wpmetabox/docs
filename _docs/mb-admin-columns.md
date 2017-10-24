@@ -6,7 +6,7 @@ title: MB Admin Columns
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/define-fields/) before continuing!**
+**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
 
 To show the admin column for a custom field, simply add `admin_columns` parameter for that field. The parameter can be in one of 3 following formats (from the simple to advanced configuration):
 

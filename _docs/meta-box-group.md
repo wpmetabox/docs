@@ -6,7 +6,7 @@ title: Meta Box Group
 
 ## Usage
 
-Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/define-fields/) before continuing!
+Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!
 
 The **Meta Box Group** adds a new field type `group`. This field type has following attributes:
 

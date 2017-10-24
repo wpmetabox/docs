@@ -5,7 +5,9 @@
 @import 'grid';
 
 // rougify style github > _sass/syntax.scss
-@import 'syntax';
+// material-theme: https://github.com/equinusocio/material-theme/
+// @import 'syntax-github';
+@import 'syntax-material';
 
 @import 'layout';
 @import 'header';

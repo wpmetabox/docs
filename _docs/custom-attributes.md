@@ -1,5 +1,5 @@
 ---
-title: Custom attributes for inputs
+title: Custom attributes
 ---
 
 Since version 4.7 of Meta Box, users can add custom attributes for inputs like text, URL, email fields. This feature is very helpful if developers want to add HTML5 attributes or something like `data-*` attribute for their custom JS code.

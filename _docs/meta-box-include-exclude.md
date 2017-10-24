@@ -6,7 +6,7 @@ title: Meta Box Include Exclude
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/define-fields/) before continuing!**
+**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
 
 To add include, exclude conditions to your meta box to show/hide it, you need to add parameter `include` or `exclude` accordingly to the meta box configuration.
 

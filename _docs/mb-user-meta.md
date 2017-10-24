@@ -6,7 +6,7 @@ title: MB User Meta
 
 ## Add custom fields to user profile
 
-Registering custom fields for user is similar to posts. See [this documentation](/registering-meta-boxes/) to know how to register a meta box, and [this documentation](/define-fields/) to know how to define fields. The **only difference** here is when you **register a meta box for user profile** , you need to specify a parameter `'type' => 'user'`. That's all!
+Registering custom fields for user is similar to posts. See [this documentation](/registering-meta-boxes/) to know how to register a meta box, and [this documentation](/field-settings/) to know how to define fields. The **only difference** here is when you **register a meta box for user profile** , you need to specify a parameter `'type' => 'user'`. That's all!
 
 ## Example
 

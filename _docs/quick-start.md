@@ -1,5 +1,5 @@
 ---
-title: Quick start guide
+title: Quick start
 ---
 
 After [installing Meta Box](/installation/), you won't see anything in the WordPress admin area. The plugin doesn't have any admin page for configuration or settings. Instead of that, it provides an API that you can use to speed up the process of creating meta boxes and custom fields.
@@ -67,7 +67,7 @@ function prefix_meta_boxes( $meta_boxes ) {
 
 Copy and paste it into your theme's `functions.php` file.
 
-Each meta box and field has settings to customize how they look and how they function. To learn more about that, please read [meta box settings](/creating-meta-boxes/) and [field settings](/field-settings/) guides.
+{% include alert.html content="Each meta box and field has settings to customize how they look and how they function. To learn more about that, please read [meta box settings](/creating-meta-boxes/) and [field settings](/field-settings/) guides." %}
 
 ## Creating content
 
@@ -93,9 +93,9 @@ If you prefer UI to create and manage custom meta boxes and custom fields or you
 - [MB Custom Post Type](https://metabox.io/plugins/custom-post-type/): Create and manage custom post types and custom taxonomies with nice UI
 - [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/): Create and manage custom meta boxes and custom fields with drag and drop UI. It's similar to the online generator, but integrated right in the WordPress admin area. So you don't need to copy and paste any more.
 
-## Code demos
+## Code examples
 
-In order to help our users to spend less time writing code for meta boxes and fields, we have created a [list of demos](https://github.com/wpmetabox/meta-box/tree/master/demo) which you can use as a starting point for your projects.
+In order to help our users to spend less time writing code for meta boxes and fields, we have created a [list of examples](https://github.com/wpmetabox/meta-box/tree/master/demo) which you can use as a starting point for your projects.
 
 You should start with the [main `demo.php` file](https://github.com/wpmetabox/meta-box/blob/master/demo/demo.php). It has all explanations for meta box settings and field settings in the comments.
 

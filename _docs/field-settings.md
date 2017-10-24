@@ -1,5 +1,5 @@
 ---
-title: Field Settings
+title: Field settings
 ---
 
 Each field contains settings to determine where and how data is loaded and saved. All fields share some common settings, but also offer unique settings per field type.
@@ -8,84 +8,34 @@ Each field contains settings to determine where and how data is loaded and saved
 
 Name | Description
 --- | ---
-`name` | Name of the custom field. It'll be displayed in the meta box. Optional. Without name, the field input is 100% width.
-`id` | ID of the field. Required. Must be unique. **It will be used as `meta_key`**. It's a good practice to use only numbers, letters, and underscores.
-`type` | Field type. See the list below for all supported field types. Required.
-`desc` | a short description explaining what it is. Optional.
-`std` | Default value of the custom field. Optional.
+`name` | Field label. Optional. If empty, the field input is 100% width.
+`id` | Field ID. Required and must be unique. **It will be used as `meta_key` when saving to the database**. It's a good practice to use only numbers, letters, and underscores.
+`type` | Field type. See list of field types [here](/field-types/). Required.
+`desc` | Field description, displayed below the field input. Optional.
+`label_description` | Label description, displayed below the field label. Optional.
+`std` | Default value. Optional.
 `multiple`|Does the field have multiple values (like the `select` field)? Optional. Default `false`.
-`class` | Custom CSS class, in case you want to style the field the way you want. Optional.
-`before` | Custom HTML outputted before field's HTML
-`after` | Custom HTML outputted after field's HTML
-`clone` | Is the field clonable? `true` or `false`. Optional. Since 4.8.3 it works for all field types, including file, image and [wysiwyg](/cloning-wysiwyg-supported/).
-`max_clone`|Maximum number of clones. Default 0 (unlimited).
+`class` | Custom CSS class, in case you want to customize the field. Optional.
+`before` | Custom HTML outputted before field's HTML.
+`after` | Custom HTML outputted after field's HTML.
+`clone` | Is the field clonable (repeatable)? `true` or `false`. Optional. Default `false`.
+`max_clone`|Maximum number of clones. Optional. Default `0` (unlimited).
 `sort_clone`|Ability to drag-and-drop reorder clones (`true` or `false`). Optional. Default `false`.
-`add_button`|The text for add more clone button. Optional. Default "+ Add more".
-`attributes` | Custom attributes for inputs. See [more details](/custom-attributes-for-inputs/).
+`add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
+`attributes` | Custom attributes for inputs. See [more details](/custom-attributes/).
 
+## Field-specific settings
 
-## List of supported field type
+Besides all common settings, each field type can have its own settings. Below is the list of settings for each field type. If a field type is missing from the list, it means that fields doesn't have any extra settings.
 
-This is the list of all supported field types in the Meta Box plugin with brief description:
-
-Field Type | Description
---- | ---
-`autocomplete` | Text input that uses jQuery autocomplete library to perform the autocomplete action. Added in [version 4.4.0](https://metabox.io/version-4-4-0/).
-`button` | Display simple button. Usually used for JavaScript trigger
-`checkbox` | Checkbox
-`checkbox_list` | List of checkboxes
-`color` | Color picker
-`custom_html` | Output custom HTML content
-`date` | Date picker
-`datetime` | Date and time picker
-`divider` | Simple horizontal line
-`email` | Email input using HTML 5 input with `type="email"`
-`fieldset_text` | Group of text inputs
-`file` | Simple file upload with default UI like `<input type="file" />`.
-`file_advanced` | Advanced file upload with UI like WordPress media upload popup. Inherits `file`.
-`file_input` | Allow to enter URL for a file or select a file from media library (UI like WordPress media upload popup). This field saves file URL as meta value.
-`file_upload` | File upload field, support drag and drop files. Inherits from `media`.
-`heading` | Heading text
-`hidden` | Input field with `hidden` type
-`image` | Similar to `file` but used for images only. Allow drag and drop to reorder images. Inherits `file`.
-`image_advanced` | Similar to `file_advanced`, but used for images only. Inherits `file_advanced`.
-`image_select` | Similar to radio select, but use images instead of "radio"
-`image_upload` or `plupload_image` | Image upload field, support drag and drop files. Inherits `image_advanced`.
-`key_value` | Add an unlimited group of key-value pairs inputs
-`map` | Google maps field
-`number` | Input for numbers which uses new HTML5 input `type="number"`
-`oembed` | Input for videos, audios from Youtube, Vimeo and all supported sites by WordPress. It has a preview feature.
-`password` | Password input field
-`post` | Select post from select dropdown. Support custom post types. Inherits options from `select` or `select_advanced` based on `field_type` parameter
-`radio` | Radio input
-`range` | HTML 5 range input
-`select` | Select dropdown
-`select_advanced` | Beautiful select dropdown using [`select2`](https://select2.github.io) library. Inherits `select`
-`slider` | jQuery UI slider field
-`taxonomy` | Select taxonomies. Has various options to display as check box list, select dropdown (supports simple select and `select_advanced` UI), tree (select parent taxonomy will show children taxonomies). **Note:** this field doesn't save term IDs in post meta, instead of that, it only set post terms.
-`taxonomy_advanced`|Same as `taxonomy` but saves term IDs in post meta as a comma separated string. It doesn't set post terms.
-`text` | Text field
-`text_list` | Group of text inputs. Similar to `fieldset_text`.
-`textarea` | Textarea field
-`thickbox_image` | *Old* image upload using Thickbox. Deprecated.
-`time` | Time picker
-`url` | HTML 5 URL input
-`user` | Select dropdown for user, supports simple select and `select_advanced` UI
-`video` | Upload or select a video from the Media Library using the WordPress media popup. Supports video preview and multiple uploads.
-`wysiwyg` | WordPress editor field
-
-
-## Settings for specific field types
-
-Besides all common settings, each field type can have its own settings. We already prepared some code example that you can get from [**this link**](https://github.com/wpmetabox/meta-box/tree/master/demo).
+{% include alert.html content="To save time read and write settings for fields, we've already prepared some code examples that you can get from [**this link**](https://github.com/wpmetabox/meta-box/tree/master/demo)." %}
 
 ### Autocomplete
 
 Name | Description
 --- | ---
-`options` | array of predefined `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | input size. Default `30`. Optional.
-`clone` | allow this field to be cloned? `true` or `false` (default). Optional.
+`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
+`size` | Input size. Default `30`. Optional.
 
 Note: this field can store multiple values from user inputs
 
@@ -93,7 +43,9 @@ Note: this field can store multiple values from user inputs
 
 Name | Description
 --- | ---
-`options` | array of `'value' => 'Label'` pairs. `value` is stored in the custom field and `Label` is used to display in the meta box.
+`options` | Array of `'value' => 'Label'` pairs. `value` is stored in the custom field and `Label` is used to display in the meta box.
+
+This field always store multiple values in the database. Each value is stored as a separated row in the database.
 
 ### Color
 

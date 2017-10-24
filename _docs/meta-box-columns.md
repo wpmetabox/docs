@@ -6,7 +6,7 @@ title: Meta Box Columns
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/define-fields/) before continuing!**
+**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
 
 ### Simple syntax
 

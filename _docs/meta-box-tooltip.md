@@ -6,7 +6,7 @@ title: Meta Box Tooltip
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/define-fields/) before continuing!**
+**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
 
 To add a tooltip to a meta field, simply add `tooltip` parameter for that field. You can define tooltip in one of following formats:
 

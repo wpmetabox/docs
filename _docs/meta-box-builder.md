@@ -42,7 +42,7 @@ Your meta box and fields have now been saved.
 
 [![Customizing meta box field](https://metabox.io/wp-content/uploads/2015/11/gender.gif)](https://metabox.io/wp-content/uploads/2015/11/gender.gif)
 
-Each field has their own properties also called as 'attributes'. For more detail about it, see [Define Fields](/define-fields/).
+Each field has their own properties also called as 'attributes'. For more detail about it, see [Define Fields](/field-settings/).
 
 1. Click on the arrow in the top right-hand corner of the field to expand it.
 1. Enter the values for the attributes that you want to assign to the field.
