@@ -1,6 +1,6 @@
 <nav class="docs-navigation" role="navigation">
 	<input type="text" class="docs-navigation__filter" placeholder="Filter documentation">
-	<ul class="docs-navigation__menu">
+	<ul class="docs-navigation__menu" data-instant>
 		{% for cat in site.data.docs %}
 			{% if page.url == "/" %}
 				{% assign current_url = "/" %}

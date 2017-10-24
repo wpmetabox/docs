@@ -1,6 +1,17 @@
 title: Meta Box Documentation
-sass:
-  style: compressed
+description: Documentation for Meta Box - a simple yet powerful WordPress plugin that helps developers build custom meta boxes and custom fields.
+author: MetaBox.io
+twitter:
+  username: wpmetabox
+social:
+  name: Meta Box
+  links:
+    - https://twitter.com/wpmetabox
+    - https://www.facebook.com/wpmetabox
+    - https://github.com/wpmetabox
+lang: en
+logo: /assets/images/logo.png
+
 permalink: pretty
 
 collections:
@@ -13,10 +24,34 @@ defaults:
     scope:
       path: ""
     values:
-      layout: "default"
+      layout: default
   -
     scope:
-      path: "_docs"
-      type: "docs"
+      path: _docs
+      type: docs
     values:
-      layout: "default"
+      layout: default
+
+plugins: [jekyll-assets, jekyll-seo-tag]
+
+sass:
+  style: compressed
+
+assets:
+  compress:
+    js: true
+    css: true
+  plugins:
+    compression:
+      js:
+        enabled: true
+        opts: {}
+      css:
+        enabled: true
+  autoprefixer:
+    browsers:
+      - "last 2 versions"
+      - "IE > 9"
+  sources:
+    - assets/js
+    - assets/css

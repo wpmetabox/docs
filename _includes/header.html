@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-	{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+	{% seo %}
 	<link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
+<body data-no-instant>
 <div class="site">
-	<div class="top-bar">
+	<div class="top-bar" data-no-instant>
 		<nav class="header-navigation top-bar-navigation" role="navigation">
 			<ul class="menu">
 				<li class="menu-item"><a href="http://demo.metabox.io">Demo</a></li>
@@ -24,7 +23,9 @@
 	</div>
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
-			<a href="https://metabox.io/" class="logo" rel="home"><svg class="icon icon-logo" aria-hidden="true" role="img"><use href="#icon-logo" xlink:href="#icon-logo"></use></svg></a>
+			<a href="https://metabox.io/" class="logo" rel="home">
+				<img class="logo" src="/assets/images/logo.png" alt="meta box logo" width="46" height="46">
+			</a>
 			<h1 class="site-title"><a href="https://metabox.io" rel="home">Meta Box</a></h1>
 		</div>
 
