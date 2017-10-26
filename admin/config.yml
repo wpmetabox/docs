@@ -1,0 +1,15 @@
+backend:
+  name: github
+  repo: wpmetabox/docs
+  branch: master
+
+media_folder: assets/images
+
+collections:
+  - name: "docs"
+    label: "Docs"
+    folder: "_docs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
