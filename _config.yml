@@ -10,7 +10,7 @@ social:
     - https://www.facebook.com/wpmetabox
     - https://github.com/wpmetabox
 lang: en
-logo: /assets/images/logo.png
+logo: https://docs.metabox.io/assets/images/logo.png
 
 permalink: pretty
 
