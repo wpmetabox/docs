@@ -6,10 +6,11 @@ backend:
 media_folder: assets/images
 
 collections:
-  - name: "docs"
-    label: "Docs"
-    folder: "_docs"
+  - name: docs
+    label: Docs
+    folder: _docs
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
+      - {label: Title, name: title, widget: string}
+      - {label: Body, name: body, widget: markdown}
