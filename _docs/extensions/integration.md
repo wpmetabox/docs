@@ -1,5 +1,5 @@
 ---
-title: Include extensions in themes or plugins
+title: Integration
 ---
 
 The latest version of the [Meta Box premium extensions](https://metabox.io/plugins/) is safe to be included in themes or plugins. There are 2 ways to do that:

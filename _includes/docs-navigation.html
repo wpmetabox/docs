@@ -2,13 +2,8 @@
 	<input type="text" class="docs-navigation__filter" placeholder="Filter documentation">
 	<ul class="docs-navigation__menu" data-instant>
 		{% for cat in site.data.docs %}
-			{% if page.url == "/" %}
-				{% assign current_url = "/" %}
-			{% else %}
-				{% assign current_url = page.url | remove: "/" %}
-			{% endif %}
-			{% assign has_docs = cat.items | where_exp: "item", "item == current_url" | first %}
-			{% assign has_page = cat.items | where: "url", current_url | first %}
+			{% assign has_docs = cat.items | where_exp: "item", "item == page.url" | first %}
+			{% assign has_page = cat.items | where: "url", page.url | first %}
 			<li class="docs-navigation__cat {% if has_docs or has_page %}is-active{% endif %}">
 				<h4 class="docs-navigation__heading">{{ cat.title }}</h4>
 				<ul class="docs-navigation__list">
@@ -16,9 +11,8 @@
 						{% if item.title %}
 							<li class="docs-navigation__item {% if item.url == page.url %}is-active{% endif %}"><a class="docs-navigation__link" href="{{ item.url }}">{{ item.title }}</a></li>
 						{% else %}
-							{% assign item_url = item | prepend: "/" | append: "/" %}
-							{% assign p = site.docs | where: "url", item_url | first %}
-							<li class="docs-navigation__item {% if item_url == page.url %}is-active{% endif %}"><a class="docs-navigation__link" href="{{ p.url }}">{{ p.title }}</a></li>
+							{% assign p = site.docs | where: "url", item | first %}
+							<li class="docs-navigation__item {% if item == page.url %}is-active{% endif %}"><a class="docs-navigation__link" href="{{ p.url }}">{{ p.title }}</a></li>
 						{% endif %}
 					{% endfor %}
 				</ul>

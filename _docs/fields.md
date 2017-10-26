@@ -1,16 +1,69 @@
 ---
-title: Field settings
+title: Fields
 ---
+
+Fields are added to a meta box via the key `fields`. Each field is an array of its own settings.
+
+## Field types
+
+Below is the list of all supported field types with brief description:
+
+Field Type | Description
+--- | ---
+`autocomplete` | Text input that uses jQuery autocomplete library to perform the autocomplete action.
+`button` | Display simple button. Usually used for JavaScript triggers.
+`checkbox` | Checkbox.
+`checkbox_list` | List of checkboxes.
+`color` | Color picker.
+`custom_html` | Output custom HTML content.
+`date` | Date picker.
+`datetime` | Date and time picker.
+`divider` | Simple horizontal line.
+`email` | Email input using HTML 5 input with `type="email"`.
+`fieldset_text` | Group of text inputs.
+`file` | Simple file upload with default UI like `<input type="file" />`.
+`file_advanced` | File upload with WordPress media popup.
+`file_input` | Enter file URL or select a file from media library.
+`file_upload` | File upload with drag and drop area.
+`heading` | Heading text.
+`hidden` | Input field with `hidden` type.
+`image` | Similar to `file` but for images only.
+`image_advanced` | Similar to `file_advanced`, but for images only.
+`image_select` | Similar to radio select, but use images instead of "radio".
+`image_upload` or `plupload_image` | Similar to `file_upload` but for images only.
+`key_value` | Add an unlimited group of key-value pairs.
+`map` | Google maps.
+`number` | Input for numbers which uses HTML5 input `type="number"`.
+`oembed` | Input for media from Youtube, Vimeo and all [supported sites](https://codex.wordpress.org/Embeds) by WordPress.
+`password` | Password input.
+`post` | Select dropdown for posts.
+`radio` | Radio input.
+`range` | HTML 5 range input.
+`select` | Select dropdown.
+`select_advanced` | Beautiful select dropdown using [select2](https://select2.github.io) library.
+`slider` | jQuery UI slider.
+`taxonomy` | Select dropdown for taxonomy terms. Doesn't save term IDs in post meta, but set post terms.
+`taxonomy_advanced`|Same as `taxonomy` but saves term IDs in post meta as a comma separated string. It doesn't set post terms.
+`text` | Text field.
+`text_list` | Group of text inputs. Similar to `fieldset_text`.
+`textarea` | Textarea field.
+`time` | Time picker.
+`url` | HTML 5 URL input.
+`user` | Select dropdown for users.
+`video` | Upload or select a video from the Media Library using the WordPress media popup.
+`wysiwyg` | WordPress editor.
+
+## Field settings
 
 Each field contains settings to determine where and how data is loaded and saved. All fields share some common settings, but also offer unique settings per field type.
 
-## Common settings
+### Common settings
 
 Name | Description
 --- | ---
 `name` | Field label. Optional. If empty, the field input is 100% width.
 `id` | Field ID. Required and must be unique. **It will be used as `meta_key` when saving to the database**. It's a good practice to use only numbers, letters, and underscores.
-`type` | Field type. See list of field types [here](/field-types/). Required.
+`type` | Field type. Required.
 `desc` | Field description, displayed below the field input. Optional.
 `label_description` | Label description, displayed below the field label. Optional.
 `std` | Default value. Optional.
@@ -24,73 +77,14 @@ Name | Description
 `add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
 `attributes` | Custom attributes for inputs. See [more details](/custom-attributes/).
 
-## Field-specific settings
+### Field-specific settings
 
 Besides all common settings, each field type can have its own settings. Below is the list of settings for each field type. If a field type is missing from the list, it means that fields doesn't have any extra settings.
 
-{% include alert.html content="To save time read and write settings for fields, we've already prepared some code examples that you can get from [**this link**](https://github.com/wpmetabox/meta-box/tree/master/demo)." %}
+{% include alert.html content="To save time read and write settings for fields, we've already prepared some code examples that you can get from [**this link**](https://github.com/wpmetabox/library/)." %}
 
-### Autocomplete
 
-Name | Description
---- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | Input size. Default `30`. Optional.
-
-Note: this field can store multiple values from user inputs
-
-### Checkbox list
-
-Name | Description
---- | ---
-`options` | Array of `'value' => 'Label'` pairs. `value` is stored in the custom field and `Label` is used to display in the meta box.
-
-This field always store multiple values in the database. Each value is stored as a separated row in the database.
-
-### Color
-
-Attribute|Description
----|---
-`alpha_channel`|Whether to add opacity to the color picker. `true` or `false` (default). Optional.
-`js_options`|Array of color picker options. See full list of option on the Iris [project page](https://automattic.github.io/Iris/).
-
-### Custom HTML
-
-Name | Description
---- | ---
-`std` | The custom HTML content which is displayed. Optional.
-`callback`|The PHP callback function that shows the content (if `std` is not used). Optional. Using PHP callback allows you to access to WordPress's data such as current post, post content, current user, etc.
-
-### Date
-
-Name | Description
---- | ---
-`size` | size of the input box. Optional. Default 10.
-`inline`|display the date picker inline with the input, `true` or `false`? Optional. Default `false`.
-`js_options` | jQuery date picker options. [See here](https://api.jqueryui.com/datepicker/), some main options are:
-| `dateFormat`: Date format. Optional. Default `yy-mm-dd`. For the full list of date format, please [see here](https://docs.jquery.com/UI/Datepicker/formatDate). <strong>Note:</strong> The `format` option is deprecated and replaced by this option.
-| `showButtonPanel` | Show button panel or not? Optional. Default `true`.
-`timestamp` | save datetime in Unix timestamp format (but still display in human-readable format), `true` or `false`. Optional. Default `false`.
-
-(See `demo/date-time-js-options.php` for example).
-
-### Datetime
-
-Name | Description
---- | ---
-`size` | size of the input box. Optional. Default 20.
-`inline`|display the date picker inline with the input? Optional. Default `false`.
-`js_options` | a combination of date options and time options for jQuery. See `date` and `time` fields above.
-`timestamp` | save datetime in Unix timestamp format (but still display in human-readable format), `true` or `false`. Optional. Default `false`.
-
-### File
-
-Name | Description
---- | ---
-`max_file_uploads` | Max number of uploaded files. Optional.
-`force_delete` | Whether or not delete the files from Media Library when deleting them from post meta (`true` or `false`)? Optional. Default `false`.
-
-### File Advanced - File Upload
+#### File Advanced - File Upload
 
 Name | Description
 --- | ---
@@ -101,7 +95,7 @@ Name | Description
 `force_delete` | Whether or not delete the files from Media Library when deleting them from post meta (`true` or `false`)? Optional. Default `false`.
 
 
-### Image Advanced - Image Upload
+#### Image Advanced - Image Upload
 
 Name | Description
 --- | ---
@@ -113,7 +107,7 @@ Name | Description
 `force_delete` | Whether or not delete the files from Media Library when deleting them from post meta (`true` or `false`)? Optional. Default `false`.
 
 
-### Map
+#### Map
 
 To register a map field, you need to actually register 2 fields:
 
@@ -129,7 +123,7 @@ Name | Description
 
 See [demo file](https://github.com/wpmetabox/meta-box/blob/master/demo/map.php).
 
-### Number
+#### Number
 
 Name | Description
 --- | ---
@@ -138,7 +132,7 @@ Name | Description
 `max` | Maximum value. Optional.
 `placeholder` | Placeholder for the input field. Optional.
 
-### Post
+#### Post
 
 Name | Description
 --- | ---
@@ -152,14 +146,14 @@ Name | Description
 | `radio_list`: list of flatten radio boxes which allows to select only 1 item
 `query_args` | additional query arguments, like in [`get_posts()`](https://codex.wordpress.org/Template_Tags/get_posts) function. Optional.
 
-### Radio
+#### Radio
 
 Name | Description
 --- | ---
 `options` | array of `'value' => 'Label'` pairs. `value` is stored in the custom field and `Label` is used to display in the meta box.
 `inline`|Whether to show all options in a line? Optional. Default is `true`.
 
-### Select
+#### Select
 
 Name | Description
 --- | ---
@@ -168,7 +162,7 @@ Name | Description
 `multiple` | allow to select multiple values or not. Can be `true` or `false`. Optional. Default `false`.
 `select_all_none` | whether to show "Select: All | None" links that can help users select all options or clear selection. Used only when `multiple` is true. Optional. Default `false`.
 
-### Select Advanced
+#### Select Advanced
 
 This field inherits all attributes from `select` field above and has more attributes as below:
 
@@ -184,7 +178,7 @@ Name | Description
 `width` | Set width by element's width. Default `resolve`.
 `placeholder` | Make `placeholder` works just like `select` field. Default `$field['placeholder']`.
 
-### Taxonomy
+#### Taxonomy
 
 Name | Description
 --- | ---
@@ -200,10 +194,10 @@ Name | Description
 
 **Note:** this field does NOT save term IDs in post meta, instead of that, it only set post terms.
 
-### Taxonomy Advanced
+#### Taxonomy Advanced
 This field is exactly the same as `taxonomy` field, but it saves term IDs in post meta as a comma separated string. It does NOT set post terms.
 
-### Text
+#### Text
 
 Name | Description
 --- | ---
@@ -213,21 +207,21 @@ Name | Description
 |`id`: ID of the div that stores the options. Usually not used and auto-generated as `{$field['id']_list`. Useful if you have several text input with same datalist.
 |`options`: Array of predefined values to select from.
 
-### Textarea
+#### Textarea
 
 Name | Description
 --- | ---
 `cols` | number of columns. Optional. Default 60.
 `rows` | number of rows. Optional. Default 4.
 
-### Text List
+#### Text List
 
 Attribute|Description
 ---|---
 `options`|Array of `'placeholder' => 'label'` for the inputs.
 
 
-### Time
+#### Time
 
 Name | Description
 --- | ---
@@ -238,7 +232,7 @@ Name | Description
 
 (See `demo/date-time-js-options.php` for example).
 
-### User
+#### User
 
 Name | Description
 --- | ---
@@ -249,14 +243,14 @@ Name | Description
 | `radio_list`: list of flatten radio boxes which allows to select only 1 item
 `query_args` | additional query arguments, like in [`get_users()`](https://codex.wordpress.org/Function_Reference/get_users) function. Optional.
 
-### Video
+#### Video
 
 Name | Description
 --- | ---
 `max_file_uploads` | Max number of uploaded files. Optional.
 `force_delete` | Whether or not delete the files from Media Library when deleting them from post meta (`true` or `false`)? Optional. Default `false`.
 
-### WYSIWYG (Editor)
+#### WYSIWYG (Editor)
 
 Name | Description
 --- | ---

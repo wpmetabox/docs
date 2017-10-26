@@ -64,7 +64,7 @@ array(
 ),
 ```
 
-Meta Box supports more than 40 [field types](/field-types/). All fields share some common settings like `id`, `type`, but also offer unique settings per field type. See [this guide](/field-settings/) for more details.
+Meta Box supports more than 40 field types. All fields share some common settings like `id`, `type`, but also offer unique settings per field type. See [this guide](/fields/) for more details.
 
 {% include alert.html content="Field ID is used as the meta key and the field value is used as the meta value when saving into the database." %}
 

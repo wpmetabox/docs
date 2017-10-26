@@ -1,5 +1,5 @@
 ---
-title: Update Extensions
+title: Update
 ---
 
 All [premium extensions](https://metabox.io/plugins/) for the Meta Box plugin can be updated automatically or manually. The automatic update uses WordPress update mechanism which checks for new versions twice a day. This is the recommended way to get new updates from our website.

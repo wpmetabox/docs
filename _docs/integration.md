@@ -1,5 +1,5 @@
 ---
-title: Include Meta Box Plugin In Themes/Plugins
+title: Integration
 ---
 
 ## Using TGM Activation Class

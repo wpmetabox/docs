@@ -1,5 +1,5 @@
 ---
-title: How post meta is saved in the database?
+title: Field data
 ---
 
 Wondering how the Meta Box plugin stores meta values in the database? This documentation will explain how the plugin store custom fields' values in the `wp_postmeta` table.

@@ -27,7 +27,7 @@ defaults:
       layout: default
   -
     scope:
-      path: _docs
+      path: ""
       type: docs
     values:
       layout: default

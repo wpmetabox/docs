@@ -1,5 +1,5 @@
 ---
-title: Using Meta Box with Composer
+title: Composer
 ---
 
 [Composer](https://getcomposer.org) is a package dependency manager for PHP. It's kind of [TGM Activation class](https://tgmpluginactivation.com) for WordPress, but works for any PHP package. Composer allows us to include other PHP libraries in our projects without conflict between them. Without Composer, if a project requires 2 libraries A and B, and both of them requires a library C, then C might be included twice. The scenario can get worse if A and B includes different version of C which can cause a conflict when loading the library. Composer helps us to avoid this issue.

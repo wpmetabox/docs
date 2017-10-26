@@ -1,5 +1,5 @@
 ---
-title: Looping through meta box's fields
+title: Looping fields
 ---
 
 Before 4.8, if you register the meta boxes using [the old way](/registering-meta-boxes/) (with `admin_init` hook), you could loop through the `['fields']` keys of the global variable `$meta_boxes` to get all fields registered for a meta box. Here is an example of the old way:

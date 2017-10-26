@@ -1,5 +1,5 @@
 ---
-title: Edit / remove meta boxes added by a parent theme / plugin?
+title: Edit meta boxes
 ---
 
 When you use a WordPress theme or plugin which [incorporates with Meta Box](/include-meta-box-plugin-themes/), all the information of fields and meta boxes are fixed, such as: meta box title, number of fields, fields' names and descriptions, ... It might be better in some situations when you want to **change these texts or add/remove fields to a meta box or even remove a meta box**.

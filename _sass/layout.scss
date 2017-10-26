@@ -20,6 +20,7 @@
 .hentry {
 	padding: 70px 0 70px 40px;
 	min-width: 0;
+	flex: 1;
 }
 .entry-title {
 	margin: 0;
@@ -36,6 +37,7 @@
 .entry-content {
 	min-width: 0;
 	padding-right: 40px;
+	flex: 1;
 }
 .toc {
 	flex: 0 0 200px;
