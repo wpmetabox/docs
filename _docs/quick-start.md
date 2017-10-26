@@ -33,30 +33,30 @@ The code below registers a simple meta box with 4 fields: name, gender, email an
 add_filter( 'rwmb_meta_boxes', 'prefix_meta_boxes' );
 function prefix_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'  => __( 'Test Meta Box', 'textdomain' ),
+        'title'  => 'Test Meta Box',
         'fields' => array(
             array(
                 'id'   => 'name',
-                'name' => __( 'Name', 'textdomain' ),
+                'name' => 'Name',
                 'type' => 'text',
             ),
             array(
                 'id'      => 'gender',
-                'name'    => __( 'Gender', 'textdomain' ),
+                'name'    => 'Gender',
                 'type'    => 'radio',
                 'options' => array(
-                    'm' => __( 'Male', 'textdomain' ),
-                    'f' => __( 'Female', 'textdomain' ),
+                    'm' => 'Male',
+                    'f' => 'Female',
                 ),
             ),
             array(
                 'id'   => 'email',
-                'name' => __( 'Email', 'textdomain' ),
+                'name' => 'Email',
                 'type' => 'email',
             ),
             array(
                 'id'   => 'bio',
-                'name' => __( 'Biography', 'textdomain' ),
+                'name' => 'Biography',
                 'type' => 'textarea',
             ),
         ),
@@ -67,7 +67,7 @@ function prefix_meta_boxes( $meta_boxes ) {
 
 Copy and paste it into your theme's `functions.php` file.
 
-{% include alert.html content="Each meta box and field has settings to customize how they look and how they function. To learn more about that, please read [meta box settings](/creating-meta-boxes/) and [field settings](/field-settings/) guides." %}
+{% include alert.html content="Each meta box and field has settings to customize how they look and how they function. To learn more about that, please read [meta box](/creating-meta-boxes/) and [fields](/fields/) guides." %}
 
 ## Creating content
 
@@ -95,9 +95,9 @@ If you prefer UI to create and manage custom meta boxes and custom fields or you
 
 ## Code examples
 
-In order to help our users to spend less time writing code for meta boxes and fields, we have created a [list of examples](https://github.com/wpmetabox/meta-box/tree/master/demo) which you can use as a starting point for your projects.
+In order to help our users to spend less time writing code for meta boxes and fields, we have created a [list of examples](https://github.com/wpmetabox/library/) which you can use as a starting point for your projects.
 
-You should start with the [main `demo.php` file](https://github.com/wpmetabox/meta-box/blob/master/demo/demo.php). It has all explanations for meta box settings and field settings in the comments.
+You should start with the [main `demo.php` file](https://github.com/wpmetabox/library/blob/master/general/demo.php). It has all explanations for meta box settings and field settings in the comments.
 
 ## Next steps
 
