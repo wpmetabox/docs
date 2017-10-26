@@ -2,23 +2,23 @@
 title: Shortcode
 ---
 
-You can use`[rwmb_meta]`shortcode built in Meta Box plugin to deal with the problem of inserting values of custom fields in post content without opening theme files and inserting PHP code.
+To display field value on the website, besides the [helper functions](/displaying-fields/), the Meta Box plugin provides a simple shortcode `[rwmb_meta]` to help users show the value in the post content or widget text without opening theme files and inserting PHP code.
 
-The shortcode take the following attributes:
+## Shortcode
+
+The shortcode `[rwmb_meta]` take the following attributes:
 
 ```php
-[rwmb_meta post_id="15" meta_key="field_id" type="image" size="thumbnail" ...]
+[rwmb_meta meta_key="field_id" post_id="15" ...]
 ```
 
-The `[rwmb_meta]` shortcode works exactly like `rwmb_meta` function (look at this [documentation](/displaying-fields/)). All attributes are the same.
+This shortcode works exactly like [rwmb_the_value()](/rwmb-the-value/) function with the same parameters.
 
-## Shortcode attributes
+## Attributes
 
 Attribute|Description
 ---|---
-`post_id`|The post ID. Optional. If not defined, then the ID of current post is used.
 `meta_key`|The meta key, same as field ID. Required.
-`type`|Field type. Default is `text`. You can bypass this attribute if your field has single value (e.g. not multiple, not clone). Required for field which is multiple or clone (`checkbox_list`, file and image fields, `taxonomy`, etc.).
-`multiple`|If field has multiple values (like `select` with multiple selections), set this argument to `true`. It's automatically set to `true` for `checkbox_list`, file and image fields.
+`post_id`|The post ID. Optional. If not defined, then the current post ID is used.
 `size`|Image size, used for image fields only. If not present, the `thumbnail` size will be used.
 `taxonomy`|The taxonomy for which to retrieve terms, used for taxonomy fields.

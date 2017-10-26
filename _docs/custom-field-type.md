@@ -1,14 +1,12 @@
 ---
-title: Create your own field type
+title: Custom field type
 ---
 
 ## Overview
 
-Meta Box plugin is so flexible that you can create your own field type easily. This documentation will show you how to create a new field type with Meta Box plugin.
+Meta Box plugin is so flexible that you can create your own field type easily. This documentation will show you how to create a new field type `phone` which accepts the only phone in format `xxx-xxxx`.
 
-Let's create a field type `phone` which accepts the only phone in format `xxx-xxxx`.
-
-## Define a new field class
+## Defining field class
 
 We have to create a class name `RWMB_Phone_Field` for `phone` field. Generally, if we want to create a new field type, we have to create a class name `RWMB_{$field_type}_Field` (make sure it has a correct case) extending `RWMB_Field` class.
 
@@ -22,63 +20,63 @@ if ( class_exists( 'RWMB_Field' ) ) {
 Save this class in a PHP file with any name, assuming `field-phone.php`. Then include that file in `functions.php` file of your theme or in plugin's file:
 
 ```php
-add_action( 'init', 'prefix_load_phone_type', 1 );
+add_action( 'init', 'prefix_load_phone_type' );
 function prefix_load_phone_type() {
     require 'path/to/field-phone.php';
 }
 ```
 
-Note: we hook to `init` to make sure all files of Meta Box plugin is loaded and class `RWMB_Field` is defined. Priority 1 guarantees this code runs before meta boxes are registered.
+{% include alert.html content="We use `init` action to make sure all Meta Box files are loaded and class `RWMB_Field` is defined." %}
 
-## Define field's methods
+## Class methods
 
 The phone class inherits all method from `RWMB_Field` class. The full list of `RWMB_Field` methods and their description are described in [this documentation](/rwmb_field-class/).
 
 For phone field, we have to define content of `html` method to define field HTML:
 
 ```php
-static public function html( $meta, $field ) {
-	return sprintf(
-		'<input type="tel" name="%s" id="%s" value="%s" pattern="d{3}-d{4}">',
-		$field['field_name'],
-		$field['id'],
-		$meta
-	);
+public static function html( $meta, $field ) {
+    return sprintf(
+        '<input type="tel" name="%s" id="%s" value="%s" pattern="d{3}-d{4}">',
+        $field['field_name'],
+        $field['id'],
+        $meta
+    );
 }
 ```
 
 Here we use new HTML5 input type `tel` with new attribute `pattern` to force users to enter correct phone number format `xxx-xxxx`.
 
-For this field, we don't need to handle saving or retrieving meta value or enqueueing scripts and styles. Everything is handled in *default* way (which can be understood like a text field).
+For this field, we don't need to handle saving or retrieving meta value or enqueueing scripts and styles. Everything is handled automatically by the Meta Box plugin.
 
 The complete code for this class is the following:
 
 ```php
 if ( class_exists( 'RWMB_Field' ) ) {
-	class RWMB_Phone_Field extends RWMB_Field {
-		static public function html( $meta, $field ) {
-			return sprintf(
-				'<input type="tel" name="%s" id="%s" value="%s" pattern="\d{3}-\d{4}">',
-				$field['field_name'],
-				$field['id'],
-				$meta
-			);
-		}
-	}
+    class RWMB_Phone_Field extends RWMB_Field {
+        public static function html( $meta, $field ) {
+            return sprintf(
+                '<input type="tel" name="%s" id="%s" value="%s" pattern="d{3}-d{4}">',
+                $field['field_name'],
+                $field['id'],
+                $meta
+            );
+        }
+    }
 }
 ```
 
-## Register fields with new field type
+## Registering fields
 
 Now we can register fields with `phone` type, like this:
 
 ```php
 $meta_boxes[] = array(
-    // Meta Box attributes
+    'title' => 'Test',
     'fields' => array(
         array(
             'name' => 'Phone',
-            'id'   => 'prefix_phone',
+            'id'   => 'field_id',
             'type' => 'phone',
         ),
         // Other fields

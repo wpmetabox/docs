@@ -12,7 +12,7 @@ This field uses jQuery UI library to perform the autocomplete action.
 
 ## Settings
 
-Besides the [common settings](/fields/), this field has the following specific settings:
+Besides the [common settings](/field-settings/), this field has the following specific settings:
 
 Name | Description
 --- | ---

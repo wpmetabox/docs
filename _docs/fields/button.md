@@ -12,7 +12,7 @@ The button field creates a simple button. It doesn't have any value. Usually thi
 
 ## Settings
 
-This field doesn't have any specific settings. It only uses [common field settings](/fields/). But there are important settings that you should pay attention to:
+This field doesn't have any specific settings. It only uses [common field settings](/field-settings/). But there are important settings that you should pay attention to:
 
 Name | Description
 --- | ---

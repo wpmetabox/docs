@@ -2,22 +2,22 @@
 title: Validation
 ---
 
+## Overview
+
 The Meta Box plugin has **built-in validation** module for all fields. You can use validation to make a field required, check password length, check phone number format, etc.
 
-**Technical note:**
+The validation module is built with the popular [Query validation plugin](https://jqueryvalidation.org/) which makes **client side form validation** easy, whilst still offering plenty of customization options. The plugin comes bundled with a useful set of validation methods, while providing an API to write your own methods. All bundled methods come with default error messages in English and translations into 37 other languages.
 
-The validation module is built with the popular [Query validation plugin](https://jqueryvalidation.org/) which makes simple **client side form validation** easy, whilst still offering **plenty of customization options**. The plugin comes bundled with a useful set of validation methods, while providing an API to write your own methods. All bundled methods come with default error messages in English and translations into 37 other languages.
+## Validation rules
 
-## How to set validation rules
-
-To start using validation in Meta Box, you need to add an attribute `validation` to your meta box array. This attribute has a parameter `rules` (associated array) for validation rules. Each element of this parameter is a set of rules for one field.
+To start using validation in Meta Box, you need to add a key `validation` to the meta box settings. This key has a parameter `rules` for validation rules and `messages` for error messages.
 
 Let's look at the example:
 
 ```php
 'validation' => array(
-    'rules'    => array(
-        "{$prefix}password" => array(
+    'rules'  => array(
+        'field_id' => array(
             'required'  => true,
             'minlength' => 7,
             // More rules here
@@ -27,7 +27,7 @@ Let's look at the example:
 )
 ```
 
-This example add validation for `"{$prefix}password"` field (this is the ID of the field which is prefixed). There are 2 validation rules for this field: field is required and minimum length is 7.
+This example add validation for `field_id` field. There are 2 validation rules for this field: field is required and minimum length is 7.
 
 So, basically the format for `rules` is:
 
@@ -43,7 +43,7 @@ So, basically the format for `rules` is:
 ),
 ```
 
-## List of built-in validation rules
+## Built-in validation rules
 
 These are list of basic validation rules that you can use for your fields:
 
@@ -70,23 +70,23 @@ For more details about validation rules, please read the [documentation page of 
 
 ## Error messages
 
-To use custom error messages, you can add another parameter `messages` for `validation` attribute. This parameter has the same format as `rules`, but it just contains error messages for each rule.
+To use custom error messages, you can add another parameter `messages` for `validation` key. This parameter has the same format as `rules`, but it just contains error messages for each rule.
 
 Look at the example below:
 
 ```php
 'validation' => array(
-    'rules'    => array(
-        "{$prefix}password" => array(
+    'rules'  => array(
+        'field_id' => array(
             'required'  => true,
             'minlength' => 7,
         ),
     ),
     // Optional override of default error messages
     'messages' => array(
-        "{$prefix}password" => array(
-            'required'  => __( 'Password is required', 'your-prefix' ),
-            'minlength' => __( 'Password must be at least 7 characters', 'your-prefix' ),
+        'field_id' => array(
+            'required'  => 'Password is required',
+            'minlength' => 'Password must be at least 7 characters',
         ),
     )
 )

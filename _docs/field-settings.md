@@ -1,10 +1,32 @@
 ---
-title: Fields
+title: Field settings
 ---
 
-Fields are added to a meta box via the key `fields`. Each field is an array of its own settings.
+## Overview
 
-## Field types
+Fields are added to a meta box via the key `fields`. Each field is an array which contains settings to determine where and how data is loaded and saved. All fields share some common settings, but also offer unique settings per field type.
+
+## Common settings
+
+Name | Description
+--- | ---
+`name` | Field label. Optional. If empty, the field input is 100% width.
+`id` | Field ID. Required and must be unique. **It will be used as `meta_key` when saving to the database**. It's a good practice to use only numbers, letters, and underscores.
+`type` | Field type. Required. See below.
+`desc` | Field description, displayed below the field input. Optional.
+`label_description` | Label description, displayed below the field label. Optional.
+`std` | Default value. Optional.
+`multiple`|Does the field have multiple values (like the `select` field)? Optional. Default `false`.
+`class` | Custom CSS class, in case you want to customize the field. Optional.
+`before` | Custom HTML outputted before field's HTML.
+`after` | Custom HTML outputted after field's HTML.
+`clone` | Is the field clonable (repeatable)? `true` or `false`. Optional. Default `false`.
+`max_clone`|Maximum number of clones. Optional. Default `0` (unlimited).
+`sort_clone`|Ability to drag-and-drop reorder clones (`true` or `false`). Optional. Default `false`.
+`add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
+`attributes` | Custom attributes for inputs. See [more details](/custom-attributes/).
+
+### Field types
 
 Below is the list of all supported field types with brief description:
 
@@ -19,7 +41,6 @@ Field Type | Description
 `date` | Date picker.
 `datetime` | Date and time picker.
 `divider` | Simple horizontal line.
-`email` | Email input using HTML 5 input with `type="email"`.
 `fieldset_text` | Group of text inputs.
 `file` | Simple file upload with default UI like `<input type="file" />`.
 `file_advanced` | File upload with WordPress media popup.
@@ -48,40 +69,17 @@ Field Type | Description
 `text_list` | Group of text inputs. Similar to `fieldset_text`.
 `textarea` | Textarea field.
 `time` | Time picker.
-`url` | HTML 5 URL input.
 `user` | Select dropdown for users.
 `video` | Upload or select a video from the Media Library using the WordPress media popup.
 `wysiwyg` | WordPress editor.
 
-## Field settings
+## Field-specific settings
 
-Each field contains settings to determine where and how data is loaded and saved. All fields share some common settings, but also offer unique settings per field type.
+Besides all common settings, each field type can have its own settings. Below is the list of settings for each field type.
 
-### Common settings
+Please see more details for each field type on the left menu (section "Fields").
 
-Name | Description
---- | ---
-`name` | Field label. Optional. If empty, the field input is 100% width.
-`id` | Field ID. Required and must be unique. **It will be used as `meta_key` when saving to the database**. It's a good practice to use only numbers, letters, and underscores.
-`type` | Field type. Required.
-`desc` | Field description, displayed below the field input. Optional.
-`label_description` | Label description, displayed below the field label. Optional.
-`std` | Default value. Optional.
-`multiple`|Does the field have multiple values (like the `select` field)? Optional. Default `false`.
-`class` | Custom CSS class, in case you want to customize the field. Optional.
-`before` | Custom HTML outputted before field's HTML.
-`after` | Custom HTML outputted after field's HTML.
-`clone` | Is the field clonable (repeatable)? `true` or `false`. Optional. Default `false`.
-`max_clone`|Maximum number of clones. Optional. Default `0` (unlimited).
-`sort_clone`|Ability to drag-and-drop reorder clones (`true` or `false`). Optional. Default `false`.
-`add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
-`attributes` | Custom attributes for inputs. See [more details](/custom-attributes/).
-
-### Field-specific settings
-
-Besides all common settings, each field type can have its own settings. Below is the list of settings for each field type. If a field type is missing from the list, it means that fields doesn't have any extra settings.
-
-{% include alert.html content="To save time read and write settings for fields, we've already prepared some code examples that you can get from [**this link**](https://github.com/wpmetabox/library/)." %}
+{% include alert.html content="To save time read and write settings for fields, we've already prepared some code examples that you can get from [Meta Box Code Snippet Library](https://github.com/wpmetabox/library/)." %}
 
 
 #### File Advanced - File Upload

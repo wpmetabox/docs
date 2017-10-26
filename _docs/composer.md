@@ -46,7 +46,7 @@ After a minute, Composer will download Meta Box and put it in a local folder. Yo
 
 ## Autoloading
 
-To make Meta Box works, we need to include the plugin's file in our plugin. Although we can [hardcode](/include-meta-box-plugin-themes/#section-include-meta-box-directly) that, Composer has an intelligent autoloading mechanism to load packages. Simply put the following line in the plugin's main file:
+To make Meta Box works, we need to include the plugin's file in our plugin. Although we can [hardcode](/integration/#section-include-meta-box-directly) that, Composer has an intelligent autoloading mechanism to load packages. Simply put the following line in the plugin's main file:
 
 ```php
 require plugin_dir_path( __FILE__) . 'vendor/autoload.php';

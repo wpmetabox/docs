@@ -5,11 +5,21 @@
   - /installation/
   - /quick-start/
   - /creating-meta-boxes/
-  - /fields/
+  - /field-settings/
+  - /displaying-fields/
+- title: Basics
+  items:
   - /integration/
   - /shortcode/
   - /validation/
   - /custom-attributes/
+  - /database/
+- title: Advanced
+  items:
+  - /custom-field-type/
+  - /edit-meta-boxes/
+  - /composer/
+  - /looping-fields/
 - title: Fields
   items:
   - /fields/autocomplete/
@@ -74,13 +84,6 @@
   - /extensions/meta-box-updater/
   - /extensions/update/
   - /extensions/integration/
-- title: Advanced
-  items:
-  - /custom-field-type/
-  - /edit-meta-boxes/
-  - /field-data/
-  - /composer/
-  - /looping-fields/
 - title: References
   items:
   - /actions/

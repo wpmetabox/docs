@@ -67,7 +67,7 @@ function prefix_meta_boxes( $meta_boxes ) {
 
 Copy and paste it into your theme's `functions.php` file.
 
-{% include alert.html content="Each meta box and field has settings to customize how they look and how they function. To learn more about that, please read [meta box](/creating-meta-boxes/) and [fields](/fields/) guides." %}
+{% include alert.html content="Each meta box and field has settings to customize how they look and how they function. To learn more about that, please read [meta box](/creating-meta-boxes/) and [field settings](/field-settings/) guides." %}
 
 ## Creating content
 

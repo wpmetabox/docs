@@ -12,7 +12,7 @@ The date field allows users to select a date via a friendly UI. This field uses 
 
 ## Settings
 
-Besides the [common settings](/fields/), this field has the following specific settings:
+Besides the [common settings](/field-settings/), this field has the following specific settings:
 
 Name | Description
 --- | ---

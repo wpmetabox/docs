@@ -2,31 +2,28 @@
 title: Edit meta boxes
 ---
 
-When you use a WordPress theme or plugin which [incorporates with Meta Box](/include-meta-box-plugin-themes/), all the information of fields and meta boxes are fixed, such as: meta box title, number of fields, fields' names and descriptions, ... It might be better in some situations when you want to **change these texts or add/remove fields to a meta box or even remove a meta box**.
+When you use a WordPress theme or plugin which [integrates Meta Box](/integration/), all the information of fields and meta boxes are fixed, such as: meta box title, number of fields, fields' names and descriptions, ... It might be better in some situations when you want to **change these texts** or **add/remove fields of an existing meta box** or even **remove a meta box**.
 
 Assuming we have 2 meta boxes registered in a WordPress parent theme or a plugin with this code below:
 
 ```php
 add_filter( 'rwmb_meta_boxes', 'prefix_register_meta_boxes' );
 function prefix_register_meta_boxes( $meta_boxes ) {
-    $prefix = 'your_prefix_';
-
     // 1st meta box
     $meta_boxes[] = array(
-        'id'         => 'personal',
-        'title'      => __( 'Personal Information', 'meta-box' ),
-        'post_types' => array( 'post', 'page' ),
-        'fields'     => array(
+        'id'     => 'personal',
+        'title'  => 'Personal Information',
+        'fields' => array(
             array(
-                'name'  => __( 'Name', 'meta-box' ),
-                'id'    => "{$prefix}name",
-                'desc'  => __( 'Enter your full name: First Last', 'meta-box' ),
+                'name'  => 'Name',
+                'id'    => 'name',
+                'desc'  => 'Enter your full name: First Last',
                 'type'  => 'text',
             ),
             array(
-                'name'  => __( 'Occupation', 'meta-box' ),
-                'id'    => "{$prefix}occupation",
-                'desc'  => __( 'What do you do?', 'meta-box' ),
+                'name'  => 'Occupation',
+                'id'    => 'occupation',
+                'desc'  => 'What do you do?',
                 'type'  => 'text',
             ),
         ),
@@ -34,23 +31,22 @@ function prefix_register_meta_boxes( $meta_boxes ) {
 
     // 2nd meta box
     $meta_boxes[] = array(
-        'id'         => 'address',
-        'title'      => __( 'Address Info', 'meta-box' ),
-        'post_types' => array( 'post', 'page' ),
-        'fields'     => array(
+        'id'     => 'address',
+        'title'  => 'Address Info',
+        'fields' => array(
             array(
-                'name'  => __( 'Street', 'meta-box' ),
-                'id'    => "{$prefix}street",
+                'name'  => 'Street',
+                'id'    => 'street',
                 'type'  => 'text',
             ),
             array(
-                'name'  => __( 'City', 'meta-box' ),
-                'id'    => "{$prefix}city",
+                'name'  => 'City',
+                'id'    => 'city',
                 'type'  => 'text',
             ),
             array(
-                'name'  => __( 'State', 'meta-box' ),
-                'id'    => "{$prefix}state",
+                'name'  => 'State',
+                'id'    => 'state',
                 'type'  => 'text',
             ),
         ),
@@ -64,7 +60,7 @@ which are rendered as following:
 
 ![meta boxes](https://i.imgur.com/VwDhVeD.png)
 
-Now we will:
+Now we need to:
 
 - Remove "Personal Information" meta box
 - Change title of "Address Info" meta box to "Address"
@@ -75,7 +71,7 @@ Our custom code will be put in `functions.php` file of the child theme (or in a 
 
 The principle is simple as following:
 
-- We hook to `rwmb_meta_boxes` filter with higher priority than 10 to get all registered meta boxes
+- Hook to `rwmb_meta_boxes` filter with a high priority to get all registered meta boxes
 - Then we check meta boxes by ID or title to get the meta boxes we want to edit / remove
 - Remove or change meta boxes information if needed (such as meta box title)
 - For that meta box, we loop through all custom fields and change fields' info
@@ -102,8 +98,8 @@ function prefix_edit_meta_boxes( $meta_boxes ) {
             // Loop through all fields
             foreach ( $meta_box['fields'] as $j => $field ) {
                 // Add description for "Street" field
-                if ( 'your_prefix_street' == $field['id'] ) {
-                    $meta_boxes[$k][$j]['desc'] = 'Enter street adress';
+                if ( 'street' == $field['id'] ) {
+                    $meta_boxes[$k][$j]['desc'] = 'Enter street address';
                 }
             }
 
@@ -125,4 +121,4 @@ Here is the result:
 
 ![edit remove meta boxes](https://i.imgur.com/CxkIV6L.png)
 
-[box]**Note:** It's always a good practice to set **meta box ID** (even when it's optional). In the code above we check meta boxes by ID to get the ones we want to edit or remove. It's fine to check by meta box title, but it will be harder if the website uses another language and the meta box title is translated.[/box]
+{% include alert.html content="It's recommended to set **meta box ID**. It's fine to check by meta box title, but it will be harder if the website uses another language and the meta box title is translated." %}

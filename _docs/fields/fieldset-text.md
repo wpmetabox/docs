@@ -12,7 +12,7 @@ The fieldset text create a set of text inputs. It's useful if you want to save r
 
 ## Settings
 
-Besides the [common settings](/fields/), this field has the following specific settings:
+Besides the [common settings](/field-settings/), this field has the following specific settings:
 
 Name | Description
 --- | ---

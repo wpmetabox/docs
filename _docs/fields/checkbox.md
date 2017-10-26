@@ -12,7 +12,7 @@ The checkbox field creates a single checkbox.
 
 ## Settings
 
-This field doesn't have any specific settings. It only uses [common field settings](/fields/).
+This field doesn't have any specific settings. It only uses [common field settings](/field-settings/).
 
 ## Sample code
 
