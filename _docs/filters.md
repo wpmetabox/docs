@@ -131,7 +131,7 @@ By default it has the following markup:
 
 ```php
 <div class="rwmb-label">
-	<label for="{$field_id}">{$field_name}</label>
+    <label for="{$field_id}">{$field_name}</label>
 </div>
 <div class="rwmb-input">
 ```
@@ -276,33 +276,6 @@ add_filter( 'rwmb_some_user_choice_label', 'some_user_filter', 10, 3);
 This filter accepts 1 param:
 
 - `$settings`: editor settings, which will be sent to [`wp_editor`](https://codex.wordpress.org/Function_Reference/wp_editor) function.
-
-### `file` filters
-
-Filter|Default|Description
----|---|---
-`rwmb_file_upload_string`|Upload Files|File upload string
-`rwmb_file_add_string`|+ Add new file|Add new file string
-`rwmb_file_delete_string`|Delete|File delete string
-`rwmb_file_edit_string`|Edit|File edit string
-
-All filters above accept 2 parameters:
-
-- `$string`: the string need to be changed
-- `$field`: array of field attribute
-
-### `file_advanced` filters
-
-Filter|Default|Description
----|---|---
-`rwmb_file_advanced_select_string `|Select or Upload Files|The button text to select or upload files
-`rwmb_file_delete_string`|Delete|File delete string (same as `file`)
-`rwmb_file_edit_string`|Edit|File edit string (same as `file`)
-
-All filters above accept 2 parameters:
-
-- `$string`: the string need to be changed
-- `$field`: array of field attribute
 
 ### `image` filters
 

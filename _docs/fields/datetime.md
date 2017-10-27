@@ -4,7 +4,7 @@ title: Datetime
 
 ## Overview
 
-The datetime field allows users to select a date and time via a friendly UI. This field uses jQuery UI date & time picker libraries.
+The datetime field allows you to select a date and time via a friendly UI. This field uses jQuery UI date & time picker libraries.
 
 ## Screenshots
 

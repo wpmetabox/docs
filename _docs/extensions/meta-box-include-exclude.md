@@ -40,107 +40,107 @@ Here is the demo code with all explanation in comments:
 ```php
 add_filter( 'rwmb_meta_boxes', 'prefix_include_exclude_demo' );
 function prefix_include_exclude_demo( $meta_boxes ) {
-	$meta_boxes[] = array(
-		'title'   => 'Include Meta Box',
+    $meta_boxes[] = array(
+        'title'   => 'Include Meta Box',
 
-		// Register this meta box for posts matched below conditions
-		'include' => array(
-			// With all conditions below, use this logical operator to combine them. Default is 'OR'. Case insensitive. Optional.
-			'relation'        => 'OR',
+        // Register this meta box for posts matched below conditions
+        'include' => array(
+            // With all conditions below, use this logical operator to combine them. Default is 'OR'. Case insensitive. Optional.
+            'relation'        => 'OR',
 
-			// List of post IDs. Can be array or comma separated. Optional.
-			'ID'              => array( 1, 2 ),
+            // List of post IDs. Can be array or comma separated. Optional.
+            'ID'              => array( 1, 2 ),
 
-			// List of post parent IDs. Can be array or comma separated. Optional.
-			'parent'          => array( 3, 4 ),
+            // List of post parent IDs. Can be array or comma separated. Optional.
+            'parent'          => array( 3, 4 ),
 
-			// List of post slugs. Can be array or comma separated. Optional.
-			'slug'            => array( 'contact', 'about' ),
+            // List of post slugs. Can be array or comma separated. Optional.
+            'slug'            => array( 'contact', 'about' ),
 
-			// List of page templates. Can be array or comma separated. Optional.
-			'template'        => array( 'full-width.php', 'sidebar-page.php' ),
+            // List of page templates. Can be array or comma separated. Optional.
+            'template'        => array( 'full-width.php', 'sidebar-page.php' ),
 
-			// List of categories IDs or names or slugs. Can be array or comma separated. Optional.
-			'category'        => array( 1, 'Blog', 'another' ),
+            // List of categories IDs or names or slugs. Can be array or comma separated. Optional.
+            'category'        => array( 1, 'Blog', 'another' ),
 
-			// List of tag IDs or names or slugs. Can be array or comma separated. Optional.
-			'tag'             => array( 1, 'fun' ),
+            // List of tag IDs or names or slugs. Can be array or comma separated. Optional.
+            'tag'             => array( 1, 'fun' ),
 
-			// Custom taxonomy. Optional.
-			// Format: 'taxonomy' => list of term IDs or names or slugs (can be array or comma separated)
-			'location'        => array( 12, 'USA', 'europe' ),
-			'os'              => array( 'Windows', 'mac-os' ),
+            // Custom taxonomy. Optional.
+            // Format: 'taxonomy' => list of term IDs or names or slugs (can be array or comma separated)
+            'location'        => array( 12, 'USA', 'europe' ),
+            'os'              => array( 'Windows', 'mac-os' ),
 
-			// List of parent categories IDs or names or slugs. Can be array or comma separated. Optional.
-			'parent_category' => 'Parent',
+            // List of parent categories IDs or names or slugs. Can be array or comma separated. Optional.
+            'parent_category' => 'Parent',
 
-			// List of parent tag IDs or names or slugs. Can be array or comma separated. Optional.
-			'parent_tag'      => 'Parent',
+            // List of parent tag IDs or names or slugs. Can be array or comma separated. Optional.
+            'parent_tag'      => 'Parent',
 
-			// Parent custom taxonomy. Optional.
-			// Format: 'parent_taxonomy' => list of term IDs or names or slugs (can be array or comma separated)
-			'parent_location' => array( 12, 'USA', 'europe' ),
+            // Parent custom taxonomy. Optional.
+            // Format: 'parent_taxonomy' => list of term IDs or names or slugs (can be array or comma separated)
+            'parent_location' => array( 12, 'USA', 'europe' ),
 
-			// Check if current post/page is a child page
-			'is_child'        => true,
+            // Check if current post/page is a child page
+            'is_child'        => true,
 
-			// List of user roles. Can be array or comma separated. Optional.
-			'user_role'       => 'administrator',
+            // List of user roles. Can be array or comma separated. Optional.
+            'user_role'       => 'administrator',
 
-			// List of user IDs. Can be array or comma separated. Optional.
-			'user_id'         => array( 1, 2 ),
+            // List of user IDs. Can be array or comma separated. Optional.
+            'user_id'         => array( 1, 2 ),
 
-			// Custom condition. Optional.
-			// Format: 'custom' => 'callback_function'
-			// The function will take 1 parameter which is the meta box itself
-			'custom'          => 'manual_include',
-		),
+            // Custom condition. Optional.
+            // Format: 'custom' => 'callback_function'
+            // The function will take 1 parameter which is the meta box itself
+            'custom'          => 'manual_include',
+        ),
 
-		'fields' => array(
-			array(
-				'name' => 'Name',
-				'id'   => 'name',
-				'type' => 'text',
-			),
-		),
-	);
+        'fields' => array(
+            array(
+                'name' => 'Name',
+                'id'   => 'name',
+                'type' => 'text',
+            ),
+        ),
+    );
 
-	// 2nd meta box
-	$meta_boxes[] = array(
-		'title'   => 'Exclude Meta Box',
+    // 2nd meta box
+    $meta_boxes[] = array(
+        'title'   => 'Exclude Meta Box',
 
-		// Don't register this meta box for posts matched below conditions
-		'exclude' => array(
-			'relation'  => 'OR',
-			'ID'        => array( 1, 2 ),
-			'parent'    => array( 3, 4 ),
-			'slug'      => array( 'contact', 'about' ),
-			'template'  => array( 'full-width.php', 'left-sidebar.php' ),
-			'category'  => array( 1, 'News' ),
-			'tag'       => array( 1, 'fun' ),
-			'user_role' => array( 'administrator', 'editor' ),
-			'user_id'   => array( 1, 2 ),
-			'location'  => array( 12, 'USA', 'europe' ),
-			'os'        => array( 'Windows', 'mac-os' ),
-			'is_child'  => true,
-			'custom'    => 'manual_exclude',
-		),
+        // Don't register this meta box for posts matched below conditions
+        'exclude' => array(
+            'relation'  => 'OR',
+            'ID'        => array( 1, 2 ),
+            'parent'    => array( 3, 4 ),
+            'slug'      => array( 'contact', 'about' ),
+            'template'  => array( 'full-width.php', 'left-sidebar.php' ),
+            'category'  => array( 1, 'News' ),
+            'tag'       => array( 1, 'fun' ),
+            'user_role' => array( 'administrator', 'editor' ),
+            'user_id'   => array( 1, 2 ),
+            'location'  => array( 12, 'USA', 'europe' ),
+            'os'        => array( 'Windows', 'mac-os' ),
+            'is_child'  => true,
+            'custom'    => 'manual_exclude',
+        ),
 
-		'fields' => array(
-			array(
-				'name' => 'Job',
-				'id'   => 'job',
-				'type' => 'text',
-			),
-		),
-	);
+        'fields' => array(
+            array(
+                'name' => 'Job',
+                'id'   => 'job',
+                'type' => 'text',
+            ),
+        ),
+    );
 
-	return $meta_boxes;
+    return $meta_boxes;
 }
 
 function prefix_include_exclude_manual_include( $meta_box ) {
-	if ( $meta_box['title'] == 'Include Meta Box' )
-		return true;
-	return false;
+    if ( $meta_box['title'] == 'Include Meta Box' )
+        return true;
+    return false;
 }
 ```

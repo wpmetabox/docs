@@ -4,7 +4,7 @@ title: Date
 
 ## Overview
 
-The date field allows users to select a date via a friendly UI. This field uses jQuery UI datepicker library to select a date.
+The date field allows you to select a date via a friendly UI. This field uses jQuery UI datepicker library to select a date.
 
 ## Screenshot
 

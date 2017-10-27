@@ -4,11 +4,11 @@ title: Password
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. Users are able to select multiple values from the predefined list.
-
-This field uses jQuery UI library to perform the autocomplete action.
+The password field creates a simple password input. The password is encrypted by [wp_hash_password()](https://codex.wordpress.org/Function_Reference/wp_hash_password) before saving into the database to make sure it's safe.
 
 ## Screenshot
+
+![password](https://i.imgur.com/xozZVMx.png)
 
 ## Settings
 
@@ -16,35 +16,33 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
 `size` | Input size. Default `30`. Optional.
 
-Note that the `multiple` setting is always set to `true` for this field.
+## Sample code
+
+```php
+array(
+    'name' => 'Password',
+    'id'   => 'password',
+    'type' => 'password',
+),
+```
 
 ## Data
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
-
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+This field saves the encrypted password in the database for a better security. The password is encrypted by [wp_hash_password()](https://codex.wordpress.org/Function_Reference/wp_hash_password) function.
 
 ## Template usage
 
-If field is not cloneable:
+As the password is encrypted in the database, you cannot get the original password via code. There's no reversing function that can turn a password hash into the original one. Otherwise, it will be insecure.
+
+Instead of trying to get the original password, you should check the saved password is correct, like this:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $value ) {
-	echo $value;
+$value = rwmb_meta( $field_id );
+if ( $value === wp_hash_password( 'password to check' ) ) {
+    echo 'Password is correct';
 }
 ```
 
-If field is cloneable:
-
-```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-	foreach ( $clone as $value ) {
-		echo $value;
-	}
-}
-```
+Read more about [rwmb_meta()](/rwmb-meta/).

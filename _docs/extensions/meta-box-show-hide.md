@@ -61,7 +61,7 @@ function prefix_show_hide_demo_register( $meta_boxes ) {
                 '#hide-demo-mb'              => 'yes',
                 '#hide-demo-mb-2'            => 'yes',
                 'input[name=hide-demo-mb-3]' => true, // If it's a checkbox then true == checked
-			),
+            ),
         ),
 
         'fields' => array(
@@ -102,7 +102,7 @@ function prefix_show_hide_demo_register( $meta_boxes ) {
                 '#hide-demo-mb'              => 'yes',
                 '#hide-demo-mb-2'            => 'yes',
                 'input[name=hide-demo-mb-3]' => true, // If it's a checkbox then true == checked
-			),
+            ),
         ),
 
         'fields' => array(

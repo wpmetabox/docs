@@ -4,7 +4,7 @@ title: Select
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. Users are able to select multiple values from the predefined list.
+The autocomplete field creates a simple text input with autocomplete feature. You are able to select multiple values from the predefined list.
 
 This field uses jQuery UI library to perform the autocomplete action.
 
@@ -34,7 +34,7 @@ If field is not cloneable:
 ```php
 $values = rwmb_meta( $field_id );
 foreach ( $values as $value ) {
-	echo $value;
+    echo $value;
 }
 ```
 
@@ -43,8 +43,8 @@ If field is cloneable:
 ```php
 $values = rwmb_meta( $field_id );
 foreach ( $values as $clone ) {
-	foreach ( $clone as $value ) {
-		echo $value;
-	}
+    foreach ( $clone as $value ) {
+        echo $value;
+    }
 }
 ```

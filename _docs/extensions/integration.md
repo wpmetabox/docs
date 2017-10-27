@@ -17,18 +17,18 @@ require_once get_template_directory() . '/class-tgm-plugin-activation.php'; // P
 
 add_action( 'tgmpa_register', 'your_prefix_register_required_plugins' );
 function your_prefix_register_required_plugins() {
-	$plugins = array(
-		array(
-			'name'     => 'Extension Name', // The plugin name.
-			'slug'     => 'extension-slug', // The plugin slug (typically the folder name).
-			'source'   => get_stylesheet_directory() . '/lib/plugins/extension.zip', // The plugin source.
-			'required' => true, // If false, the plugin is only 'recommended' instead of required.
-		),
-	);
-	$config = array(
-		'id' => 'your-id',
-	);
-	tgmpa( $plugins, $config );
+    $plugins = array(
+        array(
+            'name'     => 'Extension Name', // The plugin name.
+            'slug'     => 'extension-slug', // The plugin slug (typically the folder name).
+            'source'   => get_stylesheet_directory() . '/lib/plugins/extension.zip', // The plugin source.
+            'required' => true, // If false, the plugin is only 'recommended' instead of required.
+        ),
+    );
+    $config = array(
+        'id' => 'your-id',
+    );
+    tgmpa( $plugins, $config );
 }
 ```
 

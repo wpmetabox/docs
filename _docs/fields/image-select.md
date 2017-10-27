@@ -4,11 +4,11 @@ title: Image Select
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. Users are able to select multiple values from the predefined list.
-
-This field uses jQuery UI library to perform the autocomplete action.
+The image select field allows you to select a choice via images. It works similar to radio / checkbox field, but uses images for more user-friendly interface.
 
 ## Screenshot
+
+![image select](https://i.imgur.com/avEo6jC.png)
 
 ## Settings
 
@@ -16,35 +16,42 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | Input size. Default `30`. Optional.
+`options` | Array of `'value' => 'Image URL'` pairs. `value` is stored in the custom field and image URL is used to display the image. Required.
+`multiple` | Whether enable multiple selection? `true` or `false` (default).
 
-Note that the `multiple` setting is always set to `true` for this field.
+## Sample code
+
+```php
+array(
+    'id'       => 'image_select',
+    'name'     => 'Layout',
+    'type'     => 'image_select',
+
+    // Array of 'value' => 'Image URL' pairs
+    'options'  => array(
+        'left'  => 'http://placehold.it/90x90&text=Left',
+        'right' => 'http://placehold.it/90x90&text=Right',
+        'none'  => 'http://placehold.it/90x90&text=None',
+    ),
+
+    // Allow to select multiple values? Default is false
+    // 'multiple' => true,
+),
+```
 
 ## Data
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+If field has multiple value, then it each value in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`). Otherwise, the field saves its single value in the post meta.
 
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+The value saved in the database is the value defined in the `options` table, not the image URL.
 
 ## Template usage
 
-If field is not cloneable:
+To get the field value, use the following code:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $value ) {
-	echo $value;
-}
+$value = rwmb_meta( $field_id );
+echo $value;
 ```
 
-If field is cloneable:
-
-```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-	foreach ( $clone as $value ) {
-		echo $value;
-	}
-}
-```
+Read more about [rwmb_meta()](/rwmb-meta/).

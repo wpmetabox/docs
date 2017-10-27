@@ -4,47 +4,34 @@ title: File Input
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. Users are able to select multiple values from the predefined list.
-
-This field uses jQuery UI library to perform the autocomplete action.
+The file input field creates a simple text input for upload a single file. You are able to select a file from the Media Lirary or enter file URL directly (even URL for a file hosted on another website).
 
 ## Screenshot
 
+![file input](https://i.imgur.com/cPVTMNy.png)
+
 ## Settings
 
-Besides the [common settings](/field-settings/), this field has the following specific settings:
-
-Name | Description
---- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | Input size. Default `30`. Optional.
-
-Note that the `multiple` setting is always set to `true` for this field.
+This field doesn't have any specific settings. It only uses [common field settings](/field-settings/).
 
 ## Data
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
-
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+This field saves file URL in the database.
 
 ## Template usage
 
-If field is not cloneable:
+To get field value (file URL), use the following code:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $value ) {
-	echo $value;
-}
+$value = rwmb_meta( $field_id );
+echo $value;
 ```
 
-If field is cloneable:
+If you want to show the file as an image, use the following code:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-	foreach ( $clone as $value ) {
-		echo $value;
-	}
-}
+$value = rwmb_meta( $field_id );
+echo '<img src="', $value, '">';
 ```
+
+Read more about [rwmb_meta()](/rwmb-meta/).

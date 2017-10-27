@@ -4,11 +4,11 @@ title: Number
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. Users are able to select multiple values from the predefined list.
-
-This field uses jQuery UI library to perform the autocomplete action.
+The number field creates a simple HTML5 number input. You are able to enter number or use the up/down arrow to change the number. It works with both integers and float numbers.
 
 ## Screenshot
+
+![number](https://i.imgur.com/ioHgKyI.png)
 
 ## Settings
 
@@ -16,35 +16,31 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | Input size. Default `30`. Optional.
+`step` | Set the increments at which a numeric value can be set. It can be the string `any` (for floating numbers) or a positive float number or integer. If this attribute is not set to `any`, the control accepts only values at multiples of the step value greater than the minimum. Default is `1`. Optional.
+`min` | Minimum value. Optional.
+`max` | Maximum value. Optional.
+`placeholder` | Placeholder for the input field. Optional.
 
-Note that the `multiple` setting is always set to `true` for this field.
+## Sample code
 
-## Data
+```php
+array(
+    'name' => 'Number',
+    'id'   => 'number',
+    'type' => 'number',
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
-
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+    'min'  => 0,
+    'step' => 5,
+),
+```
 
 ## Template usage
 
-If field is not cloneable:
+To get the field value, use the following code:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $value ) {
-	echo $value;
-}
+$value = rwmb_meta( $field_id );
+echo $value;
 ```
 
-If field is cloneable:
-
-```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-	foreach ( $clone as $value ) {
-		echo $value;
-	}
-}
-```
+Read more about [rwmb_meta()](/rwmb-meta/).

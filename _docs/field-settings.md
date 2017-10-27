@@ -81,69 +81,6 @@ Please see more details for each field type on the left menu (section "Fields").
 
 {% include alert.html content="To save time read and write settings for fields, we've already prepared some code examples that you can get from [Meta Box Code Snippet Library](https://github.com/wpmetabox/library/)." %}
 
-
-#### File Advanced - File Upload
-
-Name | Description
---- | ---
-`max_file_uploads` | Max number of uploaded files. Optional.
-`mime_type` | Mime type of files which we want to show in Media Library. Note: this is a filter to list items in Media popup, it doesn't restrict file types when upload.
-`max_status`|Whether to show the status of number of uploaded files when `max_file_uploads` is defined (xx/xx files uploaded). Optional. Default `true`.
-`max_file_size` | Maximum file size that the user can upload, in bytes. Optionally supports b, kb, mb, gb, tb suffixes. e.g. "10mb" or "1gb".
-`force_delete` | Whether or not delete the files from Media Library when deleting them from post meta (`true` or `false`)? Optional. Default `false`.
-
-
-#### Image Advanced - Image Upload
-
-Name | Description
---- | ---
-`max_file_uploads` | Max number of uploaded files. Optional.
-`image_size` | The image size to show in the admin.
-`mime_type` | Mime type of files which we want to show in Media Library. Note: this is a filter to list items in Media popup, it doesn't restrict file types when upload.
-`max_status`|Whether to show the status of number of uploaded files when `max_file_uploads` is defined (xx/xx files uploaded). Optional. Default `true`.
-`max_file_size` | Maximum file size that the user can upload, in bytes. Optionally supports b, kb, mb, gb, tb suffixes. e.g. "10mb" or "1gb".
-`force_delete` | Whether or not delete the files from Media Library when deleting them from post meta (`true` or `false`)? Optional. Default `false`.
-
-
-#### Map
-
-To register a map field, you need to actually register 2 fields:
-
-- 1 field with type `text` which stores the address of the map.
-- 1 field with type `map`. This field has the following attributes:
-
-Name | Description
---- | ---
-`address_field`|The ID of the text field above. Required.
-`std`|The initial position of the map and the marker in format `latitude,longitude[,zoom]` (`zoom` is optional). Optional.
-`api_key`|The Google Maps API key. This attribute is required since June 2016 and works in Meta Box 4.8.8+. [Get the API key here](https://developers.google.com/maps/documentation/javascript/get-api-key).
-`region`|The region code, specified as a [ccTLD](https://en.wikipedia.org/wiki/Country_code_top-level_domain) (country code top-level domain). This parameter returns autocompleted address results influenced by the region (typically the country) from the address field. [See here for more details](https://developers.google.com/maps/documentation/geocoding/intro#RegionCodes).
-
-See [demo file](https://github.com/wpmetabox/meta-box/blob/master/demo/map.php).
-
-#### Number
-
-Name | Description
---- | ---
-`step` | Set the increments at which a numeric value can be set. It can be the string `any` (for floating numbers) or a positive float number or integer. If this attribute is not set to `any`, the control accepts only values at multiples of the step value greater than the minimum. Default is `1`. Optional.
-`min` | Minimum value. Optional.
-`max` | Maximum value. Optional.
-`placeholder` | Placeholder for the input field. Optional.
-
-#### Post
-
-Name | Description
---- | ---
-`post_type` | post type where posts are get from
-`field_type` | how to show posts, can be:
-| `select`: simple select box of items (default). Optional. If choosing this field type, then the field can have options from `select` field (such as `placeholder`).
-| `select_tree`: hierachical list of select boxes which allows to select multiple items (select/deselect parent item will show/hide child items)
-| `select_advanced`: beautiful select box using [select2](https://select2.github.io/) library. If choosing this field type, then the field can have options from `select_advanced` field (such as `placeholder`), please check `select_advanced` field for full list of params.
-| `checkbox_list`: flatten list of checkboxes which allows to select multiple items
-| `checkbox_tree`: hierachical list of checkboxes which allows to select multiple items (select/deselect parent item will show/hide child items)
-| `radio_list`: list of flatten radio boxes which allows to select only 1 item
-`query_args` | additional query arguments, like in [`get_posts()`](https://codex.wordpress.org/Template_Tags/get_posts) function. Optional.
-
 #### Radio
 
 Name | Description

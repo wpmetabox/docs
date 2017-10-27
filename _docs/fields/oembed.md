@@ -4,11 +4,11 @@ title: oEmbed
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. Users are able to select multiple values from the predefined list.
-
-This field uses jQuery UI library to perform the autocomplete action.
+The oEmbed field creates a simple text input for entering media URL. This field offers live preview the media content. It supports [many media websites](https://codex.wordpress.org/Embeds).
 
 ## Screenshot
+
+![oembed](https://i.imgur.com/F64cxNe.png)
 
 ## Settings
 
@@ -16,35 +16,41 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
 `size` | Input size. Default `30`. Optional.
 
-Note that the `multiple` setting is always set to `true` for this field.
+## Sample code
+
+```php
+array(
+    'id'    => 'oembed',
+    'name'  => 'oEmbed(s)',
+    'type'  => 'oembed',
+
+    // Input size
+    'size'  => 30,
+),
+```
 
 ## Data
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
-
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+This field saves the media URL in the post meta.
 
 ## Template usage
 
-If field is not cloneable:
+To output the media in the frontend, use the [rwmb_meta()](/rwmb-meta/) helper function:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $value ) {
-	echo $value;
-}
+$media = rwmb_meta( $field_id );
+echo $value;
 ```
 
-If field is cloneable:
+This helper function will display the oembed content, e.g. if the value is a Youtube URL, it will display the full Youtube video player.
+
+In case you want to get the URL of the field, use this code:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-	foreach ( $clone as $value ) {
-		echo $value;
-	}
-}
+$url = rwmb_get_value( $field_id );
+echo $url
 ```
+
+Read more about [rwmb_meta()](/rwmb-meta/) and [rwmb_get_value()](/rwmb-get-value/).

@@ -8,14 +8,14 @@ title: Hide Group with Conditional Logic
 
 ```php
 'fields' => array(
-	array(
-		'id'     => 'standard',
-		'type'   => 'group',
-		'clone'  => true,
-		'sort_clone' => true,
-		'hidden' => array('post_format', 'aside'), // Doesn't work
-		...
-	)
+    array(
+        'id'     => 'standard',
+        'type'   => 'group',
+        'clone'  => true,
+        'sort_clone' => true,
+        'hidden' => array('post_format', 'aside'), // Doesn't work
+        ...
+    )
 )
 ```
 
@@ -23,15 +23,15 @@ title: Hide Group with Conditional Logic
 
 ```php
 'fields' => array(
-	array(
-		'id'     => 'standard',
-		'type'   => 'group',
-		'clone'  => true,
-		'sort_clone' => true,
-		'hidden' => array('post_format', 'aside'), // This will works
-		'before' => '<div id="standard">', // ID should same as this field id
-		'after'	 => '</div>',
-		...
-	)
+    array(
+        'id'     => 'standard',
+        'type'   => 'group',
+        'clone'  => true,
+        'sort_clone' => true,
+        'hidden' => array('post_format', 'aside'), // This will works
+        'before' => '<div id="standard">', // ID should same as this field id
+        'after'     => '</div>',
+        ...
+    )
 )
 ```

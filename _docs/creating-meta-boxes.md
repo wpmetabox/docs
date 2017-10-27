@@ -14,14 +14,14 @@ function prefix_register_meta_boxes( $meta_boxes ) {
     $prefix = 'field_prefix_';
     $meta_boxes[] = array(
         'id'         => 'personal',
-        'title'      => __( 'Personal Information', 'textdomain' ),
+        'title'      => 'Personal Information',
         'post_types' => 'post',
         'context'    => 'normal',
         'priority'   => 'high',
 
         'fields' => array(
             array(
-                'name'  => __( 'Full name', 'textdomain' ),
+                'name'  => 'Full name',
                 'desc'  => 'Format: {First Name} {Last Name}',
                 'id'    => $prefix . 'name',
                 'type'  => 'text',
@@ -30,7 +30,7 @@ function prefix_register_meta_boxes( $meta_boxes ) {
     );
 
     // Add more meta boxes if you want
-    // $meta_boxes[[] = ...
+    // $meta_boxes[] = ...
 
     return $meta_boxes;
 }
@@ -57,7 +57,7 @@ Fields are added to a meta box via the key `fields`. Each field is an array of s
 
 ```php
 array(
-    'name'  => __( 'Full name', 'textdomain' ),
+    'name'  => 'Full name',
     'desc'  => 'Format: {First Name} {Last Name}',
     'id'    => $prefix . 'name',
     'type'  => 'text',
@@ -66,7 +66,7 @@ array(
 
 Meta Box supports more than 40 field types. All fields share some common settings like `id`, `type`, but also offer unique settings per field type. See [this guide](/field-settings/) for more details.
 
-{% include alert.html content="Field ID is used as the meta key and the field value is used as the meta value when saving into the database." %}
+{% include alert.html content="Field ID is used as the meta key and the field value is used as the meta value when saving into the post meta table." %}
 
 In the example above, we use a `$prefix` for field ID. Although it's not mandatory, it's recommended to use a prefix to prevent from using the same field id with other scripts.
 

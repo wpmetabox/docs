@@ -8,24 +8,24 @@ The answer is simple: it's already built-in the [Meta Box plugin](https://metabo
 
 ```php
 add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
-	$meta_boxes[] = array(
-		'title'  => 'Test',
-		'fields' => array(
-			array(
-				'type'    => 'select_tree', // or checkbox_list
-				'id'      => 'cb',
-				'name'    => 'Hierarchical checkboxes',
-				'options' => array(
-					array( 'value' => 'value1', 'label' => 'label 1' ),
-					array( 'value' => 'value2', 'label' => 'label 2' ),
-					array( 'value' => 'sub1', 'label' => 'Sub 1', 'parent' => 'value1' ),
-					array( 'value' => 'sub2', 'label' => 'Sub 2', 'parent' => 'value1' ),
-				),
-				'flatten' => false,
-			),
-		),
-	);
-	return $meta_boxes;
+    $meta_boxes[] = array(
+        'title'  => 'Test',
+        'fields' => array(
+            array(
+                'type'    => 'select_tree', // or checkbox_list
+                'id'      => 'cb',
+                'name'    => 'Hierarchical checkboxes',
+                'options' => array(
+                    array( 'value' => 'value1', 'label' => 'label 1' ),
+                    array( 'value' => 'value2', 'label' => 'label 2' ),
+                    array( 'value' => 'sub1', 'label' => 'Sub 1', 'parent' => 'value1' ),
+                    array( 'value' => 'sub2', 'label' => 'Sub 2', 'parent' => 'value1' ),
+                ),
+                'flatten' => false,
+            ),
+        ),
+    );
+    return $meta_boxes;
 } );
 ```
 

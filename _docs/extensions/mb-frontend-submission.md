@@ -81,38 +81,38 @@ Sometimes you want to add more things to the post fields, such as make post titl
 ```php
 // Post title
 $field = apply_filters( 'rwmb_frontend_post_title', array(
-	'type' => 'text',
-	'name' => esc_html__( 'Title', 'rwmb-frontend-submission' ),
-	'id'   => 'post_title',
+    'type' => 'text',
+    'name' => esc_html__( 'Title', 'rwmb-frontend-submission' ),
+    'id'   => 'post_title',
 ) );
 
 // Post thumbnail
 $field = apply_filters( 'rwmb_frontend_post_thumbnail', array(
-	'type'             => 'image',
-	'name'             => esc_html__( 'Thumbnail', 'rwmb-frontend-submission' ),
-	'id'               => '_thumbnail_id',
-	'max_file_uploads' => 1,
+    'type'             => 'image',
+    'name'             => esc_html__( 'Thumbnail', 'rwmb-frontend-submission' ),
+    'id'               => '_thumbnail_id',
+    'max_file_uploads' => 1,
 ) );
 
 // Post excerpt
 $field   = apply_filters( 'rwmb_frontend_post_excerpt', array(
-	'type' => 'textarea',
-	'name' => esc_html__( 'Excerpt', 'rwmb-frontend-submission' ),
-	'id'   => 'post_excerpt',
+    'type' => 'textarea',
+    'name' => esc_html__( 'Excerpt', 'rwmb-frontend-submission' ),
+    'id'   => 'post_excerpt',
 ) );
 
 // Post date
 $field = apply_filters( 'rwmb_frontend_post_date', array(
-	'type' => 'datetime',
-	'name' => esc_html__( 'Date', 'rwmb-frontend-submission' ),
-	'id'   => 'post_date',
+    'type' => 'datetime',
+    'name' => esc_html__( 'Date', 'rwmb-frontend-submission' ),
+    'id'   => 'post_date',
 ) );
 
 // Post content
 $field   = apply_filters( 'rwmb_frontend_post_content', array(
-	'type' => 'wysiwyg',
-	'name' => esc_html__( 'Content', 'rwmb-frontend-submission' ),
-	'id'   => 'post_content',
+    'type' => 'wysiwyg',
+    'name' => esc_html__( 'Content', 'rwmb-frontend-submission' ),
+    'id'   => 'post_content',
 ) );
 ```
 
@@ -179,13 +179,13 @@ To be able to upload files or images (via fields `file_advanced`, `file_upload`,
 
 ```php
 function mb_allow_subscriber_uploads() {
-	if ( is_admin() ) {
-		return;
-	}
+    if ( is_admin() ) {
+        return;
+    }
 
-	// Replace 'subscriber' with the required role to update, can also be contributor.
-	$subscriber = get_role( 'subscriber' );
-	$subscriber->add_cap( 'upload_files' );
+    // Replace 'subscriber' with the required role to update, can also be contributor.
+    $subscriber = get_role( 'subscriber' );
+    $subscriber->add_cap( 'upload_files' );
 }
 add_action( 'init', 'mb_allow_subscriber_uploads' );
 ```

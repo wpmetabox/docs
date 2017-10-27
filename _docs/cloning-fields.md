@@ -17,6 +17,6 @@ You can notice that there are new buttons **-** (Remove Clone) which allow you t
 **Since version 4.5.4**, there're 2 additional parameters which allow you to use clone feature better:
 
 1. `max_clone`: limit the number of clones. Integer. Must be greater than 2. Optional.
-1. `sort_clone`: allow users to drag-and-drop sort clones. Boolean, `true` to enable sorting, `false` to disable. Default is `false`. See the following screenshot.
+1. `sort_clone`: allow you to drag-and-drop sort clones. Boolean, `true` to enable sorting, `false` to disable. Default is `false`. See the following screenshot.
 
 ![drag and drop](https://i.imgur.com/RJBgw6m.png)

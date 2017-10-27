@@ -93,9 +93,9 @@ If you prefer UI to create and manage custom meta boxes and custom fields or you
 - [MB Custom Post Type](https://metabox.io/plugins/custom-post-type/): Create and manage custom post types and custom taxonomies with nice UI
 - [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/): Create and manage custom meta boxes and custom fields with drag and drop UI. It's similar to the online generator, but integrated right in the WordPress admin area. So you don't need to copy and paste any more.
 
-## Code examples
+## Sample code
 
-In order to help our users to spend less time writing code for meta boxes and fields, we have created a [list of examples](https://github.com/wpmetabox/library/) which you can use as a starting point for your projects.
+In order to help our users to spend less time writing code for meta boxes and fields, we have created a [code snippet library](https://github.com/wpmetabox/library/) which you can use as a starting point for your projects.
 
 You should start with the [main `demo.php` file](https://github.com/wpmetabox/library/blob/master/general/demo.php). It has all explanations for meta box settings and field settings in the comments.
 
