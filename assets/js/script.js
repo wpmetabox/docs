@@ -127,12 +127,13 @@ function init() {
 	toggleDocsMenu();
 	filterDocs();
 	generateTOC();
+
+	ga('send', 'pageview', location.pathname + location.search);
 }
 
 // Google Analytics
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', 'UA-57415220-10', 'auto');
-ga('send', 'pageview');
 
 // Google Fonts.
 window.WebFontConfig = {
