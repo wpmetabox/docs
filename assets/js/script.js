@@ -130,10 +130,9 @@ function init() {
 }
 
 // Google Analytics
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'UA-57415220-10');
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-57415220-10', 'auto');
+ga('send', 'pageview');
 
 // Google Fonts.
 window.WebFontConfig = {
