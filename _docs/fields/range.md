@@ -4,48 +4,45 @@ title: Range
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. You are able to select multiple values from the predefined list.
+The range field creates a HTML5 range field where you can select a number by dragging a control.
 
-This field uses jQuery UI library to perform the autocomplete action.
+This field is very similar to the [number](/fields/number/) field. It just uses a different control to select a number instead of entering it.
 
 ## Screenshot
+
+![range](https://i.imgur.com/eAHeRJS.png)
 
 ## Settings
 
 Besides the [common settings](/field-settings/), this field has the following specific settings:
 
-
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | Input size. Default `30`. Optional.
+`step` | Set the increments at which a numeric value can be set. Default is `1`. Optional.
+`min` | Minimum value. Optional.
+`max` | Maximum value. Optional.
 
-Note that the `multiple` setting is always set to `true` for this field.
+## Sample code
 
-## Data
+```php
+array(
+    'name' => 'Range',
+    'id'   => 'range',
+    'type' => 'range',
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
-
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+    'min'  => 0,
+    'max'  => 60,
+    'step' => 5,
+),
+```
 
 ## Template usage
 
-If field is not cloneable:
+To get the field value, use the following code:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $value ) {
-    echo $value;
-}
+$value = rwmb_meta( $field_id );
+echo $value;
 ```
 
-If field is cloneable:
-
-```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-    foreach ( $clone as $value ) {
-        echo $value;
-    }
-}
-```
+Read more about [rwmb_meta()](/rwmb-meta/).

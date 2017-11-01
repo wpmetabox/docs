@@ -4,11 +4,11 @@ title: Select
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. You are able to select multiple values from the predefined list.
-
-This field uses jQuery UI library to perform the autocomplete action.
+The select field creates a simple select dropdown. You are able to select one or multiple values from the predefined list.
 
 ## Screenshot
+
+![select](https://i.imgur.com/Bq0FGvM.png)
 
 ## Settings
 
@@ -16,20 +16,55 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | Input size. Default `30`. Optional.
+`options` | Array of `'value' => 'Label'` pairs. They're used to display choices. `value` is stored in the custom field. Required.
+`multile` | Whether to allow select multiple values? `true` or `false` (default).
+`placeholder` | The placeholder text.
+`select_all_none` | Display "Select All / None" button to fast toggle choices. Applied only when `multiple` is `true`.
 
-Note that the `multiple` setting is always set to `true` for this field.
+## Sample code
+
+```php
+array(
+    'name'            => 'Select',
+    'id'              => 'select',
+    'type'            => 'select',
+    // Array of 'value' => 'Label' pairs
+    'options'         => array(
+        'java'       => 'Java',
+        'javascript' => 'JavaScript',
+        'php'        => 'PHP',
+        'csharp'     => 'C#',
+        'objectivec' => 'Objective-C',
+        'kotlin'     => 'Kotlin',
+        'swift'      => 'Swift',
+    ),
+    // Allow to select multiple value?
+    'multiple'        => true,
+    // Placeholder text
+    'placeholder'     => 'Select an Item',
+    // Display "Select All / None" button?
+    'select_all_none' => true,
+),
+```
 
 ## Data
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+If `multiple` is `false`, this field simply saves the selected value in the database. The value saved is the `value` in the `options` array (not label).
+
+If `multiple` is `true`, this field saves multiple values in the database, where ech value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
 
 If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
 
 ## Template usage
 
-If field is not cloneable:
+If field is not multiple:
+
+```php
+$value = rwmb_meta( $field_id );
+echo $value;
+```
+
+If field is either multiple or cloneable:
 
 ```php
 $values = rwmb_meta( $field_id );
@@ -38,7 +73,7 @@ foreach ( $values as $value ) {
 }
 ```
 
-If field is cloneable:
+If field is both multiple and cloneable:
 
 ```php
 $values = rwmb_meta( $field_id );
@@ -48,3 +83,13 @@ foreach ( $values as $clone ) {
     }
 }
 ```
+
+The function [rwmb_meta()](/rwmb-meta/) only returns the value of the field, e.g. the key in the `options` array. To display the field label, use this code:
+
+```php
+rwmb_the_value( $field_id );
+```
+
+Depends on the value is a single value or an array (multiple or cloneable or both), this function outputs a simple string or an unordered list.
+
+Read more about [rwmb_meta()](/rwmb-meta/) and [rwmb_the_value()](/rwmb-the-value/).

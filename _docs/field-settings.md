@@ -81,37 +81,6 @@ Please see more details for each field type on the left menu (section "Fields").
 
 {% include alert.html content="To save time read and write settings for fields, we've already prepared some code examples that you can get from [Meta Box Code Snippet Library](https://github.com/wpmetabox/library/)." %}
 
-#### Radio
-
-Name | Description
---- | ---
-`options` | array of `'value' => 'Label'` pairs. `value` is stored in the custom field and `Label` is used to display in the meta box.
-`inline`|Whether to show all options in a line? Optional. Default is `true`.
-
-#### Select
-
-Name | Description
---- | ---
-`options` | array of `'value' => 'Label'` pairs. `value` is stored in the custom field and `Label` is used to display in the dropdown.
-`placeholder` | instruction text for users to select value, like "Please select..."
-`multiple` | allow to select multiple values or not. Can be `true` or `false`. Optional. Default `false`.
-`select_all_none` | whether to show "Select: All | None" links that can help users select all options or clear selection. Used only when `multiple` is true. Optional. Default `false`.
-
-#### Select Advanced
-
-This field inherits all attributes from `select` field above and has more attributes as below:
-
-Name | Description
---- | ---
-`js_options` | array of options for `select2` library. See [this documentation](https://select2.github.io/options.html) for all options.
-
-By default, Meta Box applies these default options for `js_options`:
-
-Name | Description
---- | ---
-`allowClear` | Allow users to clear selection. Default `true`.
-`width` | Set width by element's width. Default `resolve`.
-`placeholder` | Make `placeholder` works just like `select` field. Default `$field['placeholder']`.
 
 #### Taxonomy
 

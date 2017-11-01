@@ -27,7 +27,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 Name | Description
 --- | ---
 `options` | Array of `'value' => 'Label'` pairs. `value` is stored in the custom field. Required.
-`inline` | Display options in a single line? `true` or `false`. Default `false`.
+`inline` | Display choices in a single line? `true` or `false`. Default `false`.
 `select_all_none` | Display "Select All / None" button to fast toggle choices.
 
 Note that the `multiple` setting is always set to `true` for this field.

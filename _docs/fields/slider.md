@@ -4,11 +4,13 @@ title: Slider
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. You are able to select multiple values from the predefined list.
+The slider field creates a slider where you can select a number by dragging a control.
 
-This field uses jQuery UI library to perform the autocomplete action.
+This field uses jQuery UI library to create the UI.
 
 ## Screenshot
+
+![slider](https://i.imgur.com/voHxzpJ.png)
 
 ## Settings
 
@@ -16,35 +18,48 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | Input size. Default `30`. Optional.
+`prefix` | Text displayed before the field value. Optional.
+`suffix` | Text displayed after the field value. Optional.
+`js_options` | jQuery UI slider options. [See here](https://api.jqueryui.com/slider/).
 
-Note that the `multiple` setting is always set to `true` for this field.
+By default, Meta Box applies these default options for `js_options`:
 
-## Data
+Name | Value | Description
+--- | ---
+`range` | `min` | Create a range from the minimum value to one handle.
+`value` | `$field['std']` | Set the default field value.
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+## Sample code
 
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+```php
+array(
+    'name' => 'Slider',
+    'id'   => 'slider',
+    'type' => 'slider',
+
+    // Text labels displayed before and after value
+    'prefix' => '$',
+    'suffix' => ' USD',
+
+    // jQuery UI slider options. See here http://api.jqueryui.com/slider/
+    'js_options' => array(
+        'min'   => 10,
+        'max'   => 255,
+        'step'  => 5,
+    ),
+
+    'std' => 150,
+    // 'clone' => true,
+),
+```
 
 ## Template usage
 
-If field is not cloneable:
+To get the field value, use the following code:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $value ) {
-    echo $value;
-}
+$value = rwmb_meta( $field_id );
+echo $value;
 ```
 
-If field is cloneable:
-
-```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-    foreach ( $clone as $value ) {
-        echo $value;
-    }
-}
-```
+Read more about [rwmb_meta()](/rwmb-meta/).
