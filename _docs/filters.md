@@ -8,7 +8,7 @@ This page lists all filters for Meta Box plugin:
 
 ### `rwmb_meta_boxes`
 
-This is the most important filter of the plugin. It is used to add/remove/edit meta boxes. See [this documentation](/registering-meta-boxes/) for more details on how to use it.
+This is the most important filter of the plugin. It is used to add/remove/edit meta boxes. See [this documentation](/creating-meta-boxes/) for more details on how to use it.
 
 This filter has 1 parameter - array of meta boxes.
 
@@ -26,7 +26,7 @@ apply_filters( 'rwmb_shortcode', $content );
 
 ### `rwmb_meta`
 
-This filter is used to change the returned value of [helper function `rwmb_meta`](/displaying-fields/). It accepts 4 parameters:
+This filter is used to change the returned value of helper function [rwmb_meta()](/rwmb-meta/). It accepts 4 parameters:
 
 - `$meta`: the meta value returned by `rwmb_meta` function
 - `$key`: meta key (custom field ID)
@@ -304,7 +304,7 @@ All filters above accept 2 parameters:
 - `$string`: the string need to be changed
 - `$field`: array of field attribute
 
-### `plupload_image` filters
+### `image_upload` filters
 
 Filter|Default
 ---|---
@@ -315,17 +315,6 @@ Filter|Default
 (these strings appear in the drop area of field where users can drop or select images to upload)
 
 All filters above accept 2 parameters:
-
-- `$string`: the string need to be changed
-- `$field`: array of field attribute
-
-### `thickbox_image` filters
-
-Filter|Default|Description
----|---|---
-`rwmb_thickbox_image_upload_string`|Upload Images|Upload image string
-
-This filter accepts 2 parameters:
 
 - `$string`: the string need to be changed
 - `$field`: array of field attribute

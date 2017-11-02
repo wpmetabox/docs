@@ -40,7 +40,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`taxonomy` | Taxonomy slug. String. Required.
+`taxonomy` | Taxonomy slug(s). Can be string for single taxonomy or array for taxonomies. Required.
 `query_args` | Query arguments for getting taxonomy terms. Uses same arguments as [get_terms()](https://developer.wordpress.org/reference/functions/get_terms/). Optional.
 `placeholder` | The placeholder for the select box. Default is "Select a {taxonomy label}". Applied only when the `field_type` is a select field.
 `field_type` | How the terms are displayed? See below.

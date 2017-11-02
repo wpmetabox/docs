@@ -6,7 +6,7 @@ title: MB Custom Table
 
 **Important:** This extension requires Meta Box version 4.12.3+. If you're using an older version of the plugin, please update.
 
-## Create a custom table
+## Creating custom tables
 
 To create a custom table, you can do it manually by following [this guide](https://codex.wordpress.org/Creating_Tables_with_Plugins) or using the API that the extension provides. The API simplifies the process and makes it easier for you.
 
@@ -135,13 +135,13 @@ function prefix_create_table() {
 }
 ```
 
-## Register meta boxes to use custom table
+## Using custom tables
 
-To tell a meta box to use custom table to store custom fields instead of default meta tables, you need to specify 2 parameters `storage_type` and `table` like this:
+To tell a meta box to use a custom table to store custom fields instead of default meta tables, you need to specify 2 parameters `storage_type` and `table` like this:
 
 ```php
 $meta_boxes[] = array(
-    'title'        => __( 'Meta Box Title', 'textdomain' ),
+    'title'        => 'Meta Box Title',
     'storage_type' => 'custom_table',    // Important
     'table'        => 'your_table_name', // Your custom table name
     'fields'       => array(...)
@@ -150,13 +150,14 @@ $meta_boxes[] = array(
 
 Now you can go to edit post screen (or edit user profile if you use the meta box for user profile page) and save the post. You'll see the data is saved in the new custom table instead of meta tables.
 
-## Get meta value
+## Getting field value
 
-You can use the helper `rwmb_meta` function to get meta value, just like the same as for normal custom fields. The only difference is you need to specify the table name in the function call, like this:
+You can use the helper [rwmb_meta()](/rwmb-meta/) function to get field value. The only difference is you need to specify the table name in the 2nd argument:
 
 ```php
-$value = rwmb_meta( $field_id, array( 'storage_type' => 'custom_table', 'table' => $table_name ), $post_id );
-print_r( $value );
+$args = array( 'storage_type' => 'custom_table', 'table' => $table_name )
+$value = rwmb_meta( $field_id, $args );
+echo $value;
 ```
 
 Also note that the call to the custom table will be cached, e.g. if you call the helper function several times for the same `$post_id`, it will only query once. This technique will improve the database performance.

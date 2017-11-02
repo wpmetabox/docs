@@ -37,6 +37,10 @@ array(
 ),
 ```
 
+## Data
+
+This field does not save any value in the database.
+
 ## Custom JavaScript
 
 As said above, this field is usually used for custom JavaScript actions. To enqueue a JavaScript file to the admin editing page, use the `rwmb_enqueue_scripts` hook:

@@ -39,18 +39,18 @@ array(
     // For date options, see here http://api.jqueryui.com/datepicker
     // For time options, see here http://trentrichardson.com/examples/timepicker/
     'js_options' => array(
-        'stepMinute'     => 15,
-        'showTimepicker' => true,
-        'controlType' => 'select',
+        'stepMinute'      => 15,
+        'showTimepicker'  => true,
+        'controlType'     => 'select',
         'showButtonPanel' => false,
-        'oneLine' => true,
+        'oneLine'         => true,
     ),
 
     // Display inline?
-    'inline' => false,
+    'inline'     => false,
 
     // Save value as timestamp?
-    'timestamp' => false,
+    'timestamp'  => false,
 ),
 ```
 

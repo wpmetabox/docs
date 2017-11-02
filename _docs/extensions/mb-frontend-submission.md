@@ -6,9 +6,9 @@ title: MB Frontend Submission
 
 **Important:** This extension requires Meta Box version 4.11+. If you're using an older version of the plugin, please update.
 
-## Create a frontend form
+## Creating frontend forms
 
-To create a frontend form, you need to register a meta box first. See [this guide](/register-meta-boxes/) to do that. Don't forget to set the meta box `id`. You need that to embed the form in the frontend.
+To create a frontend form, you need to [create a meta box first](/creating-meta-boxes/). Don't forget to set the meta box `id`. You need that to embed the form in the frontend.
 
 Then you can show the form in the frontend using the following shortcode:
 
@@ -82,14 +82,14 @@ Sometimes you want to add more things to the post fields, such as make post titl
 // Post title
 $field = apply_filters( 'rwmb_frontend_post_title', array(
     'type' => 'text',
-    'name' => esc_html__( 'Title', 'rwmb-frontend-submission' ),
+    'name' => 'Title',
     'id'   => 'post_title',
 ) );
 
 // Post thumbnail
 $field = apply_filters( 'rwmb_frontend_post_thumbnail', array(
     'type'             => 'image',
-    'name'             => esc_html__( 'Thumbnail', 'rwmb-frontend-submission' ),
+    'name'             => 'Thumbnail',
     'id'               => '_thumbnail_id',
     'max_file_uploads' => 1,
 ) );
@@ -97,21 +97,21 @@ $field = apply_filters( 'rwmb_frontend_post_thumbnail', array(
 // Post excerpt
 $field   = apply_filters( 'rwmb_frontend_post_excerpt', array(
     'type' => 'textarea',
-    'name' => esc_html__( 'Excerpt', 'rwmb-frontend-submission' ),
+    'name' => 'Excerpt',
     'id'   => 'post_excerpt',
 ) );
 
 // Post date
 $field = apply_filters( 'rwmb_frontend_post_date', array(
     'type' => 'datetime',
-    'name' => esc_html__( 'Date', 'rwmb-frontend-submission' ),
+    'name' => 'Date',
     'id'   => 'post_date',
 ) );
 
 // Post content
 $field   = apply_filters( 'rwmb_frontend_post_content', array(
     'type' => 'wysiwyg',
-    'name' => esc_html__( 'Content', 'rwmb-frontend-submission' ),
+    'name' => 'Content',
     'id'   => 'post_content',
 ) );
 ```

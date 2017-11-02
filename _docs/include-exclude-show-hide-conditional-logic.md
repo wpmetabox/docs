@@ -1,5 +1,5 @@
 ---
-title: The difference between Include Exclude, Show Hide and Conditional Logic extensions
+title: Include Exclude vs Show Hide vs Conditional Logic
 ---
 
 We have 3 extensions that can help you control the visibility of a meta box for a certain post/page:

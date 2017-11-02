@@ -6,11 +6,11 @@ title: Meta Box Template
 
 ## Usage
 
-After installing, please go to **Settings \ Meta Box Template** to add the template for custom meta boxes and custom fields.
+After installing, please go to *Settings &rarr; Meta Box Template* to add the template for custom meta boxes and custom fields.
 
 The plugin uses YAML syntax to define meta boxes and custom fields. YAML is is a human-friendly format for data and is widely used to store configuration. For more information about YAML, please read on [its homepage](https://yaml.org).
 
-### Getting started with the syntax
+### YAML syntax
 
 Before going into details about the syntax, let's look at the demo of 2 meta boxes defined with this plugin as an example:
 
@@ -60,7 +60,7 @@ Before going into details about the syntax, let's look at the demo of 2 meta box
 
 This will render the following meta boxes:
 
-![meta box](https://metabox.io/wp-content/uploads/2014/12/meta-box-template-render.png).
+![meta box](https://i.imgur.com/IpqVqAD.png).
 
 ### Basic rules
 
@@ -143,11 +143,11 @@ For more information about using YAML, the Symfony project wrote a very good gui
 
 **Note:** To make you easier to type template for meta boxes and fields, the plugin added basic editing functionality like tab, auto closing brackets, etc.
 
-## Define meta boxes and custom fields using template
+## Creating meta boxes
 
 Each meta box or custom field has a list of the parameters which is written in `key: value` pairs (associated arrays). We use YAML mapping for these parameters.
 
-Please see [this documentation](/registering-meta-boxes/) for list of meta box parameters and [this documentation](/field-settings/) for full list of custom fields parameters.
+Please see [this documentation](/creating-meta-boxes/) for list of meta box parameters and [this documentation](/field-settings/) for full list of custom fields parameters.
 
 To register multiple meta boxes or custom fields, we just need to use `- ` to add sequences (simple list).
 
@@ -221,9 +221,9 @@ fields:
         quicktags: false
 ```
 
-## Define meta boxes and custom fields using a config file
+## Config file
 
-**Since version 0.2**, the plugin adds 1 more option that allows you to read the configuration from a specific file (`.yaml`), not only from manual input.
+The plugin has an option that allows you to read the configuration from a specific file (`.yaml`), not only from manual input.
 
 To do that, in the plugin settings page, enter the absolute path to the configuration file (`.yaml`). You can put the configuration file in any folder of your website. But for convenience, the plugin supports the following path variables:
 

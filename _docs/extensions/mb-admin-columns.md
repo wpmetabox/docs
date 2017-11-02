@@ -6,9 +6,9 @@ title: MB Admin Columns
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
+**Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!**
 
-To show the admin column for a custom field, simply add `admin_columns` parameter for that field. The parameter can be in one of 3 following formats (from the simple to advanced configuration):
+To show the admin column for a field, simply add `admin_columns` setting for that field. The setting can be in one of 3 following formats:
 
 ### 1. Simply display the admin column
 
@@ -50,7 +50,7 @@ To add more rules for the custom column, you can declare `admin_columns` paramet
 ```php
 'admin_columns' => array(
     'position'   => 'after title',
-    'title'      => __( 'Price', 'textdomain' ),
+    'title'      => 'Price',
     'before'     => '$',
     'after'      => ' USD',
     'sort'       => true,
@@ -71,7 +71,7 @@ Key|Description
 `searchable`|Allow to search posts by meta value. Optional. Default is `false`.
 `filterable`|Allow to filter posts by custom taxonomy. Applied only if the field is `taxonomy` field. Default is `false`.
 
-Note that the `sort` parameter is used to sort displayed posts by altering the WordPress query. It **works only with non-clonable and non-multiple fields**.
+Note that the `sort` parameter is used to sort displayed posts by altering the WordPress query. It works only with non-clonable and non-multiple fields.
 
 ## Example
 
@@ -81,9 +81,9 @@ Assuming we have a custom post type 'Book' registered with the following code:
 add_action( 'init', 'prefix_register_book_post_type' );
 function prefix_register_book_post_type() {
     $labels = array(
-        'name'          => _x( 'Books', 'Post Type General Name', 'textdomain' ),
-        'singular_name' => _x( 'Book', 'Post Type Singular Name', 'textdomain' ),
-        'menu_name'     => __( 'Book', 'textdomain' ),
+        'name'          => 'Books',
+        'singular_name' => 'Book',
+        'menu_name'     => 'Book',
     );
     $args   = array(
         'labels'     => $labels,
@@ -102,23 +102,23 @@ Here is the code to register a meta box, custom fields with additional parameter
 add_filter( 'rwmb_meta_boxes', 'prefix_book_meta_boxes' );
 function prefix_book_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'      => __( 'Book Info', 'textdomain' ),
+        'title'      => 'Book Info',
         'post_types' => 'book',
         'fields'     => array(
             array(
-                'name'          => __( 'Cover', 'textdomain' ),
+                'name'          => 'Cover',
                 'id'            => 'cover',
                 'type'          => 'image_advanced',
                 'admin_columns' => 'before title', // Show this column before 'Title' column
             ),
             array(
-                'name'          => __( 'Author', 'textdomain' ),
+                'name'          => 'Author',
                 'id'            => 'book_author',
                 'type'          => 'text',
                 'admin_columns' => 'after title', // Show this column after 'Title' column
             ),
             array(
-                'name'          => __( 'Category', 'textdomain' ),
+                'name'          => 'Category',
                 'id'            => 'category',
                 'type'          => 'taxonomy',
                 'taxonomy'      => 'category',
@@ -128,19 +128,19 @@ function prefix_book_meta_boxes( $meta_boxes ) {
                 ),
             ),
             array(
-                'name'          => __( 'Publisher', 'textdomain' ),
+                'name'          => 'Publisher',
                 'id'            => 'publisher',
                 'type'          => 'text',
                 'admin_columns' => 'replace date', // Replace 'Date' column
             ),
             array(
-                'name'          => __( 'Pages', 'textdomain' ),
+                'name'          => 'Pages',
                 'id'            => 'pages',
                 'type'          => 'number',
                 'admin_columns' => true, // Just show this column
             ),
             array(
-                'name'          => __( 'Price', 'textdomain' ),
+                'name'          => 'Price',
                 'id'            => 'price',
                 'type'          => 'number',
                 'admin_columns' => array(
@@ -157,13 +157,13 @@ function prefix_book_meta_boxes( $meta_boxes ) {
 
 Here is the result:
 
-![meta box admin columns](https://metabox.io/wp-content/uploads/2016/03/admin-columns-screenshot.png)
+![meta box admin columns](https://i.imgur.com/7joEGrL.png)
 
-## Create custom admin columns without custom fields
+## Custom admin columns
 
-By default, the extension is made to work with custom fields created by the Meta Box plugin. However, there are situations where you want to make it work with non-custom fields by Meta Box. And that's totally possible. Follow the steps below (note that it requires some coding):
+By default, the extension is made to work with fields created by the Meta Box plugin. However, there are situations where you want to make it work with non-custom fields by Meta Box. And that's totally possible. Follow the steps below (note that it requires some coding):
 
-**Step 1: Create a custom class for custom columns**
+### Creating custom class
 
 Create a new file `custom.php` (you can name it anything you want) in your plugin / theme folder with the following content:
 
@@ -192,7 +192,7 @@ Note that the custom column(s) is added via the call `$this->add( $columns, 'col
 
 In the `show` function, you must add code to display content of these columns.
 
-**Step 2: Create an instance of the class**
+### Instantiating
 
 In your plugin main file or `functions.php` of your theme, add the following code to create an instance of the class above:
 

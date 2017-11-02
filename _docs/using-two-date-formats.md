@@ -1,5 +1,5 @@
 ---
-title: Display date in one format and save in another format
+title: Using 2 date formats
 ---
 
 Assuming you have a `date` field which allow users to choose a date for an event. You want to **display date in a specific format** which matches your country date format (for example *29 September, 2015*) and **store the value in the database in another format** (for example *2015-09-29*) to allow correct ordering and doing queries with dates.

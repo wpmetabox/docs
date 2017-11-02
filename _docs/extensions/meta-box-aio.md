@@ -24,7 +24,7 @@ Simply click on the **Begin installing plugins** to install them (if you haven't
 
 While the settings page and the notification to install free extensions are great for users, developers might want to hide them from normal users. To do that, Meta Box AIO provides some filters:
 
-`mb_aio_show_settings`
+### `mb_aio_show_settings`
 
 This filter is used to show/hide the settings page. The callback function should return `true` to show the settings page, or `false` to hide it.
 
@@ -34,7 +34,7 @@ To hide the settings page, use the following code:
 add_filter( 'mb_aio_show_settings', '__return_false' );
 ```
 
-`option_meta_box_aio`
+### `option_meta_box_aio`
 
 This filter allows you to change the option of the settings page. Thus, enable/disable modules by just coding.
 
@@ -49,7 +49,7 @@ add_filter( 'option_meta_box_aio', function( $option ) {
 
 The option is an array, where the extension slug is the key and value is `1` if enable, `0` if disable.
 
-`mb_aio_load_free_extensions`
+### `mb_aio_load_free_extensions`
 
 This filter allows you to show/hide notification to load free extensions from wordpress.org. The callback function should return `true` to show the settings page, or `false` to hide it.
 

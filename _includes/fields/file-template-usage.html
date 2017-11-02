@@ -1,7 +1,7 @@
 To get the uploaded files, use the helper function [rwmb_meta()](/rwmb-meta/):
 
 ```php
-$files = rwmb_meta( 'info' );
+$files = rwmb_meta( 'field_id' );
 foreach ( $files as $file ) {
     ?>
     <a href="<?php echo $file['url']; ?>"><?php echo $file['name']; ?></a>
@@ -24,7 +24,7 @@ array(
 In case you want to get only 1 file, use the `limit` parameter for the helper function:
 
 ```php
-$files = rwmb_meta( 'info', array( 'limit' => 1 ) );
+$files = rwmb_meta( 'field_id', array( 'limit' => 1 ) );
 $file = reset( $files );
 ?>
 <a href="<?php echo $file['url']; ?>">Download File</a>

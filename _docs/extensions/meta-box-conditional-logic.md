@@ -7,10 +7,9 @@ title: Meta Box Conditional Logic
 ## Configuration
 Like the Meta Box plugin, Conditional Logic was created without any options. You can start using it right after activating.
 
-## Basics
-If you're confused whilst reading this tutorial. Please refer to [registering meta box](/registering-meta-boxes/).
+If you're confused whilst reading this tutorial. Please refer to [creating meta box](/creating-meta-boxes/).
 
-### The example
+## Example
 
 Let's say we have a Meta Box with two fields, for example.
 
@@ -53,219 +52,273 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
 } );
 ```
 
-### Basic Syntax
+## Syntax
 
-A conditional statement syntax can be defined like so:
+A conditional statement syntax can be defined for a meta box or a field as follows:
 
 ```php
-'visibility' => ['field', 'operator', 'value']
+'visibility' => array( 'field', 'operator', 'value' )
 ```
 
-Where:
-
-- `visibility`: either `visible` or `hidden`.
-- `field`: Meta Box Field or any HTML DOM element to compare.
-- `operator`: (optional) Comparison Operators: `=`, `>=`, `<=`, `>`, `<`, `!=`, `in`, `between`, `starts with`, `ends with`, `match`. All of them can combine with `not` operator to become negate operator. Default: `=`.
-- `value`: Value to compare with.
+Name|Description
+---|---
+`visibility`|Either `visible` or `hidden`.
+`field`| Meta Box field ID or ID of a DOM element to compare.
+`operator` | Comparison operators: `=`, `>=`, `<=`, `>`, `<`, `!=`, `in`, `between`, `starts with`, `ends with`, `match`. All of them can combine with `not` operator to become negate operator. Default: `=`. Optional.
+`value` | Value to compare with.
 
 Assume that you have two fields:
 
-- A Select field named 'brand' contains 3 items: "Apple", "Microsoft" and "Google",
-- Another field named 'apple_products' contains 4 items: "iPhone", "iPad", "Macbook", "iWatch"
+- A select field `brand` contains 3 options: "Apple", "Microsoft" and "Google",
+- Another field `apple_products` contains 4 options: "iPhone", "iPad", "Macbook", "iWatch"
 
 Let hide `apple_products` when `brand` isn't Apple. You can define conditional logic like this:
 
 ```php
-'hidden' => ['brand', '!=', 'Apple']
-```
-
-or, you can rewrite it by *IN* statement, like so:
-
-```php
-'hidden' => ['brand', 'in', ['Microsoft', 'Google']]
+'hidden' => array( 'brand', '!=', 'Apple' )
+// Or
+'hidden' => array( 'brand', 'in', array( 'Microsoft', 'Google' ) )
 ```
 
 Two above examples can be rewrite by `visible` key, like so:
 
 ```php
-'visible' => ['brand', '=', 'Apple']
-// Can be dead simpler like so:
-'visible' => ['brand', 'Apple']
+'visible' => array( 'brand', 'Apple' )
+// Or
+'visible' => array( 'brand', '=', 'Apple' )
+// Or
+'visible' => array( 'brand', 'not in', array( 'Microsoft', 'Google' ) )
 ```
+
+## Advanced Operators
+
+### `contains`
+
+The operator `contains` can check with string if it contains another string
 
 ```php
-'visible' => ['brand', 'not in', ['Microsoft', 'Google']]
+'visible' => array( 'brand', 'contains', 'pp' ) // Apple, App, ...
 ```
 
-With above examples, you can see that we use '!=', 'in', '=', 'not in' operators, let's try with other examples:
-
-##### With `contains` operator
+It also can check if an array contains another array or string. For instance, if `brand` is a multiple field (checkbox list, select multiple...), its value is an array, then you can check if user selected 'Apple':
 
 ```php
-// contains can checks with string if it contains another string
-'visible' => ['brand', 'contains', 'pp'] // match with A[pp]le
-// contains can even checks with, an array if it contains another array or string. For instance, if `brand` is a multiple field (checkbox list, select multiple...), it returns an array, then you can check if user selected 'Apple' or not by using syntax like so
-'visible' => ['brand', 'contains', ['Apple']]
+'visible' => array( 'brand', 'contains', array( 'Apple' ) )
 ```
 
-##### With `between` operator.
+### `between`
 
-Let say that we have another *date* field called *released_date* and we want to show the field only when *released_date* is between *2015-06-01* and *2015-12-01*
+This operator check if the field value is between minimum and maximum values.
+
+Let say that we have a date field `released_date` and we want to show another field only when `released_date` is between "2015-06-01" and "2015-12-01":
 
 ```php
-'visible' => ['released_date', 'between', ['2015-06-01', '2015-12-01']]
+'visible' => array( 'released_date', 'between', array( '2015-06-01', '2015-12-01' ) )
 ```
-*Please note that between operator is not only compare numeric fields but also date and even time fields.*
 
-##### With `starts with` operator
+Please note that the `between` operator does not only compare numeric fields but also date and time fields.
+
+### `starts with`
+
+This operator checks if field value starts with a string:
 
 ```php
-'visible' => ['brand', 'starts with', 'App'] // match with [App]le
+'visible' => array( 'brand', 'starts with', 'App' ) // Apple, App
 ```
 
-##### With `ends with` operator
+### `ends with`
+
+This operator checks if field value ends with a string:
 
 ```php
-'visible' => ['brand', 'ends with', 'le'] // In this case, match with both "Goog[le]" and "App[le]"
+'visible' => array( 'brand', 'ends with', 'le' ) // Apple, Google
 ```
 
-##### With Regular Expression - `match` operator
+### `match`
+
+This operator checks if field value matches a regular expression:
 
 ```php
-'visible' => ['brand', 'match', '[a-z]$']
+'visible' => array( 'brand', 'match', '[a-z]$' )
 ```
 
-##### not operator
+### `not`
 
-We can combine *not* statement with others. So we'll have *not contains*, *not in*, *not match*, *not starts with*, *not ends with*, *not between*
+We can combine `not` operator with other operators to negative the meaning of them. So we'll have `not contains`, `not in`, `not match`, `not starts with`, `not ends with`, `not between`.
 
-##### Checkbox Field
+## Special fields
 
-Sometimes, you want to show/hide a field if checkbox is checked or not. Just remember checkbox has two state and each state returns a value, **0** or **false** if is not checked, **1** or **true** is checked. For example:
+### Checkbox field
+
+Sometimes, you want to show/hide a field if checkbox is checked or not. Just remember checkbox has two state and each state returns a value, `0` or `false` if is not checked, `1` or `true` is checked.
+
+So in this case, you need to write the field value as:
 
 ```php
-'visible' => ['checkbox_field', true] // Visible if checkbox_field is checked
+'visible' => array( 'checkbox_field', true ) // Visible if checkbox_field is checked
 ```
 
-##### With DOM Elements
+### Media fields
 
-Meta Box Conditional Logic can work with DOM Elements same as Meta Box fields. With this feature, you can show or hide meta boxes or fields based on post types, page parent, post ID, categories...
+For media fields that use WordPress media popup to handle upload like `file_advanced`, `image_advanced`, the extension checks number of uploaded files instead of their values.
 
-Let's try with some examples:
+This example shows or hides a field depends on there's a file uploaded:
+
+```php
+// Visible when file_advanced field is has file
+'visible' => array( 'file_advanced', '>', 0 )
+
+// Or hidden if image_advanced doesn't contains anything
+'hidden' => array( 'image_advanced', 0 )
+```
+
+## DOM elements
+
+Meta Box Conditional Logic can work with DOM elements the same as Meta Box fields. With this feature, you can show or hide any meta box or field based on post types, page parent, post ID, categories...
+
+To make it work with DOM element, instead of passing the field ID as the first parameter, please pass the element's ID.
+
+### Examples:
 
 Display Meta Box (or field) if current page is child page (parent ID is not empty)
 
 ```php
-'visible' => ['parent_id', '!=', '']
+'visible' => array( 'parent_id', '!=', '' )
 ```
 
 Visible if parent page's ID is 99
 
 ```php
-'visible' => ['parent_id', 99]
+'visible' => array( 'parent_id', 99 )
 ```
 
 Visible if current post ID is greater than 101
 
 ```php
-'visible' => ['post_ID', '>', 101]
+'visible' => array( 'post_ID', '>', 101 )
 ```
 
-### Compound Statements
-Sometimes, you'll need to use more than one conditional logic in fields, to do it, you can use nested array to define compound statements. For example:
+## Compound statements
+Sometimes, you'll need to use more than one conditional logic. To do that, you can use nested array to define compound statements. For example:
 
 ```php
-// This field will visible when other field named 'brand' values is equal to 'Apple' AND another field named released_year values is between 2010 and 2015
-
-'visible' => [
-    ['brand', 'Apple'],
-    ['released_year', 'between', [2010, 2015]]
-]
+// Visible when 'brand' is 'Apple' AND 'released_year' is between 2010 and 2015
+'visible' => array(
+    array( 'brand', 'Apple' ),
+    array( 'released_year', 'between', ( 2010, 2015 ) )
+)
 ```
-**Relation**
-By default, if you define compound statement, the logic will correct if ALL of them are correct. In case you want to visible a field if ONE of them is correct, simply move all statements to `when` key and put new `relation` key like this example:
+
+By default, if you define compound statement, the logic will correct if all of them are correct. In case you want to visible a field if one of them is correct, simply move all statements to `when` key and put new `relation` key like this example:
 
 ```php
-'visible' => [
-    'when' => [
-         ['brand', 'in', ['Apple', 'Microsoft']],
-         ['released_year', 'between', [2010, 2015]]
-     ],
+// Visible when 'brand' is 'Apple' OR 'released_year' is between 2010 and 2015
+'visible' => array(
+    'when' => array(
+         array( 'brand', 'in', array( 'Apple', 'Microsoft' ) ),
+         array( 'released_year', 'between', array( 2010, 2015 ) )
+     ),
      'relation' => 'or'
-]
+)
 ```
 
-### Use Conditional Logic outside Meta Box
+## Using outside meta boxes
 
-Conditional Logic can even work outside Meta Box plugin, or hide element outside Meta Box plugin, for example: post_title, post_content, post_excerpt...
-Let's say you want to hide the WP core *submitdiv* Meta Box when `brand` value is 'Microsoft'
+The extension can even work with elements outside meta boxes, for example: post title, post content, post excerpt...
+
+Let's say you want to hide the WordPress core `submitdiv` meta box (the meta box that contains **Publish** button) when `brand` is 'Microsoft':
 
 ```php
-// Attach Conditional Logic to other fields
 add_filter( 'rwmb_outside_conditions', function( $conditions ) {
-    $conditions['submitdiv'] = [
-        'hidden' => ['brand', 'Microsoft']
-    ];
+    $conditions['submitdiv'] = array(
+        'hidden' => array( 'brand', 'Microsoft' ),
+    );
     return $conditions;
 } );
 ```
 
-In case you want to attach conditional logic with any HTML DOM Element. Just follow above example. Conditional Logic is smart enough to guess the element that you want to hide so you don't have to put full element selector.
+Another example: hide post title for `aside` post format:
 
 ```php
-// Attach Conditional Logic to other fields. In this case, post_title and post_format aren't Meta Box field
 add_filter( 'rwmb_outside_conditions', function( $conditions ){
-    $conditions['post_title'] = [
-        'hidden' => ['post_format', 'aside']
-    ];
+    $conditions['post_title'] = array(
+        'hidden' => array( 'post_format', 'aside' )
+    );
     return $conditions;
 } );
 ```
-Of course, you can also hide a tab with Conditional Logic. See [this guide](https://metabox.io/hide-meta-box-tabs-conditional-logic/)
 
-#### Conditional Logic with special upload fields
-
-Some `special` fields, in this case, all upload fields which do not use normal Html form tags to handle upload like `file_advanced`, `image_advanced` can returns num of uploaded files instead of their values. This is the example of conditional logic attach to `image_advanced` field, `file_advanced` uses the same syntax:
+The key for the conditions can be ID of the element (default) or any CSS selector:
 
 ```php
-// Visible when file_advanced field is has file
-'visible' => ['file_advanced', '>', 0]
-
-// Or hidden if image_advanced doesn't contains anything
-'hidden' => ['image_advanced', 0]
+add_filter( 'rwmb_outside_conditions', function( $conditions ){
+    $conditions['.rwmb-tab-bio'] = array(
+        'hidden' => array( 'post_format', 'aside' )
+    );
+    return $conditions;
+} );
 ```
 
-#### Conditional Logic with Categories and Custom Taxonomies
+If you want to hide a tab created by [Meta Box Tabs](https://metabox.io/plugins/meta-box-tabs/), [see this](/tutorials/hide-tabs-with-conditional-logic/).
 
-Conditional Logic works with DOM elements and of course, categories and custom taxonomies. We have a separated guide about it. You can check: [/docs/conditional-logic-taxonomies/](Conditional Logic and Taxonomies)
+## Using with taxonomies
 
-### Custom Callback
+Conditional Logic works with DOM elements and of course, categories and custom taxonomies.
 
-Since 1.3, you can set conditional logic with custom callback, just add your function with `()`. Like so:
+For built-in post category, use `post_category` as the first parameter:
 
 ```php
-// your js function should be defined
+'visible' => array( 'post_category', 'in', array( 4, 5, 6 ) )
+```
+
+By default, the extension uses terms' IDs to check. Since 1.3, you can define the condition's value using `slug`. Just append `slug:` before the selector. Like so:
+
+```php
+'visible' => array( 'slug:post_category', 'in', array( 'fashion', 'gaming', 'technology' ) )
+```
+
+For custom taxonomies, use `tax_query[taxonomy slug]` as the first parameter:
+
+```php
+'hidden' => array( 'tax_query[product]', '>', 5 )
+```
+
+Of course, it works with `slug` also:
+
+```php
+'hidden' => array( 'slug:tax_query[product]', '!=', 'drones' )
+```
+
+## Custom callback
+
+Since 1.3, you can set conditional logic with custom JavaScript callback, just put your function call in the first parameter. Like so:
+
+In your JavaScript file:
+
+```js
+// Your custom JavaScript function that checks the condition
 function my_custom_callback() { return true; }
 ```
 
+In your PHP file:
+
 ```php
-// your field or meta box
-'visible' => ['my_custom_callback()', true]
+'visible' => array( 'my_custom_callback()', true )
 ```
 
-Please note that your function can return anything you want and you can use any `operator` to compare. For example
+Please note that your function can return anything you want and you can use any operator to compare. For example
 
-```php
-// your js
+```js
+// Your js
 function dummy_function(){ return ['foo', 'bar', 'baz]; }
 ```
 
 ```php
-// your field or meta box
-'hidden' => ['dummy_function()', 'contains', 'bar'];
+// Your field or meta box
+'hidden' => array( 'dummy_function()', 'contains', 'bar' );
 ```
 
-### Toggle Type
+## Toggle types
 
 By default, we use jQuery `.show()` and `.hide()` method (which equivalent to CSS `display` property) to toggle elements. Imagine you have three fields named A, B, and C. So by default it will display vertical like so:
 
@@ -282,6 +335,7 @@ Or if you use Column extension, it will display horizontal like so:
 ```
 A | B | C
 ```
+
 What happen when field B is hidden? The field C will jump to B place, sometimes, you will want to keep the position of these field, so if field B is hidden, it should keep the blank space like so:
 
 ```
@@ -299,12 +353,10 @@ A | | C
 
 So, basically, we have to use CSS `visibility` property instead of `display` property. To do so, just add `'toggle_type' => 'visibility'` to your Meta Box.
 
-#### Toggle Animation
+Since 1.5, we do support `slideUp`, `slideDown`, `fadeIn`, `fadeOut` animation. In order to use these animation just set `toggle_type` to `slide` or `fade`.
 
-Since 1.5, we do support `slideUp`, `slideDown`, `fadeIn`, `fadeOut` animation, just set toggle type to `slide` or `fade`. In short, we can set toggle type to: `'visibility'`, `'display'`, `'slide'`, `'fade'`.
+In short, we supports 4 toggle types to: `visibility`, `display`, `slide`, `fade`.
 
-#### Known Issues
+## Known issues
 
-Conditional Logic doesn't works with Auto Complete field. We'll try to update in the next release.
-
-Please note that conditional logic for Fields and Meta Boxes use the same syntax, so feel free to use and start using it now.
+Conditional Logic doesn't works with [autocomplete](/fields/autocomplete/) field. We'll try to update in the next release.

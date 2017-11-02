@@ -6,7 +6,7 @@ title: Meta Box Columns
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
+Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
 ### Simple syntax
 
@@ -18,23 +18,23 @@ The code below registers some fields and make each field obtain 4 columns of the
 add_filter( 'rwmb_meta_boxes', 'prefix_columns_demo_register' );
 function prefix_columns_demo_register( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'  => __( 'Meta Box Columns Demo', 'textdomain' ),
+        'title'  => 'Meta Box Columns Demo',
         'fields' => array(
             array(
-                'name'    => __( 'Name', 'textdomain' ),
+                'name'    => 'Name',
                 'id'      => 'name',
                 'type'    => 'text',
                 // Number of columns (in grid 12)
                 'columns' => 4,
             ),
             array(
-                'name'    => __( 'Email', 'textdomain' ),
+                'name'    => 'Email',
                 'id'      => 'email',
                 'type'    => 'email',
                 'columns' => 4,
             ),
             array(
-                'name'    => __( 'Mobile', 'textdomain' ),
+                'name'    => 'Mobile',
                 'id'      => 'mobile',
                 'type'    => 'text',
                 'columns' => 4,
@@ -54,7 +54,7 @@ add_filter( 'rwmb_meta_boxes', 'prefix_register_meta_boxes' );
 function prefix_register_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = array(
         'id'     => 'test-columns',
-        'title'  => __( 'Meta Box Columns Demo', 'textdomain' ),
+        'title'  => 'Meta Box Columns Demo',
         'columns' => array(
             'column-1' => 4,                   // Simply define the size of the column (from 1 to 12)
             'column-2' => array(               // More advanced syntax
@@ -64,19 +64,19 @@ function prefix_register_meta_boxes( $meta_boxes ) {
         ),
         'fields' => array(
             array(
-                'name'    => __( 'Name', 'textdomain' ),
+                'name'    => 'Name',
                 'id'      => 'name',
                 'type'    => 'text',
                 'column'  => 'column-1',
             ),
             array(
-                'name'    => __( 'Email', 'textdomain' ),
+                'name'    => 'Email',
                 'id'      => 'email',
                 'type'    => 'email',
                 'column'  => 'column-1',
             ),
             array(
-                'name'    => __( 'State', 'textdomain' ),
+                'name'    => 'State',
                 'id'      => 'state',
                 'type'    => 'select_advanced',
                 'options' => array(
@@ -86,7 +86,7 @@ function prefix_register_meta_boxes( $meta_boxes ) {
                 'column'  => 'column-2',
             ),
             array(
-                'name'    => __( 'Description', 'textdomain' ),
+                'name'    => 'Description',
                 'id'      => 'description',
                 'type'    => 'textarea',
                 'column'  => 'column-2',
@@ -114,7 +114,7 @@ Then each field in the meta box need to specify which column it belongs to by se
 
 ## Notes
 
-This extension uses 12-columns grid, so when defining number of columns, you must define them so that **the total columns for each row equals to 12**.
+This extension uses 12-columns grid, so when defining number of columns, you must define them so that the total columns for each row equals to 12.
 
 For example:
 

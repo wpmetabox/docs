@@ -1,5 +1,5 @@
 ---
-title: Repeating Fields
+title: Cloning fields
 ---
 
 The repeating feature of the Meta Box plugin allows us to create multiple inputs from a text, textarea, select, ... fields without declaring many fields in the code.

@@ -55,7 +55,7 @@ array(
     'select_all_none' => false,
     // select2 configuration. See https://select2.org/configuration
     'js_options'      => array(
-    	'containerCssClass' => 'my-custom-class',
+        'containerCssClass' => 'my-custom-class',
     ),
 ),
 ```

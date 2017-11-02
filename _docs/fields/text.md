@@ -4,27 +4,75 @@ title: Text
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. You are able to select multiple values from the predefined list.
+The text field creates a simple text input. You are able to enter any content or select a value from a predefined list via `datalist` option.
 
-This field uses jQuery UI library to perform the autocomplete action.
+## Screenshots
 
-## Screenshot
+Default:
+
+![text](https://i.imgur.com/Khmq6nj.png)
+
+With datalist:
+
+![text with datalist](https://i.imgur.com/WnedDrd.png)
+
+Cloneable:
+
+![text clone](https://i.imgur.com/5BTWfmN.png)
 
 ## Settings
 
 Besides the [common settings](/field-settings/), this field has the following specific settings:
 
-
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | Input size. Default `30`. Optional.
+`placeholder` | Placeholder for the input. Optional.
+`size` | Size of input box. Optional. Default 30.
+`datalist` | Predefined values that users can select from (users still can enter text if they want). Optional. This parameter has the following sub-parameters:
+|`id`: ID of the div that stores the options. Usually not used and auto-generated as `{$field['id']_list`. Useful if you have several text input with same datalist.
+|`options`: Array of predefined values to select from.
 
-Note that the `multiple` setting is always set to `true` for this field.
+## Sample code
+
+```php
+array(
+    'name'        => 'Text',
+    'label_description' => 'Label description',
+    'id'          => 'text',
+    'desc'        => 'Please enter some text above',
+    'type'        => 'text',
+
+    // Default value (optional)
+    // 'std'         => 'Default text value',
+
+    // Cloneable (i.e. have multiple value)?
+    'clone'       => true,
+
+    // Placeholder
+    'placeholder' => 'Enter something here',
+
+    // Input size
+    'size'        => 30,
+
+    // Datalist
+    'datalist'    => array(
+        // Unique ID for datalist. Optional.
+        'id'      => 'text_datalist',
+        // List of predefined options
+        'options' => array(
+            'What',
+            'When',
+            'Where',
+            'Why',
+            'Who',
+        ),
+    ),
+),
+```
 
 ## Data
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+This field simply saves a single entered value in the database.
 
 If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
 
@@ -33,19 +81,17 @@ If the field is cloneable, then the value is stored as a serialized array in a s
 If field is not cloneable:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $value ) {
-    echo $value;
-}
+$value = rwmb_meta( $field_id );
+echo $value;
 ```
 
 If field is cloneable:
 
 ```php
 $values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-    foreach ( $clone as $value ) {
-        echo $value;
-    }
+foreach ( $values as $value ) {
+    echo $value;
 }
 ```
+
+Read more about [rwmb_meta()](/rwmb-meta/).

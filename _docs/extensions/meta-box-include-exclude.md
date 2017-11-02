@@ -6,7 +6,7 @@ title: Meta Box Include Exclude
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
+Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
 To add include, exclude conditions to your meta box to show/hide it, you need to add parameter `include` or `exclude` accordingly to the meta box configuration.
 
@@ -30,12 +30,12 @@ Parameter | Description
 `parent_{$taxonomy_slug}` | List of parent custom taxonomy terms' IDs or names or slugs. Here `taxonomy_slug` is the slug of the taxonomy (like `section`, `region`, etc.). Match if the current post has a parent term in the list. Can be array or comma separated. Optional.
 `user_role` | List of user roles (`administrator`, `editor`, etc.), match if the current user has the role in the list. Can be array or comma separated. Optional.
 `user_id` | List of user IDs, match if the current user has user ID in the list. Can be array or comma separated. Optional.
-`edited_user_role`|Role of the being edited user. Works on the user profile or user edit screens only. Requires [MB User Meta](/plugins/mb-user-meta/) extension.
-`edited_user_id`|User ID of the being edited user. Works on the user profile or user edit screens only. Requires [MB User Meta](/plugins/mb-user-meta/) extension.
+`edited_user_role`|Role of the being edited user. Works on the user profile or user edit screens only. Requires [MB User Meta](https://metabox.io/plugins/mb-user-meta/) extension.
+`edited_user_id`|User ID of the being edited user. Works on the user profile or user edit screens only. Requires [MB User Meta](https://metabox.io/plugins/mb-user-meta/) extension.
 `is_child` | Boolean, match if the current post/page is a child page or not. Optional.
 `custom` | Name of the custom function that performs the check (returns `true` or `false`). This function will take 1 parameter the meta box array. Match if the function returns `true`. Optional. Since v1.0.1, function name can be a string or array(object, method name) or array(class, static method name)
 
-Here is the demo code with all explanation in comments:
+## Sample code
 
 ```php
 add_filter( 'rwmb_meta_boxes', 'prefix_include_exclude_demo' );

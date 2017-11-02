@@ -68,6 +68,6 @@ The code below changes the "+ Add new file" string:
 ```php
 add_filter( 'rwmb_file_add_string', 'prefix_change_add_string' );
 function prefix_change_add_string() {
-    return esc_html__( '+ New File', 'textdomain' );
+    return '+ New File';
 }
 ```

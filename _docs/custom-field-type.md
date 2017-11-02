@@ -6,9 +6,9 @@ title: Custom field type
 
 Meta Box plugin is so flexible that you can create your own field type easily. This documentation will show you how to create a new field type `phone` which accepts the only phone in format `xxx-xxxx`.
 
-## Defining field class
+## Field class
 
-We have to create a class name `RWMB_Phone_Field` for `phone` field. Generally, if we want to create a new field type, we have to create a class name `RWMB_{$field_type}_Field` (make sure it has a correct case) extending `RWMB_Field` class.
+We need create a class name `RWMB_Phone_Field` for `phone` field. Generally, if we want to create a new field type, we need create a class name `RWMB_{$field_type}_Field` (make sure it has a correct case) extending `RWMB_Field` class.
 
 ```php
 if ( class_exists( 'RWMB_Field' ) ) {
@@ -28,9 +28,9 @@ function prefix_load_phone_type() {
 
 {% include alert.html content="We use `init` action to make sure all Meta Box files are loaded and class `RWMB_Field` is defined." %}
 
-## Class methods
+## Methods
 
-The phone class inherits all method from `RWMB_Field` class. The full list of `RWMB_Field` methods and their description are described in [this documentation](/rwmb_field-class/).
+The phone class inherits all methods from `RWMB_Field` class. The full list of `RWMB_Field` methods and their description are described in [this documentation](/rwmb-field-class/).
 
 For phone field, we have to define content of `html` method to define field HTML:
 
@@ -66,7 +66,7 @@ if ( class_exists( 'RWMB_Field' ) ) {
 }
 ```
 
-## Registering fields
+## Using new field type
 
 Now we can register fields with `phone` type, like this:
 

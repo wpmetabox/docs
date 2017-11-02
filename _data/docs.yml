@@ -4,22 +4,21 @@
     url: /
   - /installation/
   - /quick-start/
+- title: Basics
+  items:
   - /creating-meta-boxes/
   - /field-settings/
   - /displaying-fields/
-- title: Basics
-  items:
-  - /integration/
   - /shortcode/
   - /validation/
-  - /custom-attributes/
-  - /database/
+  - /cloning-fields/
 - title: Advanced
   items:
+  - /custom-attributes/
+  - /integration/
+  - /database/
   - /custom-field-type/
-  - /edit-meta-boxes/
   - /composer/
-  - /looping-fields/
 - title: Fields
   items:
   - /fields/autocomplete/
@@ -71,7 +70,6 @@
   - /extensions/mb-settings-page/
   - /extensions/mb-term-meta/
   - /extensions/mb-user-meta/
-  - /extensions/meta-box-aio/
   - /extensions/meta-box-builder/
   - /extensions/meta-box-columns/
   - /extensions/meta-box-conditional-logic/
@@ -83,6 +81,7 @@
   - /extensions/meta-box-template/
   - /extensions/meta-box-tooltip/
   - /extensions/meta-box-updater/
+  - /extensions/meta-box-aio/
   - /extensions/update/
   - /extensions/integration/
 - title: References
@@ -90,17 +89,16 @@
   - /actions/
   - /filters/
   - /rwmb-field-class/
+  - /rwmb-meta/
+  - /rwmb-the-value/
+  - /rwmb-get-value/
 - title: Tutorials
   items:
-  - /tutorials/conditional-logic-taxonomies/
-  - /tutorials/custom-select-checkbox-tree/
-  - /tutorials/difference-include-exclude-show-hide-conditional-logic-extensions/
-  - /tutorials/display-date-in-one-format-and-save-in-another-format/
-  - /tutorials/display-value-radio-checkbox-list-field/
-  - /tutorials/hide-group-conditional-logic/
-  - /tutorials/hide-meta-box-tabs-conditional-logic/
-  - /tutorials/how-to-create-meta-box-columns-in-meta-box-builder/
-  - /tutorials/how-to-create-nested-array-field-with-meta-box-builder/
-  - /tutorials/how-to-set-a-field-as-read-only/
-  - /tutorials/save-wysiwyg-content-post-content/
-  - /tutorials/using-custom-html-field-callback-output-anything/
+  - /edit-meta-boxes/
+  - /custom-select-checkbox-tree/
+  - /include-exclude-show-hide-conditional-logic/
+  - /using-two-date-formats/
+  - /hide-tabs-with-conditional-logic/
+  - /create-columns-in-meta-box-builder/
+  - /save-wysiwyg-content-post-content/
+  - /using-custom-html-to-output-anything/

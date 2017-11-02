@@ -4,11 +4,11 @@ title: Textarea
 
 ## Overview
 
-The autocomplete field creates a simple text input with autocomplete feature. You are able to select multiple values from the predefined list.
-
-This field uses jQuery UI library to perform the autocomplete action.
+The textarea field creates a simple textarea (multiline) input. You can use this field for entering a paragraph of text or custom HTML.
 
 ## Screenshot
+
+![textarea](https://i.imgur.com/Wrg9ISA.png)
 
 ## Settings
 
@@ -16,14 +16,13 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. They're used to autocomplete from user input. `value` is stored in the custom field. Required.
-`size` | Input size. Default `30`. Optional.
-
-Note that the `multiple` setting is always set to `true` for this field.
+`placeholder` | The placeholder text. Optional.
+`cols` | Number of columns. Optional. Default 60.
+`rows` | Number of rows. Optional. Default 4.
 
 ## Data
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+This field simply saves a single entered value in the database. The value is saved as it is. So if you enter HTML, it will save exactly that HTML part.
 
 If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
 
@@ -32,19 +31,19 @@ If the field is cloneable, then the value is stored as a serialized array in a s
 If field is not cloneable:
 
 ```php
-$values = rwmb_meta( $field_id );
-foreach ( $values as $value ) {
-    echo $value;
-}
+$value = rwmb_meta( $field_id );
+echo $value;
 ```
 
 If field is cloneable:
 
 ```php
 $values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-    foreach ( $clone as $value ) {
-        echo $value;
-    }
+foreach ( $values as $value ) {
+    echo $value;
 }
 ```
+
+This field outputs exactly what you have entered. So be careful if you enter HTML.
+
+Read more about [rwmb_meta()](/rwmb-meta/).

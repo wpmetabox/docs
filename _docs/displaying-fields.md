@@ -2,61 +2,34 @@
 title: Displaying fields
 ---
 
-To get field meta value, use this function:
+## Overview
+
+To get field value or displaying it in your theme, copy the following code and paste it in your theme's template file:
 
 ```php
-rwmb_meta( $field_id, $args = array(), $post_id = null );
+$value = rwmb_meta( $field_id );
+echo $value;
 ```
 
-To display field value in the frontend, just put the code below in your theme's template file:
-
-```php
-echo rwmb_meta( $field_id, $args, $post_id );
-```
-
-You can omit `$args` and/or `$post_id`. In that case, the function will return simple value (for text, radio, select) for the current post in the loop.
-
-**Note:** Since version 4.8.0, in order to make the helper function works properly in the front end, the code that registers meta boxes and custom fields must run in BOTH front end and admin area. E.g, avoid writing like this:
-
-```php
-if ( is_admin() ) {
-    add_filter( 'rwmb_meta_boxes', 'prefix_register_meta_boxes' );
-    function prefix_register_meta_boxes() {
-        // Code
-    }
-}
-```
-
-Instead, write this:
-
-```php
-add_filter( 'rwmb_meta_boxes', 'prefix_register_meta_boxes' );
-function prefix_register_meta_boxes() {
-    // Code
-}
-```
+You can put it in the theme `single.php` or `template-parts/content.php` file, depending on your [theme structure](https://developer.wordpress.org/themes/basics/template-files/).
 
 ## Arguments
 
-Name|Description
----|---
-`$field_id`|The field ID.
-`$args`|Array of arguments or a string in format `param=value1&amp;param2=value2`. See below for supported arguments.
-`$post_id`|Post ID. Optional. If not present, current post ID is used.
+The helper function `rwmb_meta` accepts 3 arguments as below:
 
-List of arguments for `$args`:
+```php
+rwmb_meta( $field_id, $args, $post_id );
+```
 
 Name|Description
 ---|---
-`type`|Field type. Required for all fields for version prior to 4.8.0. Since 4.8.0, this is required only for `map` and `oembed` to display rich media.
-`multiple`|Does field has multiple values (true or false)? For fields that always have multiple values (checkbox list, autocomplete, file, image) it's automatically set to `true` and you can omit it. Not used since 4.8.0.
-`clone`|Is field cloneable? Not used since 4.8.0.
-`taxonomy`|Taxonomy. Required for `taxonomy` and `taxonomy_advanced` for version prior to 4.8.0. See taxonomy field below for more info.
-`size`|Image size. Used for image fields only. If missed, `thumbnail` will be used. See image field below for more info
+`$field_id`|The field ID. Required.
+`$args`|Extra arguments for some field types (image, file, etc.). Optional. Can be array or a string in format `param1=value1&param2=value2`. See more details in field types (on the left menu, section Fields). Optional.
+`$post_id`|Post ID that custom fields are get from. Optional. If not present, current post ID is used.
 
 ## Returned value
 
-- If the field has a single value (not `multiple`, not `clone`), then the function returns the value of the field.
+- If the field has a single value (not `multiple` nor `clone`), then the function returns that value.
 - If the field has multiple values (`multiple` or `clone`), then the function returns an array of values.
 
 This is an example how to display date of birth (which is a `date` field):
@@ -68,58 +41,15 @@ echo rwmb_meta( 'dob' );
 This is an example how to display list of interests (a `checkbox_list` field):
 
 ```php
-$interests = rwmb_meta( 'interests' ); // Since 4.8.0
-$interests = rwmb_meta( 'interests', 'type=checkbox_list' ); // Prior to 4.8.0
-
-echo implode( ', ', $interests );
-```
-
-For specific field types, please see below:
-
-### Taxonomy
-
-For `taxonomy` and `taxonomy_advanced` field, the helper function returns list of terms object, similar to `get_terms` function.
-
-**Note:** Prior to 4.8.0, you must set `type=taxonomy&amp;taxonomy=TAXONOMY` in `$args` to make it work properly.
-
-This example shows how to display list of terms:
-
-```php
-$terms = rwmb_meta( 'field_id' );
-$content = '';
-if ( !empty( $terms ) ) {
-    $content .= '<ul>';
-    foreach ( $terms as $term ) {
-        $content .= sprintf(
-            '<li><a title="%s" href="%s">%s</a></li>',
-            esc_attr( $term->name ),
-            esc_url( get_term_link( $term, 'tax_slug' ) ),
-            esc_html( $term->name )
-        );
-    }
+$interests = rwmb_meta( 'interests' );
+foreach ( $interests as $interest ) {
+    echo $interest;
 }
-echo $content;
 ```
 
-### User
+{% include alert.html type="warning" content="Depends on the field types, the returned value can be different. See more details in field types (on the left menu, section Fields)." %}
 
-For `user` field, the helper function returns user ID.
-
-### WYSIWYG
-
-The WYSIWYG field only displays the raw content in HTML format. It doesn't wrap paragraphs in `p` tag by default or render shortcodes as in the `the_content()` function. To do that, you need to use the following code:
-
-```php
-$content = rwmb_meta( 'field_id' );
-$content = wpautop( $content ); // Wrap paragraphs in p tags
-$content = do_shortcode( $content ); // Render shortcodes
-echo $content;
-
-// Short version
-echo do_shortcode( wpautop( rwmb_meta( 'field_id' ) ) );
-```
-
-## Prevent undefined function `rwmb_meta`
+## Undefined function error
 
 If you're using `rwmb_meta` in your theme, there may be a situation when an admin accidentally deactivate the Meta Box plugin and you will see error "Undefined function rwmb_meta..." and your site will be broken.
 
@@ -135,6 +65,14 @@ if ( ! function_exists( 'rwmb_meta' ) ) {
 
 ## For developers
 
-The `rwmb_meta` function is just a wrapper of `get_post_meta` with some additions to match [the way the plugin saves post meta in the database](/how-post-meta-is-saved-in-the-database/). It also adds some additional information to the returned value (such as image info) to make it's easier for developers.
+The `rwmb_meta` function is just a wrapper of `get_post_meta` with some additions to match [the way the plugin saves post meta in the database](/database/). It also adds some additional information to the returned value (such as image info) to make it's easier for developers.
 
 However, you can always use `get_post_meta` to get the value stored in the custom fields. `print_r` might help you to see how the value is stored in the database.
+
+## Helper functions
+
+There are several helper functions that work with the field value. For more details, please see below:
+
+- [rwmb_meta()](/rwmb-meta/)
+- [rwmb_the_value()](/rwmb-the-value/)
+- [rwmb_get_value()](/rwmb-get-value/)

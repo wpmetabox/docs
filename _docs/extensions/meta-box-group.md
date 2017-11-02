@@ -6,11 +6,11 @@ title: Meta Box Group
 
 ## Usage
 
-Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!
+Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
-The **Meta Box Group** adds a new field type `group`. This field type has following attributes:
+The Meta Box Group adds a new field type `group`. This field type has following settings:
 
-Attribute|Description
+Name|Description
 ---|---
 `name`|Field name (label), same like other normal fields. Optional.
 `id`|Field ID, will be used to store custom field values of all sub-field.
@@ -26,17 +26,17 @@ So, to add a group, you need to add a field with type `group` and list of sub-fi
 
 ```php
 $meta_boxes[] = array(
-    'title' => 'Meta Box Title',
+    'title'  => 'Meta Box Title',
     'fields' => array(
         array(
-            'name' => 'Group', // Optional
-            'id' => 'group_id',
-            'type' => 'group',
+            'name'   => 'Group', // Optional
+            'id'     => 'group_id',
+            'type'   => 'group',
             // List of sub-fields
             'fields' => array(
                 array(
                     'name' => 'Text',
-                    'id' => 'text',
+                    'id'   => 'text',
                     'type' => 'text',
                 ),
                 // Other sub-fields here
@@ -54,7 +54,7 @@ The code below creates a group for tracks in an album, each track is a group and
 add_filter( 'rwmb_meta_boxes', 'meta_box_group_demo_register' );
 function meta_box_group_demo_register( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'  => __( 'Album Tracks' ),
+        'title'  => 'Album Tracks',
         'fields' => array(
             array(
                 'id'     => 'standard',
@@ -67,22 +67,22 @@ function meta_box_group_demo_register( $meta_boxes ) {
                 // Sub-fields
                 'fields' => array(
                     array(
-                        'name' => __( 'Track name', 'rwmb' ),
+                        'name' => 'Track name',
                         'id'   => 'text',
                         'type' => 'text',
                     ),
                     array(
-                        'name' => __( 'Release Date', 'rwmb' ),
+                        'name' => 'Release Date',
                         'id'   => 'date',
                         'type' => 'date',
                     ),
                     array(
-                        'name'    => __( 'Genre', 'rwmb' ),
+                        'name'    => 'Genre',
                         'id'      => 'genre',
                         'type'    => 'select_advanced',
                         'options' => array(
-                            'pop'  => __( 'Pop', 'rwmb' ),
-                            'rock' => __( 'Rock', 'rwmb' ),
+                            'pop'  => 'Pop',
+                            'rock' => 'Rock',
                         ),
                     ),
                 ),
@@ -95,7 +95,7 @@ function meta_box_group_demo_register( $meta_boxes ) {
 
 Here is how it appears:
 
-![clone group (repeater)](https://metabox.io/wp-content/uploads/2015/02/group-clone-repeater.png)
+![clone group (repeater)](https://i.imgur.com/KVIJzSa.png)
 
 ### Multi-level nested groups
 
@@ -105,7 +105,7 @@ Since version 1.1, the Meta Box Group extension supports multi-level nested grou
 add_filter( 'rwmb_meta_boxes', 'demo_nested_groups' );
 function demo_nested_groups( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'  => __( 'Multi-level nested groups', 'textdomain' ),
+        'title'  => 'Multi-level nested groups',
         'fields' => array(
             array(
                 'id'     => 'group',
@@ -114,21 +114,21 @@ function demo_nested_groups( $meta_boxes ) {
                 'fields' => array(
                     // Normal field (cloned)
                     array(
-                        'name'  => __( 'Text', 'textdomain' ),
+                        'name'  => 'Text',
                         'id'    => 'text',
                         'type'  => 'text',
                         'clone' => true,
                     ),
                     // Nested group level 2
                     array(
-                        'name'   => __( 'Sub group', 'textdomain' ),
+                        'name'   => 'Sub group',
                         'id'     => 'sub_group',
                         'type'   => 'group',
                         'clone'  => true,
                         'fields' => array(
                             // Normal field (cloned)
                             array(
-                                'name'  => __( 'Sub text', 'textdomain' ),
+                                'name'  => 'Sub text',
                                 'id'    => 'sub_text',
                                 'type'  => 'text',
                                 'clone' => true,
@@ -145,7 +145,7 @@ function demo_nested_groups( $meta_boxes ) {
 
 Result:
 
-![multi-level nested groups](https://metabox.io/wp-content/uploads/2015/02/Multi-level-groups.png)
+![multi-level nested groups](https://i.imgur.com/gWazAFA.png)
 
 ### Collapsible Groups:
 
@@ -205,9 +205,9 @@ add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
 } );
 ```
 
-## How to get meta value of a sub-field
+## Getting sub-field value
 
-To get meta value of a sub-field, you need to get meta value of the group. This is done with following code:
+To get sub-field value, you need to get meta value of the group. This is done with following code:
 
 ```php
 $group_value = rwmb_meta( 'group_id' );
@@ -291,7 +291,7 @@ This sample code registers a group of fields: contact name, contact email, conta
 add_filter( 'rwmb_meta_boxes', 'prefix_register_contacts' );
 function prefix_register_contacts( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title' => __( 'Contacts', 'textdomain' ),
+        'title' => 'Contacts',
         'post_types' => 'post',
         'fields' => array(
             array(
@@ -302,17 +302,17 @@ function prefix_register_contacts( $meta_boxes ) {
                     array(
                         'id' => 'name',
                         'type' => 'text',
-                        'name' => __( 'Name', 'textdomain' ),
+                        'name' => 'Name',
                     ),
                     array(
                         'id' => 'email',
                         'type' => 'text',
-                        'name' => __( 'Email', 'textdomain' ),
+                        'name' => 'Email',
                     ),
                     array(
                         'id' => 'phone',
                         'type' => 'text',
-                        'name' => __( 'Phone', 'textdomain' ),
+                        'name' => 'Phone',
                     ),
                 ),
             ),
@@ -329,10 +329,10 @@ $contacts = rwmb_meta( 'contacts' );
 if ( ! empty( $contacts ) ) {
     foreach ( $contacts as $contact ) {
         echo '<div class="contact">';
-        echo '<h4>', __( 'Contact info', 'textdomain' ), '</h4>';
-        echo '<p><label>', __( 'Name:', 'textdomain' ), '<label> ', $contact['name'], '</p>';
-        echo '<p><label>', __( 'Email:', 'textdomain' ), '<label> ', $contact['email'], '</p>';
-        echo '<p><label>', __( 'Phone number:', 'textdomain' ), '<label> ', $contact['phone'], '</p>';
+        echo '<h4>', 'Contact info', '</h4>';
+        echo '<p><label>', 'Name:', '<label> ', $contact['name'], '</p>';
+        echo '<p><label>', 'Email:', '<label> ', $contact['email'], '</p>';
+        echo '<p><label>', 'Phone number:', '<label> ', $contact['phone'], '</p>';
         echo '</div>';
     }
 }
@@ -344,39 +344,39 @@ Group field declaration:
 
 ```php
 array(
-    'id'   => "{$prefix}sector",
+    'id'   => 'sector',
     'type' => 'group',
     'clone'  => true,
     'sort_clone' => false,
     'fields' => array(
         array(
-            'name' => __( 'Name1', 'rw_' ),
-            'id'   => "{$prefix}sector-heading",
+            'name' => 'Name1',
+            'id'   => 'sector-heading',
             'type' => 'heading',
         ),
         array(
-            'name' => __( 'Name2', 'rw_' ),
-            'id'   => "{$prefix}sector-title",
+            'name' => 'Name2',
+            'id'   => 'sector-title',
             'type' => 'textarea',
             'cols' => 10,
             'rows' => 1,
         ),
         // Group nested
         array(
-            'id'  => "{$prefix}sector-object",
+            'id'  => 'sector-object',
             'type' => 'group',
             'clone'  => true,
             'sort_clone' => true,
             'fields' => array(
                 array(
-                    'name'  => __( 'Name3', 'rw_' ),
-                    'id'    => "{$prefix}sector-object-img",
+                    'name'  => 'Name3',
+                    'id'    => 'sector-object-img',
                     'type'  => 'image_advanced',
                     'max_file_uploads' => 1,
                 ),
                 array(
-                    'name' => __( 'Name4', 'rw_' ),
-                    'id'   => "{$prefix}sector-object-description",
+                    'name' => 'Name4',
+                    'id'   => 'sector-object-description',
                     'type' => 'textarea',
                     'cols' => 10,
                     'rows' => 4,
@@ -392,40 +392,40 @@ How to get value and output in the frontend:
 
 ```php
 $prefix = '';
-$sectors = rwmb_meta( "{$prefix}sector" );
+$sectors = rwmb_meta( 'sector' );
 if ( ! empty( $sectors ) ) {
     foreach ( $sectors as $sector ) {
-        $sector_heading = isset( $sector["{$prefix}sector-heading"] ) ? $sector["{$prefix}sector-heading"] : '';
-        echo $sector_heading;
+        $heading = isset( $sector['sector-heading'] ) ? $sector['sector-heading'] : '';
+        echo $heading;
 
-        $sector_title = isset( $sector["{$prefix}sector-title"] ) ? $sector["{$prefix}sector-title"] : '';
-        echo $sector_title;
+        $title = isset( $sector['sector-title'] ) ? $sector['sector-title'] : '';
+        echo $title;
 
-        $objects = isset( $sector["{$prefix}sector-object"] ) ? $sector["{$prefix}sector-object"] : array();
+        $objects = isset( $sector['sector-object'] ) ? $sector['sector-object'] : array();
         foreach ( $objects as $object ) {
-            $object_imgs = isset( $object["{$prefix}sector-object-img"] ) ? $object["{$prefix}sector-object-img"] : array();
-            if ( !empty( $object_imgs ) ) {
-                foreach ( $object_imgs as $object_img ) {
+            $imgs = isset( $object['sector-object-img'] ) ? $object['sector-object-img'] : array();
+            if ( !empty( $imgs ) ) {
+                foreach ( $imgs as $img ) {
                     echo '<img src="' . wp_get_attachment_image_url( $object_img, 'size' ) . '">';
                 }
             }
-            $object_desc = isset( $object["{$prefix}sector-object-description"] ) ? $object["{$prefix}sector-object-description"] : '';
-            echo $object_desc;
+            $desc = isset( $object['sector-object-description'] ) ? $object['sector-object-description'] : '';
+            echo $desc;
         }
     }
 }
 ```
 
-## Change clone button text
+## Changing clone button text
 
 Since Meta Box version 4.11, you can change the clone button text by using `add_button` parameter for fields, like below:
 
 ```php
 array(
     'type' => 'group',
-    'name' => __( 'Tracks', 'textdomain' ),
+    'name' => 'Tracks',
     'id' => 'tracks',
-    'add_button' => __( 'Add another track', 'textdomain' ),
+    'add_button' => 'Add another track',
     'fields' => array(
         // Sub-fields here.
     ),
@@ -447,11 +447,10 @@ To use the filter, add the following code to your theme `functions.php` file or 
 ```php
 add_filter( 'rwmb_tracks_add_clone_button_text', 'prefix_tracks_add_clone_button_text', 10, 2 );
 function prefix_group_add_clone_button_text( $text, $field ) {
-    return __( 'Add another track', 'textdomain' );
+    return 'Add another track';
 }
 ```
 
-## Known issues:
+## Known issues
 
 - When cloning fields or groups, `id` attribute of inputs are adjusted. In multi-level nested groups, they're changed without any rule. So please don't rely on them to perform custom JavaScript actions.
-- ~~While WYSIWYG is cloneable as a standalone field, its cloning feature might not work properly in groups because its `id` is changed unexpectedly.~~ WYSIWGY field now can be cloned without problems with groups.

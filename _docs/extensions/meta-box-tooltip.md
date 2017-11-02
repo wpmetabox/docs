@@ -6,7 +6,7 @@ title: Meta Box Tooltip
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
+Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
 To add a tooltip to a meta field, simply add `tooltip` parameter for that field. You can define tooltip in one of following formats:
 
@@ -21,16 +21,18 @@ Parameter|Description
 `position`|The tooltip position. Can be `top` (default), `bottom`, `left` or `right`. Optional.
 `content`|Tooltip content.
 
+## Sample code
+
 This code below adds tooltip to 3 fields:
 
 ```php
 add_filter( 'rwmb_meta_boxes', 'meta_box_tooltip_demo_register' );
 function meta_box_tooltip_demo_register( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'  => __( 'Meta Box Tooltip Demo', 'meta-box' ),
+        'title'  => 'Meta Box Tooltip Demo',
         'fields' => array(
             array(
-                'name'    => __( 'Default', 'meta-box' ),
+                'name'    => 'Default',
                 'id'      => 'name',
                 'type'    => 'text',
 
@@ -44,35 +46,35 @@ function meta_box_tooltip_demo_register( $meta_boxes ) {
                 // In 3rd format, icon can be URL to custom icon image
                 //
                 // 'position' is optional. Value can be 'top' (default), 'bottom', 'left', 'right'
-                'tooltip' => __( 'Info icon, top position', 'meta-box' ),
+                'tooltip' => 'Info icon, top position',
             ),
             array(
-                'name'    => __( 'Help icon', 'meta-box' ),
+                'name'    => 'Help icon',
                 'id'      => 'job',
                 'type'    => 'text',
                 'tooltip' => array(
                     'icon'     => 'help',
-                    'content'  => __( 'Right position', 'meta-box' ),
+                    'content'  => 'Right position',
                     'position' => 'right',
                 ),
             ),
             array(
-                'name'    => __( 'Dashicon', 'meta-box' ),
+                'name'    => 'Dashicon',
                 'id'      => 'email',
                 'type'    => 'text',
                 'tooltip' => array(
                     'icon'     => 'dashicons-email',
-                    'content'  => __( 'Dashicon', 'meta-box' ),
+                    'content'  => 'Dashicon',
                     'position' => 'right',
                 ),
             ),
             array(
-                'name'    => __( 'Custom image', 'meta-box' ),
+                'name'    => 'Custom image',
                 'id'      => 'email',
                 'type'    => 'text',
                 'tooltip' => array(
                     'icon'     => 'https://i.imgur.com/ZQI2DNx.png',
-                    'content'  => __( 'Custom icon', 'meta-box' ),
+                    'content'  => 'Custom icon',
                     'position' => 'right',
                 ),
             ),

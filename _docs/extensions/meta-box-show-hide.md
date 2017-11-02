@@ -6,7 +6,7 @@ title: Meta Box Show Hide
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continuing!**
+Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
 To add show, hide conditions to your meta box, you need to add parameter `show` or `hide` accordingly to the meta box configuration.
 
@@ -25,7 +25,7 @@ Parameter|Description
 `is_child`|Boolean. Match if the current page is a child page or not. Optional.
 `input_value`| Array of pairs of CSS selectors and values. Match if the inputs (with specified CSS selector) has the defined value. Note: the `relation` is also applied to rules here. Added in version 0.2.
 
-Here is the demo code with all explanation in comments:
+## Sample code
 
 ```php
 add_filter( 'rwmb_meta_boxes', 'prefix_show_hide_demo_register' );

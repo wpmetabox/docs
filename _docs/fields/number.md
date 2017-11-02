@@ -34,6 +34,12 @@ array(
 ),
 ```
 
+## Data
+
+This field simply saves a single entered number in the database.
+
+If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+
 ## Template usage
 
 To get the field value, use the following code:

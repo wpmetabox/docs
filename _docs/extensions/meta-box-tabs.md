@@ -6,7 +6,7 @@ title: Meta Box Tabs
 
 ## Usage
 
-**Make sure you know how to [register meta boxes](/registering-meta-boxes/) and [define fields](/field-settings/) before continue!**
+Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continue!
 
 To create tabs for your meta box, you need to add 2 parameters to your meta box configuration:
 
@@ -33,31 +33,31 @@ If you want to use another icon (not Dashicons), either:
 
 (Take a look at demo code to see how to implement)
 
-Then for **each field** in the meta box, you need to specify which tab it belongs to by adding a parameter `'tab' => 'tab-id'` where `tab-id` is one of the tab IDs you have registered above.
+Then for each field in the meta box, you need to specify which tab it belongs to by adding a parameter `'tab' => 'tab-id'` where `tab-id` is one of the tab IDs you have registered above.
 
-The sample code looks like this:
+## Sample code
 
 ```php
-add_filter( 'textdomain_meta_boxes', 'meta_box_tabs_demo_register' );
+add_filter( 'rwmb_meta_boxes', 'meta_box_tabs_demo_register' );
 function meta_box_tabs_demo_register( $meta_boxes ) {
     // 1st Meta Box
     $meta_boxes[] = array(
-        'title'     => __( 'Meta Box Tabs Demo', 'textdomain' ),
+        'title'     => 'Meta Box Tabs Demo',
 
         // List of tabs, in one of the following formats:
         // 1) key => label
         // 2) key => array( 'label' => Tab label, 'icon' => Tab icon )
         'tabs'      => array(
             'contact' => array(
-                'label' => __( 'Contact', 'textdomain' ),
+                'label' => 'Contact',
                 'icon'  => 'dashicons-email', // Dashicon
             ),
             'social'  => array(
-                'label' => __( 'Social Media', 'textdomain' ),
+                'label' => 'Social Media',
                 'icon'  => 'dashicons-share', // Dashicon
             ),
             'note'    => array(
-                'label' => __( 'Note', 'textdomain' ),
+                'label' => 'Note',
                 'icon'  => 'https://i.imgur.com/nJtag1q.png', // Custom icon, using image
             ),
         ),
@@ -70,7 +70,7 @@ function meta_box_tabs_demo_register( $meta_boxes ) {
 
         'fields'    => array(
             array(
-                'name' => __( 'Name', 'textdomain' ),
+                'name' => 'Name',
                 'id'   => 'name',
                 'type' => 'text',
 
@@ -78,19 +78,19 @@ function meta_box_tabs_demo_register( $meta_boxes ) {
                 'tab'  => 'contact',
             ),
             array(
-                'name' => __( 'Email', 'textdomain' ),
+                'name' => 'Email',
                 'id'   => 'email',
                 'type' => 'email',
                 'tab'  => 'contact',
             ),
             array(
-                'name' => __( 'Facebook', 'textdomain' ),
+                'name' => 'Facebook',
                 'id'   => 'facebook',
                 'type' => 'text',
                 'tab'  => 'social',
             ),
             array(
-                'name' => __( 'Note', 'textdomain' ),
+                'name' => 'Note',
                 'id'   => 'note',
                 'type' => 'textarea',
                 'tab'  => 'note',
@@ -100,21 +100,21 @@ function meta_box_tabs_demo_register( $meta_boxes ) {
 
     // 2nd Meta Box: Tab style - boxed
     $meta_boxes[] = array(
-        'title'     => __( 'Meta Box Tabs 2', 'textdomain' ),
+        'title'     => 'Meta Box Tabs 2',
         'tabs'      => array(
-            'bio'      => __( 'Biography', 'textdomain' ),
-            'interest' => __( 'Interest', 'textdomain' ),
+            'bio'      => 'Biography',
+            'interest' => 'Interest',
         ),
         'tab_style' => 'box',
         'fields'    => array(
             array(
-                'name' => __( 'Bio', 'textdomain' ),
+                'name' => 'Bio',
                 'id'   => 'bio',
                 'type' => 'textarea',
                 'tab'  => 'bio',
             ),
             array(
-                'name' => __( 'Interest', 'textdomain' ),
+                'name' => 'Interest',
                 'id'   => 'interest',
                 'type' => 'textarea',
                 'tab'  => 'interest',
@@ -124,29 +124,29 @@ function meta_box_tabs_demo_register( $meta_boxes ) {
 
     // 3rd Meta Box: Tab style - left
     $meta_boxes[] = array(
-        'title'     => __( 'Meta Box Tabs 3', 'textdomain' ),
+        'title'     => 'Meta Box Tabs 3',
 
         'tabs'      => array(
-            'bio'      => __( 'Biography', 'textdomain' ),
-            'interest' => __( 'Interest', 'textdomain' ),
-            'job'      => __( 'Job', 'textdomain' ),
+            'bio'      => 'Biography',
+            'interest' => 'Interest',
+            'job'      => 'Job',
         ),
         'tab_style' => 'left',
         'fields'    => array(
             array(
-                'name' => __( 'Bio', 'textdomain' ),
+                'name' => 'Bio',
                 'id'   => 'bio',
                 'type' => 'textarea',
                 'tab'  => 'bio',
             ),
             array(
-                'name' => __( 'Interest', 'textdomain' ),
+                'name' => 'Interest',
                 'id'   => 'interest',
                 'type' => 'textarea',
                 'tab'  => 'interest',
             ),
             array(
-                'name' => __( 'Job Description', 'textdomain' ),
+                'name' => 'Job Description',
                 'id'   => 'job_desc',
                 'type' => 'textarea',
                 'tab'  => 'job',
@@ -156,14 +156,14 @@ function meta_box_tabs_demo_register( $meta_boxes ) {
 
     // 4th Meta Box: No wrapper
     $meta_boxes[] = array(
-        'title'       => __( 'Meta Box Tabs 4', 'textdomain' ),
+        'title'       => 'Meta Box Tabs 4',
         'tabs'        => array(
             'contact' => array(
-                'label' => __( 'Info', 'textdomain' ),
+                'label' => 'Info',
                 'icon'  => 'dashicons-email',
             ),
             'social'  => array(
-                'label' => __( 'Social', 'textdomain' ),
+                'label' => 'Social',
                 'icon'  => 'dashicons-share',
             ),
         ),
@@ -171,13 +171,13 @@ function meta_box_tabs_demo_register( $meta_boxes ) {
         'tab_wrapper' => false,
         'fields'      => array(
             array(
-                'name' => __( 'Name', 'textdomain' ),
+                'name' => 'Name',
                 'id'   => 'name2',
                 'type' => 'text',
                 'tab'  => 'contact',
             ),
             array(
-                'name' => __( 'Google+', 'textdomain' ),
+                'name' => 'Google+',
                 'id'   => 'googleplus2',
                 'type' => 'text',
                 'tab'  => 'social',

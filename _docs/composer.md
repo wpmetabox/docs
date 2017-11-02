@@ -2,11 +2,13 @@
 title: Composer
 ---
 
-[Composer](https://getcomposer.org) is a package dependency manager for PHP. It's kind of [TGM Activation class](https://tgmpluginactivation.com) for WordPress, but works for any PHP package. Composer allows us to include other PHP libraries in our projects without conflict between them. Without Composer, if a project requires 2 libraries A and B, and both of them requires a library C, then C might be included twice. The scenario can get worse if A and B includes different version of C which can cause a conflict when loading the library. Composer helps us to avoid this issue.
+[Composer](https://getcomposer.org) is a package dependency manager for PHP. It's kind of [TGM Activation class](https://tgmpluginactivation.com) for WordPress, but works for any PHP package. Composer allows us to include other PHP libraries in our projects without conflict between them.
+
+Without Composer, if a project requires 2 libraries A and B, and both of them requires a library C, then C might be included twice. The scenario can get worse if A and B includes different version of C which can cause a conflict when loading the library. Composer helps us to avoid this issue.
 
 Besides, there are more than 100K packages for us to explore if we use Composer. They can be a framework like Laravel, Symphony or a package to handle the payment with Stripe or authenticate with social networks. That means lots of possibility to do something with less code by standing on shoulders of giants!
 
-Fortunately, **Meta Box is totally compatible with Composer** and you can use it as a library for your projects. As Meta Box is a WordPress-specific package, the "project" term here means a WordPress website, plugin or theme. This tutorial will show you how to use it for a plugin. I will name the plugin **MB Composer Example** and its code is [available on Github](https://github.com/wpmetabox/mb-composer-example).
+Meta Box is totally compatible with Composer and you can use it as a library for your projects. As Meta Box is a WordPress-specific package, the "project" term here means a WordPress website, plugin or theme. This tutorial will show you how to use it for a plugin. The source code of the plugin is [available on Github](https://github.com/wpmetabox/mb-composer-example).
 
 ## Installing Composer
 
@@ -24,7 +26,7 @@ Composer requires a config file named `composer.json` where we defines all the d
 }
 ```
 
-The first (and often only) thing you specify in `composer.json` is the `require` key. You're simply telling Composer which packages your project depends on. The package name has the format `author/package-name`. In this case, it's `rilwis/meta-box`.
+The first thing you specify in `composer.json` is the `require` key. You're simply telling Composer which packages your project depends on. The package name has the format `author/package-name`. In this case, it's `rilwis/meta-box`.
 
 The value is the version you want to use in your project. `4.*` means the latest version 4. You can set a specific version `4.8.7` or using wildcard. For more info about the syntax of versioning, please follow the [Composer documentation](https://getcomposer.org/doc/articles/versions.md).
 
@@ -46,41 +48,41 @@ After a minute, Composer will download Meta Box and put it in a local folder. Yo
 
 ## Autoloading
 
-To make Meta Box works, we need to include the plugin's file in our plugin. Although we can [hardcode](/integration/#section-include-meta-box-directly) that, Composer has an intelligent autoloading mechanism to load packages. Simply put the following line in the plugin's main file:
+To make Meta Box works, we need to include the plugin's file in our plugin. Although we can [hardcode](/integration/) that, Composer has an intelligent autoloading mechanism to load packages. Simply put the following line in the plugin's main file:
 
 ```php
 require plugin_dir_path( __FILE__) . 'vendor/autoload.php';
 ```
 
-I use `plugin_dir_path` function because this is a WordPress environment. But you can ignore it and use a simpler version like this:
+We use `plugin_dir_path` function because this is a WordPress environment. But you can ignore it and use a simpler version like this:
 
 ```php
-require __DIR__ . 'vendor/autoload.php'; // PHP 5.3
+require __DIR__ . 'vendor/autoload.php';
 
 // or
 
-require 'vendor/autoload.php'; // Relative path inclusion
+require 'vendor/autoload.php'; // Relative path.
 ```
 
 Now Meta Box is available in your plugin and we can start using it.
 
-## Register meta boxes and custom fields
+## Creating meta boxes
 
-As Meta Box is loaded, we can register meta boxes and custom fields as usual. In this example, I register a demo meta box with 2 fields of Name and Bio:
+As Meta Box is loaded, we can create meta boxes and custom fields as usual. In this example, we create a demo meta box with 2 fields of Name and Bio:
 
 ```php
 add_filter( 'rwmb_meta_boxes', 'mb_composer_example_register_meta_boxes' );
 function mb_composer_example_register_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = array(
-        'title'  => __( 'A sample meta box', 'mb-composer-example' ),
+        'title'  => 'A sample meta box',
         'fields' => array(
             array(
-                'name' => __( 'Name', 'mb-composer-example' ),
+                'name' => 'Name',
                 'id'   => 'name',
                 'type' => 'text',
             ),
             array(
-                'name' => __( 'Bio', 'mb-composer-example' ),
+                'name' => 'Bio',
                 'id'   => 'bio',
                 'type' => 'wysiwyg',
             ),
@@ -91,11 +93,9 @@ function mb_composer_example_register_meta_boxes( $meta_boxes ) {
 }
 ```
 
-Now go to **Dashboard > Posts > Add New** and we'll see:
+Now go to *Dashboard &rarr; Posts &rarr; Add New* and we'll see:
 
 ![meta box](https://i.imgur.com/0RTrNFK.png)
-
-Bravo! We made it.
 
 ## Conclusion
 

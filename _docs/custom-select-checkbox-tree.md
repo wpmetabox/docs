@@ -2,7 +2,7 @@
 title: Custom Select / Checkbox Tree
 ---
 
-If you've used [`taxonomy` field type](/register-fields/), you will see it has an option to display options in a checkbox / select tree. When users select a parent item, it will show children item. It's quite a nice feature for users. But how to do that with normal checkbox list or select field types?
+If you've used [`taxonomy` field type](/field-settings/), you will see it has an option to display options in a checkbox / select tree. When users select a parent item, it will show children item. It's quite a nice feature for users. But how to do that with normal checkbox list or select field types?
 
 The answer is simple: it's already built-in the [Meta Box plugin](https://metabox.io). And here is the sample code:
 

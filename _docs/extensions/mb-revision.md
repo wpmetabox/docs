@@ -6,7 +6,7 @@ title: MB Revision
 
 **Important:** This extension requires Meta Box version 4.12+. If you're using an older version of the plugin, please update.
 
-## Enable revision support
+## Enabling revision support
 
 First of all, please make sure that you didn't turn off revision in WordPress. To check this, please open your `wp-config.php` and see if this line presents:
 
@@ -16,9 +16,9 @@ define( 'WP_POST_REVISIONS', false );
 
 If you can't find it, that means revision is turned on, which is great!
 
-Now back to Meta Box. Please make sure you understand how to [register meta boxes](/register-meta-boxes/) before continuing.
+Now back to Meta Box. Please make sure you understand how to [create meta boxes](/creating-meta-boxes/) before continuing.
 
-To enable revision support for a meta box, simply add a new parameter to the meta box as follows:
+To enable revision support for a meta box, simply add a new setting to the meta box as follows:
 
 ```php
 'revision' => true,
@@ -26,7 +26,7 @@ To enable revision support for a meta box, simply add a new parameter to the met
 
 Now whenever you update a post, WordPress will create a revision for it. And MB Revision ensures all the values of the custom fields are copied from the parent post to that revision.
 
-## Compare the changes in each revision
+## Comparing the changes
 
 When you update a post, WordPress automatically creates a revision for that post. You can see the list of revisions in the **Revisions** meta box below the main editor:
 
@@ -38,7 +38,7 @@ Also, in the **Publish** meta box, you'll see a link to browse all revisions:
 
 Clicking either on any revision in the list or on *Browse* link brings you to the revision comparison screen. There you'll see something like this:
 
-![revision compare](https://mb-static.surge.sh/extensions/revision-compare.png)
+![revision compare](https://i.imgur.com/oObKhaE.png)
 
 Except title and content, which are post fields, other items on this screen are custom fields created by Meta Box. There you'll see highlighted lines or words, which are added or removed by users.
 
@@ -46,7 +46,7 @@ If the custom field has simple value (like a string), it will display fully here
 
 Please note that the extension works well with [Meta Box Group](https://metabox.io/plugins/meta-box-group/) extension.
 
-## Restore the revision
+## Restoring the revision
 
 If you find out that the current version of the post is incorrect, you can compare it with the previous version and optionally restore it. In order to restore a revision, simply click on the **Restore this revision** button on the comparison screen.
 

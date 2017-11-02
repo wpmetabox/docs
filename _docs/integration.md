@@ -22,7 +22,7 @@ function prefix_register_required_plugins() {
             'slug'     => 'meta-box',
             'required' => true,
         ),
-        // More plugin
+        // More plugins
     );
     $config  = array(
         'id' => 'your-id',
@@ -35,9 +35,9 @@ Finally, include the `example.php` file in your theme's `functions.php` or your 
 
 Now when users install your theme or plugin, they will be prompted to install Meta Box plugin from wordpress.org. After that, your theme or plugin are ready to use Meta Box.
 
-## Including Meta Box directly
+## Bundling Meta Box
 
-To include the Meta Box plugin into your theme or plugin, follow the steps below:
+To bundle the Meta Box plugin into your theme or plugin, follow the steps below:
 
 1. Copy the plugin folder `meta-box` to your theme or plugin. It doesn't matter if you put it in the theme root folder or in a subfolder.
 1. Include the Meta Box's main file by putting the following line into the `functions.php` of your theme or your plugin's file:
@@ -51,4 +51,4 @@ Although this method works, it has some disadvantages compared to the 1st method
 - You have to manually update the included version of Meta Box when it's updated.
 - If users install Meta Box from wordpress.org or it's included in another plugin, your code might be not compatible with those versions.
 
-Because of these reasons, we highly recommend using the TGM Activation Class to integrate Meta Box with your themes or plugins.
+{% include alert.html type="warning" content="**Important:** This method is not recommended and is a bad practice. Use with your own risks. We recommend using TGM Activation Class for better compatibility." %}

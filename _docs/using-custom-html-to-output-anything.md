@@ -1,5 +1,5 @@
 ---
-title: Using custom HTML field with callback to output anything
+title: Using custom HTML to output anything
 ---
 
 `custom_html` is a very useful field in Meta Box, which helps you to _output anything_ in the post edit screen. It can be a warning box or an instruction for users to help them enter the correct data. But do you know that **you can use PHP** to render the HTML for the field?
@@ -8,11 +8,11 @@ Using PHP, you can query the database, get WordPress information and show it. Th
 
 ```php
 array(
-   'id'        => 'page',
-   'name'      => 'Page',
-   'type'      => 'post',
-   'post_type' => 'page',
-   'multiple'  => true,
+    'id'        => 'page',
+    'name'      => 'Page',
+    'type'      => 'post',
+    'post_type' => 'page',
+    'multiple'  => true,
 ),
 ```
 
@@ -20,9 +20,9 @@ To get the list of posts refer to the current page, I will use a field `custom_h
 
 ```php
 array(
-   'id'       => 'posts',
-   'type'     => 'custom_html',
-   'callback' => 'prefix_get_connected_posts',
+    'id'       => 'posts',
+    'type'     => 'custom_html',
+    'callback' => 'prefix_get_connected_posts',
 ),
 ```
 
@@ -30,20 +30,20 @@ Note the `callback` parameter: this callback refers to a custom PHP function (in
 
 ```php
 function prefix_get_connected_posts() {
-   if ( ! $page_id = filter_input( INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT ) ) {
-      return '';
-   }
-   $output = '';
-   $posts  = get_posts( [
-      'posts_per_page' => - 1,
-      'meta_key'       => 'page',
-      'meta_value'     => $page_id,
-   ] );
-   foreach ( $posts as $post ) {
-      $output .= '<li><a href="' . get_permalink( $post ) . '">' . get_the_title( $post ) . '</a></li>';
-   }
+    if ( ! $page_id = filter_input( INPUT_GET, 'post',  FILTER_SANITIZE_NUMBER_INT ) ) {
+        return '';
+    }
+    $output = '';
+    $posts  = get_posts( [
+        'posts_per_page' => - 1,
+        'meta_key'       => 'page',
+        'meta_value'     => $page_id,
+    ] );
+    foreach ( $posts as $post ) {
+        $output .= '<li><a href="' . get_permalink( $post )  . '">' . get_the_title( $post ) . '</a></li>';
+    }
 
-   return $output ? '<ul>' . $output . '</ul>' : '';
+    return $output ? '<ul>' . $output . '</ul>' : '';
 }
 ```
 
