@@ -6,7 +6,7 @@ title: Validation
 
 The Meta Box plugin has built-in validation module for all fields. You can use validation to make a field required, check password length, check phone number format, etc.
 
-The validation module is built with the popular [Query validation plugin](https://jqueryvalidation.org/) which makes client side form validation easy, whilst still offering plenty of customization options. The plugin comes bundled with a useful set of validation methods and an API to write your own methods. All bundled methods come with default error messages in English and translations into 37 other languages.
+The validation module is built with the popular [jQuery validation plugin](https://jqueryvalidation.org/) which makes client side form validation easy, whilst still offering plenty of customization options. The plugin comes bundled with a useful set of validation methods and an API to write your own methods. All bundled methods come with default error messages in English and translations into 37 other languages.
 
 ## Validation rules
 
