@@ -144,3 +144,11 @@ function prefix_include_exclude_manual_include( $meta_box ) {
     return false;
 }
 ```
+
+## Using with Sage
+
+[Sage](https://roots.io/sage/) is a starter theme made by Roots.io. The latest version 9 uses [Laravel Blade](https://laravel.com/docs/5.3/blade) as a template system. When using the Meta Box Include Exclude extension to detect page template in Sage, it's important to remember that the extension uses the value WordPress stores in the database, e.g. the value in the Page Template dropdown, which is `views/mytemplatename.blade.php`. So the code for `template` rule will be:
+
+```php
+'template' => 'views/mytemplatename.blade.php',
+```
