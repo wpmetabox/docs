@@ -125,10 +125,17 @@ function generateTOC() {
 function init() {
 	toggleMobileMenu();
 	toggleDocsMenu();
-	filterDocs();
+	// filterDocs();
 	generateTOC();
 
 	ga('send', 'pageview', location.pathname + location.search);
+
+	docsearch({
+		apiKey: '97cd82eb9fd8fdde822c2a66377779a0',
+		indexName: 'metabox',
+		inputSelector: '#filter',
+		debug: true
+	});
 }
 
 // Google Analytics
