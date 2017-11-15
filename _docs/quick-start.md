@@ -91,7 +91,7 @@ Here are steps to integrate the `demo.php` into your theme:
 
 Now go to **Add New Post** page and see the result. If everything is ok, you'll see as the following screenshots:
 
-![demo](http://i.imgur.com/7JbfV3D.png)
+![demo](https://i.imgur.com/7JbfV3D.png)
 
 ## Displaying fields
 
