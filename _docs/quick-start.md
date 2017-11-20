@@ -6,7 +6,7 @@ After [installing Meta Box](/installation/), you won't see anything in the WordP
 
 ## Getting started with online generator
 
-The fastest way to getting started with Meta Box is use our [online generator](https://metabox.io/online-generator/) to generate meta box with custom fields. The online generator provides a powerful and friendly UI for you to create meta boxes and custom fields just by drag and drop fields.
+The fastest way to getting started with Meta Box is use our [online generator](https://metabox.io/online-generator/) to generate meta boxes with custom fields. The online generator provides a powerful and friendly UI for you to create meta boxes and custom fields just by drag and drop fields.
 
 ![online generator](https://i.imgur.com/shvWYj4.png)
 
