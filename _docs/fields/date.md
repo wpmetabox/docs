@@ -56,12 +56,26 @@ $value = rwmb_meta( $field_id );
 echo $value;
 ```
 
+Or you can simply do like this:
+
+```php
+rwmb_the_value( $field_id );
+```
+
 If `timestamp` is `true`, then you can convert the value to different format, like this:
 
 ```php
 $value = rwmb_meta( $field_id );
 echo date( 'F j, Y', $value );
 ```
+
+Or simpler:
+
+```php
+rwmb_the_value( $field_id, array( 'format' => 'F j, Y' ) );
+```
+
+The 2nd parameter of [rwmb_the_value()](/rwmb-the-value/) accepts and extra parameter `format` which specify the datetime format to output in the frontend.
 
 Saving in timestamp also allows you to query posts with a specific order by this field:
 
