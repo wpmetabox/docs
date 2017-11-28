@@ -47,7 +47,7 @@ Note that for `checkbox_list`, the `multiple` setting is always set to `true`.
 
 ## Sample code
 
-This code shows pages in select2 dropdown:
+This code shows users in select2 dropdown:
 
 ```php
 array(
@@ -69,7 +69,7 @@ array(
 ),
 ```
 
-The code below shows pages in a checkbox tree format:
+The code below shows users in a radio list format:
 
 ```php
 array(
@@ -80,7 +80,7 @@ array(
     // 'clone'    => true,
 
     // Field type.
-    'field_type'  => 'radio',
+    'field_type'  => 'radio_list',
 
     // Inline radios? Inheritted from radio field.
     'inline'      => true,
