@@ -32,7 +32,7 @@ Name | Description
 --- | ---
 `query_args` | Query arguments for getting users. Uses same arguments as [get_users()](https://codex.wordpress.org/Function_Reference/get_users). Optional.
 `placeholder` | The placeholder for the select box. Default is "Select an user". Applied only when the `field_type` is a select field.
-`field_type` | How the posts are displayed? See below.
+`field_type` | How the users are displayed? See below.
 
 This field inherits the look and field (and settings) from other fields, depending on the `field_type`, which accepts the following value:
 
