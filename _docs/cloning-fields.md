@@ -2,7 +2,9 @@
 title: Cloning fields
 ---
 
-The repeating feature of the Meta Box plugin allows us to create multiple inputs from a text, textarea, select, ... fields without declaring many fields in the code.
+The clone feature of the Meta Box plugin allows us to create multiple inputs from a text, textarea, select, ... fields without declaring many fields in the code.
+
+## Making a field cloneable
 
 To make a field cloneable, just add `'clone' => true` to field's parameter. After doing that, you'll see a new **+** (Add Clone) button below field input:
 
@@ -14,9 +16,14 @@ Clicking on that button will duplicate field input:
 
 You can notice that there are new buttons **-** (Remove Clone) which allow you to remove clones.
 
-**Since version 4.5.4**, there're 2 additional parameters which allow you to use clone feature better:
+## Clone settings
 
-1. `max_clone`: limit the number of clones. Integer. Must be greater than 2. Optional.
-1. `sort_clone`: allow you to drag-and-drop sort clones. Boolean, `true` to enable sorting, `false` to disable. Default is `false`. See the following screenshot.
+Name|Description
+---|---
+`clone`|Make field cloneable? `true` or `false` (default). Optional.
+`max_clone`|Limit the number of clones. Integer. Must be greater than 2. Optional.
+`add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
+`clone_default`|Clone the default value of fields? `true` or `false` (default).
+`sort_clone`|Allow to drag-and-drop sort clones. `true` or `false` (default). See the following screenshot.
 
 ![drag and drop](https://i.imgur.com/RJBgw6m.png)
