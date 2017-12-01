@@ -23,6 +23,7 @@ Name | Description
 `clone` | Is the field clonable (repeatable)? `true` or `false`. Optional. Default `false`.
 `max_clone`|Maximum number of clones. Optional. Default `0` (unlimited).
 `sort_clone`|Ability to drag-and-drop reorder clones (`true` or `false`). Optional. Default `false`.
+`clone_default`|Clone the default value of fields? `true` or `false` (default).
 `add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
 `attributes` | Custom attributes for inputs. See [more details](/custom-attributes/).
 
