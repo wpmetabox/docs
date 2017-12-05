@@ -60,18 +60,18 @@ In order to allow developers to do other things when the form is submitted, we h
 
 `rwmb_frontend_insert_post_data`
 
-This filter is used to modify the submitted post data before it's passed to the `wp_insert_post` function to **create a new post**. It accepts 1 parameter as the array of post data.
+This filter is used to modify the submitted post data before it's passed to the `wp_insert_post` function to **create a new post**. It accepts 2 parameters: the array of post data and the shortcode parameters.
 
 ```php
-$data = apply_filters( 'rwmb_frontend_insert_post_data', $data );
+$data = apply_filters( 'rwmb_frontend_insert_post_data', $data, $config );
 ```
 
 `rwmb_frontend_update_post_data`
 
-This filter is used to modify the submitted post data before it's passed to the `wp_update_post` function to **update an existing post**. It accepts 1 parameter as the array of post data.
+This filter is used to modify the submitted post data before it's passed to the `wp_update_post` function to **update an existing post**. It accepts 2 parameters: the array of post data and the shortcode parameters.
 
 ```php
-$data = apply_filters( 'rwmb_frontend_update_post_data', $data );
+$data = apply_filters( 'rwmb_frontend_update_post_data', $data, $config );
 ```
 
 ### Post field filters
