@@ -19,8 +19,9 @@ Name|Description
 `clone`|Is the group clonable?
 `sort_clone`|Can clones be sorted? `true` or `false`. If `true`, you can drag and drop group clones to reorder them.
 `collapsible`|Make group collapsible? `true` or `false`. Default `false`. Optional.
-`group_title`|The title of collapsible group. Can be string or array. If string and has `{#}`, it will be replaced by the group index (if group is cloned). If array, use the format `array( 'field' => 'sub_field_id' )` to display the value of the sub-field in the group title. If you want to display value from multiple sub-fields in the group title (including sub-fields from sub-groups), you can use the format `array( 'field' => 'sub_field_1, sub_field_2', 'separator' => ' ' )`, e.g. separate sub-fields by commas and set the separator string (default is a space).
 `save_state`|Whether or not save the collapse/expand state? `true` or `false`. Default `false`. Optional.
+`default_state`|Is the group collapsed or expanded by default (when page loads)? `collapsed` or `expanded` (default).
+`group_title`|The title of collapsible group. Can be string or array. If string and has `{#}`, it will be replaced by the group index (if group is cloned). If array, use the format `array( 'field' => 'sub_field_id' )` to display the value of the sub-field in the group title. If you want to display value from multiple sub-fields in the group title (including sub-fields from sub-groups), you can use the format `array( 'field' => 'sub_field_1, sub_field_2', 'separator' => ' ' )`, e.g. separate sub-fields by commas and set the separator string (default is a space).
 
 So, to add a group, you need to add a field with type `group` and list of sub-fields in its `fields` attribute, like this:
 
