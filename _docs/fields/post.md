@@ -51,7 +51,7 @@ This field inherits the look and field (and settings) from other fields, dependi
 Field type | Description | Settings inherited from
 --- | ---
 `select` | Simple select dropdown. | [select](/fields/select/)
-`select_advanced` | Beautiful select dropdown using the select2 library. This is the default value. | [select_advanced](/fields/select_advanced/)
+`select_advanced` | Beautiful select dropdown using the select2 library. This is the default value. | [select_advanced](/fields/select-advanced/)
 `select_tree` | Hierachical list of select boxes which allows to select multiple items (select/deselect parent item will show/hide child items). Applied only when the post type is hierarchical (like pages). | [select](/fields/select/)
 `checkbox_list` | Flatten list of checkboxes which allows to select multiple items. | [checkbox_list](/fields/checkbox-list/)
 `checkbox_tree` | Hierachical list of checkboxes which allows to select multiple items (select/deselect parent item will show/hide child items). Applied only when the post type is hierarchical (like pages). | [checkbox_list](/fields/checkbox-list/)
