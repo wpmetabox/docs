@@ -29,11 +29,53 @@ Attributes|Description
 ---|---
 `id`|Meta box ID. Required.
 `post_type`|The submitted post type. Optional. Default is the first post type defined in the meta box. If meta box is made for multiple post types, you should set this attribute to the correct one.
-`post_id`|The post ID. Optional. Used only when you want to update an existing post.
+`post_id`|The post ID. Optional. Used only when you want to update an existing post. If you want to pass the ID of the current post, set it to `current`.
 `post_status`|The status for submitted posts. See [the list here](https://codex.wordpress.org/Post_Status).
 `post_fields`|List of post fields you want to show in the frontend, separated by comma. Supported following fields: `title`, `content`, `excerpt`, `date`, `thumbnail`.
 `submit_button`|The text for the submit button.
 `confirmation`|The text for the confirmation message when the form is successfully submitted.
+
+## Dynamic population
+
+In order to make the frontend form flexible, sometimes it's more convenient to set the shortcode attributes via code or something else rather than fixed it in above format.
+
+The dyanamic population feature in MB Frontend Submission extension allows you to dynamically populate a shortcode attribute with a value. This value can be passed via query string and/or hook.
+
+### Query string
+
+You can populate a shortcode attribute via the query string by appending the dynamic population parameter for the attribute to the end of your form URL along with your custom value.
+
+```
+http://siteurl.com/form-url/?rwmb_frontend_field_post_id=123
+```
+
+The query parameter is `rwmb_frontend_field_{$attribute}`.
+
+Assuming that a frontend form is on the page at this URL, then the `post_id` attribute would be populated with the value `123`.
+
+### Hooks
+
+Shortcode attributes can also be populated via WordPress hooks. This example below change the `post_id` to `123`:
+
+```php
+add_filter( 'rwmb_frontend_field_value_post_id', 'my_custom_population_function', 10, 2 );
+function my_custom_population_function( $value, $args ) {
+    if ( $args['id'] === 'your_meta_box_id' ) { // Only filter for a specific form.
+        $value = 123;
+    }
+    return $value;
+}
+```
+
+This snippet would be pasted in your theme's `functions.php` file or your plugin's PHP file.
+
+The filter has the following format:
+
+```php
+$value = apply_filters( "rwmb_frontend_field_value_{$attribute}", $value, $args );
+```
+
+The callback function accepts 2 parameters: the attribute value and the array of all attributes. You should use `$args['id]` to check if you're filter for the right form.
 
 
 ### Post template files
