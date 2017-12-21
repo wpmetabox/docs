@@ -78,7 +78,7 @@ $value = apply_filters( "rwmb_frontend_field_value_{$attribute}", $value, $args 
 The callback function accepts 2 parameters: the attribute value and the array of all attributes. You should use `$args['id]` to check if you're filter for the right form.
 
 
-### Post template files
+## Post template files
 
 The plugin allows you to use a custom template files for post fields and the confirmation message (the fields defined by Meta Box is controlled by the Meta Box plugin and can't be changed).
 
