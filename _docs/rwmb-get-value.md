@@ -15,7 +15,7 @@ It also adds some additional information to the returned value (such as image in
 To get field value or displaying it in your theme, copy the following code and paste it in your theme's template file:
 
 ```php
-$value = rwmb_get_meta( $field_id );
+$value = rwmb_get_value( $field_id );
 echo $value;
 ```
 
@@ -23,10 +23,10 @@ You can put it in the theme `single.php` or `template-parts/content.php` file, d
 
 ## Arguments
 
-The helper function `rwmb_get_meta` accepts 3 arguments as below:
+The helper function `rwmb_get_value` accepts 3 arguments as below:
 
 ```php
-rwmb_get_meta( $field_id, $args, $post_id );
+rwmb_get_value( $field_id, $args, $post_id );
 ```
 
 Name|Description
@@ -43,13 +43,13 @@ Name|Description
 This is an example how to display date of birth (which is a `date` field):
 
 ```php
-echo rwmb_get_meta( 'dob' );
+echo rwmb_get_value( 'dob' );
 ```
 
 This is an example how to display list of interests (a `checkbox_list` field):
 
 ```php
-$interests = rwmb_get_meta( 'interests' );
+$interests = rwmb_get_value( 'interests' );
 foreach ( $interests as $interest ) {
     echo $interest;
 }
@@ -59,13 +59,13 @@ foreach ( $interests as $interest ) {
 
 ## Undefined function error
 
-If you're using `rwmb_get_meta` in your theme, there may be a situation when an admin accidentally deactivate the Meta Box plugin and you will see error "Undefined function rwmb_get_meta..." and your site will be broken.
+If you're using `rwmb_get_value` in your theme, there may be a situation when an admin accidentally deactivate the Meta Box plugin and you will see error "Undefined function rwmb_get_value..." and your site will be broken.
 
 To prevent this problem, a simple fix for that is adding the following code into your theme's `functions.php` file:
 
 ```php
-if ( ! function_exists( 'rwmb_get_meta' ) ) {
-    function rwmb_get_meta( $key, $args = '', $post_id = null ) {
+if ( ! function_exists( 'rwmb_get_value' ) ) {
+    function rwmb_get_value( $key, $args = '', $post_id = null ) {
         return false;
     }
 }
