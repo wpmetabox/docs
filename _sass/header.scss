@@ -128,6 +128,19 @@
 	}
 }
 
+.button--menu {
+	background: #00b1b3;
+	color: #fff;
+	padding: 14px 18px;
+	line-height: 1;
+	border-radius: 4px;
+	border: 2px solid #00b1b3;
+	
+	&:hover {
+		opacity: .9;
+	}
+}
+
 /* Small menu. */
 .menu-toggle,
 .toggled ul {
