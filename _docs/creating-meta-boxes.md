@@ -45,11 +45,29 @@ Name|Description
 `id`|Meta box ID. Optional. If it's absent, it will be generated from `title` using `sanitize_title` function.
 `title`|Meta box title. Required.
 `post_types`|Custom post types which the meta box is for. There can be an array of multiple custom post types or a string for the single post type. Must be in lowercase (like the slug). Optional. Default: `post`.
-`context`|Where the meta box is displayed (`normal` - below the post editor, `advanced` - below the `normal` section or `side` - on the right sidebar). Optional. Default: `normal`.
+`context`|Where the meta box is displayed. See below for list of meta box contexts. Optional.
+`style`|Whether to keep the default WordPress meta box style (`default`) or remove the wrapper box and display the fields seamlessly (`seamless`).
 `priority`|Priority within the context where the box is displayed (`high` or `low`). Optional. Default: `high`.
 `default_hidden`|Hide the meta box by default (`true` or `false`)? The meta box can be toggled using the checkbox option in screen Help (on the top right). Optional. Default `false`.
 `autosave`|Auto save the custom fields' values (like post content and title)? Optional. Default: `false`.
 `fields`|Array of fields. See section below.
+
+### Contexts
+
+The plugin supports the following contexts (locations) where a meta box can appear:
+
+Name|Description
+`normal`|Below the post editor. This is the default value.
+`advanced`|Below the `normal` section.
+`side`|On the right sidebar.
+`form_top`|Top of the post form, before post title. Added in version 4.13.0.
+`after_title`|After post title. Added in version 4.13.0.
+`after_editor`|After the post content editor, but before `normal` section. Added in version 4.13.0.
+`before_permalink`|Before permalink. Added in version 4.13.0.
+
+This is the screenshot how meta boxes appear in `form_top` and `after_title` locations (used with `seamless` style):
+
+![meta box locations](https://i.imgur.com/kBKbS3wl.png)
 
 ## Fields
 
