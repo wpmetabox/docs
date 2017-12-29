@@ -34,7 +34,9 @@ Below is the list of all supported field types with brief description:
 Field Type | Description
 --- | ---
 `autocomplete` | Text input that uses jQuery autocomplete library to perform the autocomplete action.
+`background` | Set background properties. Added in version 4.13.0.
 `button` | Display simple button. Usually used for JavaScript triggers.
+`button_group` | Select one or multiple choices by enabling button(s) from a group. Added in version 4.13.0.
 `checkbox` | Checkbox.
 `checkbox_list` | List of checkboxes.
 `color` | Color picker.
@@ -63,7 +65,9 @@ Field Type | Description
 `range` | HTML 5 range input.
 `select` | Select dropdown.
 `select_advanced` | Beautiful select dropdown using [select2](https://select2.github.io) library.
+`single_image` | Select or upload a single image via WordPress media popup. Added in version 4.13.0.
 `slider` | jQuery UI slider.
+`switch` | On/off switch with iOS style. Added in version 4.13.0.
 `taxonomy` | Select dropdown for taxonomy terms. Doesn't save term IDs in post meta, but set post terms.
 `taxonomy_advanced`|Same as `taxonomy` but saves term IDs in post meta as a comma separated string. It doesn't set post terms.
 `text` | Text field.
