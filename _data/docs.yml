@@ -22,7 +22,9 @@
 - title: Fields
   items:
   - /fields/autocomplete/
+  - /fields/background/
   - /fields/button/
+  - /fields/button-group/
   - /fields/checkbox/
   - /fields/checkbox-list/
   - /fields/color/
@@ -52,7 +54,9 @@
   - /fields/select/
   - /fields/select-advanced/
   - /fields/sidebar/
+  - /fields/single-image/
   - /fields/slider/
+  - /fields/switch/
   - /fields/taxonomy/
   - /fields/taxonomy-advanced/
   - /fields/text/
