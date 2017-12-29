@@ -52,54 +52,26 @@ Similar to file field, this field saves multiple values (attachment IDs) in the 
 
 ## Template usage
 
-To get the uploaded image, use the helper function [rwmb_meta()](/rwmb-meta/):
-
-```php
-$image = rwmb_meta( 'info', array( 'size' => 'thumbnail' ) );
-echo '<a href="', $image['full_url'], '"><img src="', $image['url'], '"></a>';
-```
-
-This 2nd argument for `rwmb_meta` is an array of extra parameters and accepts the following parameters:
-
-Name|Description
----|---
-`size`|Image size returned. Optional. If missed, `thumbnail` will be used.
-
-This helper function returns an array of image information:
-
-```php
-array(
-    'ID'   => 123,
-    'name' => 'logo-150x80.png',
-    'path' => '/var/www/wp-content/uploads/logo-150x80.png',
-    'url' => 'https://example.com/wp-content/uploads/logo-150x80.png',
-    'width' => 150,
-    'height' => 80,
-    'full_url' => 'https://example.com/wp-content/uploads/logo.png',
-    'title' => 'Logo',
-    'caption' => 'Logo caption',
-    'description' => 'Used in the header',
-    'alt' => 'Logo ALT text',
-    'srcset' => 'large.jpg 1920w, medium.jpg 960w, small.jpg 480w' // List of responsive image src
-    'sizes' => array(), // List of image sizes. See https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
-    'image_meta' => array(), // List of image meta. See https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata
-);
-```
-
-If you only want to display the uploaded image, use the [rwmb_the_value()](/rwmb-the-value/):
-
-```php
-rwmb_the_value( $field_id, array( 'size' => 'thumbnail' ) );
-```
-
-which outputs:
-
-```html
-<a href="link/to/full-size"><img src="link/to/image"></a>
-```
-
-Read more about [rwmb_meta()](/rwmb-meta/) and [rwmb_the_value()](/rwmb-the-value/).
+{% include fields/image-template-usage.html %}
 
 ## Filters
 
-This field inherits from image advanced and thus, uses the [same filters](/fields/image-advanced/) to change the texts that display on the screen.
+This field inherits from file advanced and thus, uses the [same filters](/fields/file-advanced/) to change the texts that display on the screen.
+
+Filter|Default|Description
+---|---|---
+`rwmb_media_add_string`|+ Add Media|Add new image string
+`rwmb_media_single_images_string`|image|Singular "image" string
+`rwmb_media_multiple_images_string`|images|Plural "images" string
+`rwmb_media_remove_string`|Remove|Image remove string
+`rwmb_media_edit_string`|Edit|Image edit string
+`rwmb_media_view_string`|View|Image view string
+
+The code below changes the "+ Add Media" string:
+
+```php
+add_filter( 'rwmb_media_add_string', 'prefix_change_add_string' );
+function prefix_change_add_string() {
+    return '+ New Image';
+}
+```
