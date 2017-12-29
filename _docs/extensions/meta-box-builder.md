@@ -133,5 +133,4 @@ If this documentation doesn't solve your problem. Or you have trouble when using
 
 ### See also
 
-- [How to Create Meta Box Columns in Meta Box Builder](/how-to-create-meta-box-columns-in-meta-box-builder/)
-- [How to Create Nested Array Field with Meta Box Builder](/how-to-create-nested-array-field-with-meta-box-builder/)
+- [Create Columns in Meta Box Builder](/create-columns-in-meta-box-builder/)
