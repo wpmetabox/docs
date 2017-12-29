@@ -171,6 +171,21 @@ add_filter( 'rwmb_frontend_post_title', function( $field ) {
 
 ### Post actions
 
+`rwmb_frontend_before_save_post`
+
+This action fires before the post is created or updated.
+
+```
+do_action( 'rwmb_frontend_after_save_post', $object );
+```
+
+The action accepts 1 parameter: the instance of the `MB_Frontend_Post` class, which handles the submission. It has the following public properties that you can use:
+
+- `$post_type`: The current post type
+- `$post_id`: The submitted post ID
+- `$fields`: The post fields
+- `$config`: The configuration, taken from the shortcode attributes
+
 `rwmb_frontend_after_save_post`
 
 This action fires after the post is created or updated. At that time, all the custom fields in the meta box are already saved into the post meta.
@@ -187,6 +202,10 @@ The action accepts 1 parameter: the instance of the `MB_Frontend_Post` class, wh
 - `$config`: The configuration, taken from the shortcode attributes
 
 ### Form actions
+
+`rwmb_frontend_before_process`
+
+This action fires before the form is processed, e.g. saved or updated. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
 
 `rwmb_frontend_after_process`
 
@@ -205,6 +224,14 @@ add_action( 'rwmb_frontend_after_process', function( $config ) {
 } );
 ```
 
+`rwmb_frontend_before_form`
+
+This action fires before form output. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
+
+`rwmb_frontend_after_form`
+
+This action fires after form output. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
+
 `rwmb_frontend_before_display_confirmation`
 
 This action fires before the confirmation message is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
@@ -212,6 +239,16 @@ This action fires before the confirmation message is displayed. It accepts one p
 `rwmb_frontend_after_display_confirmation`
 
 This action fires after the confirmation message is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
+
+### Form fitlers
+
+`rwmb_frontend_validate`
+
+This filter is used to check if the form is validated. You can use this filter to add custom check for the data before it's processed.
+
+```php
+$is_valid = apply_filters( 'rwmb_frontend_validate', $is_valid, $config );
+```
 
 ## Notes
 
