@@ -114,3 +114,21 @@ echo $location['zoom'];
 ```
 
 Read more about [rwmb_get_value()](/rwmb-get-value/).
+
+### Outputting a map in a group
+
+If you have a map inside a cloneable/non-cloneable group, then the helper functions above doesn't work. In that case, you can use a helper function in the plugin to show the map.
+
+```php
+$group_values = rwmb( 'group_id' );
+// If group is cloneable
+foreach ( $group_values as $group_value ) {
+    echo RWMB_Map_Field::render_map( $group_value['map_id'] );
+}
+```
+
+The helper function `RWMB_Map_Field::render_map` accepts 2 parameters:
+
+Name|Description
+`$location`|The location of the map center / marker, in format `latitude,longitude[,zoom]` (zoom is optional). It's the same format of the map field value.
+`$args`|Additional parameters for the map. The same as for helper function `rwmb_meta` above.
