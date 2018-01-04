@@ -49,7 +49,8 @@ function highlighCurrentDocs() {
 }
 
 function toggleDocsMenu() {
-	var click = 'ontouchstart' in window ? 'touchstart' : 'click';
+	var isIOS = ((/iphone|ipad/gi).test(navigator.appVersion)),
+	    click = isIOS ? 'touchstart' : 'click';
 
 	function getSiblings( element ) {
 		return Array.prototype.filter.call( element.parentNode.children, function( child ) {
