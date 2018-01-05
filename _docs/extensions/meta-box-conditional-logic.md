@@ -178,7 +178,7 @@ Meta Box Conditional Logic can work with DOM elements the same as Meta Box field
 
 To make it work with DOM element, instead of passing the field ID as the first parameter, please pass the element's ID.
 
-### Examples:
+Examples:
 
 Display Meta Box (or field) if current page is child page (parent ID is not empty)
 
@@ -196,6 +196,30 @@ Visible if current post ID is greater than 101
 
 ```php
 'visible' => array( 'post_ID', '>', 101 )
+```
+
+### Featured Image
+
+Featured image is a special DOM element. It has the field name/ID `_thumbnail_id` and when empty, WordPress sets the value to `-1`. Since version 1.5.3, the plugin can detect changes for featured image and let you define conditions with it.
+
+Examples:
+
+Make a field visible if no featured image:
+
+```php
+'visible' => array( '_thumbnail_id', '=', '-1' ),
+```
+
+Make a field visible if featured image is set:
+
+```php
+'visible' => array( '_thumbnail_id', '!=', '-1' ),
+```
+
+Or make a field visible only if featured image is a specific image with ID `123`:
+
+```php
+'visible' => array( '_thumbnail_id', '=', '123' ),
 ```
 
 ## Compound statements
