@@ -4,9 +4,9 @@ title: File Upload
 
 ## Overview
 
-The file upload field displayes an inline upload area that you can drag and drop files into. You can also select files from the Media Library.
+The file upload field displayes an inline upload area that you can drag and drop or select files to upload.
 
-This field is very similar to [file advanced](/fields/file-advanced/). The only different is the file advanced shows a **+ Add Media** button instead of the inline upload area.
+Note that this field doesn't open the Media Library popup for selecting existing files. You can upload new files only.
 
 ## Screenshot
 
