@@ -17,7 +17,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 Name | Description
 --- | ---
 `options` | Array of `'value' => 'Label'` pairs. They're used to display choices. `value` is stored in the custom field. Required.
-`multile` | Whether to allow select multiple values? `true` or `false` (default).
+`multiple` | Whether to allow select multiple values? `true` or `false` (default).
 `placeholder` | The placeholder text.
 `select_all_none` | Display "Select All / None" button to fast toggle choices. Applied only when `multiple` is `true`.
 
