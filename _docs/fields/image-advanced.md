@@ -75,3 +75,7 @@ function prefix_change_add_string() {
     return '+ New Image';
 }
 ```
+
+## See more
+
+- [How to display uploaded images as a WordPress image gallery?](https://metabox.io/display-uploaded-images-as-wordpress-image-gallery/)
