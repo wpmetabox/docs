@@ -127,7 +127,7 @@ function copyToClipboard() {
 	var blocks = document.querySelectorAll( 'pre.highlight' ),
 		svg = '<svg class="icon icon-copy" aria-hidden="true" role="img"><use href="#icon-copy" xlink:href="#icon-copy"></use></svg> ';
 	blocks.forEach( function( block ) {
-		block.innerHTML += '<button class="button--copy">' + svg + 'Copy</button>';
+		block.innerHTML += '<button class="button--copy" title="Click to copy the code">' + svg + 'Copy</button>';
 	} );
 	var clipboard = new Clipboard( '.button--copy', {
 		target: function( trigger ) {
@@ -137,11 +137,9 @@ function copyToClipboard() {
 	clipboard.on('success', function(e) {
 		e.clearSelection();
 		e.trigger.innerHTML = svg + 'Copied';
-		(function(button) {
-	        setTimeout(function() {
-	            button.innerHTML = svg + 'Copy';
-	        }, 3000);
-	    })(e.trigger);
+		setTimeout(function() {
+			e.trigger.innerHTML = svg + 'Copy';
+		}, 3000);
 	} );
 	clipboard.on('error', function(e) {
 		alert( 'Press Ctrl-C to copy' );
