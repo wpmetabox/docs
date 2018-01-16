@@ -108,3 +108,20 @@
 .entry-content img {
 	box-shadow: 0 0 2px rgba(0, 0, 0, .3);
 }
+.button--copy {
+	opacity: 0;
+	transition: opacity .2s;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.icon-copy {
+	position: relative;
+	top: -2px;
+}
+pre.highlight:hover .button--copy {
+	opacity: 1;
+}
+pre.highlight {
+	position: relative;
+}

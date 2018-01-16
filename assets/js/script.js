@@ -50,7 +50,7 @@ function highlighCurrentDocs() {
 
 function toggleDocsMenu() {
 	var isIOS = ((/iphone|ipad/gi).test(navigator.appVersion)),
-	    click = isIOS ? 'touchstart' : 'click';
+		click = isIOS ? 'touchstart' : 'click';
 
 	function getSiblings( element ) {
 		return Array.prototype.filter.call( element.parentNode.children, function( child ) {
@@ -123,11 +123,37 @@ function generateTOC() {
 	} );
 }
 
+function copyToClipboard() {
+	var blocks = document.querySelectorAll( 'pre.highlight' ),
+		svg = '<svg class="icon icon-copy" aria-hidden="true" role="img"><use href="#icon-copy" xlink:href="#icon-copy"></use></svg> ';
+	blocks.forEach( function( block ) {
+		block.innerHTML += '<button class="button--copy">' + svg + 'Copy</button>';
+	} );
+	var clipboard = new Clipboard( '.button--copy', {
+		target: function( trigger ) {
+			return trigger.previousElementSibling;
+		}
+	} );
+	clipboard.on('success', function(e) {
+		e.clearSelection();
+		e.trigger.innerHTML = svg + 'Copied';
+		(function(button) {
+	        setTimeout(function() {
+	            button.innerHTML = svg + 'Copy';
+	        }, 3000);
+	    })(e.trigger);
+	} );
+	clipboard.on('error', function(e) {
+		alert( 'Press Ctrl-C to copy' );
+	});
+}
+
 function init() {
 	toggleMobileMenu();
 	toggleDocsMenu();
 	// filterDocs();
 	generateTOC();
+	copyToClipboard();
 
 	ga('send', 'pageview', location.pathname + location.search);
 
