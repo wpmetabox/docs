@@ -13,7 +13,7 @@ Registering custom fields for user is similar to posts. See [this documentation]
 The code below register 2 meta boxes (sections) for user profile:
 
 ```php
-add_action( 'rwmb_meta_boxes', function prefix_register_user_meta_boxes( $meta_boxes ) {
+add_action( 'rwmb_meta_boxes', function( $meta_boxes ) {
     $meta_boxes[] = array(
         'title' => 'Contact Info',
         'type'  => 'user', // Specifically for user
