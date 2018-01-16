@@ -60,7 +60,7 @@ add_action( 'rwmb_meta_boxes', function( $meta_boxes ) {
     );
 
     return $meta_boxes;
-}
+} );
 ```
 
 Result:
