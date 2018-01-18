@@ -1,5 +1,5 @@
 ---
-title: MB Admin Columns
+title: MB Relationships
 ---
 
 This documentation will show you how to create relationships between posts, terms, users, and how to display connected items in the frontend.
