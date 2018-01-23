@@ -8,7 +8,10 @@ The taxonomy advanced field allows you to select one or multiple taxonomy terms.
 
 If the taxonomy is hierarchical, you are able to display the field as a select or checkbox tree, e.g. show childen terms when parent term is selected.
 
-The taxonomy advanced field is very similar to [taxonomy](/fields/taxonomy/) field. The only difference is it stores terms' IDs in the database instead of setting post terms.
+The taxonomy advanced field is very similar to [taxonomy](/fields/taxonomy/) field. Both fields display terms to users to select. The only difference is how they store selected terms in the database:
+
+- `taxonomy`: doesn't store any terms in the post meta. Instead, it sets post terms. Think about it like a replacement of *Category* or *Tag* meta box of WordPress.
+– `taxonomy_advanced`: store terms' IDs in the post meta and doesn't set post terms.
 
 ## Screenshots
 
