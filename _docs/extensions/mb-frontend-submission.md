@@ -27,7 +27,7 @@ echo do_shortcode( $form );
 
 Attributes|Description
 ---|---
-`id`|Meta box ID. Required.
+`id`|Meta box ID(s). If multiple meta boxes, enter their IDs separated by commas. Required.
 `post_type`|The submitted post type. Optional. Default is the first post type defined in the meta box. If meta box is made for multiple post types, you should set this attribute to the correct one.
 `post_id`|The post ID. Optional. Used only when you want to update an existing post. If you want to pass the ID of the current post, set it to `current`.
 `post_status`|The status for submitted posts. See [the list here](https://codex.wordpress.org/Post_Status).
