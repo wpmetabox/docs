@@ -4,7 +4,7 @@ title: Displaying fields
 
 ## Overview
 
-To get field value or displaying it in your theme, copy the following code and paste it in your theme's template file:
+To get custom field value in WordPress or display it in your theme, copy the following code and paste it in your theme's template file:
 
 ```php
 $value = rwmb_meta( $field_id );
@@ -23,14 +23,14 @@ rwmb_meta( $field_id, $args, $post_id );
 
 Name|Description
 ---|---
-`$field_id`|The field ID. Required.
-`$args`|Extra arguments for some field types (image, file, etc.). Optional. Can be array or a string in format `param1=value1&param2=value2`. See more details in field types (on the left menu, section Fields). Optional.
-`$post_id`|Post ID that custom fields are get from. Optional. If not present, current post ID is used.
+`$field_id`|The custom field ID. Required.
+`$args`|Extra arguments for some custom field types (image, file, etc.). Optional. Can be array or a string in format `param1=value1&param2=value2`. See more details in the custom field types (on the left menu, section Fields). Optional.
+`$post_id`|Post ID that custom field is get from. Optional. If not present, current post ID is used.
 
 ## Returned value
 
-- If the field has a single value (not `multiple` nor `clone`), then the function returns that value.
-- If the field has multiple values (`multiple` or `clone`), then the function returns an array of values.
+- If the custom field has a single value (not `multiple` nor `clone`), then the function returns that value.
+- If the custom field has multiple values (`multiple` or `clone`), then the function returns an array of values.
 
 This is an example how to display date of birth (which is a `date` field):
 
@@ -47,7 +47,7 @@ foreach ( $interests as $interest ) {
 }
 ```
 
-{% include alert.html type="warning" content="Depends on the field types, the returned value can be different. See more details in field types (on the left menu, section Fields)." %}
+{% include alert.html type="warning" content="Depends on the custom field types, the returned value can be different. See more details in custom field types (on the left menu, section Fields)." %}
 
 ## Undefined function error
 
@@ -65,13 +65,13 @@ if ( ! function_exists( 'rwmb_meta' ) ) {
 
 ## For developers
 
-The `rwmb_meta` function is just a wrapper of `get_post_meta` with some additions to match [the way the plugin saves post meta in the database](/database/). It also adds some additional information to the returned value (such as image info) to make it's easier for developers.
+The `rwmb_meta` function is just a wrapper of `get_post_meta` with some additions to match [the way the plugin saves custom fields in the database](/database/). It also adds some additional information to the returned value (such as image info) to make it's easier for developers.
 
-However, you can always use `get_post_meta` to get the value stored in the custom fields. `print_r` might help you to see how the value is stored in the database.
+However, you can always use `get_post_meta` to get the custom field value stored in the database. `print_r` might help you to see how the custom field value is formatted.
 
 ## Helper functions
 
-There are several helper functions that work with the field value. For more details, please see below:
+There are several helper functions that work with the custom field value. For more details, please see below:
 
 - [rwmb_meta()](/rwmb-meta/)
 - [rwmb_the_value()](/rwmb-the-value/)
