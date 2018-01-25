@@ -38,7 +38,7 @@ Name|Description
 `position`|Menu position. See `position` parameter of [add_menu_page()](https://codex.wordpress.org/Function_Reference/add_menu_page) function.
 `parent`|ID of the parent page. Optional. Can be WordPress menu or custom settings page menu. See examples below for more details.
 `submenu_title`|Set this to the default submenu title (first submenu) if the settings page is a top-level menu. Optional.
-`help_tabs`|List of help tabs. Array in format `'tab-id' => 'Tab Content'`. Optional.
+`help_tabs`|The content displayed when clicking on the Help button on the top right (near the Screen Options button). See below for details.
 `style`|How do you want to style the settings page. Supports `boxes` which has same the style as normal WordPress meta boxes (like in the edit post screen) and `no-boxes` which has the same style as WordPress settings page. In `no-boxes` style, each meta box is a section of the settings page.
 `columns`| The number of columns in the meta boxes. Can be 1 or 2. You might want to use 1 column with `no-boxes` style to match WordPress style.
 `tabs`|Organized meta boxes and fields in tabs (see the example below). This param takes an array of (tab_id => Tab Title). Note: when using this param, you must specify which tab the meta box belongs by adding a new parameter `'tab' => tab_id`. See example below.
@@ -101,6 +101,32 @@ Value|Page
 `users.php`|Uses
 `tools.php`|Tools
 `options-general.php`|Settings
+
+
+### Help tabs
+
+WordPress has a nice feature that allows us to define instruction, guidelines in the "Help" section of each admin screen. To see the help content, click on the "Help" button on the top right, near the "Screen Options" button. Note that, the button appears only when there's some help content.
+
+With **MB Settings Page**, you're able to define the help content. The content is divided into tabs. To define the tabs and their content, use the following structure:
+
+```php
+'help_tabs' => array(
+    array(
+        'title'   => 'General',
+        'content' => '<p>This tab displays the general information about the theme.</p>',
+    ),
+    array(
+        'title'   => 'Homepage',
+        'content' => '<p>This tab displays the instruction for setting up the homepage.</p>',
+    ),
+),
+```
+
+In short, each tab is an array of `title` and `content`. You can pass more parameters just like the [add_help_tab()](https://codex.wordpress.org/Class_Reference/WP_Screen/add_help_tab) function. However, the `title` and `content` are the most important parameters and they're required.
+
+Then when clicking "Help" button, you'll see:
+
+![wordpress admin page help tabs](https://i.imgur.com/c7bIf3P.png)
 
 ## Creating settings fields
 
