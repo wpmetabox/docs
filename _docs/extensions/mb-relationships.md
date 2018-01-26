@@ -20,7 +20,7 @@ function prefix_register_relationships() {
         'from' => 'post',
         'to'   => 'page',
     ) );
-} );
+}
 ```
 
 Note: you need to hook to `mb_relationships_init` to make sure the API is ready for use.
