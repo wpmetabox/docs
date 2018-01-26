@@ -4,7 +4,9 @@ title: Database
 
 ## Overview
 
-Wondering how the Meta Box plugin stores field value in the database? Understanding this can help you get the field value easily and understand the returned value from `get_post_meta` or [helper functions](/displaying-fields/).
+Wondering how the Meta Box plugin stores custom field value in the database? Understanding this can help you get the custom field value easily and understand the returned value from `get_post_meta` or [helper functions](/displaying-fields/).
+
+For all custom fields, the `id` is always the `meta_key` and the value is the `meta_value` in the `wp_postmeta` table. The sections below describe how the value is formatted.
 
 ## Non-cloneable fields
 
@@ -23,9 +25,18 @@ The plugin does not to store cloned values in separated rows in the database bec
 
 Due to this reason, you still can use `get_post_meta` function to retrieve field value from the database (WordPress automatically unserializes string and returns an array). You will get an array of all cloned values.
 
+**Summary:**
+
+Cloneable|Multiple|Custom Field Value
+---|---|---
+N|N|Single row
+N|Y|Multiple rows
+Y|N|Serialized array `[value1, value2]` in a single row
+Y|Y|Serialized of 2-dimensional array `[[value11,value12], [value21, value22]]` in a single row
+
 ## Field value
 
-For normal fields, the value saved in the database is the value entered or selected by users. But for some specific fields, the values store is not as obvious as that. Please see more details in each field in the left menu, section Fields.
+For normal fields, the value saved in the database is the value entered or selected by users. But for some specific fields, the values store is not as obvious as that (for example, `checkbox` saves the checked/unchecked status as `1` and `0`). Please see more details in each field in the left menu, section Fields.
 
 ## Notes
 
