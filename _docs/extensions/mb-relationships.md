@@ -13,14 +13,13 @@ This documentation will show you how to create relationships between posts, term
 The code below registers a relationship from posts to pages. Open your theme's `functions.php` file and add:
 
 ```php
-add_action( 'mb_relationships_init', 'prefix_register_relationships' );
-function prefix_register_relationships() {
+add_action( 'mb_relationships_init', function() {
     MB_Relationships_API::register( array(
         'id'   => 'posts_to_pages',
         'from' => 'post',
         'to'   => 'page',
     ) );
-}
+} );
 ```
 
 Note: you need to hook to `mb_relationships_init` to make sure the API is ready for use.
@@ -383,6 +382,57 @@ while ( $my_query->have_posts() ) : $my_query->the_post();
     wp_reset_postdata();
 endwhile;
 ```
+
+## Creating connections programmatically
+
+The plugin has several public APIs that can help you create or delete connections between 2 items using code.
+
+### `has`
+
+This function checks if 2 objects has a specific relationship.
+
+Syntax:
+
+```php
+$has_connection = MB_Relationships_API::has( $from, $to, $id );
+if ( $has_connection ) {
+    echo 'They have a relationship.';
+} else {
+    echo 'No, they do not have any relationship.';
+}
+```
+
+Parameters:
+
+Name|Description
+---|---
+`$from`|The ID of "from" object.
+`$to`|The ID of "to" object.
+`$id`|The relationship ID.
+
+### `add`
+
+This function adds a specific relationship for 2 objects.
+
+Syntax:
+
+```php
+MB_Relationships_API::add( $from, $to, $id );
+```
+
+This function will check if the 2 objects already have a relationship and only add a new relationship if they haven't.
+
+### `delete`
+
+This function deletes a specific relationship for 2 objects.
+
+Syntax:
+
+```php
+MB_Relationships_API::delete( $from, $to, $id );
+```
+
+This function will check if the 2 objects already have a relationship and delete that relationshp if they have.
 
 ## Shortcode
 
