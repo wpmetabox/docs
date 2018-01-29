@@ -391,8 +391,6 @@ The plugin has several public APIs that can help you create or delete connection
 
 This function checks if 2 objects has a specific relationship.
 
-Syntax:
-
 ```php
 $has_connection = MB_Relationships_API::has( $from, $to, $id );
 if ( $has_connection ) {
@@ -401,8 +399,6 @@ if ( $has_connection ) {
     echo 'No, they do not have any relationship.';
 }
 ```
-
-Parameters:
 
 Name|Description
 ---|---
@@ -414,25 +410,21 @@ Name|Description
 
 This function adds a specific relationship for 2 objects.
 
-Syntax:
-
 ```php
 MB_Relationships_API::add( $from, $to, $id );
 ```
 
-This function will check if the 2 objects already have a relationship and only add a new relationship if they haven't.
+This function checks if the 2 objects already have a relationship and adds a new relationship only if they haven't.
 
 ### `delete`
 
 This function deletes a specific relationship for 2 objects.
 
-Syntax:
-
 ```php
 MB_Relationships_API::delete( $from, $to, $id );
 ```
 
-This function will check if the 2 objects already have a relationship and delete that relationshp if they have.
+This function checks if the 2 objects already have a relationship and delete that relationshp only if they have.
 
 ## Shortcode
 
