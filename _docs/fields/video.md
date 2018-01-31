@@ -108,4 +108,17 @@ If you only want to display uploaded videos in a player (with playlist), you can
 rwmb_the_value( $field_id );
 ```
 
-Read more about [rwmb_meta()](/rwmb-meta/) and [rwmb_the_value()](/rwmb-the-value/).
+If you want to output the video player for each single uploaded video, then you can use this code:
+
+```php
+$videos = rwmb_meta( 'field_id' );
+foreach ( $videos as $video ) {
+    echo wp_video_shortcode( array(
+        'src'    => $video['src'],
+        'width'  => $video['dimensions']['width'],
+        'height' => $video['dimensions']['height'],
+    ) );
+}
+```
+
+Read more about [rwmb_meta()](/rwmb-meta/), [rwmb_the_value()](/rwmb-the-value/) and [wp_video_shortcode()](https://codex.wordpress.org/Function_Reference/wp_video_shortcode).
