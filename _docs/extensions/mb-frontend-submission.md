@@ -108,6 +108,8 @@ This filter allows you to change the URL of the redirect page after form is subm
 $redirect = apply_filters( 'rwmb_frontend_redirect', $redirect, $config );
 ```
 
+Note that `$config['post_id']` has the submitted post ID.
+
 ### Form actions
 
 `rwmb_frontend_before_process`
@@ -130,6 +132,8 @@ add_action( 'rwmb_frontend_after_process', function( $config ) {
     }
 } );
 ```
+
+Note that `$config['post_id']` has the submitted post ID.
 
 `rwmb_frontend_before_form`
 
