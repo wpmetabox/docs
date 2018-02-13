@@ -43,7 +43,20 @@ Each field has its [own settings](/field-settings/) that you can edit within the
 1. Enter the values for the settings that you want to assign to the field.
 1. Click the Save Meta Box button to save your changes.
 
-### Custom Attributes
+## Reordering fields
+
+Just drag your fields to the position that you want.
+
+[![reordering fields](https://i.imgur.com/ZOZD5aY.gif)](https://i.imgur.com/ZOZD5aY.gif)
+
+## Duplicating fields
+
+1. Locate the field that you want to clone/duplicate in the field editor window
+1. Click on the arrow icon in the top right-hand corner of the field/box to expand it.
+1. Click on the Duplicate link. The field/box will be immediately duplicated.
+1. Click the Save Meta Box button to save your changes.
+
+## Custom Attributes
 
 You can also add an attribute which does not exist on the field editor window by click on "Show Advanced", then click "Add Attribute". For example, if you want to create a text field like:
 
@@ -78,7 +91,7 @@ array(
 
 Then you can use the dot notation or JSON for custom attributes:
 
-#### Dot notation
+### Dot notation
 
 Since 1.2, you can use dot notation to define an array. For the `tax_query` above, you can define with dot notation like so:
 
@@ -86,24 +99,11 @@ Since 1.2, you can use dot notation to define an array. For the `tax_query` abov
 
 Please note that `tax_query.0.taxonomy`, `tax_query.0.field`, and `tax_query.0.terms` because the taxonomy named `category`, the field named `slug` and the term named technology are belong to the first (and only one) array of tax_query, not directly belongs to `tax_query`.
 
-#### JSON notation
+### JSON notation
 
 Prior to version 1.2, to create a nested array in Meta Box Builder, you can use JSON, encode the whole array of `tax_query` and paste to it value. Like so:
 
 ![json value](https://i.imgur.com/kJRrnd7.png)
-
-## Reordering fields
-
-Just drag your fields to the position that you want.
-
-[![reordering fields](https://i.imgur.com/ZOZD5aY.gif)](https://i.imgur.com/ZOZD5aY.gif)
-
-## Duplicating fields
-
-1. Locate the field that you want to clone/duplicate in the field editor window
-1. Click on the arrow icon in the top right-hand corner of the field/box to expand it.
-1. Click on the Duplicate link. The field/box will be immediately duplicated.
-1. Click the Save Meta Box button to save your changes.
 
 ## Editing / Deleting a Meta Box
 
@@ -124,6 +124,8 @@ Priority|The priority within the context where the boxes should show. Default: `
 Context|The part of the page where the meta box should be shown. Default: `Normal`
 Post types|Type of the post which the meta box should be attached. Default: `Post` and `Page`
 Autosave|Auto save meta box whilst the post has auto saved. See [this documentation](/creating-meta-boxes/) if you want to take a deeper look into the attributes for Meta Box.
+
+Note that, Meta Box also accepts custom attributes, just like custom field settings. It uses the same dot or JSON notation to define custom attributes. For more information, please see [Custom Attributes section](#custom-attributes).
 
 ## Misc
 
