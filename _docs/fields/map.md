@@ -21,7 +21,7 @@ Name | Description
 `api_key` | Google Maps API key. [Get here](https://developers.google.com/maps/documentation/javascript/get-api-key). Required.
 `language` | Google Maps language. Optional. Default is English. See [list of language code](https://developers.google.com/maps/faq#languagesupport).
 `region` | The region code, specified as a [country code top-level domain](https://en.wikipedia.org/wiki/Country_code_top-level_domain). This parameter returns autocompleted address results influenced by the region (typically the country) from the address field. [See here for more details](https://developers.google.com/maps/documentation/geocoding/intro#RegionCodes). Optional.
-`address_field` | The address field ID(s). Required.
+`address_field` | The ID of address field. For multiple address fields, enter field IDs separated by comma. Required.
 
 Note that in order to make the map works, you need to create a [text field](/fields/text/) for address and pass its ID to the map's `address_field`.
 
