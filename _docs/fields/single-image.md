@@ -12,7 +12,11 @@ The single image field allows user to select or upload one image via the WordPre
 
 ## Settings
 
-This field doesn't have any specific settings. It only uses [common field settings](/field-settings/).
+Besides the [common settings](/field-settings/), this field has the following specific settings:
+
+Name | Description
+--- | ---
+`force_delete` | Whether or not delete the files from Media Library when deleting them from post meta. `true` or `false` (default). Optional. Note: it might affect other posts if you use same file for multiple posts.
 
 ## Sample code
 
