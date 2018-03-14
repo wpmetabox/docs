@@ -18,7 +18,6 @@ Name | Description
 --- | ---
 `max_file_uploads` | Max number of uploaded files. Optional.
 `force_delete` | Whether or not delete the files from Media Library when deleting them from post meta. `true` or `false` (default). Optional. Note: it might affect other posts if you use same file for multiple posts.
-`mime_type` | MIME type of files which we want to show in Media Library. Note: this is a filter for items in Media popup, it doesn't restrict file types when upload.
 
 Note that the `multiple` setting is always set to `true` for this field.
 
