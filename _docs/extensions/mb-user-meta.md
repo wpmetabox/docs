@@ -88,7 +88,7 @@ Other parameters are the same as for posts. Please see [this documentation](/dis
 
 {% include alert.html type="warning" content="It requires the extension version 1.1+ to use the helper function. If you're using an older version, please [update now](/extensions/update/)." %}
 
-In case you use an older version than 1.1, you can get fiel value manually:
+In case you use an older version than 1.1, you can get the field value manually:
 
 ```php
 $meta = get_user_meta( $user_id, $field_id, true );
