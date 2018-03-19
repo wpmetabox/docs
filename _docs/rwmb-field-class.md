@@ -4,7 +4,9 @@ title: RWMB_Field Class
 
 ## Overview
 
-In Meta Box plugin, each field is built by a PHP class `RWMB_{$field_type}_Field`. This class extends the prime class - `RWMB_Field`. In other words, `RWMB_Field` is the prime class from which all fields are built on. `RWMB_Field` has all necessary methods for fields to use. Fields can overwrite these methods, change them for specific needs or add more methods if necessary. [box]**Note**: All methods of this class (and its descendants) are **static**. It will make all fields use the same code instead of creating multiple class instances, thus increase plugin's performance.[/box]
+In Meta Box plugin, each field is built by a PHP class `RWMB_{$field_type}_Field`. This class extends the prime class - `RWMB_Field`. In other words, `RWMB_Field` is the prime class from which all fields are built on. `RWMB_Field` has all necessary methods for fields to use. Fields can overwrite these methods, change them for specific needs or add more methods if necessary. 
+
+{% include alert.html type="info" content="All methods of this class (and its descendants) are **static**. It will make all fields use the same code instead of creating multiple class instances, thus increase plugin's performance." %}
 
 ## Class methods
 
