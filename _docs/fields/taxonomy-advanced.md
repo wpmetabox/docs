@@ -11,7 +11,7 @@ If the taxonomy is hierarchical, you are able to display the field as a select o
 The taxonomy advanced field is very similar to [taxonomy](/fields/taxonomy/) field. Both fields display terms to users to select. The only difference is how they store selected terms in the database:
 
 - `taxonomy`: doesn't store any terms in the post meta. Instead, it sets post terms. Think about it like a replacement of *Category* or *Tag* meta box of WordPress.
-– `taxonomy_advanced`: store terms' IDs in the post meta and doesn't set post terms.
+- `taxonomy_advanced`: store terms' IDs in the post meta and doesn't set post terms.
 
 ## Screenshots
 
