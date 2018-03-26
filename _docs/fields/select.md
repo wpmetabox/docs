@@ -20,6 +20,7 @@ Name | Description
 `multiple` | Whether to allow select multiple values? `true` or `false` (default).
 `placeholder` | The placeholder text.
 `select_all_none` | Display "Select All / None" button to fast toggle choices. Applied only when `multiple` is `true`.
+`flatten` | Display sub items without indentation. `true` or `false` (default).
 
 ## Sample code
 
@@ -45,6 +46,21 @@ array(
     // Display "Select All / None" button?
     'select_all_none' => true,
 ),
+```
+
+Define list that includes sub-items:
+
+```php
+'options' => array(
+        array( 'value' => 'monkeys', 'label' => 'Monkeys' ),
+        array( 'value' => 'king_kong', 'label' => 'King Kong', 'parent' => 'monkeys' ),
+        array( 'value' => 'curious_george', 'label' => 'Curious George', 'parent' => 'monkeys' ),
+        array( 'value' => 'donkeys', 'label' => 'Donkeys' ),
+        array( 'value' => 'eeyore', 'label' => 'Eeyore', 'parent' => 'donkeys' ),
+        array( 'value' => 'guss', 'label' => 'Gus', 'parent' => 'donkeys' ),
+    ),
+    // Show parent items and sub-items at same level
+    'flatten' => false, 
 ```
 
 ## Data
