@@ -4,7 +4,7 @@ title: File Input
 
 ## Overview
 
-The file input field creates a simple text input for upload a single file. You are able to select a file from the Media Lirary or enter file URL directly (even URL for a file hosted on another website).
+The file input field creates a simple text input for uploading a single file. You are able to select a file from the Media Library or enter file URL directly (even URL for a file hosted on another website).
 
 ## Screenshot
 
