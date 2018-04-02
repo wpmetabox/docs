@@ -71,7 +71,7 @@ This code shows pages in select2 dropdown:
 array(
     'name'       => 'Taxonomy',
     'id'         => 'taxonomy',
-    'type'       => 'taxonomy',
+    'type'       => 'taxonomy_advanced',
 
     // Taxonomy slug.
     'taxonomy'   => 'category',
@@ -87,7 +87,7 @@ The code below shows pages in a checkbox tree format:
 array(
     'name'       => 'Taxonomy',
     'id'         => 'taxonomy',
-    'type'       => 'taxonomy',
+    'type'       => 'taxonomy_advanced',
 
     // Taxonomy slug.
     'taxonomy'   => 'category',
