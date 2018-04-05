@@ -53,6 +53,8 @@ Name|Description
 `media_modal`|Add custom fields to media modal when viewing/editing an attachment. Works only when `post_types` is or contains `attachment`. Optional. Default `false`.
 `fields`|Array of fields. See section below.
 
+{% include alert.html type="info" content="Because of some limitations in the media modal, only simple fields such as text, select, radio, checkbox work. Other fields that require custom JavaScript don't work, unfortunately." %}
+
 ### Contexts
 
 The plugin supports the following contexts (locations) where a meta box can appear:
