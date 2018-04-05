@@ -19,7 +19,7 @@ Name | Description
 `max_file_uploads` | Max number of uploaded images. Optional.
 `force_delete` | Whether or not delete the images from Media Library when deleting them from post meta. `true` or `false` (default). Optional. Note: it might affect other posts if you use same image for multiple posts.
 `max_status` | Display how many images uploaded/remaining. Applied only when `max_file_uploads` is defined. `true` (default) or `false`. Optional.
-`image_size` | Image size that displays in the edit page. Optional. Default `thumbnail`.
+`image_size` | Image size that displays in the edit page. Optional. Default `thumbnail`. Image size is used to make sure images are not blurry. It’s not meant to display images with the exact width and height. Images are always displayed as square.
 
 Note that the `multiple` setting is always set to `true` for this field.
 
