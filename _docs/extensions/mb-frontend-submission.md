@@ -239,7 +239,7 @@ add_filter( 'rwmb_frontend_post_title', function( $field ) {
 This action fires before the post is created or updated.
 
 ```
-do_action( 'rwmb_frontend_after_save_post', $object );
+do_action( 'rwmb_frontend_before_save_post', $object );
 ```
 
 The action accepts 1 parameter: the instance of the `MB_Frontend_Post` class, which handles the submission. It has the following public properties that you can use:
