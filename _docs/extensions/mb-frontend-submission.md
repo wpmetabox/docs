@@ -151,6 +151,14 @@ This action fires before the confirmation message is displayed. It accepts one p
 
 This action fires after the confirmation message is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
 
+`rwmb_frontend_before_submit_button`
+
+This action fires before the submit button is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
+
+`rwmb_frontend_after_submit_button`
+
+This action fires after the submit button is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
+
 ### Form fitlers
 
 `rwmb_frontend_validate`
