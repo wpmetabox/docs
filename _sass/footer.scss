@@ -1,6 +1,7 @@
 .site-footer {
 	padding: 70px 0;
 	border-top: 1px solid #ddd;
+	font-size: 1.4rem;
 
 	.widget {
 		margin-bottom: 70px;
@@ -20,9 +21,7 @@
 		}
 	}
 	li {
-		padding-bottom: 5px;
 		margin-bottom: 5px;
-		border-bottom: 1px dotted #ddd;
 		display: block;
 	}
 }
@@ -30,11 +29,10 @@
 	margin-top: 20px;
 	padding-top: 20px;
 	border-top: 1px solid #ddd;
-	font-size: 1.4rem;
+	font-size: 1.3rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	font-weight: bold;
 }
 .social-navigation {
 	font-size: 2rem;
