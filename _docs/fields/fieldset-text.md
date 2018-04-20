@@ -60,12 +60,10 @@ If field is cloneable:
 
 ```php
 $values = rwmb_meta( $field_id );
-foreach ( $values as $clone ) {
-    foreach ( $clone as $value ) {
-        echo $value['name'];
-        echo $value['address'];
-        echo $value['email'];
-    }
+foreach ( $values as $value ) {
+    echo $value['name'];
+    echo $value['address'];
+    echo $value['email'];
 }
 ```
 
