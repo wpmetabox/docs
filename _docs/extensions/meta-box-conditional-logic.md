@@ -59,38 +59,18 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
 To make a meta box or a field visible/hidden, please add a setting for the meta box or the field with the following syntax:
 
 ```php
-'visibility' => array( 'field', 'operator', 'value' )
+// Condition to show.
+'visible' => array( 'field', 'operator', 'value' ),
+
+// Condition to hide
+'hidden' => array( 'field', 'operator', 'value' )
 ```
 
 Name|Description
 ---|---
-`visibility`|Either `visible` or `hidden`.
 `field`| Meta Box field ID or ID of a DOM element to compare.
 `operator` | Comparison operators: `=`, `>=`, `<=`, `>`, `<`, `!=`, `in`, `contains`, `between`, `starts with`, `ends with`, `match`. All of them can combine with `not` operator to become negate operator. Default: `=`. Optional.
 `value` | Value to compare with.
-
-Assume that you have two fields:
-
-- A select field `brand` contains 3 options: "Apple", "Microsoft" and "Google",
-- Another field `apple_products` contains 4 options: "iPhone", "iPad", "Macbook", "iWatch"
-
-Let hide `apple_products` when `brand` isn't Apple. You can define conditional logic like this:
-
-```php
-'hidden' => array( 'brand', '!=', 'Apple' )
-// Or
-'hidden' => array( 'brand', 'in', array( 'Microsoft', 'Google' ) )
-```
-
-Two above examples can be rewrite by `visible` key, like so:
-
-```php
-'visible' => array( 'brand', 'Apple' )
-// Or
-'visible' => array( 'brand', '=', 'Apple' )
-// Or
-'visible' => array( 'brand', 'not in', array( 'Microsoft', 'Google' ) )
-```
 
 The normal operators like `=`, `!=`, etc. are pretty clear. Let's see the advanced operators like `contains`, `starts with`, etc.
 
@@ -150,13 +130,38 @@ This operator checks if field value matches a regular expression:
 
 We can combine `not` operator with other operators to negative the meaning of them. So we'll have `not contains`, `not in`, `not match`, `not starts with`, `not ends with`, `not between`.
 
-## Special fields
+## Multiple conditions
+
+Sometimes, you'll need to use more than one conditional logic. To do that, you can define multiple conditions to show or hide a meta box or a custom field. For example:
+
+```php
+// Visible when 'brand' is 'Apple' AND 'released_year' is between 2010 and 2015
+'visible' => array(
+    array( 'brand', 'Apple' ),
+    array( 'released_year', 'between', array( 2010, 2015 ) )
+)
+```
+
+By default, if you define compound statement, the logic will correct if **ALL** of them are correct. In case you want to visible a field if **ONE** of them is correct, simply move all statements to `when` key and put new `relation` key like this example:
+
+```php
+// Visible when 'brand' is 'Apple' OR 'released_year' is between 2010 and 2015
+'visible' => array(
+    'when' => array(
+         array( 'brand', 'in', array( 'Apple', 'Microsoft' ) ),
+         array( 'released_year', 'between', array( 2010, 2015 ) )
+     ),
+     'relation' => 'or'
+)
+```
+
+## Getting values for special fields
+
+This section shows you how to specify the `value` in the conditions for some specific fields.
 
 ### Checkbox field
 
-Sometimes, you want to show/hide a field if checkbox is checked or not. Just remember checkbox has two state and each state returns a value, `0` or `false` if is not checked, `1` or `true` is checked.
-
-So in this case, you need to write the field value as:
+For checkboxes, use `0` or `false` if it's not checked, `1` or `true` if it's checked.
 
 ```php
 'visible' => array( 'checkbox_field', true ) // Visible if checkbox_field is checked
@@ -164,7 +169,7 @@ So in this case, you need to write the field value as:
 
 ### Media fields
 
-For media fields that use WordPress media popup to handle upload like `file_advanced`, `image_advanced`, the extension checks number of uploaded files instead of their values.
+For media fields that use WordPress media popup to handle upload like `file_advanced`, `image_advanced`, the extension checks **number of uploaded files** instead of their values.
 
 This example shows or hides a field depends on there's a file uploaded:
 
@@ -176,35 +181,29 @@ This example shows or hides a field depends on there's a file uploaded:
 'hidden' => array( 'image_advanced', 0 )
 ```
 
-## DOM elements
+## Toggle by other elements
 
-Meta Box Conditional Logic can work with DOM elements the same as Meta Box fields. With this feature, you can show or hide any meta box or field based on post types, page parent, post ID, categories...
+Meta Box Conditional Logic can work with other HTML elements the same as Meta Box fields. With this feature, you can show or hide any meta box or field based on post types, page parent, post ID, categories...
 
-To make it work with DOM element, instead of passing the field ID as the first parameter, please pass the element's ID.
+To make it work with HTML element, instead of passing the field ID as the first parameter, please pass the **element's ID**.
 
 Examples:
 
-Display Meta Box (or field) if current page is child page (parent ID is not empty)
+Display a meta box (or a field) if current page is child page (parent ID is not empty)
 
 ```php
 'visible' => array( 'parent_id', '!=', '' )
 ```
 
-Visible if parent page's ID is 99
+Visible if current post ID is 100
 
 ```php
-'visible' => array( 'parent_id', 99 )
+'visible' => array( 'post_ID', '=', 100 )
 ```
 
-Visible if current post ID is greater than 101
+### Featured image
 
-```php
-'visible' => array( 'post_ID', '>', 101 )
-```
-
-### Featured Image
-
-Featured image is a special DOM element. It has the field name/ID `_thumbnail_id` and when empty, WordPress sets the value to `-1`. Since version 1.5.3, the plugin can detect changes for featured image and let you define conditions with it.
+Featured image is a special HTML element. It has the field name/ID `_thumbnail_id` and when empty, WordPress sets the value to `-1`. Since version 1.5.3, the plugin can detect changes for featured image and let you define conditions with it.
 
 Examples:
 
@@ -224,30 +223,6 @@ Or make a field visible only if featured image is a specific image with ID `123`
 
 ```php
 'visible' => array( '_thumbnail_id', '=', '123' ),
-```
-
-## Compound statements
-Sometimes, you'll need to use more than one conditional logic. To do that, you can use nested array to define compound statements. For example:
-
-```php
-// Visible when 'brand' is 'Apple' AND 'released_year' is between 2010 and 2015
-'visible' => array(
-    array( 'brand', 'Apple' ),
-    array( 'released_year', 'between', ( 2010, 2015 ) )
-)
-```
-
-By default, if you define compound statement, the logic will correct if all of them are correct. In case you want to visible a field if one of them is correct, simply move all statements to `when` key and put new `relation` key like this example:
-
-```php
-// Visible when 'brand' is 'Apple' OR 'released_year' is between 2010 and 2015
-'visible' => array(
-    'when' => array(
-         array( 'brand', 'in', array( 'Apple', 'Microsoft' ) ),
-         array( 'released_year', 'between', array( 2010, 2015 ) )
-     ),
-     'relation' => 'or'
-)
 ```
 
 ## Using outside meta boxes
