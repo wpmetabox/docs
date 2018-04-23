@@ -4,12 +4,12 @@ title: Meta Box Conditional Logic
 
 {% include installation.html %}
 
-## Configuration
+
 Like the Meta Box plugin, Conditional Logic was created without any options. You can start using it right after activating.
 
 If you're confused whilst reading this tutorial. Please refer to [creating meta box](/creating-meta-boxes/).
 
-## Example
+## Getting started
 
 Let's say we have a Meta Box with two fields, for example.
 
@@ -17,8 +17,10 @@ Let's say we have a Meta Box with two fields, for example.
 add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
     $meta_boxes[] = array(
         'title' => 'Brands and Products',
-        // In this example: Show this Meta Box by default. Hide it when post format is aside
+        
+        // Hide this meta box when post format is aside
         'hidden' => array( 'post_format', 'aside' ),
+        
         'fields' => array(
             array(
                 'id'    => 'brand',
@@ -41,8 +43,8 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
                     'Macbook'   => 'Macbook',
                     'iWatch'    => 'iWatch'
                 ),
-                // In this example: Show this field by default,
-                // hide it when user selected different value than 'Apple' on brand select field
+                
+                // Hide this field when user selected a brand that's not 'Apple'
                 'hidden' => array( 'brand', '!=', 'Apple' )
             )
         )
@@ -54,7 +56,7 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
 
 ## Syntax
 
-A conditional statement syntax can be defined for a meta box or a field as follows:
+To make a meta box or a field visible/hidden, please add a setting for the meta box or the field with the following syntax:
 
 ```php
 'visibility' => array( 'field', 'operator', 'value' )
@@ -64,7 +66,7 @@ Name|Description
 ---|---
 `visibility`|Either `visible` or `hidden`.
 `field`| Meta Box field ID or ID of a DOM element to compare.
-`operator` | Comparison operators: `=`, `>=`, `<=`, `>`, `<`, `!=`, `in`, `between`, `starts with`, `ends with`, `match`. All of them can combine with `not` operator to become negate operator. Default: `=`. Optional.
+`operator` | Comparison operators: `=`, `>=`, `<=`, `>`, `<`, `!=`, `in`, `contains`, `between`, `starts with`, `ends with`, `match`. All of them can combine with `not` operator to become negate operator. Default: `=`. Optional.
 `value` | Value to compare with.
 
 Assume that you have two fields:
@@ -89,6 +91,8 @@ Two above examples can be rewrite by `visible` key, like so:
 // Or
 'visible' => array( 'brand', 'not in', array( 'Microsoft', 'Google' ) )
 ```
+
+The normal operators like `=`, `!=`, etc. are pretty clear. Let's see the advanced operators like `contains`, `starts with`, etc.
 
 ## Advanced Operators
 
