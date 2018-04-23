@@ -45,3 +45,7 @@ require get_template_directory() . '/extension-slug/extension-slug.php'; // Path
 ```
 
 Remember to change the extension slug to the correct slug of the extension(s) you want to include.
+
+## Using Composer
+
+Please [read this detailed guide](https://docs.metabox.io/extensions/composer/) for instructions.
