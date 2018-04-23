@@ -11,7 +11,7 @@ If you're confused whilst reading this tutorial. Please refer to [creating meta 
 
 ## Getting started
 
-Let's say we have a Meta Box with two fields, for example.
+The code below registers a meta box that is hidden when the post format is `aside`. The meta box also have 2 custom fields: Brand and Product. The Product field will be hidden if user select a brand that's not "Apple".
 
 ```php
 add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
