@@ -4,7 +4,7 @@ title: Composer
 
 This documentation will show you how to install [Meta Box extensions](https://metabox.io/plugins) via Composer.
 
-If you haven't known about [Composer](https://getcomposer.org), then it is a package dependency manager for PHP. The core [*Meta Box*](https://metabox.io) plugin [already supports Composer](/composer/). And so does its extension.
+If you haven't known about [Composer](https://getcomposer.org), then it is a package dependency manager for PHP. The core Meta Box plugin [already supports Composer](/composer/). And so do its extensions.
 
 ## Setup
 
@@ -23,7 +23,7 @@ If your license has expired, please renew it. If you don't have any, then you ne
 
 The system automatically checks if your license is still active. If yes, then you'll granted access via Composer to Meta Box's packages. It also ensures you have access to only extensions you purchased.
 
-## Using 
+## Usage 
 
 To include extensions via Composer, simply add them as dependencies like this:
 
@@ -35,7 +35,7 @@ To include extensions via Composer, simply add them as dependencies like this:
 }
 ```
 
-So, your final `composer.json` will look like this:
+So, your final `composer.json` will be:
 
 ```json
 {
@@ -51,7 +51,7 @@ So, your final `composer.json` will look like this:
 }
 ```
 
-*Important note:* the version of extensions specified in `composer.json` *must* be `dev-master`. We don't support version constrains for Meta Box extensions yet. This makes you always use the latest version available.
+**Important note:** the version of extensions specified in `composer.json` *must* be `dev-master`. We don't support version constrains for Meta Box extensions yet. You always use the latest version.
 
 To install the extensions, simply run:
 
@@ -65,12 +65,10 @@ Alternatively, you can install the extensions via command line without editing `
 composer require meta-box/meta-box-group:dev-master
 ```
 
-## Autoloading
-
-To make the extensions work, simply load Composer's autoload file, like this:
+To make the extensions work, simply load Composer's autoload file:
 
 ```php
 require 'vendor/autoload.php';
 ```
 
-Now Meta Box extensions are available in your plugin and you can start using it!
+Now Meta Box extensions are available in your plugin/theme and you can start using them!
