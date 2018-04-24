@@ -65,6 +65,8 @@ Alternatively, you can install the extensions via command line without editing `
 composer require meta-box/meta-box-group:dev-master
 ```
 
+The extensions then will be installed in the WordPress's `wp-content/plugins` directory, instead of the traditional `vendor` folder thanks to [composer/installers](https://github.com/composer/installers). `composer/installers` is a powerful package that allows us to change the install path of packages to the specific folder we want. And by default, all Meta Box extensions have type `wordpress-plugin` and are installed in `wp-content/plugins`. For more information about `composer/installers`, please read [this guide](https://github.com/composer/installers).
+
 To make the extensions work, simply load Composer's autoload file:
 
 ```php
