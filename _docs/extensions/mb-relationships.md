@@ -254,6 +254,25 @@ Function|Description
 [`get_queried_object_id()`](https://developer.wordpress.org/reference/functions/get_queried_object_id/)|Get the current-queried object ID. Similar to the above function but returns only object ID.
 [`get_current_user_id()`](https://developer.wordpress.org/reference/functions/get_current_user_id/)|Get current user ID.
 
+## Displaying sibling items
+
+Assume you have 2 custom post types: student and class. Each student can join 1 or more class (many-to-many relationship). Now how to get the classmate of the given student A?
+
+Since version 1.2.0, the plugin introduces new API to get sibling items. To get sibling of a post, simply add `'sibling' => true` to the query as follows:
+
+```php
+$siblings = new WP_Query( array(
+    'relationship' => array(
+        'id'      => 'posts_to_pages',
+        'to'      => get_the_ID(),
+        'sibling' => true,
+    ),
+    'nopaging'     => true,
+) );
+```
+
+The code is similar to the above section, except the extra `sibling` parameter. That parameter works for all post, term or user query.
+
 ## Working with an archive of posts
 
 All the examples above work well with single post, term or user. But if you want to display connected posts in the blog archive page, this method will create a dozen of queries for each post in the archive page. That's a lot of extra queries.
