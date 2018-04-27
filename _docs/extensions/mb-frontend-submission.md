@@ -118,22 +118,23 @@ This action fires before the form is processed, e.g. saved or updated. It accept
 
 `rwmb_frontend_after_process`
 
-This action fires after the form is processed, e.g. saved or updated. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
+This action fires after the form is processed, e.g. saved or updated. It accepts 2 parameters:
+
+- `$config` - the form configuration, taken from the shortcode attributes.
+- `$post_id` - the submitted post ID
 
 You can use this action to do a custom redirect to your Thank you page or send an email notification.
 
 ```php
-add_action( 'rwmb_frontend_after_process', function( $config ) {
+add_action( 'rwmb_frontend_after_process', function( $config, $post_id ) {
     if ( 'my-meta-box' === $config['id'] ) {
         wp_mail( 'admin@domain.com', 'New submission', 'A new post has been just submitted.' );
 
         wp_safe_redirect( 'thank-you' );
         die;
     }
-} );
+}, 10, 2 );
 ```
-
-Note that `$config['post_id']` has the submitted post ID.
 
 `rwmb_frontend_before_form`
 
