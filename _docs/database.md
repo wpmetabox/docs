@@ -34,6 +34,8 @@ N|Y|Multiple rows
 Y|N|Serialized array `[value1, value2]` in a single row
 Y|Y|Serialized of 2-dimensional array `[[value11,value12], [value21, value22]]` in a single row
 
+{% include alert.html content="Since version 4.14.7, you are able to store clone values in multiple rows in the database. See [this post](https://metabox.io/introducing-clone-as-multiple-feature/) for more details." %}
+
 ## Field value
 
 For normal fields, the value saved in the database is the value entered or selected by users. But for some specific fields, the values store is not as obvious as that (for example, `checkbox` saves the checked/unchecked status as `1` and `0`). Please see more details in each field in the left menu, section Fields.
