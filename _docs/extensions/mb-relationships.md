@@ -273,6 +273,74 @@ $siblings = new WP_Query( array(
 
 The code is similar to the above section, except the extra `sibling` parameter. That parameter works for all post, term or user query.
 
+## Showing connections in admin columns
+
+As of MB Relationships version 1.3.0, you're able to show list of connections in the admin columns (in the All Posts / Categories / All Users screens).
+
+By default, the admin column is disabled, e.g. not showing in the All Posts screen. In order to show the connections, add the `admin_column` parameter to the `from` or `to` relationship configuration:
+
+```php
+MB_Relationships_API::register( array(
+    'id'   => 'posts_to_pages',
+    'from' => array(
+        'object_type'  => 'post',
+        'admin_column' => 'true',  // THIS!
+    ),
+    'to'   => array(
+        'object_type'  => 'post',
+        'post_type'    => 'page',
+        'admin_column' => 'after title', // THIS!
+) );
+```
+
+Similar to [MB Admin Columns](/extensions/mb-admin-columns), the plugin supports 3 formats of the parameter:
+
+### Simply displays the connection in admin columns
+
+```php
+'admin_column' => 'true',
+```
+
+In this case, the column will be added to the end of the list table. And the title of the column will be the title of the connection meta box (when you edit a post).
+
+### Specify the column position
+
+```php
+'admin_column' => 'after title'
+```
+
+The format is `'admin_column' => 'type column'` where:
+
+Param|Description
+---|---
+`type`|Must be `before`, `after` or `replace`. Specify the position of the custom column.
+|`before`: Insert the column before an existing column
+|`after`: Insert the column after an existing column
+|`replace`: Replace an existing column by the new one
+`column`|The target existing column
+
+Using this configuration, you are able to insert the column in any position you want.
+
+In this case, the title of the column will be the title of the connection meta box (when you edit a post).
+
+### Advanced configuration
+
+To add more rules for the admin column, you can declare `admin_column` parameter as an array which accepts the following keys:
+
+```php
+'admin_columns' => array(
+    'position'   => 'after title',
+    'title'      => 'Price',
+),
+```
+
+The meaning of keys are described below:
+
+Key|Description
+---|---
+`position`|Specify where to insert the new column. It's exactly the same as described in the #2 method above.
+`title`|Column title. Optional. Default is the meta box title.
+
 ## Working with an archive of posts
 
 All the examples above work well with single post, term or user. But if you want to display connected posts in the blog archive page, this method will create a dozen of queries for each post in the archive page. That's a lot of extra queries.
