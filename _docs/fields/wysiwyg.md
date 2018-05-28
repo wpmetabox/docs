@@ -62,7 +62,7 @@ Note that the helper function doesn't format the value of this field nor run sho
 
 ```php
 $value = rwmb_meta( $field_id );
-echo do_shortcode( wpautop( $field_id ) );
+echo do_shortcode( wpautop( $value ) );
 ```
 
 Read more about [rwmb_meta()](/rwmb-meta/).
