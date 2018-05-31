@@ -4,13 +4,13 @@ title: Text List
 
 ## Overview
 
-The text list field creates a simple text input with text list feature. You are able to select multiple values from the predefined list.
+The text list field creates a a list of simple text inputs. You are able to select multiple values from the predefined list.
 
 This field uses jQuery UI library to perform the text list action.
 
 ## Screenshot
 
-![text list](https://i.imgur.com/xipaodj.png)
+![text list](https://i.imgur.com/Y7qo1No.png)
 
 ## Settings
 
@@ -41,7 +41,7 @@ array(
 
 ## Data
 
-This field always stored the value as a serialized indexed array in a single row in the database. Each value in the array is the value of input defined in the `options` setting.
+If the field is not cloneable, the data is stored in multiple rows in the database. Each row has the same meta key as the field ID, and the value is the value in the corresponding text input.
 
 If the field is cloneable, then the value is stored as a serialized array of values in a single row in the database.
 
