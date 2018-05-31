@@ -40,7 +40,7 @@ If you want to set keys for columns, just add the 3rd parameter:
 MB_Custom_Table_API::create( 'my_custom_table', array(
     'address' => 'TEXT NOT NULL',
     'phone'   => 'TEXT NOT NULL',
-    'email'   => 'TEXT NOT NULL',
+    'email'   => 'VARCHAR(20) NOT NULL',
 ), array( 'email' ) );
 ```
 
@@ -51,11 +51,13 @@ $sql = "CREATE TABLE my_custom_table (
   ID int(11) unsigned NOT NULL,
   addresss TEXT NOT NULL,
   phone TEXT NOT NULL,
-  email TEXT NOT NULL
+  email VARCHAR(20) NOT NULL
   PRIMARY KEY  (ID)
   KEY email
 )";
 ```
+
+{% include alert.html content="BLOB and TEXT columns also can be indexed, but a prefix length must be given. Make sure you set the length when you want to index a text column." %}
 
 ### Parameters
 
