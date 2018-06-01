@@ -6,6 +6,8 @@ This documentation will show you how to install [Meta Box extensions](https://me
 
 If you haven't known about [Composer](https://getcomposer.org), then it is a package dependency manager for PHP. The core Meta Box plugin [already supports Composer](/composer/). And so do its extensions.
 
+You can skip the text and jump to the video tutorial below.
+
 ## Setup
 
 To use Composer to install Meta Box extensions, please add `repositories` rule to your `composer.json`:
@@ -74,3 +76,14 @@ require 'vendor/autoload.php';
 ```
 
 Now Meta Box extensions are available in your plugin/theme and you can start using them!
+
+## Video
+
+This video demonstrates how to install Meta Box extensions from wordpress.org. The approach is slightly different between premium and free extensions.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/khiCSMh3DY0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## Futher reading
+
+- [Introducing Composer support for Meta Box extensions](https://metabox.io/introducing-composer-support-for-meta-box-extensions/)
+- [How to use Composer to install Meta Box extensions from WordPress.org](https://metabox.io/how-to-use-composer-to-install-meta-box-extensions-from-wordpress-org/)
