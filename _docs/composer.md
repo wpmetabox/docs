@@ -12,6 +12,8 @@ Meta Box is totally compatible with Composer and you can use it as a library for
 
 {% include alert.html type="info" content="This guide is for the Meta Box core plugin. For Meta Box extensions, please see [this guide](https://docs.metabox.io/extensions/composer/)." %}
 
+{% include alert.html type="info" content="To make it easier for developers, I've created a composer.json file, which contains Meta Box plugin and all extensions. You can [grab it here](https://github.com/wpmetabox/library/blob/master/composer/composer.json) and remove the extensions you don't want to use." %}
+
 ## Installing Composer
 
 Please follow the [very detailed guide](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) on the Composer homepage to know how to install Composer on your system.
