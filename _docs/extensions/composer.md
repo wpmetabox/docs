@@ -77,6 +77,8 @@ require 'vendor/autoload.php';
 
 Now Meta Box extensions are available in your plugin/theme and you can start using them!
 
+{% include alert.html type="info" content="To make it easier for developers, I've created a composer.json file, which contains a full list of extensions, free and premium. You can [grab it here](https://github.com/wpmetabox/library/blob/master/composer/composer.json) and remove the extensions you don't want to use." %}
+
 ## Video
 
 This video demonstrates how to install Meta Box extensions from wordpress.org. The approach is slightly different between premium and free extensions.
