@@ -107,3 +107,14 @@ This tutorial is a very simple example of using Meta Box with Composer. You can 
 - Vast amount of libraries: this is a huge advantage of using Composer. With these well-coded libraries, your development process will be easier, faster and thus, it saves you tons of time.
 
 So, enjoy Composer and Meta Box! And share with us how you use them in your projects via the Contact form. We'd love to know that!
+
+## Video
+
+This video demonstrates how to install Meta Box extensions from wordpress.org. The approach is slightly different, but it show you the idea of using Composer with Meta Box plugins.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/khiCSMh3DY0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## Futher reading
+
+- [Introducing Composer support for Meta Box extensions](https://metabox.io/introducing-composer-support-for-meta-box-extensions/)
+- [How to use Composer to install Meta Box extensions from WordPress.org](https://metabox.io/how-to-use-composer-to-install-meta-box-extensions-from-wordpress-org/)
