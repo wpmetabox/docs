@@ -325,7 +325,7 @@ if ( isset( $settings[$field_id] ) ) {
 
 Note that this code returns only raw data of field value. It doesn't return meaningful information for images, file, etc. To do that, please add a small piece of code as follow:
 
-```
+```php
 // Getting images
 $settings = get_option( 'option_name' );
 $image_ids = $settings['images'];
