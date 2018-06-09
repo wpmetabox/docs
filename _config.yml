@@ -50,8 +50,7 @@ assets:
         enabled: true
   autoprefixer:
     browsers:
-      - "last 2 versions"
-      - "IE > 9"
+      - "> 0.2%"
   sources:
     - assets/js
     - assets/css
