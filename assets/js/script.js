@@ -1,6 +1,3 @@
-// = require tocbot.min.js
-// = require instantclick.min.js
-
 function toggleMobileMenu() {
 	var container, button, menu;
 
@@ -40,14 +37,6 @@ function toggleMobileMenu() {
 	};
 }
 
-function highlighCurrentDocs() {
-	var current = document.querySelector( '.docs-navigation__item.is-active' );
-	if ( !current ) {
-		return;
-	}
-	current.closest( '.docs-navigation__cat' ).classList.add( 'is-active' );
-}
-
 function toggleDocsMenu() {
 	var isIOS = ((/iphone|ipad/gi).test(navigator.appVersion)),
 		click = isIOS ? 'touchstart' : 'click';
@@ -66,49 +55,6 @@ function toggleDocsMenu() {
 			} );
 		}
 	} );
-}
-
-function filterDocs() {
-	var input = document.querySelector( '.docs-navigation__filter' ),
-		allCats = document.querySelectorAll( '.docs-navigation__cat' ),
-		allItems = document.querySelectorAll( '.docs-navigation__item' );
-
-	function reset() {
-		allCats.forEach( function( cat ) {
-			cat.classList.remove( 'is-hidden' );
-			cat.classList.remove( 'is-active' );
-		} );
-		allItems.forEach( function( item ) {
-			item.classList.remove( 'is-hidden' );
-		} );
-		highlighCurrentDocs();
-	}
-
-	function filter() {
-		var term = input.value.toLowerCase();
-		reset();
-
-		// Clear box search.
-		if ( ! term ) {
-			return;
-		}
-
-		// Filter.
-		allCats.forEach( function( cat ) {
-			cat.classList.add( 'is-hidden' );
-		} );
-		allItems.forEach( function( item ) {
-			item.classList.add( 'is-hidden' );
-			if ( -1 === item.textContent.toLowerCase().indexOf( term ) ) {
-				return;
-			}
-			var cat = item.closest( '.docs-navigation__cat' );
-			item.classList.remove( 'is-hidden' );
-			cat.classList.remove( 'is-hidden' );
-			cat.classList.add( 'is-active' );
-		} );
-	}
-	input.addEventListener( 'keyup', filter );
 }
 
 function generateTOC() {
@@ -146,31 +92,24 @@ function copyToClipboard() {
 	});
 }
 
-function init() {
-	toggleMobileMenu();
-	toggleDocsMenu();
-	// filterDocs();
-	generateTOC();
-	copyToClipboard();
-
-	ga('send', 'pageview', location.pathname + location.search);
-
-	docsearch({
-		apiKey: '97cd82eb9fd8fdde822c2a66377779a0',
-		indexName: 'metabox',
-		inputSelector: '#filter',
-		debug: true
-	});
-}
-
 // Google Analytics
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', 'UA-57415220-10', 'auto');
+ga('send', 'pageview', location.pathname + location.search);
 
 // Google Fonts.
 window.WebFontConfig = {
 	google: { families: [ 'Roboto+Slab:700' ] }
 };
 
-InstantClick.on('change', init);
-InstantClick.init();
+docsearch({
+	apiKey: '97cd82eb9fd8fdde822c2a66377779a0',
+	indexName: 'metabox',
+	inputSelector: '#filter',
+	debug: true
+});
+
+toggleMobileMenu();
+toggleDocsMenu();
+generateTOC();
+copyToClipboard();

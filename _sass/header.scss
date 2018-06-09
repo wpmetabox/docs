@@ -20,24 +20,25 @@
 	box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
 	z-index: 9;
 }
-.site-branding {
-	display: flex;
-	align-items: center;
-}
 .logo {
 	display: block;
 }
 .site-title {
 	font-size: 3rem;
 	letter-spacing: -1px;
-	margin: 0 0 0 7px;
+	margin: 0;
 
 	a {
+		display: flex;
+		align-items: center;
 		color: #000;
 
 		&:hover {
 			text-decoration: none;
 		}
+	}
+	svg {
+		margin-right: 7px;
 	}
 }
 

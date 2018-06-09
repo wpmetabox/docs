@@ -1,6 +1,6 @@
 <nav class="docs-navigation" role="navigation">
 	<input type="text" class="docs-navigation__filter" placeholder="Search documentation" id="filter">
-	<ul class="docs-navigation__menu" data-instant>
+	<ul class="docs-navigation__menu">
 		{% for cat in site.data.docs %}
 			{% assign has_docs = cat.items | where_exp: "item", "item == page.url" | first %}
 			{% assign has_page = cat.items | where: "url", page.url | first %}
