@@ -32,25 +32,7 @@ defaults:
     values:
       layout: default
 
-plugins: [jekyll-assets, jekyll-seo-tag]
+plugins: [jekyll-seo-tag]
 
 sass:
   style: compressed
-
-assets:
-  compress:
-    js: true
-    css: true
-  plugins:
-    compression:
-      js:
-        enabled: true
-        opts: {}
-      css:
-        enabled: true
-  autoprefixer:
-    browsers:
-      - "> 0.2%"
-  sources:
-    - assets/js
-    - assets/css
