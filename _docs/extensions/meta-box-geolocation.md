@@ -139,7 +139,17 @@ Example Result: `QLD Australia`
 
 ## Google API Key
 
-By default, Google Geocoding API has the usage limit. See [here](https://developers.google.com/maps/documentation/geocoding/usage-limits#standard-usage-limits). The free Google Geocoding API works in almost case but sometimes, you need to add API Key, or want to add custom params to URL. Just add a filter to `gmap_api_params` like so:
+By default, Google Geocoding API has the usage limit. See [here](https://developers.google.com/maps/documentation/geocoding/usage-limits#standard-usage-limits). The free Google Geocoding API works in almost case but sometimes, you need to add API Key, or want to add custom params to URL.
+
+Since version 1.2.0, to add Google API key, you need to specify it in the `geo` parameter, as follows:
+
+```php
+geo => array(
+    'api_key' => 'YOUR API KEY',
+)
+```
+
+Prior version 1.2.0, you need to use a filter to `gmap_api_params` like so:
 
 ```php
 add_filter( 'gmap_api_params', function( $params ) {
