@@ -79,6 +79,8 @@ Field Type | Description
 `video` | Upload or select a video from the Media Library using the WordPress media popup.
 `wysiwyg` | WordPress editor.
 
+{% include alert.html content="In addition to the above field types, you can also use HTML5 input types. See [this guide](/html5-input-types/) for details." %}
+
 ## Field-specific settings
 
 Besides all common settings, each field type can have its own settings. Please see more details for each field type on the left menu (section "Fields").
