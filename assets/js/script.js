@@ -75,7 +75,7 @@ function copyToClipboard() {
 	blocks.forEach( function( block ) {
 		block.innerHTML += '<button class="button--copy" title="Click to copy the code">' + svg + 'Copy</button>';
 	} );
-	var clipboard = new Clipboard( '.button--copy', {
+	var clipboard = new ClipboardJS( '.button--copy', {
 		target: function( trigger ) {
 			return trigger.previousElementSibling;
 		}
