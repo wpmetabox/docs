@@ -291,6 +291,29 @@ Here is the result:
 
 ![settings page with tabs](https://i.imgur.com/yb9Admk.png)
 
+## Hooks
+
+**`mb_settings_page_load` action**
+
+This action fires when a settings page is loaded. It's used internally to:
+
+- Register meta boxes and custom fields in the settings page, and
+- Save the submitted data.
+
+These actions use the default priority `10`. So you can hook to this action to do something *after* the data is saved with a higher priority (like `20`):
+
+```php
+add_action( 'mb_settings_page_load', function ( $args ) {
+    if ( $args['id'] === 'YOUR SETTINGS PAGE ID' ) {
+        // Do something
+    }
+}, 20 );
+```
+
+**`mb_settings_page_submit_buttons` action**
+
+This action fires after the submit button is rendered, which allows you to add more custom buttons next to the submit button.
+
 ## Data
 
 Settings values are saved in WordPress option as an array with the option name is `option_name` in the settings page configuration. The keys of that array are the field IDs and values are the field values.
