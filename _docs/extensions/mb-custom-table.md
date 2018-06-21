@@ -124,7 +124,7 @@ function prefix_create_table() {
 But for some reason, if you can't run the code when activate your plugin, it's totally fine to run the code in `init` or `plugins_loaded` hook:
 
 ```php
-add_action( 'plugins_loaded', 'prefix_create_table' );
+add_action( 'init', 'prefix_create_table' );
 function prefix_create_table() {
     if ( ! class_exists( 'MB_Custom_Table_API' ) ) {
         return;
