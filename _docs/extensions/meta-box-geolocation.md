@@ -14,6 +14,10 @@ To enable geolocation support for a meta box, add this line to your Meta Box (no
 'geo' => true
 ```
 
+If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), then please go to tab *Settings* and add a custom attribute for the geolocation as follows:
+
+![enable geolocation](https://i.imgur.com/8bM0Hw1.png)
+
 You can also add options to Geolocation. Which can contains these properties:
 
 - An array of `types` specifies an explicit type or a type collection, as listed in the supported types below. If nothing is specified, all types are returned. In general, only a single type is allowed. The exception is that you can safely mix the geocode and establishment types, but note that this will have the same effect as specifying no types. The supported types are:
@@ -144,10 +148,14 @@ By default, Google Geocoding API has the usage limit. See [here](https://develop
 Since version 1.2.0, to add Google API key, you need to specify it in the `geo` parameter, as follows:
 
 ```php
-geo => array(
+'geo' => array(
     'api_key' => 'YOUR API KEY',
 )
 ```
+
+If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), then please go to tab *Settings* and add a custom attribute for the Google Maps API key as follows:
+
+![adding google maps api key in builder](https://i.imgur.com/sk6NzTj.png)
 
 Prior version 1.2.0, you need to use a filter to `gmap_api_params` like so:
 
