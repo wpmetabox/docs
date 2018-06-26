@@ -37,7 +37,7 @@ Name|Description
 
 ## Returned value
 
-By default, the function just outputs the HTML content of the field. If you set `$echo` to `false`, then it will returns that HTML.
+By default, the function just outputs the HTML content of the field. If you set `$echo` to `false`, then it will return return the HTML as a string.
 
 For simple fields like `text`, `select`, HTML output is just the field value.
 
