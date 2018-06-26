@@ -160,7 +160,7 @@ This action fires before the submit button is displayed. It accepts one paramete
 
 This action fires after the submit button is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
 
-### Form fitlers
+### Form filters
 
 `rwmb_frontend_validate`
 
