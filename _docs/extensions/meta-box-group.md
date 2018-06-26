@@ -407,7 +407,7 @@ if ( ! empty( $sectors ) ) {
             $imgs = isset( $object['sector-object-img'] ) ? $object['sector-object-img'] : array();
             if ( !empty( $imgs ) ) {
                 foreach ( $imgs as $img ) {
-                    echo '<img src="' . wp_get_attachment_image_url( $object_img, 'size' ) . '">';
+                    echo '<img src="' . wp_get_attachment_image_url( $img, 'size' ) . '">';
                 }
             }
             $desc = isset( $object['sector-object-description'] ) ? $object['sector-object-description'] : '';
