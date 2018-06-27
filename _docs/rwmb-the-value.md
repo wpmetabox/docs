@@ -25,7 +25,7 @@ You can put it in the theme `single.php` or `template-parts/content.php` file, d
 This function accepts 4 arguments as below:
 
 ```php
-rwmb_meta( $field_id, $args, $post_id, $echo );
+rwmb_the_value( $field_id, $args, $post_id, $echo );
 ```
 
 Name|Description
