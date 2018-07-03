@@ -165,11 +165,3 @@ add_filter( 'gmap_api_params', function( $params ) {
     return $params;
 });
 ```
-
-## Example
-
-The plugin already ships with an example. You can browse it in `examples/example.php`.
-
-Result
-
-![meta box geolocation](https://i.imgur.com/0dToJpQ.gif)
