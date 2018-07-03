@@ -60,13 +60,13 @@ In order to allow developers to do other things with the user form, we have crea
 This filter allows you to change the URL of the redirect page after form is submitted. It accepts 2 parameters: redirect URL and form config - the shortcode attributes.
 
 ```php
-$redirect = apply_filters( 'rwmb_frontend_redirect', $redirect, $config );
+$redirect = apply_filters( 'rwmb_profile_redirect', $redirect, $config );
 ```
 
 You can use this filter to change the redirect URL after an user updated his profile.
 
 ```php
-add_filter( 'rwmb_frontend_redirect', function( $redirect, $config ) {
+add_filter( 'rwmb_profile_redirect', function( $redirect, $config ) {
     if ( 'my-meta-box' === $config['id'] ) {
         $redirect = 'https://domain.com/thank-you/';
     }
@@ -131,7 +131,7 @@ This action fires after the submit button is displayed. It accepts one parameter
 This filter is used to check if the form is validated. You can use this filter to add custom check for the data before it's processed.
 
 ```php
-$is_valid = apply_filters( 'rwmb_frontend_validate', $is_valid, $config );
+$is_valid = apply_filters( 'rwmb_profile_validate', $is_valid, $config );
 ```
 
 ### User data filters
