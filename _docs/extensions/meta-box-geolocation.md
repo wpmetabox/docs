@@ -165,3 +165,5 @@ add_filter( 'gmap_api_params', function( $params ) {
     return $params;
 });
 ```
+
+Also notes that since version 1.2.1, if you use Geolocation with `map` field, you need to enter the Google API key only once, either for the Geolocation extension or for the `map`. No need to enter the same key for both of them.
