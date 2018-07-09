@@ -25,5 +25,6 @@ Name|Description
 `add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
 `clone_default`|Clone the default value of fields? `true` or `false` (default).
 `sort_clone`|Allow to drag-and-drop sort clones. `true` or `false` (default). See the following screenshot.
+`clone_as_multiple`| Whether to store cloned values in multiple rows in the database? [See this post](https://metabox.io/introducing-clone-as-multiple-feature/) for examples.
 
 ![drag and drop](https://i.imgur.com/RJBgw6m.png)
