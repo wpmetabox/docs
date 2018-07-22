@@ -17,6 +17,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 Name | Description
 --- | ---
 `size` | Input size. Default `30`. Optional.
+`not_available_string` | The text message displayed to users when no the embed is not available. Accepts HTML.
 
 ## Sample code
 
@@ -54,3 +55,24 @@ echo $url
 ```
 
 Read more about [rwmb_meta()](/rwmb-meta/) and [rwmb_get_value()](/rwmb-get-value/).
+
+## Hooks
+
+The `oembed` field has one filter `rwmb_not_available_string`, which allows users to change the message for all oembed field when no embed is available.
+
+Use the filter as follows:
+
+```php
+add_filter( 'rwmb_not_available_string', function( $message ) {
+    $message = 'Sorry, what you are looking here is not available.';
+    return $message;
+} );
+```
+
+Developers also can hide the message with CSS, since it's wrapped into a `div.rwmb-oembed-not-available`. Simply put this code into your theme or in *Customize > Additional CSS*:
+
+```css
+.rwmb-oembed-not-available {
+    display: none;
+}
+```
