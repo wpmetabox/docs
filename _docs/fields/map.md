@@ -71,6 +71,7 @@ $args = array(
     'height'       => '480px',
     'zoom'         => 14,
     'marker'       => true,
+    'marker_icon'  => 'https://url_to_icon.png',
     'marker_title' => 'Click me',
     'info_window'  => '<h3>Title</h3><p>Content</p>.',
 );
@@ -83,6 +84,7 @@ Parameter | Description
 `height` | Map height, default is 480px. Can be '%' or 'px'.
 `zoom` | Map zoom, default is the value set in admin, and if it's omitted - 14.
 `marker` | Display marker? `true` (default) or `false`.
+`marker_icon` | URL to the marker icon. Optional.
 `marker_title` | Marker title when hover.
 `info_window` | Content for the info window displayed when click the marker. HTML allowed. This content will be passed to JavaScript, so it's better to **avoid quotes**.
 `js_options` | Custom JavaScript options for map. [See here](https://developers.google.com/maps/documentation/javascript/reference#MapOptions).
