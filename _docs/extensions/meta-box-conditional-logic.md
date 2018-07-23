@@ -280,16 +280,16 @@ By default, the extension uses terms' IDs to check. Since 1.3, you can define th
 'visible' => array( 'slug:post_category', 'in', array( 'fashion', 'gaming', 'technology' ) )
 ```
 
-For custom taxonomies, use `tax_query[taxonomy slug]` as the first parameter:
+For custom taxonomies, use `tax_input[taxonomy slug]` as the first parameter:
 
 ```php
-'hidden' => array( 'tax_query[product]', '>', 5 )
+'hidden' => array( 'tax_input[product]', '>', 5 )
 ```
 
 Of course, it works with `slug` also:
 
 ```php
-'hidden' => array( 'slug:tax_query[product]', '!=', 'drones' )
+'hidden' => array( 'slug:tax_input[product]', '!=', 'drones' )
 ```
 
 ## Custom callback
