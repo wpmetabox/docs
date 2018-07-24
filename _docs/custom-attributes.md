@@ -33,7 +33,7 @@ Common attributes `disabled`, `required`, `readonly`, `maxlength` and `pattern` 
     'disabled'  => true,
     'required'  => true,
     'readonly'  => true,
-    'maxlength' => true,
+    'maxlength' => 140,
     'pattern'   => true,
 ),
 
@@ -42,6 +42,6 @@ Common attributes `disabled`, `required`, `readonly`, `maxlength` and `pattern` 
 'disabled'  => true,
 'required'  => true,
 'readonly'  => true,
-'maxlength' => true,
+'maxlength' => 140,
 'pattern'   => true,
 ```
