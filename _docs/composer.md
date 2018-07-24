@@ -25,12 +25,12 @@ Composer requires a config file named `composer.json` where we defines all the d
 ```json
 {
   "require": {
-    "rilwis/meta-box": "4.*"
+    "wpmetabox/meta-box": "4.*"
   }
 }
 ```
 
-The first thing you specify in `composer.json` is the `require` key. You're simply telling Composer which packages your project depends on. The package name has the format `author/package-name`. In this case, it's `rilwis/meta-box`.
+The first thing you specify in `composer.json` is the `require` key. You're simply telling Composer which packages your project depends on. The package name has the format `author/package-name`. In this case, it's `wpmetabox/meta-box`.
 
 The value is the version you want to use in your project. `4.*` means the latest version 4. You can set a specific version `4.8.7` or using wildcard. For more info about the syntax of versioning, please follow the [Composer documentation](https://getcomposer.org/doc/articles/versions.md).
 
