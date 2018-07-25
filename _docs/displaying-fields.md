@@ -76,3 +76,15 @@ There are several helper functions that work with the custom field value. For mo
 - [rwmb_meta()](/rwmb-meta/)
 - [rwmb_the_value()](/rwmb-the-value/)
 - [rwmb_get_value()](/rwmb-get-value/)
+
+## Note
+
+If the helper functions don't return correct value, then please check your code that register meta boxes. Do you register meta boxes under some condition like `is_admin()` or inside another hook? Do you put this snippet:
+
+```php
+add_filter( 'rwmb_meta_boxes', 'your_function' );
+```
+
+right in your theme's `functions.php` file or in your plugin file without any condition?
+
+If you do, then please remove all the conditions. The conditions might prevent the plugin to get the field settings in the frontend. And in that case, it fallback to just `get_post_meta()`, which might return unexpected value (single value for checkbox list, for example).
