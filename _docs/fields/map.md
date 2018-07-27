@@ -135,3 +135,17 @@ The helper function `RWMB_Map_Field::render_map` accepts 2 parameters:
 Name|Description
 `$location`|The location of the map center / marker, in format `latitude,longitude[,zoom]` (zoom is optional). It's the same format of the map field value.
 `$args`|Additional parameters for the map. The same as for helper function `rwmb_meta` above.
+
+## Filters
+
+`rwmb_google_maps_url`
+
+This filter allows developers to add more libraries or change the Google Maps URL. It accepts single parameter - the URL of the Google Maps script and should return an URL.
+
+For example, the code below adds `geometry` library to the Google Maps script:
+
+```php
+add_filter( 'rwmb_google_maps_url', function ( $url ) {
+    return add_query_arg( 'libraries', 'geometry', $url );
+} );
+```
