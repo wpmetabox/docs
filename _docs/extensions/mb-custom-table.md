@@ -57,7 +57,7 @@ $sql = "CREATE TABLE my_custom_table (
 )";
 ```
 
-{% include alert.html content="BLOB and TEXT columns also can be indexed, but a prefix length must be given. Make sure you set the length when you want to index a text column." %}
+{% include alert.html content="BLOB and TEXT columns also can be indexed, but a fixed length must be given. Make sure you set the length when you want to index a text column." %}
 
 ### Parameters
 
