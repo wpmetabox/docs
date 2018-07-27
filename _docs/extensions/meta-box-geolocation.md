@@ -141,6 +141,52 @@ You can also merge two fields, add any character you want to bind to that field.
 
 Example Result: `QLD Australia`
 
+## Multiple autocomplete addresses
+
+In case you have multiple "group" of address fields, such as address details for head office and address details for a company branch. In each group, there are an autocomplete address field. And it will autopopulate only fields in the group, e.g. the address for head office only populates the fields in the head office group, not in the company branch.
+
+In this case, please set another attribute `'address_field' => 'address_id'` for *each* field in the group. See an example code below:
+
+```php
+/**
+ * Head office
+ */
+ 
+// Address
+array(
+    'id' => 'address_ho',
+    'type' => 'text',
+    'name' => 'Address - Head Office',
+),
+// City
+array(
+    'id' => 'city_ho',
+    'type' => 'text',
+    'name' => 'City - Head Office',
+    'binding' => 'locality',
+    'address_field' => 'address_ho', // THIS
+),
+
+/**
+ * A company branche
+ */
+ 
+// Address
+array(
+    'id' => 'address_br',
+    'type' => 'text',
+    'name' => 'Address - Branch',
+),
+// City
+array(
+    'id' => 'city_br',
+    'type' => 'text',
+    'name' => 'City - Branch',
+    'binding' => 'locality',
+    'address_field' => 'address_br', // THIS
+),
+```
+
 ## Google API Key
 
 By default, Google Geocoding API has the usage limit. See [here](https://developers.google.com/maps/documentation/geocoding/usage-limits#standard-usage-limits). The free Google Geocoding API works in almost case but sometimes, you need to add API Key, or want to add custom params to URL.
