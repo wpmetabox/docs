@@ -10,39 +10,144 @@ title: MB User Profile
 
 The extension has the following shortcodes for 3 forms:
 
-**Register form:**
+### Registration form
 
 ```php
-[mb_user_profile_register id="meta-box-id" submit_button="Submit" confirmation="Your account has been created successfully."]
+[mb_user_profile_register id="meta-box-id" label_submit="Register" confirmation="Your account has been created successfully."]
 ```
 
-This shortcode shows the user register form. If you want to add more fields in this form, [create a meta box](/creating-meta-boxes/) with some fields. Then add the meta box ID in the `id` attribute of the shortcode.
+This shortcode shows the user register form. If you want to add more fields in this form, [create a meta box for users](/extensions/mb-user-meta/) with some fields. Then add the meta box ID in the `id` attribute of the shortcode.
 
 If you have multiple meta boxes that you want to display in the register form, enter their IDs separated by commas.
 
-If the `id` has no value, then it shows the default register form.
+If the `id` has no value, then it shows the default registration form.
 
-**Login form:**
+**Shortcode attributes**
+
+Name|Description
+---|---
+`id`|Meta Box ID(s), separated by commas. All fields from meta boxes will be included in the registration form. If not specify, it shows the default registration form.
+`redirect`|Redirect URL, to which users will be redirected after successful registration.
+`form_id`|ID (HTML attribute) of the form.
+`id_username`|ID (HTML attribute) of the username input field.
+`id_email`|ID (HTML attribute) of the email input field.
+`id_password`|ID (HTML attribute) of the password input field.
+`id_password2`|ID (HTML attribute) of the confirm password input field.
+`id_submit`|ID (HTML attribute) of the submit button.
+`label_username`|Label for the username input field.
+`label_email`|Label for the email input field.
+`label_password`|Label for the password input field.
+`label_password2`|Label for the confirm password input field.
+`label_submit`|Label for the submit button.
+`confirmation`|Confirmation message if registrion is succesful.
+
+### Login form
 
 ```php
-[mb_user_profile_login submit_button="Submit" remember="Remember" lost_pass="Lost Password?" confirmation="You are now logged in."]
+[mb_user_profile_login label_submit="Submit" label_remember="Remember" label_lost_password="Lost Password?" confirmation="You are now logged in."]
 ```
 
 This shortcode shows the normal login form. You can use either this shortcode or the WordPress's built-in function `wp_login_form()`.
 
-**Edit user profile form:**
+
+**Shortcode attributes**
+
+Name|Description
+---|---
+`redirect`|Redirect URL, to which users will be redirected after successful login.
+`form_id`|ID (HTML attribute) of the form.
+`id_username`|ID (HTML attribute) of the username input field.
+`id_password`|ID (HTML attribute) of the password input field.
+`id_remember`|ID (HTML attribute) of the remember checkbox field.
+`id_submit`|ID (HTML attribute) of the submit button.
+`label_username`|Label for the username input field.
+`label_password`|Label for the password input field.
+`label_remember`|Label for the remember checkbox field.
+`label_lost_password`|Label for the lost password link.
+`label_submit`|Label for the submit button.
+`confirmation`|Confirmation message if registrion is succesful.
+`remember`|Whether to show remember checkbox field - `true` (default) or `false`.
+`value_username`|Default value for username field.
+`value_remember`|Default value for remember checkbox field - `true` or `false` (default).
+
+
+### Edit profile form
 
 ```php
 [mb_user_profile_info id="meta-box-id" submit_button="Submit" confirmation="Your information has been successfully submitted. Thank you."]
 ```
 
-This shortcode shows the user profile form that allows users to edit their information. If you want to add more fields in this form, [create a meta box](/creating-meta-boxes/) with some fields. Then add the meta box ID in the `id` attribute of the shortcode.
+This shortcode shows the user profile form that allows users to edit their information. If you want to add more fields in this form, [create a meta box for users](/extensions/mb-user-meta/) with some fields. Then add the meta box ID in the `id` attribute of the shortcode.
 
 If you have multiple meta boxes that you want to display in the register form, enter their IDs separated by commas.
 
-**Usage:**
+**Shortcode attributes**
 
-To use these shortcodes, add them into a page content or in a widget. If you want to embed the form using code, please use the following code:
+Name|Description
+---|---
+`id`|Meta Box ID(s), separated by commas. All fields from meta boxes will be included in the profile form. Required.
+`user_id`|User ID, whose info will be edited. If not specified, current user ID is used.
+`redirect`|Redirect URL, to which users will be redirected after successful submission.
+`form_id`|ID (HTML attribute) of the form.
+`id_password`|ID (HTML attribute) of the password input field.
+`id_password2`|ID (HTML attribute) of the confirm password input field.
+`id_submit`|ID (HTML attribute) of the submit button.
+`label_password`|Label for the password input field.
+`label_password2`|Label for the confirm password input field.
+`label_submit`|Label for the submit button.
+`confirmation`|Confirmation message if registrion is succesful.
+
+#### Edit default fields
+
+By default, the user profile form doesn't include any default user fields, such as first name, last name or biography. To be able to edit these fields, please [create a meta box for users](/extensions/mb-user-meta/) and add those fields to that meta box. Keep the same field ID.
+
+For example, the code below creates a meta box for editing user first name, last name and biography:
+
+```php
+add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
+    $meta_boxes[] = [
+        'title'  => 'Default Fields',
+        'id'     => 'default-fields',
+        'type'   => 'user', // NOTICE THIS
+        'fields' => [
+            [
+                'id'   => 'first_name', // THIS
+                'name' => 'First Name',
+                'type' => 'text',
+            ],
+            [
+                'id'   => 'last_name', // THIS
+                'name' => 'Last Name',
+                'type' => 'text',
+            ],
+            [
+                'id'   => 'description', // THIS
+                'name' => 'Biography',
+                'type' => 'textarea',
+            ],
+        ],
+    ];
+    return $meta_boxes;
+} );
+```
+
+And use it in the user edit profile form with this shortcode:
+
+```php
+[mb_user_profile_info id="default-fields"]
+```
+
+#### Edit user password
+
+To let users change their password, please use the meta box ID `rwmb-user-info` in the shortcode as below:
+
+```php
+[mb_user_profile_info id="rwmb-user-info"]
+```
+
+## Usage
+
+To use the shortcodes, add them into a page content or in a widget. If you want to embed the form using code, please use the following code:
 
 ```php
 $form = '[mb_user_profile_register]';
