@@ -51,10 +51,10 @@ array(
 );
 ```
 
-If you want to get the CSS for the background, use the [rwmb_the_value()](/rwmb-the-value/):
+If you want to **get the CSS for the background**, use the [rwmb_the_value()](/rwmb-the-value/):
 
 ```php
-$css = rwmb_the_value( $field_id );
+$css = rwmb_the_value( $field_id, '', '', false );
 echo '<div style="', $css, '"></div>';
 ```
 
