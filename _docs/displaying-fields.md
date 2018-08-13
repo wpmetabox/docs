@@ -77,6 +77,13 @@ There are several helper functions that work with the custom field value. For mo
 - [rwmb_the_value()](/rwmb-the-value/)
 - [rwmb_get_value()](/rwmb-get-value/)
 
+
+## Video tutorial
+
+In order to understand the usage of helper functions and the difference between them, please check out the video tutorial below
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NFZE4Sxi2p4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ## Note
 
 If the helper functions don't return correct value, then please check your code that register meta boxes. Do you register meta boxes under some condition like `is_admin()` or inside another hook? Do you put this snippet:
