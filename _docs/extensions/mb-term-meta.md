@@ -70,6 +70,14 @@ Notes:
 - In the 2nd parameter, you need to pass `'object_type' => 'term'`, and
 - In the last parameter, you need to pass the term ID
 
+To get the `$term_id` for the current category/term page, please use the function `get_queried_object_id()`. So the statement look like this:
+
+```php
+$term_id = get_queried_object_id();
+$value = rwmb_meta( $field_id, array( 'object_type' => 'term' ), $term_id );
+echo $value;
+```
+
 Other parameters are the same as for post. Please see [this documentation](/displaying-fields/) for details.
 
 {% include alert.html type="warning" content="It requires the extension version 1.1+ to use the helper function. If you're using an older version, please [update now](/extensions/update/)." %}
