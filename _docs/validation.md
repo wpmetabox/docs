@@ -91,3 +91,24 @@ Look at the example below:
     )
 )
 ```
+
+## Notes
+
+The jQuery validation library actually uses **input name**, not input ID. In most cases, field ID is the same as field name. But for some cases such as field is a checkbox list or is a taxonomy with `field_type` is `checkbox_list`, e.g. where field has multiple inputs, then all those inputs don't have IDs.
+
+In this case, **you need to use input name for the rules**. For example, if you use a taxonomy field with `field_type` is `checkbox_list`, you should set validation rules as follows:
+
+```php
+'validation' => array(
+    'rules'  => array(
+        'my_taxonomy[]' => array(
+            'required'  => true,
+        ),
+    ),
+    'messages' => array(
+        'my_taxonomy[]' => array(
+            'required'  => 'You must select a tag to proceed',
+        ),
+    ),
+),
+```
