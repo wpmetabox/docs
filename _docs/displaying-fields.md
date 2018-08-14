@@ -82,7 +82,7 @@ There are several helper functions that work with the custom field value. For mo
 
 In order to understand the usage of helper functions and the difference between them, please check out the video tutorial below:
 
-<https://www.youtube.com/embed/NFZE4Sxi2p4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NFZE4Sxi2p4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Note
 
