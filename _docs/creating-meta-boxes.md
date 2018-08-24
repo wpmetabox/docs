@@ -47,6 +47,7 @@ Name|Description
 `post_types`|Custom post types which the meta box is for. There can be an array of multiple custom post types or a string for the single post type. Must be in lowercase (like the slug). Optional. Default: `post`.
 `context`|Where the meta box is displayed. See below for list of meta box contexts. Optional.
 `style`|Whether to keep the default WordPress meta box style (`default`) or remove the wrapper box and display the fields seamlessly (`seamless`).
+`closed`|Whether to collapse the meta box when page loads? Optional. Default: `false`.
 `priority`|Priority within the context where the box is displayed (`high` or `low`). Optional. Default: `high`.
 `default_hidden`|Hide the meta box by default (`true` or `false`)? The meta box can be toggled using the checkbox option in screen Help (on the top right). Optional. Default `false`.
 `autosave`|Auto save the custom fields' values (like post content and title)? Optional. Default: `false`.
