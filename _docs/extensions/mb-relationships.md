@@ -290,6 +290,7 @@ MB_Relationships_API::register( array(
         'object_type'  => 'post',
         'post_type'    => 'page',
         'admin_column' => 'after title', // THIS!
+    ),
 ) );
 ```
 
