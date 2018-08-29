@@ -4,6 +4,14 @@ title: Meta Box Group
 
 {% include installation.html %}
 
+## Tutorial
+
+If this is the first time you use [Meta Box Group](https://metabox.io/plugins/meta-box-group/), please follow the beginner tutorial here:
+
+[How to Create a Group of Custom Fields with Meta Box Group](https://metabox.io/create-group-of-custom-fields-with-meta-box-group/)
+
+The documentation below is like a detailed reference that you can use anytime you want to look for something in Meta Box Group.
+
 ## Usage
 
 Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
