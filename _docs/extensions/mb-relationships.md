@@ -284,7 +284,7 @@ MB_Relationships_API::register( array(
     'id'   => 'posts_to_pages',
     'from' => array(
         'object_type'  => 'post',
-        'admin_column' => 'true',  // THIS!
+        'admin_column' => true,  // THIS!
     ),
     'to'   => array(
         'object_type'  => 'post',
@@ -299,7 +299,7 @@ Similar to [MB Admin Columns](/extensions/mb-admin-columns), the plugin supports
 ### Simply displays the connection in admin columns
 
 ```php
-'admin_column' => 'true',
+'admin_column' => true,
 ```
 
 In this case, the column will be added to the end of the list table. And the title of the column will be the title of the connection meta box (when you edit a post).
