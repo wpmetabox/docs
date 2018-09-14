@@ -16,7 +16,7 @@ This code creates a simple table for 3 custom fields (*each custom field is a co
 MB_Custom_Table_API::create( 'my_custom_table', array(
     'address' => 'TEXT NOT NULL',
     'phone'   => 'TEXT NOT NULL',
-    'email'   => 'TEXT NOT NULL',
+    'email'   => 'VARCHAR(20) NOT NULL',
 ) );
 ```
 
@@ -27,7 +27,7 @@ $sql = "CREATE TABLE my_custom_table (
   ID int(11) unsigned NOT NULL,
   addresss TEXT NOT NULL,
   phone TEXT NOT NULL,
-  email TEXT NOT NULL
+  email VARCHAR(20) NOT NULL
   PRIMARY KEY  (ID)
 )";
 ```
@@ -88,7 +88,7 @@ global $wpdb;
 MB_Custom_Table_API::create( "{$wpdb->prefix}my_custom_table", array(
     'address' => 'TEXT NOT NULL',
     'phone'   => 'TEXT NOT NULL',
-    'email'   => 'TEXT NOT NULL',
+    'email'   => 'VARCHAR(20) NOT NULL',
 ) );
 ```
 
@@ -101,7 +101,7 @@ if ( ! class_exists( 'MB_Custom_Table_API' ) ) {
 MB_Custom_Table_API::create( 'my_custom_table', array(
     'address' => 'TEXT NOT NULL',
     'phone'   => 'TEXT NOT NULL',
-    'email'   => 'TEXT NOT NULL',
+    'email'   => 'VARCHAR(20) NOT NULL',
 ), array( 'email' ) );
 ```
 
@@ -116,7 +116,7 @@ function prefix_create_table() {
     MB_Custom_Table_API::create( 'my_custom_table', array(
         'address' => 'TEXT NOT NULL',
         'phone'   => 'TEXT NOT NULL',
-        'email'   => 'TEXT NOT NULL',
+        'email'   => 'VARCHAR(20) NOT NULL',
     ), array( 'email' ) );
 }
 ```
@@ -132,7 +132,7 @@ function prefix_create_table() {
     MB_Custom_Table_API::create( 'my_custom_table', array(
         'address' => 'TEXT NOT NULL',
         'phone'   => 'TEXT NOT NULL',
-        'email'   => 'TEXT NOT NULL',
+        'email'   => 'VARCHAR(20) NOT NULL',
     ), array( 'email' ) );
 }
 ```
