@@ -32,6 +32,11 @@ Attributes|Description
 `post_id`|The post ID. Optional. Used only when you want to update an existing post. If you want to pass the ID of the current post, set it to `current`.
 `post_status`|The status for submitted posts. See [the list here](https://codex.wordpress.org/Post_Status).
 `post_fields`|List of post fields you want to show in the frontend, separated by comma. Supported following fields: `title`, `content`, `excerpt`, `date`, `thumbnail`.
+`label_title`| Label for post title field.
+`label_content` | Label for post content field.
+`label_excerpt`| Label for post excerpt field.
+`label_date` | Label for post date field.
+`label_thumbnail` | Label for post thumbnail field.
 `submit_button`|The text for the submit button.
 `confirmation`|The text for the confirmation message when the form is successfully submitted.
 
