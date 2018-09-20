@@ -6,59 +6,61 @@ This guide cover basic tasks a user may carry out when using our builder.
 
 {% include installation.html %}
 
-## Creating a Meta Box
+After installing, the plugin creates a sub-menu **Custom Fields** under the top-level menu **Meta Box** in the WordPress admin.
 
-[![creating a meta box](https://i.imgur.com/rG5mluU.gif)](https://i.imgur.com/rG5mluU.gif)
+![meta box builder menu](https://i.imgur.com/EHd1v23.png)
+
+Clicking on that menu will bring you to the screen where you can create meta boxes and custom fields.
+
+Please note that the screen says **Field Groups** instead of **Meta Boxes**. We think the term "meta box" might be confusing, since it's the name of the [Meta Box plugin](https://metabox.io). Besides, the meta box builder is for creating custom fields, using field group with a simple meaning of "set of custom fields" makes sense. This term also works in case you want to build [front-end forms](https://metabox.io/plugins/mb-frontend-submission/), [settings pages](https://metabox.io/plugins/mb-settings-page/) or [user fields](https://metabox.io/plugins/mb-user-meta/).
+
+## Creating a meta box (a field group)
 
 You must create a meta box before you can add fields to it.
 
-1. Go to *Dashboard &rarr; Meta Boxes &rarr; Add New*.
-1. Enter a name for your new meta box in the **Meta Box Title** box.
-1. Click the **Save Meta Box** button once complete.
+To do that, go to *Meta Box &rarr; Custom Fields*. Then click the **Add New** button.
 
-## Adding fields
+On the add new field group screen, enter a name for your new field group in the **Title** box. The field group ID is then automatically generated. You can change the ID if you want, it's optional.
 
-Adding fields to a meta box is similar to adding menu items in WordPress. We mimic the UI of the menu section to make it easy to you.
+Then select the fields you want to add to the field group on the left. When click on a field, it will be automatically added to the list of fields in the field group. We'll see the settings of each fields in the next section.
 
-To add fields to a meta box, just find the field type you want to add on the left panels, click the field button to add it to the meta box.
+![creating a meta box (field group)](https://i.imgur.com/K7BzNfZ.png)
 
-[![Adding fields to meta box](https://i.imgur.com/LlpbRVi.gif)](https://i.imgur.com/LlpbRVi.gif)
+{% include alert.html content="To find a field type quickly, type its name in the input box above the field list. The plugin will filters the fields to show only matched fields." %}
 
-## Deleting fields
+When it's done, click button **Publish** to save the field group. You also can click on **Save as Draft** link if you don't want to publish it, e.g. making it not available in the edit post screen.
 
-[![Deleting a Meta Box](https://i.imgur.com/ZywHp0F.gif)](https://i.imgur.com/ZywHp0F.gif)
+## Field group settings
 
-1. Locate the field that you want to remove in the field editor window
-1. Click on the arrow icon in the top right-hand corner of the field/box to expand it.
-1. Click on the Remove link. The field/box will be immediately removed.
-1. Click the Save Meta Box button to save your changes.
+The field group settings are put in the tab **Settings**:
 
-## Customizing fields
+![field group settings](https://i.imgur.com/CHosaVq.png)
 
-[![Customizing meta box field](https://i.imgur.com/KJ05fKD.gif)](https://i.imgur.com/KJ05fKD.gif)
+The list of field group settings are listed and explained [here](https://docs.metabox.io/creating-meta-boxes/). The Meta Box Builder plugin simply converts them into UI to make it easy for you to select/change them.
 
-Each field has its [own settings](/field-settings/) that you can edit within the builder.
+{% include alert.html content="Note that, field groups also accepts custom attributes, just like fields. It uses the same dot notation or JSON notation to define custom attributes. For more information, please see **Custom Attributes** section below." %}
 
-1. Click on the arrow in the top right-hand corner of the field to expand it.
-1. Enter the values for the settings that you want to assign to the field.
-1. Click the Save Meta Box button to save your changes.
+## Customizing field settings
 
-## Reordering fields
+When adding fields to a field group, each field has its own settings. The list of settings with detailed explaination is [here](https://docs.metabox.io/field-settings/). Meta Box Builder simply creates UI for them.
 
-Just drag your fields to the position that you want.
+To view and edit field settings, click the arrow on the title panel:
 
-[![reordering fields](https://i.imgur.com/ZOZD5aY.gif)](https://i.imgur.com/ZOZD5aY.gif)
+![Edit field settings](https://i.imgur.com/X6BSk7g.png)
 
-## Duplicating fields
+Each field settings are self-explained. We also add some tooltips next to the setting title to give you more information if needed.
 
-1. Locate the field that you want to clone/duplicate in the field editor window
-1. Click on the arrow icon in the top right-hand corner of the field/box to expand it.
-1. Click on the Duplicate link. The field/box will be immediately duplicated.
-1. Click the Save Meta Box button to save your changes.
+All field settings are divided into 3 tabs: General, Appearance and Advanced. The General and Appearance tabs are common for all fields. The Advanced tab is for custom attributes (advanced settings - we'll talk about it in a section below) and for [Meta Box extensions](https://metabox.io/plugins/).
 
-## Custom Attributes
+{% include alert.html content="Besides common settings, each field has its own settings. Depend on the field type, the UI might be different to show specific settings." %}
 
-You can also add an attribute which does not exist on the field editor window by click on "Show Advanced", then click "Add Attribute". For example, if you want to create a text field like:
+## Custom attributes
+
+You can also add an custom attributes which does not exist on the field UI window by click on Advanced tab, then click **+ Attribute** button:
+
+![custom attribute](https://i.imgur.com/spmhYCn.png)
+
+For example, if you want to create a text field like:
 
 ```php
 'text' => array(
@@ -67,7 +69,7 @@ You can also add an attribute which does not exist on the field editor window by
 )
 ```
 
-Just enter 'foo' to the key, 'bar' to the value, 'baz' to the key and 'false' to the value (without quote).
+Just enter `foo` to the key, `bar` to the value, `baz` to the key and `false` to the value.
 
 Remember, Meta Box Builder will treat `true`, `false`, `0`, `1` values as `bool` type.
 
@@ -93,7 +95,7 @@ Then you can use the dot notation or JSON for custom attributes:
 
 ### Dot notation
 
-Since 1.2, you can use dot notation to define an array. For the `tax_query` above, you can define with dot notation like so:
+The dot notation is available since version 1.2. For the `tax_query` above, you can define with dot notation like so:
 
 ![dot notation](https://i.imgur.com/YbjBP7A.png)
 
@@ -101,37 +103,61 @@ Please note that `tax_query.0.taxonomy`, `tax_query.0.field`, and `tax_query.0.t
 
 ### JSON notation
 
-Prior to version 1.2, to create a nested array in Meta Box Builder, you can use JSON, encode the whole array of `tax_query` and paste to it value. Like so:
+To create a nested array in Meta Box Builder, you can use JSON notation, encode the whole array of `tax_query` and paste to it value. Like so:
 
 ![json value](https://i.imgur.com/kJRrnd7.png)
 
-## Editing / Deleting a Meta Box
+## Manipulating fields
 
-1. Navigate to Meta Boxes \ All Meta Boxes. You'll see the list of all Meta Boxes like so:
+### Deleting a field
 
-[![All Meta Boxes](https://i.imgur.com/gqvRZZ6.png)](https://i.imgur.com/gqvRZZ6.png)
+Click the red **Remove** link in the bottom left of the field settings panel:
 
-- To Trash / Delete a Meta Box. Simply click on the red 'Trash' button.
-- To Edit a Meta Box. Click on the Meta Box name or 'Edit' button.
+![delete a field](https://i.imgur.com/dkcHg9P.png)
 
-## Other Meta Box Settings
+### Reordering fields
 
-[![Meta Box Settings](https://i.imgur.com/fZIpbZ2.png)](https://i.imgur.com/fZIpbZ2.png)
+Just drag your fields to the position that you want.
 
-Attribute|Description
----|---
-Priority|The priority within the context where the boxes should show. Default: `High`
-Context|The part of the page where the meta box should be shown. Default: `Normal`
-Post types|Type of the post which the meta box should be attached. Default: `Post` and `Page`
-Autosave|Auto save meta box whilst the post has auto saved. See [this documentation](/creating-meta-boxes/) if you want to take a deeper look into the attributes for Meta Box.
+[![reordering fields](https://i.imgur.com/ZOZD5aY.gif)](https://i.imgur.com/ZOZD5aY.gif)
 
-Note that, Meta Box also accepts custom attributes, just like custom field settings. It uses the same dot or JSON notation to define custom attributes. For more information, please see [Custom Attributes section](#custom-attributes).
+### Duplicating fields
 
-## Misc
+In case you want to create similar fields, duplicate feature can help you save a lot of time.
 
-### Further supports / Bugs report
+To duplicate a field, simply click the **Duplicate** link in the bottom right of the field settings panel:
 
-If this documentation doesn't solve your problem. Or you have trouble when using Meta Box Builder, please don't hesitate to contact us via [Support Forum](https://metabox.io/support).
+![duplicate a field](https://i.imgur.com/sn5IJNw.png)
+
+A new field will be immediately created and put below the current field.
+
+## Getting PHP code
+
+After saving a field group, you'll see a new tab appeared on the top named **Code**. The Meta Box Builder plugin automatically generates PHP code that you can copy and paste into your theme's `functions.php` file.
+
+To get the code, click on the tab **Code**, then click the **Copy** button:
+
+![export code](https://i.imgur.com/g6EnLns.png)
+
+When you copy PHP code and paste it into your theme's `functions.php` file, you can **safely deactivate Meta Box Builder** (do *not* deactivate Meta Box, it's still required). Your field groups and fields are still working.
+
+For detailed instruction, please see [this tutorial](https://metabox.io/copy-custom-fields-with-meta-box-builder/).
+
+## Export / Import
+
+To export one or more field groups, go to the main screen *Meta Box &rarr; Custom Fields*. Then click the checkboxes next to the field groups' titles you want to export. Then choose **Export** from the Bulk Actions dropdown. Then click **Apply**.
+
+![export field groups](https://i.imgur.com/r1moj0S.png)
+
+To import field groups, *Meta Box &rarr; Import*. Choose the downloaded file in the previous step, then press **Upload file and import**. That’s all!
+
+![import field groups](https://i.imgur.com/z4ntga2.png)
+
+For detailed instruction, please see [this tutorial](https://metabox.io/export-import-custom-fields-meta-box-builder/).
+
+Video tutorial:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BGVY-5W6d7g?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### See also
 
