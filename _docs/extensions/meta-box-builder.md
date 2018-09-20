@@ -14,19 +14,17 @@ Clicking on that menu will bring you to the screen where you can create meta box
 
 Please note that the screen says **Field Groups** instead of **Meta Boxes**. We think the term "meta box" might be confusing, since it's the name of the [Meta Box plugin](https://metabox.io). Besides, the meta box builder is for creating custom fields, using field group with a simple meaning of "set of custom fields" makes sense. This term also works in case you want to build [front-end forms](https://metabox.io/plugins/mb-frontend-submission/), [settings pages](https://metabox.io/plugins/mb-settings-page/) or [user fields](https://metabox.io/plugins/mb-user-meta/).
 
-## Creating a meta box (a field group)
+## Creating a field group
 
-You must create a meta box before you can add fields to it.
-
-To do that, go to *Meta Box &rarr; Custom Fields*. Then click the **Add New** button.
+To create a field group, go to *Meta Box &rarr; Custom Fields*. Then click the **Add New** button.
 
 On the add new field group screen, enter a name for your new field group in the **Title** box. The field group ID is then automatically generated. You can change the ID if you want, it's optional.
 
-Then select the fields you want to add to the field group on the left. When click on a field, it will be automatically added to the list of fields in the field group. We'll see the settings of each fields in the next section.
+Then select the fields you want to add to the field group on the left. When click on a field, it will be automatically added to the list of fields in the field group. We'll see the settings of each fields in a section below.
 
 ![creating a meta box (field group)](https://i.imgur.com/K7BzNfZ.png)
 
-{% include alert.html content="To find a field type quickly, type its name in the input box above the field list. The plugin will filters the fields to show only matched fields." %}
+{% include alert.html content="To find a field type quickly, type its name in the input box above the field list. The plugin will filter the fields and show only matched fields." %}
 
 When it's done, click button **Publish** to save the field group. You also can click on **Save as Draft** link if you don't want to publish it, e.g. making it not available in the edit post screen.
 
@@ -38,7 +36,7 @@ The field group settings are put in the tab **Settings**:
 
 The list of field group settings are listed and explained [here](https://docs.metabox.io/creating-meta-boxes/). The Meta Box Builder plugin simply converts them into UI to make it easy for you to select/change them.
 
-{% include alert.html content="Note that, field groups also accepts custom attributes, just like fields. It uses the same dot notation or JSON notation to define custom attributes. For more information, please see **Custom Attributes** section below." %}
+{% include alert.html content="Note that, field groups also accept custom attributes, just like fields. It uses the same dot notation or JSON notation to define custom attributes. For more information, please see **Custom Attributes** section below." %}
 
 ## Customizing field settings
 
@@ -52,7 +50,7 @@ Each field settings are self-explained. We also add some tooltips next to the se
 
 All field settings are divided into 3 tabs: General, Appearance and Advanced. The General and Appearance tabs are common for all fields. The Advanced tab is for custom attributes (advanced settings - we'll talk about it in a section below) and for [Meta Box extensions](https://metabox.io/plugins/).
 
-{% include alert.html content="Besides common settings, each field has its own settings. Depend on the field type, the UI might be different to show specific settings." %}
+{% include alert.html content="Besides common settings, each field has its own settings. Depend on the field type, the UI might be different to show specific settings for it." %}
 
 ## Custom attributes
 
