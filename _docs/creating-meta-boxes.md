@@ -73,7 +73,7 @@ This is the screenshot how meta boxes appear in `form_top` and `after_title` loc
 
 ![meta box locations](https://i.imgur.com/kBKbS3wl.png)
 
-{% include alert.html content="Gutenberg editor does NOT support extra contexts. Only normal, advanced and side contexts are supported. If you use Gutenberg, use these contexts only." %}
+{% include alert.html type="warning" content="Gutenberg editor does NOT support extra contexts. Only normal, advanced and side contexts are supported. If you use Gutenberg, use these contexts only." %}
 
 ## Fields
 
