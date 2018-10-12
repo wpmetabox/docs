@@ -111,3 +111,7 @@ This guide covered all the basics for getting started with the Meta Box plugin, 
 To customize fields and meta boxes, please look at list of the documentation on the left menu. Note that the documentation is regularly updated to cover the latest features of the plugin, so keep checking it when you have any troubles using the plugin.
 
 If you have any questions that we haven't covered in this guide, please [file an issue](https://github.com/wpmetabox/docs/issues/new) on Github. Happy developing!
+
+## Related tutorials
+
+[What is Meta Box plugin? How to use it to add custom fields in WordPress?](https://metabox.io/what-is-meta-box-plugin/)
