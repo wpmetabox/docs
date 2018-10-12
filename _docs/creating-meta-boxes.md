@@ -73,6 +73,8 @@ This is the screenshot how meta boxes appear in `form_top` and `after_title` loc
 
 ![meta box locations](https://i.imgur.com/kBKbS3wl.png)
 
+{% include alert.html content="Gutenberg editor does NOT support extra contexts. Only normal, advanced and side contexts are supported. If you use Gutenberg, use these contexts only." %}
+
 ## Fields
 
 Fields are added to a meta box via the key `fields`. Each field is an array of settings. In the example above, the text field is defined via:
