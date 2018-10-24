@@ -42,7 +42,7 @@ Each meta box has the following settings:
 
 Name|Description
 --|--
-`id`|Meta box ID. Optional. If it's absent, it will be generated from `title` using `sanitize_title` function.
+`id`|Meta box ID, must be unique. Optional. If it's absent, it will be generated from `title` using `sanitize_title` function.
 `title`|Meta box title. Required.
 `post_types`|Custom post types which the meta box is for. There can be an array of multiple custom post types or a string for the single post type. Must be in lowercase (like the slug). Optional. Default: `post`.
 `context`|Where the meta box is displayed. See below for list of meta box contexts. Optional.
