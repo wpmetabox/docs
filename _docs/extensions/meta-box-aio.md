@@ -34,20 +34,24 @@ To hide the settings page, use the following code:
 add_filter( 'mb_aio_show_settings', '__return_false' );
 ```
 
-### `option_meta_box_aio`
+### `mb_aio_extensions`
 
-This filter allows you to change the option of the settings page. Thus, enable/disable modules by just coding.
+This filter allows you to change the list of enabled premium extensions. Thus, enable/disable modules by just coding.
+
+This filter takes a list of enabled extensions (their slugs), and returns the filtered list.
 
 For example, the code below enables only the [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/) extension:
 
 ```php
-add_filter( 'option_meta_box_aio', function( $option ) {
-    $option = array( 'meta-box-builder' => 1 );
+add_filter( 'mb_aio_extensions', function( $extensions ) {
+    $extensions = ['meta-box-builder'];
+    
+    // You can also do
+    // $extensions[] = 'meta-box-builder';
+    
     return $option;
 } );
 ```
-
-The option is an array, where the extension slug is the key and value is `1` if enable, `0` if disable.
 
 ### `mb_aio_load_free_extensions`
 
