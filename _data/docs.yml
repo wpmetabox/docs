@@ -103,6 +103,8 @@
   - /rwmb-meta/
   - /rwmb-the-value/
   - /rwmb-get-value/
+  - /rwmb-get-object-fields/
+  - /rwmb-get-field-settings/
 - title: Tutorials
   items:
   - /edit-meta-boxes/
