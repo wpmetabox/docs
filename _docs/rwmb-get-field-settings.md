@@ -40,3 +40,7 @@ Name|Description
 ## Returned value
 
 This function returns full array of field settings.
+
+## See also
+
+- [How to get field settings by field ID?](https://metabox.io/get-field-settings/)
