@@ -51,8 +51,8 @@ If field is not cloneable:
 
 ```php
 $values = rwmb_meta( $field_id );
-echo $value[0]; // Name
-echo $value[1]; // Email
+echo $values[0]; // Name
+echo $values[1]; // Email
 ```
 
 If field is cloneable:
