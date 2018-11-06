@@ -27,7 +27,7 @@ Name | Description
 ```php
 array(
     'name'            => 'Select',
-    'id'              => 'select',
+    'id'              => $prefix . 'select',
     'type'            => 'select',
     // Array of 'value' => 'Label' pairs
     'options'         => array(
