@@ -1,10 +1,12 @@
 ---
-title: WYSWIYG
+title: WYSIWYG
 ---
 
 ## Overview
 
 The wysiwyg field creates an editor similar to the post content. You are able to enter any kind of content, insert media or custom HTML.
+
+Note: wysiwyg stands for What You See Is What You Get, a general term of visual editor, where you see the formated content as you type.
 
 ## Screenshot
 
