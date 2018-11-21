@@ -1,5 +1,5 @@
 ---
-title: Osm
+title: Open Street Map
 ---
 
 ## Overview
