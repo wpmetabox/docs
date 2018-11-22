@@ -10,6 +10,8 @@ Showing fields' values in the post table give users a better overview of the pos
 
 ![meta box admin columns](https://i.imgur.com/7joEGrL.png)
 
+For more details, please see the [extension page](https://metabox.io/plugins/mb-admin-columns/).
+
 {% include installation.html %}
 
 ## Example
