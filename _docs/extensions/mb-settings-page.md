@@ -10,6 +10,16 @@ It's a wrapper of [Settings API](https://codex.wordpress.org/Settings_API) (prov
 
 By using Settings API, all the fields' values will be saved as an array in a single option in the WordPress's options table. Each field is an element of the array with the corresponding key (field ID). It's the recommended way by WordPress that doesn't make your options table bloat.
 
+These are the screenshots:
+
+**Tab style** (the default WordPress style for settings page):
+
+![settings page with tabs](https://i.imgur.com/yb9Admk.png)
+
+**Boxed style** (the WordPress style for meta boxes):
+
+![settings page boxed style](https://i0.wp.com/metabox.io/wp-content/uploads/2015/12/settings-page.jpg)
+
 For more info, please see the [extension page](https://metabox.io/plugins/mb-settings-page/).
 
 {% include installation.html %}
