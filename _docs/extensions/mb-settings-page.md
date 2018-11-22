@@ -2,9 +2,111 @@
 title: MB Settings Page
 ---
 
+## Overview
+
+The MB Settings Page extension helps you to create one or multiple settings pages for your website. You can use it to create a theme options page, or a settings page for your plugin, or a custom settings page for clients' websites.
+
+It's a wrapper of [Settings API](https://codex.wordpress.org/Settings_API) (provided by WordPress) and Meta Box, that combines the power of both platforms and provides an better and simpler way to create a settings page. Briefly, it helps you create a settings page via a short and beautiful PHP syntax without going through all the low-level functions of the Settings API. Besides it supports all the field types in Meta Box as well as other [extensions](https://metabox.io/plugins/).
+
+By using Settings API, all the fields' values will be saved as an array in a single option in the WordPress's options table. Each field is an element of the array with the corresponding key (field ID). It's the recommended way by WordPress that doesn't make your options table bloat.
+
+For more info, please see the [extension page](https://metabox.io/plugins/mb-settings-page/).
+
 {% include installation.html %}
 
 After installing, you need to register a settings page and register meta boxes (and fields) for that settings page.
+
+## Quick example
+
+Just copy and paste the code below to your theme's `functions.php` file, or your plugin file:
+
+```php
+// Register settings page. In this case, it's a theme options page
+add_filter( 'mb_settings_pages', 'prefix_options_page' );
+function prefix_options_page( $settings_pages ) {
+    $settings_pages[] = array(
+        'id'          => 'pencil',
+        'option_name' => 'pencil',
+        'menu_title'  => 'Pencil',
+        'icon_url'    => 'dashicons-edit',
+        'style'       => 'no-boxes',
+        'columns'     => 1,
+        'tabs'        => array(
+            'general' => 'General Settings',
+            'design'  => 'Design Customization',
+            'faq'     => 'FAQ & Help',
+        ),
+        'position'    => 68,
+    );
+    return $settings_pages;
+}
+
+// Register meta boxes and fields for settings page
+add_filter( 'rwmb_meta_boxes', 'prefix_options_meta_boxes' );
+function prefix_options_meta_boxes( $meta_boxes ) {
+    $meta_boxes[] = array(
+        'id'             => 'general',
+        'title'          => 'General',
+        'settings_pages' => 'pencil',
+        'tab'            => 'general',
+
+        'fields' => array(
+            array(
+                'name' => 'Logo',
+                'id'   => 'logo',
+                'type' => 'file_input',
+            ),
+            array(
+                'name'    => 'Layout',
+                'id'      => 'layout',
+                'type'    => 'image_select',
+                'options' => array(
+                    'sidebar-left'  => 'https://i.imgur.com/Y2sxQ2R.png',
+                    'sidebar-right' => 'https://i.imgur.com/h7ONxhz.png',
+                    'no-sidebar'    => 'https://i.imgur.com/m7oQKvk.png',
+                ),
+            ),
+        ),
+    );
+    $meta_boxes[] = array(
+        'id'             => 'colors',
+        'title'          => 'Colors',
+        'settings_pages' => 'pencil',
+        'tab'            => 'design',
+
+        'fields' => array(
+            array(
+                'name' => 'Heading Color',
+                'id'   => 'heading-color',
+                'type' => 'color',
+            ),
+            array(
+                'name' => 'Text Color',
+                'id'   => 'text-color',
+                'type' => 'color',
+            ),
+        ),
+    );
+
+    $meta_boxes[] = array(
+        'id'             => 'info',
+        'title'          => 'Theme Info',
+        'settings_pages' => 'pencil',
+        'tab'            => 'faq',
+        'fields'         => array(
+            array(
+                'type' => 'custom_html',
+                'std'  => 'Having questions? Check out our documentation',
+            ),
+        ),
+    );
+    return $meta_boxes;
+}
+```
+
+Now refresh the admin page and you'll see a new settings page **Pencel** appeared in the main menu, like this:
+
+![settings page with tabs](https://i.imgur.com/yb9Admk.png)
 
 ## Creating settings pages
 
@@ -130,7 +232,7 @@ Then when clicking "Help" button, you'll see:
 
 ## Creating settings fields
 
-Creating settings meta boxes and fields for settings pages is the same as for posts. You need to hook to `rwmb_meta_boxes` and set a param `settings_pages` to the settings page(s) you want to add to.
+Creating settings meta boxes and fields for settings pages is the same as [for posts](https://docs.metabox.io/creating-meta-boxes/). You need to hook to `rwmb_meta_boxes` and set a param `settings_pages` to the settings page(s) you want to add to.
 
 The sample code is below:
 
@@ -317,6 +419,8 @@ This action fires after the submit button is rendered, which allows you to add m
 ## Data
 
 Settings values are saved in WordPress option as an array with the option name is `option_name` in the settings page configuration. The keys of that array are the field IDs and values are the field values.
+
+It's the recommended way by WordPress that doesn't make your options table bloat.
 
 ## Getting field value
 
