@@ -2,6 +2,27 @@
 title: Meta Box Conditional Logic
 ---
 
+## Overview
+
+The **Meta Box Conditional Logic** extension is one of the most popular plugins of Meta Box. It helps you to show or hide meta boxes, custom fields or any elements based on other fields' values. Developers can control the relations between fields powerfully and create connections and perform any logic between them.
+
+See this video below to understand how it works:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m_FtbydM_-I?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+The extension is super useful when you want to:
+
+- Show a meta box only for a specific post format
+- Show page settings (a meta box) for only a specific page template
+- Show a group of fields when users select a specific value from a dropdown
+
+and a lot more.
+
+You can also combine these options to build complex conditions. It works not only for meta boxes or custom fields, but also other HTML elements. It's really powerful.
+
+For more info, please see the [extension page](https://metabox.io/plugins/meta-box-conditional-logic/).
+
+
 {% include installation.html %}
 
 
