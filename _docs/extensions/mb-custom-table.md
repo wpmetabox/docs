@@ -44,6 +44,8 @@ $sql = "CREATE TABLE my_custom_table (
 
 {% include alert.html content="**Important:** Column key has to match your custom fields' IDs, one column per custom field. If you create a column to store a group, then the column key must be the top-level group ID. No need to create column for sub-fields." %}
 
+{% include alert.html content="Column data types are MySQL's. You can see the list of data types [here](https://dev.mysql.com/doc/refman/8.0/en/data-types.html)." %}
+
 Note that the **`ID` column is automatically created**. It's used to store the object ID for future reference. Object ID can be post ID, user ID or term ID, depends on what meta type the table is used for.
 
 If you want to set keys for columns, just add the 3rd parameter:
