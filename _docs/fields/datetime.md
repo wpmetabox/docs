@@ -33,7 +33,7 @@ Name | Description
 array(
     'name'       => 'Date picker',
     'id'         => 'field_id',
-    'type'       => 'date',
+    'type'       => 'datetime',
 
     // Datetime picker options.
     // For date options, see here http://api.jqueryui.com/datepicker
