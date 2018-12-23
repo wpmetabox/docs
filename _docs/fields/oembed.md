@@ -58,12 +58,12 @@ Read more about [rwmb_meta()](/rwmb-meta/) and [rwmb_get_value()](/rwmb-get-valu
 
 ## Hooks
 
-The `oembed` field has one filter `rwmb_not_available_string`, which allows users to change the message for all oembed field when no embed is available.
+The `oembed` field has one filter `rwmb_oembed_not_available_string`, which allows users to change the message for all oembed field when no embed is available.
 
 Use the filter as follows:
 
 ```php
-add_filter( 'rwmb_not_available_string', function( $message ) {
+add_filter( 'rwmb_oembed_not_available_string', function( $message ) {
     $message = 'Sorry, what you are looking here is not available.';
     return $message;
 } );
