@@ -19,6 +19,8 @@ Please follow the steps below:
 
 Now go to **Posts &rarr; Add New** to see the result.
 
+Learn more about [using the Online Generator](/online-generator/).
+
 ## Creating a simple meta box manually
 
 If you don't use the online generator, you can create meta boxes and custom fields with a little PHP coding.
