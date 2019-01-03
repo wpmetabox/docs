@@ -2,6 +2,18 @@
 title: Meta Box Tooltip
 ---
 
+## Overview
+
+Meta Box Tooltip is an UI extension for Meta Box which helps you to add help information via tooltips. Using tooltips is a great way to let users know what a custom field is and what need to be entered in the field.
+
+Screenshot:
+
+![meta box tooltip screenshot](https://i0.wp.com/metabox.io/wp-content/uploads/2014/10/meta-box-tooltip.png)
+
+It supports various position for tooltips and is easy to customize with icons (from Dashicons or custom icon).
+
+For more information, please see the [extension page](https://metabox.io/plugins/meta-box-tooltip/).
+
 {% include installation.html %}
 
 ## Usage
