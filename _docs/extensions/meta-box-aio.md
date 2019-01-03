@@ -2,7 +2,11 @@
 title: Meta Box AIO
 ---
 
-Meta Box AIO is a part of [Developer Bundle](https://metabox.io/pricing/), which contains all the premium extensions and the [updater](https://metabox.io/plugins/meta-box-updater/). This extension allows you to just install 1 plugin and have everything in hand. [See here](https://metabox.io/meta-box-aio-available/) for the introduction.
+## Overview
+
+Meta Box AIO is a part of [Developer and Lifetime Bundles](https://metabox.io/pricing/), which contains all the extensions. This extension allows you to just install 1 plugin and have everything in hand. So you can shorten down the plugin list and never get lost in a lot of plugins provided by Meta Box.
+
+For more information, please see [this blog post](https://metabox.io/meta-box-aio-available/).
 
 ## Settings page
 
