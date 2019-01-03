@@ -2,6 +2,14 @@
 title: Meta Box Show Hide
 ---
 
+## Overview
+
+The Meta Box Show Hide extensions helps you to toggle the visibility of a meta box based on some conditions such as categories, page template or post format. So when your users set a page template for your page, you can decide whether to show a meta box for extra settings.
+
+Meta Box Show Hide is a simplified version of [Meta Box Conditional Logic](https://metabox.io/plugins/meta-box-conditional-logic/), where it controls the visibility for only meta box. In Meta Box Conditional Logic, you can control the visibility of custom fields and other HTML elements. Besides, Meta Box Conditional Logic supports more type of conditions.
+
+For more information, please see the [extension page](https://metabox.io/plugins/meta-box-show-hide/).
+
 {% include installation.html %}
 
 ## Usage
