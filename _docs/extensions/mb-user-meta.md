@@ -2,6 +2,18 @@
 title: MB User Meta
 ---
 
+## Overview
+
+MB User Meta is an extension for the Meta Box plugin which allows you to add custom fields to user profile like user address, user billing info or custom avatar. With MB User Meta, you're able to add and edit a lot of additional information for users or customers.
+
+See this screenshot for a demo:
+
+![user meta](https://i1.wp.com/metabox.io/wp-content/uploads/2016/07/user-meta-1.png)
+
+Please note that the extension works only on the back end. If you want to edit user profile on the front end, please see [MB User Profile](https://metabox.io/plugins/mb-user-profile/).
+
+For more information about the extension, please see the [extension page](https://metabox.io/plugins/mb-user-meta/).
+
 {% include installation.html %}
 
 ## Adding fields to user profile
