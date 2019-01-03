@@ -2,6 +2,20 @@
 title: MB User Profile
 ---
 
+## Overview
+
+MB User Profile is an improvement for the [MB User Meta](https://metabox.io/plugins/mb-user-meta/) extension. It allows you to add information to user profile and edit these details on the front end.
+
+To be able to do the profile on the front end, the extension provides you a full toolkit that includes: register form, login form and edit profile form. You're able to embed these forms anywhere using shortcodes.
+
+Please note that this extension already includes **MB User Meta**. So, you can use it to add as many fields to user profile as you want.
+
+This is a screenshot of a user profile page:
+
+![user profile page](https://i.imgur.com/bqVnDDF.png)
+
+For more information, please see the [extension page](https://metabox.io/plugins/mb-user-profile/).
+
 {% include installation.html %}
 
 **Important:** This extension requires Meta Box version 4.11+. If you're using an older version of the plugin, please update.
