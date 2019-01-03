@@ -2,6 +2,22 @@
 title: Meta Box Template
 ---
 
+## Overview
+
+Some users have a hard time [configuring meta boxes](https://docs.metabox.io/creating-meta-boxes/) and [custom fields](https://docs.metabox.io/field-settings/) with PHP. That would not be a problem anymore with Meta Box Template.
+
+This extension helps you write configuration for meta boxes and custom fields in a human-readable format (YAML). So it's much easier to edit or add more custom fields if you want. Meta Box Template creates a settings page in the admin, and all you need to do is just enter the meta box settings.
+
+It's kind of a tool stays between manual PHP code and visual drag and drop UI of [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/). So, it's powerful and flexible.
+
+Please note that as it uses YAML to describe the configuration, it can do a lot more than Meta Box Builder and is almost equal to manual PHP.
+
+Screenshot:
+
+![meta box template](https://i1.wp.com/metabox.io/wp-content/uploads/2014/12/meta-box-template-file.png)
+
+For more information, please see the [extension page](https://metabox.io/plugins/meta-box-template/)
+
 {% include installation.html %}
 
 ## Usage
