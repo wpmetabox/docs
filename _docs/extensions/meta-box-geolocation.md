@@ -2,6 +2,16 @@
 title: Meta Box Geolocation
 ---
 
+## Overview
+
+The Meta Box Geolocation is helpful if you have multiple custom fields for location such as address, zipcode, city, state and country. Letting users manually fill in these fields might be a boring time-consuming job. This extension helps you fill in these information quickly by using Geocoding API from Google. So that you just need to enter an address, it will autosuggest a complete address and fill all other fields.
+
+Take a look at the screenshot:
+
+![auto suggest geolocation data](https://i1.wp.com/metabox.io/wp-content/uploads/2016/03/meta-box-geolocation.gif)
+
+For more information, please see the [extension page](https://metabox.io/plugins/meta-box-geolocation/).
+
 {% include installation.html %}
 
 Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
