@@ -16,6 +16,8 @@ MB Frontend Submission brings the meta boxes and custom fields from the back end
 
 Using this extension, you can create powerful forms for users to submit posts on the front end and control how it work effortlessly.
 
+For more information, please see the [extension page](https://metabox.io/plugins/mb-frontend-submission/)
+
 {% include installation.html %}
 
 **Important:** This extension requires Meta Box version 4.11+. If you're using an older version of the plugin, please update.
