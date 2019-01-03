@@ -2,6 +2,14 @@
 title: Meta Box Include Exclude
 ---
 
+## Overview
+
+The Meta Box Include Exclude extension is a must-use tool for Meta Box users. It allows you to define meta boxes only for a specific page such as a landing page or contact page. So if you have 2 different pages and you want each of them has a different meta box, that's totally possible.
+
+The extension has various conditions for meta box location such as by ID, by page template or by category. You can combine the conditions or define your custom rule if you want.
+
+For more information, please see the [extension page](https://metabox.io/plugins/meta-box-include-exclude/).
+
 {% include installation.html %}
 
 ## Usage
