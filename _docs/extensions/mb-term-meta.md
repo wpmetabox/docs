@@ -2,6 +2,16 @@
 title: MB Term Meta
 ---
 
+## Overview
+
+The MB Term Meta helps you to add custom fields to taxonomy terms like categories, tags or any custom taxonomy. It makes custom fields work not only for posts (which is supported by Meta Box), but also for terms. See this screenshot for a demo:
+
+![category custom fields](https://i0.wp.com/metabox.io/wp-content/uploads/2016/01/term-meta.png?resize=768%2C576&ssl=1)
+
+The plugin is simple and supports all the field types in Meta Box. It also uses the same syntax as for custom fields for posts, so you unlikely have to learn a new thing.
+
+For more information, please see the [extension page](https://metabox.io/plugins/mb-term-meta/).
+
 {% include installation.html %}
 
 ## Creating meta boxes
