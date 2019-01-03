@@ -2,6 +2,22 @@
 title: Meta Box Builder
 ---
 
+## Overview
+
+Meta Box Builder is the most popular extension for Meta Box users and is the mandatory tool for almost everyone.
+
+This extension creates an UI for you to add and manage your custom fields. So you don't need to [touch code again](https://docs.metabox.io/creating-meta-boxes/). It's helpful for both beginners (who have little knowlege about PHP coding) or experience developers (who want to save time).
+
+If you already used our free [Online Generator](https://metabox.io/online-generator/), then this extension works very similarly. But it has a better support (very much) for all field types and other extensions.
+
+Please note that, while Meta Box Builder supports most settings for custom fields and extensions, there are some advanced settings that need to be done in PHP code (such as [creating settings page](https://docs.metabox.io/extensions/mb-settings-page/) or [relationships](https://docs.metabox.io/extensions/mb-relationships/) if you use these extensions). But in 95% cases, you're fine with the extension.
+
+Take a look at the screenshot:
+
+![meta box builder ui](https://i2.wp.com/metabox.io/wp-content/uploads/2015/01/meta-box-builder-field-edit.png)
+
+For more information, please see the [extension page](https://metabox.io/plugins/meta-box-builder/).
+
 This guide cover basic tasks a user may carry out when using our builder.
 
 {% include installation.html %}
