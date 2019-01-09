@@ -93,7 +93,7 @@ Name|Description
 
 This shortcode shows the user profile form that allows users to edit their information. If you want to add more fields in this form, [create a meta box for users](/extensions/mb-user-meta/) with some fields. Then add the meta box ID in the `id` attribute of the shortcode.
 
-If you have multiple meta boxes that you want to display in the register form, enter their IDs separated by commas.
+If you have multiple meta boxes that you want to display in the profile form, enter their IDs separated by commas.
 
 **Shortcode attributes**
 
