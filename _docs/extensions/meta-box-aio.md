@@ -10,11 +10,13 @@ For more information, please see [this blog post](https://metabox.io/meta-box-ai
 
 ## Settings page
 
-The extension has a settings page under *Settings &rarr; Meta Box AIO*, where you can enable/disable the modules you need/don't need.
+The extension has a settings page under *Meta Box &rarr; All-In-One*, where you can enable/disable the modules you need/don't need.
 
-![settings page](https://i.imgur.com/rGbwDoB.png)
+![meta box aio settings page](https://i.imgur.com/FA0gwWy.png)
 
 Simply check/uncheck the checkbox to enable/disable the corresponding extensions. Then click **Save Changes**.
+
+Please note that you still need to [install Meta Box](/installation/) plugin to see the admin menu.
 
 ## Free extensions
 
