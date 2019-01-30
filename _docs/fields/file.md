@@ -18,6 +18,7 @@ Name | Description
 --- | ---
 `max_file_uploads` | Max number of uploaded files. Optional.
 `force_delete` | Whether or not delete the files from Media Library when deleting them from post meta. `true` or `false` (default). Optional. Note: it might affect other posts if you use same file for multiple posts.
+`upload_dir` | Full path to custom upload folder. Added in Meta Box 4.16.
 
 Note that the `multiple` setting is always set to `true` for this field.
 
@@ -41,6 +42,28 @@ array(
 ## Data
 
 This field saves multiple values (attachment IDs) in the database. Each value (attachment ID) and is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+
+## Upload to custom folder
+
+Since Meta Box 4.16, you're able to upload files to custom folders rather than default WordPress `uploads` folder.
+
+To do that, simply set `'upload_dir' => '/full/path/to/folder/'` in your field settings.
+
+You can also use WordPress constants to specify the path easier, such as:
+
+```
+'upload_dir' => ABSPATH . '/invoices/',
+
+// or
+
+'upload_dir' => WP_CONTENT_DIR . '/invoices/',
+```
+
+The custom folder should be inside your your WordPress website's root folder. So you can store it in `/uploads/`, `/downloads/` folders if you want. The configuration is *per* field, so you can has one field store files in `/downloads/` and another field in `/invoices/`.
+
+Unlike the normal case, where files are added to the WordPress Media Library, files uploaded to custom folders are not available in the Media Library. Thus, the data saved in the custom fields is **file URL**, not attachment ID.
+
+To get the field data, you can use `get_post_meta()` to get file URL, or use `rwmb_meta()` to get an array of file details which includes: `path`, `url` and `name`.
 
 ## Template usage
 
