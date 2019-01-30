@@ -47,6 +47,27 @@ array(
 
 If the `timestamp` is set to `true`, the field value is converted to Unix timestamp and saved to the database. Otherwise, the user input value is saved.
 
+## Saving dates in another format
+
+Meta Box already supports customizing the date format **displaying to users** via `js_options`. In some cases, you might want to display in one format and save in another format. It's now possible in Meta Box 4.16.
+
+To specify a date format for **saving in the custom fields**, you need to set another attribute `save_format`. This attribute accepts a format string for **PHP** (not for JavaScript like the format displaying to users). So your field can be something like this:
+
+```php
+array(
+    'js_options' => array(
+        'dateFormat'      => 'dd-mm-yy',
+    ),
+    'save_format' => 'Y-m-d',
+),
+```
+
+So when displaying to users, the date will have the format of `30-01-2019` and when saving to the database, it will have the format of `2019-01-30`.
+
+This is extremely useful when you want to [sort or query the posts](https://metabox.io/get-posts-by-custom-fields-in-wordpress/) based on date value.
+
+Also please note that this feature requires PHP 5.3+.
+
 ## Template usage
 
 To get the field value, use the following code:
