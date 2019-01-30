@@ -26,6 +26,7 @@ Name | Description
 `inline` | Whether to display the date picker inline with the edit, e.g. do not require to click the input field to trigger the date picker? `true` or `false` (default).
 `timestamp` | Whether to save the date in the Unix timestamp format (but still display in human-readable format)? `true` or `false` (default).
 `js_options`| A combination of date picker and time picker options. See [date picker options](http://api.jqueryui.com/datepicker) and [time picker options](http://trentrichardson.com/examples/timepicker/).
+`save_format`| Custom PHP format for the datetime saved in the custom fields. See PHP's function [date()](http://php.net/manual/en/function.date.php) for the list of formats.
 
 ## Sample code
 
@@ -57,6 +58,28 @@ array(
 ## Data
 
 If the `timestamp` is set to `true`, the field value is converted to Unix timestamp and saved to the database. Otherwise, the user input value is saved.
+
+## Saving datetime in another format
+
+Meta Box already supports customizing the date format **displaying to users** via `js_options`. In some cases, you might want to display in one format and save in another format. It's now possible in Meta Box 4.16.
+
+To specify a date format for **saving in the custom fields**, you need to set another attribute `format_save`. This attribute accepts a format string for **PHP** (not for JavaScript like the format displaying to users). So your field can be something like this:
+
+```php
+array(
+    'js_options' => array(
+        'dateFormat'      => 'dd-mm-yy',
+        'showTimepicker'  => true,
+    ),
+    'save_format' => 'Y-m-d H:i:s',
+),
+```
+
+So when displaying to users, the date will have the format of `30-01-2019 05:00` and when saving to the database, it will have the format of `2019-01-30 05:00:00`.
+
+This is extremely useful when you want to [sort or query the posts](https://metabox.io/get-posts-by-custom-fields-in-wordpress/) based on date value.
+
+Also please note that this feature requires PHP 5.3+.
 
 ## Template usage
 
