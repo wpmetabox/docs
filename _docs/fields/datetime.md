@@ -63,7 +63,7 @@ If the `timestamp` is set to `true`, the field value is converted to Unix timest
 
 Meta Box already supports customizing the date format **displaying to users** via `js_options`. In some cases, you might want to display in one format and save in another format. It's now possible in Meta Box 4.16.
 
-To specify a date format for **saving in the custom fields**, you need to set another attribute `format_save`. This attribute accepts a format string for **PHP** (not for JavaScript like the format displaying to users). So your field can be something like this:
+To specify a date format for **saving in the custom fields**, you need to set another attribute `save_format`. This attribute accepts a format string for **PHP** (not for JavaScript like the format displaying to users). So your field can be something like this:
 
 ```php
 array(
