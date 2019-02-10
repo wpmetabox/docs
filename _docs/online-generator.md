@@ -6,7 +6,7 @@ title: Using the Online Generator
 
 We hope that this tool would help you save more time and effort than manual coding, especially if you are PHP beginners.
 
-Our Online Generator is part of our Meta Box Builder plugin, build for the same purpose. It has most of the basic features you might need, but if you are looking for more advanced options or integration with other plugins, give Meta Box Builder a try instead.
+Our Online Generator is part of our Meta Box Builder plugin, built for the same purpose. It has most of the basic features you might need, but if you are looking for more advanced options or integration with other plugins, give Meta Box Builder a try instead.
 
 Below are our instructions of how to use Online Generator. This guide includes simple actions you can apply when using Online Generator.
 
