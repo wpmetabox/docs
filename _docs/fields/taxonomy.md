@@ -94,9 +94,11 @@ array(
 
 ## Data
 
-This field does not save any value in the database. Instead of that, it sets the taxonomy terms for the current being edited post. In short, it behaves exactly like the "Category" and "Tags" meta boxes.
+This field **does not save any value** in the database. Instead of that, it **sets the taxonomy terms for the current being edited post**. In short, it behaves exactly like the "Category" and "Tags" meta boxes.
 
 The purpose of this field is to replace the default WordPress meta box for taxonomy and offer more options to control how it displays.
+
+For this reason, if you have 2 `taxonomy` field, and select different values for them, after saving, they still show the same value.
 
 If you prefer saving data, check out [taxonomy advanced](/fields/taxonomy-advanced/).
 
