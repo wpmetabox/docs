@@ -125,6 +125,13 @@ $term = rwmb_meta( $field_id );
 echo '<p>', $term->name, '</p>';
 ```
 
+The code above shows the term name only. If you want to show term link, use this code:
+
+```php
+$term = rwmb_meta( 'pub_type_field' );
+printf( '<a href="%s">%s</a>', get_term_link( $term ), $term->name );
+```
+
 If you just want to output selected terms in an unordered list, use this code:
 
 ```php
