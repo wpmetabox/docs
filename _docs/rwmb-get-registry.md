@@ -53,7 +53,7 @@ Similar to meta box registry, field registry is a storage of all fields. Each fi
 
 Since fields can have the same ID for different object types (posts, terms, users, settings pages), we can't store fields in the registry in a one-dimentional array as meta box registry. Instead of that, we store it in a multi-dimentional array like this:
 
-```
+```php
 [
     'post' => [
         'post'             => [$field1, $field2],
