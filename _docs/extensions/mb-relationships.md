@@ -481,6 +481,32 @@ while ( $my_query->have_posts() ) : $my_query->the_post();
 endwhile;
 ```
 
+## Querying by multiple relationships
+
+Since version 1.6.0, you're able to get related items by multiple relationships. For example, you have event-to-band and event-to-artist relationships and you want to get all bands and artists that connected from an event, then you can do the following:
+
+```php
+$query = new WP_Query( array(
+    'relationship' => array(
+        'relation' => 'OR',
+        array(
+            'id'   => 'events_to_bands',
+            'from' => get_the_ID(),
+        ),
+        array(
+            'id'   => 'events_to_artists',
+            'from' => get_the_ID(),
+        ),
+    ),
+    'nopaging'     => true,
+) );
+while ( $query->have_posts() ) {
+    $query->the_post();
+    echo get_the_title() . '<br>';
+}
+wp_reset_postdata();
+```
+
 ## Creating connections programmatically
 
 The plugin has several public APIs that can help you create or delete connections between 2 items using code.
