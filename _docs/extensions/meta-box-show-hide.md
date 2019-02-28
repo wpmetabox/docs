@@ -33,6 +33,14 @@ Parameter|Description
 `is_child`|Boolean. Match if the current page is a child page or not. Optional.
 `input_value`| Array of pairs of CSS selectors and values. Match if the inputs (with specified CSS selector) has the defined value. Note: the `relation` is also applied to rules here. Added in version 0.2.
 
+Since version 4.7, WordPress has added support for [post type templates](https://make.wordpress.org/core/2016/11/03/post-type-templates-in-4-7/). To make it work with `template` rule in Show Hide, you need to update to version 1.2.0+ and set the syntax to:
+
+```php
+'template' => array( 'post:my-template.php', 'my_post_type:template-one.php' ),
+```
+
+e.g, the value should be in form of `post_type:template-file.php`. If the `post_type:` is missing, then the plugin automatically understands that the template is used for pages only.
+
 ## Sample code
 
 ```php
