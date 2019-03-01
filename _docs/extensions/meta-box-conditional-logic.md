@@ -208,18 +208,20 @@ Meta Box Conditional Logic can work with other HTML elements the same as Meta Bo
 
 To make it work with HTML element, instead of passing the field ID as the first parameter, please pass the **element's ID**.
 
+Here are the list of available elements for WordPress:
+
+Param|Description
+---|---
+`post_ID`|Post ID
+`page_template`|Page template
+`parent_id`|Parent post ID
+
 Examples:
 
-Display a meta box (or a field) if current page is child page (parent ID is not empty)
+Display a meta box (or a field) if page template is `template-custom.php`:
 
 ```php
-'visible' => array( 'parent_id', '!=', '' )
-```
-
-Visible if current post ID is 100
-
-```php
-'visible' => array( 'post_ID', '=', 100 )
+'visible' => array( 'page_template', 'template-custom.php` )
 ```
 
 ### Featured image
