@@ -213,6 +213,8 @@ If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/)
 
 ![adding google maps api key in builder](https://i.imgur.com/sk6NzTj.png)
 
+{% include alert.html type="warning" content="Make sure you enabled the Geocoding API to make the autocomplete feature works!" %}
+
 Prior version 1.2.0, you need to use a filter to `gmap_api_params` like so:
 
 ```php
