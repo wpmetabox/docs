@@ -29,6 +29,8 @@ The `address_field` can be also a list of text input fields' IDs, separating by 
 
 {% include alert.html type="warning" content="Without a valid Google Maps API, the map won't show. [Get a key here](https://developers.google.com/maps/documentation/javascript/get-api-key)." %}
 
+{% include alert.html type="warning" content="Make sure you enabled the Geocoding API to make the autocomplete feature works!" %}
+
 ## Sample code
 
 ```php
