@@ -222,7 +222,7 @@ Examples:
 Display a meta box (or a field) if page template is `template-custom.php`:
 
 ```php
-'visible' => array( 'page_template', 'template-custom.php` )
+'visible' => array( 'page_template', 'template-custom.php' )
 ```
 
 ### Featured image
@@ -290,27 +290,41 @@ If you want to hide a tab created by [Meta Box Tabs](https://metabox.io/plugins/
 
 ## Using with taxonomies
 
-Conditional Logic works with DOM elements and of course, categories and custom taxonomies.
+### Post category
 
-For built-in post category, use `post_category` as the first parameter:
+For post category, use `post_category` as the first parameter:
 
 ```php
 'visible' => array( 'post_category', 'in', array( 4, 5, 6 ) )
 ```
 
-By default, the extension uses terms' IDs to check. Since 1.3, you can define the condition's value using `slug`. Just append `slug:` before the selector. Like so:
+By default, the extension uses category IDs to check. Since 1.3, you can define the condition's value using `slug`:
 
 ```php
 'visible' => array( 'slug:post_category', 'in', array( 'fashion', 'gaming', 'technology' ) )
 ```
 
-For custom taxonomies, use `tax_input[taxonomy slug]` as the first parameter:
+### Post tag
+
+Support for post tag is added in version 1.6.5 and works only for Gutenberg editor.
+
+To add conditions by post tag, use `tags` as the first parameter:
 
 ```php
-'hidden' => array( 'tax_input[product]', '>', 5 )
+'visible' => array( 'tags', 'in', array( 4, 5, 6 ) )
 ```
 
-Of course, it works with `slug` also:
+Unlike post category, you have to use tag IDs.
+
+### Custom taxonomies
+
+For custom taxonomies, use `tax_input[taxonomy_slug]` as the first parameter:
+
+```php
+'hidden' => array( 'tax_input[product]', 'in', array( 5, 6, 7 ) ),
+```
+
+Similarly to post category, it works with `slug`, too.
 
 ```php
 'hidden' => array( 'slug:tax_input[product]', '!=', 'drones' )
