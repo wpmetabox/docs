@@ -208,13 +208,14 @@ Meta Box Conditional Logic can work with other HTML elements the same as Meta Bo
 
 To make it work with HTML element, instead of passing the field ID as the first parameter, please pass the **element's ID**.
 
-Here are the list of available elements for WordPress:
+Here are the list of available built-in WordPress elements:
 
 Param|Description
 ---|---
 `post_ID`|Post ID
 `page_template`|Page template
 `parent_id`|Parent post ID
+`post_format`|Post format
 
 Examples:
 
