@@ -20,6 +20,7 @@ Name | Description
 `inline` | Whether to display the date picker inline with the edit, e.g. do not require to click the input field to trigger the date picker? `true` or `false` (default).
 `timestamp` | Whether to save the date in the Unix timestamp format (but still display in human-readable format)? `true` or `false` (default).
 `js_options`|Date picker options. [See here](http://api.jqueryui.com/datepicker).
+`save_format`|Custom PHP format for the datetime saved in the custom fields. See PHP’s function date() for the list of formats.
 
 ## Sample code
 
