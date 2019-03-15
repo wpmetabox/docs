@@ -8,7 +8,7 @@ title: rwmb_the_value
 
 It's very helpful in case you want to output a real Google maps for `map` field, or a player for `oembed` field.
 
-Unlike [rwmb_get_value()](/rwmb-get-value/), this function always output human-readable content. For example, for a checkbox list, it outputs the labels of the choices, not the value.
+Unlike [rwmb_get_value()](/rwmb-get-value/), this function always outputs human-readable content. For example, for a checkbox list, it outputs the labels of the choices, not the values.
 
 ## Usage
 
