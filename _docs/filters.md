@@ -31,10 +31,36 @@ This filter is used to change the returned value of helper function [rwmb_meta()
 - `$meta`: the meta value returned by `rwmb_meta` function
 - `$key`: meta key (custom field ID)
 - `$args`: arguments passed to `rwmb_meta` function
-- `post_id`: post ID
+- `$object_id`: object ID
 
 ```php
 apply_filters( 'rwmb_meta', $meta, $key, $args, $post_id );
+```
+
+### `rwmb_get_value`
+
+This filter is used to change the returned value of helper function [rwmb_get_value()](/rwmb-get-value//). It accepts 4 parameters:
+
+- `$value`: the value returned by `rwmb_get_value` function
+- `$field`: field settings
+- `$args`: arguments passed to `rwmb_get_value` function
+- `$object_id`: object ID
+
+```php
+apply_filters( 'rwmb_get_value', $value, $field, $args, $object_id );
+```
+
+### `rwmb_the_value`
+
+This filter is used to change the returned value of helper function [rwmb_the_value()](/rwmb-the-value//). It accepts 4 parameters:
+
+- `$output`: the HTML output returned by `rwmb_the_value` function
+- `$field`: field settings
+- `$args`: arguments passed to `rwmb_the_value` function
+- `$object_id`: object ID
+
+```php
+apply_filters( 'rwmb_the_value', $output, $field, $args, $object_id );
 ```
 
 ## Meta Box filters
