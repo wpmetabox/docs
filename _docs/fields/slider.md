@@ -29,6 +29,8 @@ Name | Value | Description
 `range` | `min` | Create a range from the minimum value to one handle.
 `value` | `$field['std']` | Set the default field value.
 
+If you set `range` to `true`, then the plugin will saves 2 values in the database, separated by pipe (`|`) character, e.g. `15|90`.
+
 ## Sample code
 
 ```php
