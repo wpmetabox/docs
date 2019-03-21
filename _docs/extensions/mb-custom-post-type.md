@@ -6,7 +6,7 @@ title: MB Custom Post Type
 
 The MB Custom Post Type extension is a powerful tool that helps you manage your custom post types and custom taxonomies via a user-friendly interface. It's very helpful when you want to create or edit a custom post type / custom taxonomy without touching code.
 
-![screenshot](https://ps.w.org/mb-custom-post-type/assets/screenshot-2.png)
+![screenshot](https://i.imgur.com/mmbVRPn.png)
 
 For more information, please see the [extension page](https://metabox.io/plugins/custom-post-type/).
 
