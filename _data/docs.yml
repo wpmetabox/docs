@@ -72,6 +72,7 @@
 - title: Extensions
   items:
   - /extensions/mb-admin-columns/
+  - /extensions/mb-custom-post-type/
   - /extensions/mb-custom-table/
   - /extensions/mb-frontend-submission/
   - /extensions/mb-relationships/
