@@ -175,7 +175,7 @@ function your_prefix_register_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = array(
         'title'        => 'Meta Box Title',
         'storage_type' => 'custom_table',    // Important
-        'table'        => 'your_table_name', // Your custom table name
+        'table'        => 'my_custom_table', // Your custom table name
         'fields'       => array(
             array(
                 'id'   => 'address',
