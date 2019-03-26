@@ -29,14 +29,22 @@ To create a custom table, you can do it manually by following [this guide](https
 This code creates a simple table for 3 custom fields (*each custom field is a column*):
 
 ```php
-MB_Custom_Table_API::create( 'my_custom_table', array(
-    'address' => 'TEXT NOT NULL',
-    'phone'   => 'TEXT NOT NULL',
-    'email'   => 'VARCHAR(20) NOT NULL',
-) );
+add_action( 'init', 'prefix_create_table' );
+function prefix_create_table() {
+    if ( ! class_exists( 'MB_Custom_Table_API' ) ) {
+        return;
+    }
+    MB_Custom_Table_API::create( 'my_custom_table', array(
+        'address' => 'TEXT NOT NULL',
+        'phone'   => 'TEXT NOT NULL',
+        'email'   => 'VARCHAR(20) NOT NULL',
+    ) );
+}
 ```
 
-This will generate a SQL query for creating a custom table like this:
+Here we hook to `init` to make sure the API is ready to use. For more details about the hooks or which hook you should use, see section **Notes** below.
+
+The code will generate a SQL query for creating a custom table like this:
 
 ```php
 $sql = "CREATE TABLE my_custom_table (
@@ -162,13 +170,34 @@ function prefix_create_table() {
 To tell a meta box to use a custom table to store custom fields instead of default meta tables, you need to specify 2 parameters `storage_type` and `table` like this:
 
 ```php
-$meta_boxes[] = array(
-    'title'        => 'Meta Box Title',
-    'storage_type' => 'custom_table',    // Important
-    'table'        => 'your_table_name', // Your custom table name
-    'fields'       => array(...)
-);
+add_filter( 'rwmb_meta_boxes', 'your_prefix_register_meta_boxes' );
+function your_prefix_register_meta_boxes( $meta_boxes ) {
+    $meta_boxes[] = array(
+        'title'        => 'Meta Box Title',
+        'storage_type' => 'custom_table',    // Important
+        'table'        => 'your_table_name', // Your custom table name
+        'fields'       => array(
+            array(
+                'id'   => 'address',
+                'type' => 'text',
+                'name' => 'Address',
+            ),
+            array(
+                'id'   => 'phone',
+                'type' => 'text',
+                'name' => 'Phone',
+            ),
+            array(
+                'id'   => 'email',
+                'type' => 'email',
+                'name' => 'Email',
+            ),
+        ),
+    );
+}
 ```
+
+{% include alert.html content="**Again:** Column key has to match your custom fields' IDs, one column per custom field. If you create a column to store a group, then the column key must be the top-level group ID. No need to create column for sub-fields." %}
 
 Now you can go to edit post screen (or edit user profile if you use the meta box for user profile page) and save the post. You'll see the data is saved in the new custom table instead of meta tables.
 
