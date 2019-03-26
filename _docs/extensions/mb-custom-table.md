@@ -16,6 +16,12 @@ For more information, please see the [extension page](https://metabox.io/plugins
 
 **Important:** This extension requires Meta Box version 4.12.3+. If you're using an older version of the plugin, please update.
 
+## Video Tutorial
+
+Here is a quick video tutorial on how to use the plugin:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o8ICxe8nbrI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Creating custom tables
 
 To create a custom table, you can do it manually by following [this guide](https://codex.wordpress.org/Creating_Tables_with_Plugins) or using the API that the extension provides. The API simplifies the process and makes it easier for you.
