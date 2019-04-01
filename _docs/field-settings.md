@@ -81,6 +81,16 @@ Field Type | Description
 
 {% include alert.html content="In addition to the above field types, you can also use HTML5 input types. See [this guide](/html5-input-types/) for details." %}
 
+## Default value
+
+The mechanism of `std` in Meta Box works only if the **meta box has not been saved before**. Here "meta box" means all fields in that meta box, not just the specific field that you set the `std` for. So if there's any field that already has value, then `std` won't work for other fields, even new fields you've just added.
+
+Examples:
+
+When you create a new post, then no fields have values (of course), then `std` works for all fields.
+
+When you edit an existing post that has a meta box, then some fields might have values. Therefore, `std` doesn't work for all fields. In this case, if you edit the meta box and add a new field, `std` still doesn't work for that new field (even it has no value before), because the meta box has been saved before.
+
 ## Field-specific settings
 
 Besides all common settings, each field type can have its own settings. Please see more details for each field type on the left menu (section "Fields").
