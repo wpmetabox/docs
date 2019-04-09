@@ -40,6 +40,8 @@
   - /fields/file-advanced/
   - /fields/file-input/
   - /fields/file-upload/
+  - title: Google Maps
+    url: /fields/map/
   - /fields/heading/
   - /fields/hidden/
   - /fields/image/
@@ -47,8 +49,6 @@
   - /fields/image-select/
   - /fields/image-upload/
   - /fields/key-value/
-  - title: Google Maps
-    url: /fields/map/
   - /fields/number/
   - /fields/oembed/
   - title: Open Street Map
