@@ -1,5 +1,5 @@
 ---
-title: Map
+title: Google Maps
 ---
 
 ## Overview
@@ -10,7 +10,7 @@ You also can pick a location simply by clicking on the map or drag and drop the 
 
 ## Screenshot
 
-![map](https://i.imgur.com/zyKqRTD.png)
+![google maps](https://i.imgur.com/zyKqRTD.png)
 
 ## Settings
 
