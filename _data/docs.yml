@@ -12,7 +12,8 @@
   - /displaying-fields/
   - /shortcode/
   - /validation/
-  - /cloning-fields/
+  - title: Cloning Fields
+    url: /cloning-fields/
 - title: Advanced
   items:
   - /custom-attributes/
@@ -46,10 +47,12 @@
   - /fields/image-select/
   - /fields/image-upload/
   - /fields/key-value/
-  - /fields/map/
+  - title: Google Maps
+    url: /fields/map/
   - /fields/number/
   - /fields/oembed/
-  - /fields/osm/
+  - title: Open Street Map
+    url: /fields/osm/
   - /fields/password/
   - /fields/post/
   - /fields/radio/
