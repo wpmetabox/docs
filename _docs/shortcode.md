@@ -7,7 +7,7 @@ title: Shortcode
 To display field value on the website, besides the [helper functions](/displaying-fields/), the Meta Box plugin provides a simple shortcode `[rwmb_meta]` to help users show the value in the post content or widget text without opening theme files and inserting PHP code.
 
 ```php
-[rwmb_meta meta_key="field_id" post_id="15" ...]
+[rwmb_meta id="field_id" object_id="15"]
 ```
 
 ## Attributes
