@@ -30,10 +30,10 @@ This action is the same as `rwmb_after` but is applied to a specific meta box (i
 
 ## `rwmb_before_save_post`
 
-This action runs before any meta box is saved into post meta. It takes 1 parameter: current post ID.
+This action runs before any meta box is saved into post meta. It takes 1 parameter: current object ID.
 
 ```php
-do_action( 'rwmb_before_save_post', $post_id );
+do_action( 'rwmb_before_save_post', $object_id );
 ```
 
 ## `rwmb_{$meta_box_id}_before_save_post`
@@ -42,10 +42,10 @@ This action is the same as `rwmb_before_save_post` but is applied to a specific 
 
 ## `rwmb_after_save_post`
 
-This action runs after any meta box is saved into post meta. It takes 1 parameter: current post ID.
+This action runs after any meta box is saved into post meta. It takes 1 parameter: current object ID.
 
 ```php
-do_action( 'rwmb_after_save_post', $post_id );
+do_action( 'rwmb_after_save_post', $object_id );
 ```
 
 ## `rwmb_{$meta_box_id}_ after_save_post`
@@ -57,7 +57,7 @@ This action is the same as `rwmb_after_save_post` but is applied to a specific m
 This action fires after saving each field.
 
 ```php
-do_action( 'rwmb_after_save_field', null, $field, $new, $old, $post_id );
+do_action( 'rwmb_after_save_field', null, $field, $new, $old, $object_id );
 ```
 
 It accepts the following parameters:
@@ -68,7 +68,7 @@ Name|Description
 `$field`|Field settings
 `$new`|The new (submitted) field value
 `$old`|The old field value
-`$post_id`|The post ID
+`$object_id`|The object ID
 
 You can use this hook to perform extra action for a specific field. See [an example](https://metabox.io/support/topic/using-custom-attributes-from-rwmb_before_save_post-action/)
 
