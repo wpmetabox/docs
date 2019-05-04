@@ -20,7 +20,7 @@ If this is the first time you use [Meta Box Group](https://metabox.io/plugins/me
 
 The documentation below is like a detailed reference that you can use anytime you want to look for something in Meta Box Group.
 
-## Usage
+## Settings
 
 Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
@@ -37,7 +37,7 @@ Name|Description
 `collapsible`|Make group collapsible? `true` or `false`. Default `false`. Optional.
 `save_state`|Whether or not save the collapse/expand state? `true` or `false`. Default `false`. Optional.
 `default_state`|Is the group collapsed or expanded by default (when page loads)? `collapsed` or `expanded` (default).
-`group_title`|The title of collapsible group. Can be string or array. If string and has `{#}`, it will be replaced by the group index (if group is cloned). If array, use the format `array( 'field' => 'sub_field_id' )` to display the value of the sub-field in the group title. If you want to display value from multiple sub-fields in the group title (including sub-fields from sub-groups), you can use the format `array( 'field' => 'sub_field_1, sub_field_2', 'separator' => ' ' )`, e.g. separate sub-fields by commas and set the separator string (default is a space).
+`group_title`|The title of collapsible group. See section collapsible groups for details.
 
 So, to add a group, you need to add a field with type `group` and list of sub-fields in its `fields` attribute, like this:
 
@@ -166,6 +166,24 @@ Result:
 
 ### Collapsible Groups:
 
+To make a group collapsible, you need to set the settings `'collapsible' => true`. The collapsible group also has the following settings:
+
+Name|Description
+---|---
+`save_state`|Whether or not save the collapse/expand state? `true` or `false`. Default `false`. Optional.
+`default_state`|Is the group collapsed or expanded by default (when page loads)? `collapsed` or `expanded` (default).
+`group_title`|The title of collapsible group.
+
+Since version 1.3.0, we have imporved the `group_title` settings so it is able to show static text, the group index (if group is cloneable), sub-field value or *any combination of them*. To do that, simply set a `group_title` as a text and use the following format:
+
+```
+'group_title' => 'Static text {#} {sub_field_1} {sub_field_2}',
+```
+
+To specify the group index, use `{#}`. To specify a sub field value, use `{sub_field_id}`. You can add as many sub fields as you want. The order of elements in the group title is not important. You can mix them in any way.
+
+This is an example of a collapsible group:
+
 ```php
 add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
     $meta_boxes[] = array(
@@ -199,7 +217,7 @@ add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
                         'clone'       => true,
                         'collapsible' => true,
                         'save_state'  => true,
-                        'group_title' => array( 'field' => 'person' ),
+                        'group_title' => '{person}',
                         'fields'      => array(
                             array(
                                 'id'   => 'person',
