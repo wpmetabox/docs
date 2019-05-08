@@ -26,9 +26,9 @@ Name | Description
 `region` | Limit search results to a specific country (or a list of countries). Accepts [ISO 3166-1alpha2 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Optional.
 `address_field` | The ID of address field. For multiple address fields, enter field IDs separated by comma. Required.
 
-Note that in order to make the map works, you need to create a [text field](/fields/text/) for address and pass its ID to the map's `address_field`. Without the address field, the map still displays, but you have to specify the location by drag and drop the marker on the map.
+Note that in order to make the map work, you need to create a [text field](/fields/text/) for the address and pass its ID to the map's `address_field`. Without the address field, the map will still display, but you have to specify the location by draging and droping the marker on the map.
 
-The `address_field` can be also a list of text input fields' IDs, separating by commas. For example: `street,city,state`. But in that case, there's no autocomplete for address. Instead of that, when you click the **Find Address** button (below the map), the field will search for the address combined from values of those fields and set the location for the map.
+The `address_field` can also use a list of text input fields' IDs, separating by commas. For example: `street,city,state`. But in that case, there's no autocomplete for address. Instead of that, when you click the **Find Address** button (below the map), the field will search for the address combined from values of those fields and set the location for the map.
 
 ## Sample code
 
