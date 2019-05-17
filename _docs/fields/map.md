@@ -18,6 +18,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
+`std` | Default location of the map when loaded. Format `'53.346881,-6.258860'` (latitude, longitude). If missing, the field will show Dublin, Ireland.
 `api_key` | Google Maps API key. [Get here](https://developers.google.com/maps/documentation/javascript/get-api-key). Required.
 `language` | Google Maps language. Optional. Default is English. See [list of language code](https://developers.google.com/maps/faq#languagesupport).
 `region` | The region code, specified as a [country code top-level domain](https://en.wikipedia.org/wiki/Country_code_top-level_domain). This parameter returns autocompleted address results influenced by the region (typically the country) from the address field. [See here for more details](https://developers.google.com/maps/documentation/geocoding/intro#RegionCodes). Optional.
