@@ -48,7 +48,7 @@ This action runs after any meta box is saved into post meta. It takes 1 paramete
 do_action( 'rwmb_after_save_post', $object_id );
 ```
 
-## `rwmb_{$meta_box_id}_ after_save_post`
+## `rwmb_{$meta_box_id}_after_save_post`
 
 This action is the same as `rwmb_after_save_post` but is applied to a specific meta box (identified by ID). It accepts same parameters.
 
