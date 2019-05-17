@@ -206,7 +206,7 @@ $end = apply_filters( 'rwmb_end_html', $end, $field, $meta );
 
 This filter is the same as `rwmb_end_html` but is applied to fields with a specific type. It accepts same parameters.
 
-### `rwmb_{$field_id}_begin_html`
+### `rwmb_{$field_id}_end_html`
 
 This filter is the same as `rwmb_end_html` but is applied to a specific field (identified by ID). It accepts same parameters.
 
