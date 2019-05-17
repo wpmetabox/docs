@@ -22,6 +22,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
+`std` | Default location of the map when loaded. Format `'53.346881,-6.258860'` (latitude, longitude). If missing, the field will show Dublin, Ireland.
 `language` | Language for more accurate auto-complete results. Accepts standard rfc2616 `accept-language` string or a simple comma separated list of [language codes](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). Optional.
 `region` | Limit search results to a specific country (or a list of countries). Accepts [ISO 3166-1alpha2 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Optional.
 `address_field` | The ID of address field. For multiple address fields, enter field IDs separated by comma. Required.
