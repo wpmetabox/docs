@@ -6,7 +6,7 @@ title: Google Maps
 
 The map field creates a Google Maps where you can select a location. This field comes along with a text field for address input, which has the autocomplete feature. The data for address autocomplete is get from Google Maps Geocode service.
 
-You also can pick a location simply by clicking on the map or drag and drop the marker.
+You also can pick a location simply by clicking on the map or drag and drop the marker. Note that when you drag and drop the marker, the location (latitude and longitude) is saved automatically in the field value.
 
 ## Screenshot
 
