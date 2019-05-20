@@ -121,6 +121,43 @@ In order to overwrite the output of post fields, please following the steps belo
 - Copy a template file that you want to change from plugins's `templates` folder to the new `mb-frontend-submission` folder, keeping the same folder structure.
 - Modify the new template file.
 
+## Validation
+
+There are 2 ways to validate fields: on the front end with JavaScript and on the back end with PHP.
+
+For front-end validation with JavaScript, please see [this documentation](https://docs.metabox.io/validation/).
+
+To validate on the back end with PHP, please use the `rwmb_frontend_validate` filter as follows:
+
+```php
+add_filter( 'rwmb_frontend_validate', function( $validate, $config ) {
+    // Check only if you're on the right form.
+    if ( 'your-meta-box-id' !== $config['id'] ) {
+        return $validate;
+    }
+    // Check if users have selected files for an image upload field.
+    if ( empty( $_POST['image_upload_field'] ) ) {
+        $validate = false; // Return false to show an error message.
+    }
+    return $validate;
+}, 10, 2 );
+```
+
+If you want to show a custom error message, simply return a string for the filter, like this:
+
+
+```php
+add_filter( 'rwmb_frontend_validate', function( $validate, $config ) {
+    if ( 'your-meta-box-id' !== $config['id'] ) {
+        return $validate;
+    }
+    if ( empty( $_POST['image_upload_field'] ) ) {
+        $validate = 'Please select at least one image to upload'; // Return a custom error message
+    }
+    return $validate;
+}, 10, 2 );
+```
+
 ## Hooks
 
 In order to allow developers to do other things when the form is submitted, we have created some actions and filters.
@@ -194,8 +231,13 @@ This action fires after the submit button is displayed. It accepts one parameter
 This filter is used to check if the form is validated. You can use this filter to add custom check for the data before it's processed.
 
 ```php
-$is_valid = apply_filters( 'rwmb_frontend_validate', $is_valid, $config );
+apply_filters( 'rwmb_frontend_validate', $validate, $config );
 ```
+
+The filter has 2 parameter:
+
+- `$validate`: the returned value of validation. If `true`, then the validation is successful. `false` - if not and the plugin will show a default error message. If you want to show a custom error message, just return it as a string. See the **Validation** section above.
+- `$config`: the form configuration.
 
 ### Post data filters
 
