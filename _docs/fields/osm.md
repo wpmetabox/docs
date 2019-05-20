@@ -8,7 +8,7 @@ The `osm` field creates a [OpenStreetMap](https://openstreetmap.org) where you c
 
 This field supports all features that the [Google Maps](/fields/map) field has. It comes along with a text field for address input, which has the autocomplete feature. The data for address autocomplete is get from [Nominatum](https://wiki.openstreetmap.org/wiki/Nominatim) geocoding service.
 
-You also can pick a location simply by clicking on the map or drag and drop the marker.
+You also can pick a location simply by clicking on the map or drag and drop the marker. Note that when you drag and drop the marker, the location (latitude and longitude) is saved automatically in the field value.
 
 This field uses [Leaflet](https://leafletjs.com) library to render the map.
 
