@@ -11,19 +11,15 @@ The code below registers a simple meta box:
 ```php
 add_filter( 'rwmb_meta_boxes', 'prefix_register_meta_boxes' );
 function prefix_register_meta_boxes( $meta_boxes ) {
-    $prefix = 'field_prefix_';
     $meta_boxes[] = array(
-        'id'         => 'personal',
         'title'      => 'Personal Information',
         'post_types' => 'post',
-        'context'    => 'normal',
-        'priority'   => 'high',
 
         'fields' => array(
             array(
                 'name'  => 'Full name',
                 'desc'  => 'Format: {First Name} {Last Name}',
-                'id'    => $prefix . 'name',
+                'id'    => 'prefix_name',
                 'type'  => 'text',
             ),
         )
@@ -92,6 +88,4 @@ Meta Box supports more than 40 field types. All fields share some common setting
 
 {% include alert.html content="Field ID is used as the meta key and the field value is used as the meta value when saving into the post meta table." %}
 
-In the example above, we use a `$prefix` for field ID. Although it's not mandatory, it's recommended to use a prefix to prevent from using the same field id with other scripts.
-
-{% include alert.html content="Use underscore (`_`) at the beginning to make the fields hidden, e.g. they won't show in the default WordPress **Custom Fields** meta box." %}
+You can (should) add prefix to field IDs to prevent from using the same ID with other scripts. If you want to hide the fields in the detault WordPress **Custom Fields** meta box, use underscore (`_`) as the prefix.
