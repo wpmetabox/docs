@@ -18,40 +18,52 @@ Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields
 
 ## Enabling geolocation
 
+### Google Maps API
+
+Before enabling Geolocation, make sure you create a project for Google Maps in the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview). And don't forget to enable the following APIs:
+
+- Google Maps API
+- Geocoding API
+- Places API
+
+And then create an API key for Google Maps. See [here](https://developers.google.com/maps/documentation/javascript/get-api-key) for instruction. You'll need this key to perform any call to Google Maps platform.
+
+### Enable geolocation support for a meta box.
+
 To enable geolocation support for a meta box, add this line to your Meta Box (not field) settings:
 
 ```php
-'geo' => true
+'geo' => array(
+    'api_key' => 'YOUR API KEY',
+)
 ```
 
 If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), then please go to tab *Settings* and add a custom attribute for the geolocation as follows:
 
-![enable geolocation](https://i.imgur.com/8bM0Hw1.png)
+![adding google maps api key in builder](https://i.imgur.com/sk6NzTj.png)
 
 You can also add options to Geolocation. Which can contains these properties:
 
-- An array of `types` specifies an explicit type or a type collection, as listed in the supported types below. If nothing is specified, all types are returned. In general, only a single type is allowed. The exception is that you can safely mix the geocode and establishment types, but note that this will have the same effect as specifying no types. The supported types are:
-    - `geocode` instructs the Places service to return only geocoding results, rather than business results.
-    - `address` instructs the Places service to return only geocoding results with a precise address.
-    - `establishment` instructs the Places service to return only business results.
-    - the `(cities)` type collection instructs the Places service to return results that match either `locality` or `administrative_area3`.
-    - the `(regions)` type collection instructs the Places service to return any result matching the following types:
+- `types`: array of geocode types:
+    - `geocode`: only geocoding results, no business results.
+    - `address`: only geocoding results with a precise address.
+    - `establishment`: business results.
+    - `(cities)`: only results that match either `locality` or `administrative_area3`.
+    - `(regions)`: any result matching the following types:
         - `locality`
         - `sublocality`
         - `postal_code`
         - `country`
         - `administrative_area1`
         - `administrative_area2`
-- `bounds` is a `google.maps.LatLngBounds` object specifying the area in which to search for places. The results are biased towards, but not restricted to, places contained within these bounds.
-- `componentRestrictions` can be used to restrict results to specific groups. Currently, you can use `componentRestrictions` to filter by country. The country must be passed as a two-character, ISO 3166-1 Alpha-2 compatible country code.
+- `componentRestrictions`: restrict results to a specific country, must be ISO 3166-1 Alpha-2 compatible country code. You can find code information at [Wikipedia: List of ISO 3166 country codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes).
 
-For more information, visit [Google Autocomplete Options](https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete)
-
-To add options, just pass an array of options to `geo` key instead of default `'geo' => true`. For instance:
+Examples:
 
 ```php
 // Restrict the result in Australia only
 'geo' => array(
+    'api_key' => 'YOUR API KEY',
     'componentRestrictions' => array(
         'country' => 'au'
     )
@@ -59,15 +71,16 @@ To add options, just pass an array of options to `geo` key instead of default `'
 
 // Return only business results
 'geo' => array(
+    'api_key' => 'YOUR API KEY',
     'types' => array( 'establishment' )
 ),
 
 // Return only cities and business results
 'geo' => array(
+    'api_key' => 'YOUR API KEY',
     'types' => array( '(cities)', 'establishment' )
 ),
 ```
-
 
 ## Adding autocomplete field
 
@@ -197,23 +210,7 @@ array(
 ),
 ```
 
-## Google API Key
-
-By default, Google Geocoding API has the usage limit. See [here](https://developers.google.com/maps/documentation/geocoding/usage-limits#standard-usage-limits). The free Google Geocoding API works in almost case but sometimes, you need to add API Key, or want to add custom params to URL.
-
-Since version 1.2.0, to add Google API key, you need to specify it in the `geo` parameter, as follows:
-
-```php
-'geo' => array(
-    'api_key' => 'YOUR API KEY',
-)
-```
-
-If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), then please go to tab *Settings* and add a custom attribute for the Google Maps API key as follows:
-
-![adding google maps api key in builder](https://i.imgur.com/sk6NzTj.png)
-
-{% include alert.html type="warning" content="Make sure you enabled the Geocoding API to make the autocomplete feature works!" %}
+## Google API Key in old versions
 
 Prior version 1.2.0, you need to use a filter to `gmap_api_params` like so:
 
