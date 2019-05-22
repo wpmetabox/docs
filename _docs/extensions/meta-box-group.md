@@ -298,7 +298,7 @@ if ( ! empty( $group_values ) ) {
 }
 ```
 
-**Important Note**:
+### Special fields
 
 The helper function returns only raw data of group's value, e.g. it does exactly what `get_post_meta( $post_id, 'group_id', true );` does. It doesn't return meaningful information for images, file, etc. To do that, please add a small piece of code as follow:
 
@@ -379,44 +379,31 @@ Group field declaration:
 
 ```php
 array(
-    'id'   => 'sector',
-    'type' => 'group',
+    'id'     => 'sector',
+    'type'   => 'group',
     'clone'  => true,
-    'sort_clone' => false,
     'fields' => array(
         array(
-            'name' => 'Name1',
-            'id'   => 'sector-heading',
-            'type' => 'heading',
-        ),
-        array(
-            'name' => 'Name2',
+            'name' => 'Title',
             'id'   => 'sector-title',
-            'type' => 'textarea',
-            'cols' => 10,
-            'rows' => 1,
+            'type' => 'text',
         ),
         // Group nested
         array(
-            'id'  => 'sector-object',
-            'type' => 'group',
+            'id'     => 'sector-object',
+            'type'   => 'group',
             'clone'  => true,
-            'sort_clone' => true,
             'fields' => array(
                 array(
-                    'name'  => 'Name3',
-                    'id'    => 'sector-object-img',
-                    'type'  => 'image_advanced',
-                    'max_file_uploads' => 1,
+                    'name' => 'Images',
+                    'id'   => 'sector-object-img',
+                    'type' => 'image_advanced',
                 ),
                 array(
-                    'name' => 'Name4',
+                    'name' => 'Description',
                     'id'   => 'sector-object-description',
                     'type' => 'textarea',
-                    'cols' => 10,
-                    'rows' => 4,
                 ),
-
             ),
         ),
     ),
@@ -426,29 +413,62 @@ array(
 How to get value and output in the frontend:
 
 ```php
-$prefix = '';
+// Requires PHP 7+.
 $sectors = rwmb_meta( 'sector' );
-if ( ! empty( $sectors ) ) {
-    foreach ( $sectors as $sector ) {
-        $heading = isset( $sector['sector-heading'] ) ? $sector['sector-heading'] : '';
-        echo $heading;
+$sectors = $sectors ?? [];
+foreach ( $sectors as $sector ) {
+    echo $sector['sector-title'] ?? '';
 
-        $title = isset( $sector['sector-title'] ) ? $sector['sector-title'] : '';
-        echo $title;
-
-        $objects = isset( $sector['sector-object'] ) ? $sector['sector-object'] : array();
-        foreach ( $objects as $object ) {
-            $imgs = isset( $object['sector-object-img'] ) ? $object['sector-object-img'] : array();
-            if ( !empty( $imgs ) ) {
-                foreach ( $imgs as $img ) {
-                    echo '<img src="' . wp_get_attachment_image_url( $img, 'size' ) . '">';
-                }
-            }
-            $desc = isset( $object['sector-object-description'] ) ? $object['sector-object-description'] : '';
-            echo $desc;
+    $objects = $sector['sector-object'] ?? [];
+    foreach ( $objects as $object ) {
+        $imgs = $object['sector-object-img'] ?? : [];
+        foreach ( $imgs as $img ) {
+            echo '<img src="' . wp_get_attachment_image_url( $img, 'your_image_size' ) . '">';
         }
+        echo $object['sector-object-description'] ?? '';
     }
 }
+```
+
+### Outputing group in a page builder
+
+If you want to output a group in a page builder like [Beaver Builder](https://metabox.io/recommends/beaver-builder/) or [Elementor](https://metabox.io/recommends/elementor/), please understand that there's no way to output each sub-field in a group as a element in these page builders.
+
+In order to display group value, the recommended way is creating a shortcode to display the group. Then you can insert the shortcode anywhere with the page builder.
+
+Here is an example of a custom shortcode for a group with 3 fields: title (`text`), images (`image_advanced`) and description (`wysiwyg`). You can use it as a start:
+
+```php
+// Requires PHP 7+.
+add_shortcode( 'my_group', function() {
+	$group = rwmb_meta( 'group_field_id' );
+	if ( empty( $group ) ) {
+		return '';
+	}
+	
+	$output = '';
+	
+	// Sub-field title.
+	$title = $group['title'] ?? '';
+	$output .= '<h3 class="my-title">' . $title . '</h3>';
+	
+	// Sub-field image_advanced.
+	$image_ids = $group['images'] ?? [];
+	if ( $image_ids ) {
+		$output .= '<div class="my-images">';
+		foreach ( $image_ids as $image_id ) {
+			$image = RWMB_Image_Field::file_info( $image_id, ['size' => 'my-image-size'] );
+			$output .= '<img src="' . $image['url'] . '">';
+		}
+		$output .= '</div>';
+	}
+	
+	// Sub-field description.
+	$desc = $group['desc'] ?? '';
+	$output .= '<div class="my-description">' . wpautop( $desc ). '</div>';
+	
+	return $output;
+} );
 ```
 
 ## Changing clone button text
