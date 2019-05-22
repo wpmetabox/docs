@@ -303,16 +303,11 @@ if ( ! empty( $group_values ) ) {
 The helper function returns only raw data of group's value, e.g. it does exactly what `get_post_meta( $post_id, 'group_id', true );` does. It doesn't return meaningful information for images, file, etc. To do that, please add a small piece of code as follow:
 
 ```php
-// Group is cloneable
-$group_values = rwmb_meta( 'group_id' );
-if ( ! empty( $group_values ) ) {
-    foreach ( $group_values as $group_value ) {
-        $image_ids = isset( $group_value['image_key'] ) ? $group_value['image_key'] : array();
-        foreach ( $image_ids as $image_id ) {
-            $image = RWMB_Image_Field::file_info( $image_id, array( 'size' => 'thumbnail' ) );
-            echo '<img src="' . $image['url'] . '" width="' . $image['width'] . '" height="' . $image['height'] . '">';
-        }
-    }
+$group = rwmb_meta( 'group_id' );
+$image_ids = $group['image_key'] ?? : [];
+foreach ( $image_ids as $image_id ) {
+	$image = RWMB_Image_Field::file_info( $image_id, ['size' => 'thumbnail'] );
+	echo '<img src="' . $image['url'] . '">';
 }
 ```
 
