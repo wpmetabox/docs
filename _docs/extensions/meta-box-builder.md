@@ -147,13 +147,18 @@ A new field will be immediately created and put below the current field.
 
 ## Getting PHP code
 
-After saving a field group, you'll see a new tab appeared on the top named **Code**. The Meta Box Builder plugin automatically generates PHP code that you can copy and paste into your theme's `functions.php` file.
+For each field group, Meta Box Buider can create a PHP code that you can copy and paste into your theme's `functions.php` file (or your plugin file) and then *deactivate the Meta Box Builder extension*.
 
-To get the code, click on the tab **Code**, then click the **Copy** button:
+This is helpful if you want to:
+
+- Share field groups to other websites which doesn't have Meta Box Builder installed.
+- Improve the performance since field groups are loaded directly from your file.
+
+To get the code, click on the tab **Code**, then click the **Copy** button to copy the code. Then paste it into your theme's `functions.php` file.
 
 ![export code](https://i.imgur.com/g6EnLns.png)
 
-When you copy PHP code and paste it into your theme's `functions.php` file, you can **safely deactivate Meta Box Builder** (do *not* deactivate Meta Box, it's still required). Your field groups and fields are still working.
+When you copy PHP code and paste it into your theme's `functions.php` file, you can **safely deactivate Meta Box Builder** (do *not* deactivate Meta Box, it's still required).
 
 For detailed instruction, please see [this tutorial](https://metabox.io/copy-custom-fields-with-meta-box-builder/).
 
