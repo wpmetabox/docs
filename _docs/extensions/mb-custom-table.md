@@ -225,7 +225,7 @@ That means:
 
 While the data of the group is serialized, it will be unserialized when getting via helper functions. So you don't have to unserialize yourself.
 
-## Queries posts with WP_Query
+## Query posts with WP_Query
 
 It's important to understand that the plugin doesn't hook to the `WP_Query` to get posts by custom fields stored in the custom table. In other words, using `meta_*` in `WP_Query` for custom fields won't work.
 
@@ -242,3 +242,5 @@ $query = new WP_Query( [
     'post__in'  => $id,
 ] );
 ```
+
+This technique also works with terms and users.
