@@ -224,3 +224,21 @@ That means:
 - The group value is serialized, you cannot make SQL query agains the sub-fields' values. Thus, you don't benefit from the custom table structure. So, be careful to make decision what fields should be in groups, what fields should not. It's recommended to use groups only for *data storing, not for querying*.
 
 While the data of the group is serialized, it will be unserialized when getting via helper functions. So you don't have to unserialize yourself.
+
+## Queries posts with WP_Query
+
+It's important to understand that the plugin doesn't hook to the `WP_Query` to get posts by custom fields stored in the custom table. In other words, using `meta_*` in `WP_Query` for custom fields won't work.
+
+In order to get posts by custom fields in the custom table, you need to make an extra query to get the post IDs first. Then use these IDs to get full post objects.
+
+Here is an example:
+
+```php
+global $wpdb;
+$ids = $wpdb->get_col( "SELECT ID FROM your_table WHERE field1 = 'value1' OR field2 = 'value2'" );
+
+$query = new WP_Query( [
+    'post_type' => 'post',
+    'post__in'  => $id,
+] );
+```
