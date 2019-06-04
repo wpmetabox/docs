@@ -71,6 +71,14 @@ This is the screenshot how meta boxes appear in `form_top` and `after_title` loc
 
 {% include alert.html type="warning" content="Gutenberg editor does NOT support extra contexts. Only normal, advanced and side contexts are supported. If you use Gutenberg, use these contexts only." %}
 
+### Contexts not working
+
+There are some situations that the context doesn't work as expected. That is probably because you have dragged and dropped the meta boxes to reorder them? If you have, then WordPress will save the position/location of them and makes the `context` parameter not working. The order of meta boxes is saved in the user meta `meta-box-order_{screen id}` as follows:
+
+![meta box order](https://i.imgur.com/A7bkxT9.png)
+
+In this case, deleting this user meta from the database will make the context work again.
+
 ## Fields
 
 Fields are added to a meta box via the key `fields`. Each field is an array of settings. In the example above, the text field is defined via:
