@@ -10,6 +10,12 @@ The extension supports retrieving and updating custom fields for posts, terms an
 
 For more information, please see the [extension page](https://metabox.io/plugins/mb-rest-api/).
 
+## Video Tutorial
+
+See how the plugin works in this quick video:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YMjAIZLUeF4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 {% include installation.html %}
 
 ## Getting custom fields' values in REST API responses
