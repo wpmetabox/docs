@@ -89,3 +89,7 @@ Now when you go to edit post page, you'll see a new field like this:
 ![new field type](https://i.imgur.com/lK8DRW7.png)
 
 That's all for this simple field type. If you want to create a more complicated field, just overwrite methods from [`RWMB_Field` class](/rwmb-field-class/). You might want to enqueue scripts and styles, sanitizing field value before saving in the database, etc. The `RWMB_Field` class has all methods for that you just need to overwrite necessary methods.
+
+## Notes
+
+If you need to make the field cloneable using the same clone feature in Meta Box, it's recommended to add a CSS class to your inputs that start with `rwmb`. The clone script will automatically detect all the inputs started with `rwmb` and set the correct `id` and `name` attribute.
