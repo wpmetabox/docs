@@ -164,7 +164,7 @@ Result:
 
 ![multi-level nested groups](https://i.imgur.com/gWazAFA.png)
 
-### Collapsible Groups:
+### Collapsible Groups
 
 To make a group collapsible, you need to set the settings `'collapsible' => true`. The collapsible group also has the following settings:
 
