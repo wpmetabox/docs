@@ -504,3 +504,4 @@ function prefix_group_add_clone_button_text( $text, $field ) {
 ## Known issues
 
 - When cloning fields or groups, `id` attribute of inputs are adjusted. In multi-level nested groups, they're changed without any rule. So please don't rely on them to perform custom JavaScript actions.
+- If you have a `wysiwyg` field in a cloneable group, please set its `ID` not ended with `_{number}` (e.g. `_12`). This format is reserved by the clone script to update the editor ID/name. Please just change the ID to another format.
