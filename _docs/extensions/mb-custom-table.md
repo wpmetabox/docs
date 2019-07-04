@@ -101,7 +101,7 @@ Parameter|Description
 ---|---
 `table_name`|The custom table name. Required.
 `columns`|Array of table columns, where key is the column ID and value is the column definition (similar in SQL). Required.
-`keys`|Array of key column IDs. Optional.
+`keys`|Array of key column IDs. These columns will be indexed. Optional.
 
 ### Notes
 
