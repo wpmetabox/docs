@@ -30,7 +30,7 @@ rwmb_get_object_fields( $type_or_id, $object_type = 'post' );
 Name|Description
 ---|---
 `$type_or_id`|The object ID or type. Type should be post type for posts or taxonomy for terms. Required.
-`$object_type`|The objec type: `post` (default) or `term`. Optional.
+`$object_type`|The object type: `post` (default), `term`, `user` or `setting`. Optional.
 
 ## Returned value
 
