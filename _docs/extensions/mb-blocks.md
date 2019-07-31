@@ -18,6 +18,8 @@ The preview of the block is displayed in the main content area while the block c
 
 ## Creating A Gutenberg Block
 
+(Scroll down to see a video tutorial and the code example).
+
 Creating a Gutenberg block with MB Blocks is similar to create a normal meta box. There are just a few different settings.
 
 Assumming we're creating a hero area block (like the screenshot above). Open your theme's `functions.php` file (or your plugin's PHP file) and add the following code:
@@ -212,6 +214,12 @@ function my_hero_callback( $attributes, $is_preview = false ) {
 	if ( empty( $attributes['data'] ) ) {
 		return;
 	}
+	
+	// Unique HTML ID if available.
+	$id = 'hero-' . ( $attributes['id'] ?? '' );
+	if ( ! empty( $attributes['anchor'] ) ) {
+		$id = $attributes['anchor'];
+	}
 
 	// Custom CSS class name.
 	$class = 'hero ' . ( $attributes['className'] ?? '' );
@@ -219,7 +227,7 @@ function my_hero_callback( $attributes, $is_preview = false ) {
 		$class .= " align{$attributes['align']}";
 	}
 	?>
-	<div class="<?= $class ?>" style="background-color: <?= mb_get_block_field( 'background_color' ) ?>">
+	<div id="<?= $id ?>" class="<?= $class ?>" style="background-color: <?= mb_get_block_field( 'background_color' ) ?>">
 		<?php $image = mb_get_block_field( 'image' ); ?>
 		<img class="hero__image" src="<?= $image['full_url'] ?>">
 
@@ -273,6 +281,12 @@ So, inside the `blocks/hero/template.php`, you can write:
 // Fields data.
 if ( empty( $attributes['data'] ) ) {
 	return;
+}
+
+// Unique HTML ID if available.
+$id = 'hero-' . ( $attributes['id'] ?? '' );
+if ( ! empty( $attributes['anchor'] ) ) {
+	$id = $attributes['anchor'];
 }
 
 // Custom CSS class name.
@@ -419,3 +433,11 @@ When you encode the JSON string, you'll see the block data as an array like this
 The data is passed to the `render_callback` or `render_template` as `$attributes` parameter. So you can use it to render the block.
 
 Note that: although you can access to the fields values via `$attributes['data]'`, it's recommended to use the `mb_get_block_field()` and `mb_the_block_field()` functions.
+
+## Video Tutorial
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PAisKy8eC2U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Example
+
+The complete code example for the video (and used to write this tutorial) is [available in the Library](https://github.com/wpmetabox/library/tree/master/extensions/mb-blocks/hero). You can copy the code and put it in your theme. Then start to modify it to create your own Gutenberg blocks.
