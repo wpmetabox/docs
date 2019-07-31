@@ -75,6 +75,8 @@
 - title: Extensions
   items:
   - /extensions/mb-admin-columns/
+  - title: MB Blocks
+    url: /extensions/mb-blocks/
   - /extensions/mb-custom-post-type/
   - /extensions/mb-custom-table/
   - /extensions/mb-frontend-submission/
