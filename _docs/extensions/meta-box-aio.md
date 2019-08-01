@@ -8,6 +8,8 @@ Meta Box AIO is a part of [Developer and Lifetime Bundles](https://metabox.io/pr
 
 For more information, please see [this blog post](https://metabox.io/meta-box-aio-available/).
 
+{% include installation.html %}
+
 ## Settings page
 
 The extension has a settings page under *Meta Box &rarr; All-In-One*, where you can enable/disable the modules you need/don't need.
