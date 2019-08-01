@@ -10,6 +10,8 @@ For more information, please see [this blog post](https://metabox.io/meta-box-ai
 
 {% include installation.html %}
 
+**Important:** Meta Box AIO still requires Meta Box to work.
+
 ## Settings page
 
 The extension has a settings page under *Meta Box &rarr; All-In-One*, where you can enable/disable the modules you need/don't need.
