@@ -202,6 +202,7 @@ A custom PHP callback to display the block content. The callback accepts 2 param
 
 - `$attributes`: the block attributes, which has all the block settings and fields data.
 - `$is_preview`: a boolean variable to let you know if you're in the preview mode for Gutenberg or on the front end. It's useful when you want to display a custom message to users when they edit the block on the back end.
+- `$post_id`: the current post ID.
 
 ```php
 // Specify a custom PHP callback to display the block.
@@ -209,7 +210,7 @@ A custom PHP callback to display the block content. The callback accepts 2 param
 ```
 
 ```php
-function my_hero_callback( $attributes, $is_preview = false ) {
+function my_hero_callback( $attributes, $is_preview = false, $post_id = null ) {
 	// Fields data.
 	if ( empty( $attributes['data'] ) ) {
 		return;
@@ -268,10 +269,11 @@ Sometimes you might want to separate the code that output a custom Gutenberg blo
 'render_template' => get_template_directory() . '/blocks/hero/template.php',
 ```
 
-Inside the template file, you have full access to the 2 parameters, just like `render_callback`:
+Inside the template file, you have full access to the 3 parameters, just like `render_callback`:
 
 - `$attributes`: the block attributes, which has all the block settings and fields data.
 - `$is_preview`: a boolean variable to let you know if you're in the preview mode for Gutenberg or on the front end. It's useful when you want to display a custom message to users when they edit the block on the back end.
+- `$post_id`: the current post ID.
 
 You also can use the new helper functions `mb_get_block_field()` and `mb_the_block_field()` to access the block fields data easier.
 
