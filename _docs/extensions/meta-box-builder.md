@@ -8,7 +8,7 @@ Meta Box Builder is the most popular extension for Meta Box users and is the man
 
 This extension creates an UI for you to add and manage your custom fields. So you don't need to [touch code again](https://docs.metabox.io/creating-meta-boxes/). It's helpful for both beginners (who have little knowlege about PHP coding) or experience developers (who want to save time).
 
-If you already used our free [Online Generator](https://metabox.io/online-generator/), then this extension works very similarly. But it has a better support (very much) for all field types and other extensions.
+If you already used our free [Online Generator](https://metabox.io/online-generator/), then this extension works very similarly. But it has a better support (very much) for all field types and other extensions and it works right in the WordPress admin area.
 
 Please note that, while Meta Box Builder supports most settings for custom fields and extensions, there are some advanced settings that need to be done in PHP code (such as [creating settings page](https://docs.metabox.io/extensions/mb-settings-page/) or [relationships](https://docs.metabox.io/extensions/mb-relationships/) if you use these extensions). But in 95% cases, you're fine with the extension.
 
@@ -123,27 +123,17 @@ To create a nested array in Meta Box Builder, you can use JSON notation, encode 
 
 ## Manipulating fields
 
-### Deleting a field
+### Deleting or duplicating a field
 
-Click the red **Remove** link in the bottom left of the field settings panel:
+To delete or duplicate a field, simply clicking the icons in the toolbar:
 
-![delete a field](https://i.imgur.com/dkcHg9P.png)
+![delete or duplicate a field](https://i.imgur.com/98mSFzx.png)
 
 ### Reordering fields
 
 Just drag your fields to the position that you want.
 
 [![reordering fields](https://i.imgur.com/ZOZD5aY.gif)](https://i.imgur.com/ZOZD5aY.gif)
-
-### Duplicating fields
-
-In case you want to create similar fields, duplicate feature can help you save a lot of time.
-
-To duplicate a field, simply click the **Duplicate** link in the bottom right of the field settings panel:
-
-![duplicate a field](https://i.imgur.com/sn5IJNw.png)
-
-A new field will be immediately created and put below the current field.
 
 ## Getting PHP code
 
@@ -172,15 +162,49 @@ To export one or more field groups, go to the main screen *Meta Box &rarr; Custo
 
 ![export field groups](https://i.imgur.com/r1moj0S.png)
 
-To import field groups, *Meta Box &rarr; Import*. Choose the downloaded file in the previous step, then press **Upload file and import**. That’s all!
+Or you can export individual field group by clicking on **Export** link when hover the mouse over the field group title:
 
-![import field groups](https://i.imgur.com/z4ntga2.png)
+![export a single field group](https://i.imgur.com/Nx45cpH.png)
+
+To import field groups, select the *Import* button at the top of the page. Then choose the downloaded file in the previous step, then press **Upload file and import**. That’s all!
+
+![import field groups](https://i.imgur.com/bpf4acg.png)
 
 For detailed instruction, please see [this tutorial](https://metabox.io/export-import-custom-fields-meta-box-builder/).
 
 Video tutorial:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BGVY-5W6d7g?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## Create Gutenberg blocks
+
+Since v3.1.0, Meta Box Builder allows you to create Gutenberg blocks visually, without writing code. See this video tutorial on how to do that:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v3ke1DBlWuk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Note that the plugin supports Twig template engine to write block template code. See [Twig documentation](https://twig.symfony.com/doc/1.x/templates.html) for how to use variables, conditions and functions.
+
+For more convenient, the plugin supports the following variables:
+
+- `{{ align }}`: block alignment (if the block supports it).
+- `{{ anchor }}`: block anchor (if the block supports it).
+- `{{ className }}`: custom CSS class name (if the block supports it).
+
+To access the field value, you can use `{{ field_id }}`, where `field_id` is the field ID. If the field returns an array (such as `single_image` field), you can access to field's attribute with `{{ my_image.full_url }}`.
+
+Besides, the plugin also allows you to use any PHP/WordPress function via `mb.function()` where `function` is the function name. For example, the code below get the post object and output the post title:
+
+```php
+{% set post = mb.get_post( post_id ) %}
+{{ post.post_title }}
+```
+
+Or this code will output the site title:
+
+```php
+{% set site_title = mb.get_bloginfo( 'name' ) %}
+{{ site_title }}
+```
 
 ## Further Reading
 
