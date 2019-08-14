@@ -27,6 +27,7 @@ Name | Description
 `add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
 `clone_as_multiple`|Whether to store clone values in multiple rows in the database? Optional. Default `false`. See [this post](https://metabox.io/introducing-clone-as-multiple-feature/) for details.
 `attributes` | Custom attributes for inputs. See [more details](/custom-attributes/).
+`save_field` | Whether to save field value. Optional. Default `true`. This option doesn't work in the block editor (Gutenberg).
 
 ### Field types
 
