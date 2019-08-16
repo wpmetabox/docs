@@ -186,19 +186,19 @@ Note that the plugin supports Twig template engine to write block template code.
 
 For more convenient, the plugin supports the following variables:
 
-- `{{ align }}`: block alignment (if the block supports it).
-- `{{ anchor }}`: block anchor (if the block supports it).
-- `{{ className }}`: custom CSS class name (if the block supports it).
+- `{% raw  %}{{ align }}{% endraw  %}`: block alignment (if the block supports it).
+- `{% raw  %}{{ anchor }}{% endraw  %}`: block anchor (if the block supports it).
+- `{% raw  %}{{ className }}{% endraw  %}`: custom CSS class name (if the block supports it).
 
-To access the field value, you can use `{{ field_id }}`, where `field_id` is the field ID. If the field returns an array (such as `single_image` field), you can access to field's attribute with `{{ my_image.full_url }}`.
+To access the field value, you can use `{% raw  %}{{ field_id }}{% endraw  %}`, where `field_id` is the field ID. If the field returns an array (such as `single_image` field), you can access to field's attribute with `{% raw  %}{{ my_image.full_url }}{% endraw  %}`.
 
 Besides, the plugin also allows you to use any PHP/WordPress function via `mb.function()` where `function` is the function name. For example, the code below get the post object and output the post title:
 
 ```php
 {% raw  %}
 {% set post = mb.get_post( post_id ) %}
-{% endraw  %}
 {{ post.post_title }}
+{% endraw  %}
 ```
 
 Or this code will output the site title:
@@ -206,8 +206,8 @@ Or this code will output the site title:
 ```php
 {% raw  %}
 {% set site_title = mb.get_bloginfo( 'name' ) %}
-{% endraw  %}
 {{ site_title }}
+{% endraw  %}
 ```
 
 ## Further Reading
