@@ -195,14 +195,18 @@ To access the field value, you can use `{{ field_id }}`, where `field_id` is the
 Besides, the plugin also allows you to use any PHP/WordPress function via `mb.function()` where `function` is the function name. For example, the code below get the post object and output the post title:
 
 ```php
+{% raw  %}
 {% set post = mb.get_post( post_id ) %}
+{% endraw  %}
 {{ post.post_title }}
 ```
 
 Or this code will output the site title:
 
 ```php
+{% raw  %}
 {% set site_title = mb.get_bloginfo( 'name' ) %}
+{% endraw  %}
 {{ site_title }}
 ```
 
