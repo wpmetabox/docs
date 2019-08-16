@@ -16,7 +16,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`placeholder` | Array of placeholder texts for key and value inputs. Format `array( 'key' => 'Key placeholder', 'value' => 'Value placeholder' )`.
+`placeholder` | Array of placeholder texts for key and value inputs. Format `array( 'key' => 'Key placeholder', 'value' => 'Value placeholder' )`. Optional.
 `size` | Input size. Default `30`. Optional.
 
 Note that for this field, `multiple` and `clone` settings are always set to `true`.
