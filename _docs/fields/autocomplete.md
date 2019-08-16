@@ -45,6 +45,41 @@ array(
 )
 ```
 
+## Getting options remotely via Ajax
+
+In case you want to use remote data instead of user-defined data for the `options`, you can set this parameter an URL of your remote data source.
+
+This is an example:
+
+```php
+array(
+    'name' => 'Some Field',
+    'id' => 'some_field',
+    'type' => 'autocomplete',
+    'options' => admin_url( 'admin-ajax.php?action=some_field' ),
+)
+```
+
+This field will fetch the data via Ajax. The ajax callback is handled in the following code:
+
+```php
+add_action( 'wp_ajax_some_field', function() {
+   $s = $_REQUEST[ 'term' ];
+   // Do some stuff here to find matches.
+
+  $response = array(
+      array( 'value' => '123', 'label' => 'Some Post' ),
+      array( 'value' => '77', 'label' => 'Another Post' )
+  );
+
+  // Do some stuff to prepare JSON response ( headers, etc ).
+  echo wp_json_encode( $response );
+  die;
+} );
+```
+
+Note that the data returned must be in JSON format as above. The ajax request also sends the search term via `$_REQUEST['term']` parameter as you see above.
+
 ## Data
 
 This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
