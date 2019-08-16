@@ -18,7 +18,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 
 Name | Description
 --- | ---
-`options` | Array of `'value' => 'Label'` pairs. `'value'` is stored in the custom field and `'Label'` is used for autocomplete. Required.
+`options` | Array of `'value' => 'Label'` pairs. `'value'` is stored in the custom field and `'Label'` is used for autocomplete. You can also set this param an URL to remote resource that returns the array of data in JSON format. Required.
 `size` | Input size. Default `30`. Optional.
 
 Note that the `multiple` setting is always set to `true` for this field.
