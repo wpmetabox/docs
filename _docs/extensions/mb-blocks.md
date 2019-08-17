@@ -92,15 +92,15 @@ You might notice that the syntax is very similar to [creating a custom meta box]
 
 The block settings are inherited from the Block JavaScript API with a few difference. See [Block Registration](https://developer.wordpress.org/block-editor/developers/block-api/block-registration/) page on the Gutenberg Handbook if you need more details.
 
-### `title`
+### title
 
 The block title. It's used to dipslay the block when you click the Block Inserter in Gutenberg.
 
-### `id`
+### id
 
 The block ID. Must be unique.
 
-### `icon`
+### icon
 
 The block icon. Can be any of [WordPress' Dashicons](https://developer.wordpress.org/resource/dashicons/) (without the prefix `dashicons-`), or a custom `svg` element (string).
 
@@ -128,19 +128,19 @@ when they are applicable e.g.: in the inserter.
 ],
 ```
 
-### `description`
+### description
 
 The block description. Optional.
 
-### `type`
+### type
 
 Tells Meta Box to register this as a Gutenberg block (not as a normal meta box). This must be set to `block`.
 
-### `category`
+### category
 
 Specify the block category, which is used to help users browse and discover them. Available values: `common`, `formatting`, `layout` (defaul), `widgets`, `embed`. If a theme or a plugin registers a custom category, you can also use it, too.
 
-### `keywords`
+### keywords
 
 List of keywords that users can use to search the block from the block inserter.
 
@@ -149,7 +149,7 @@ List of keywords that users can use to search the block from the block inserter.
 'keywords' => ['image', 'photo', 'pics'],
 ```
 
-### `context`
+### context
 
 Where to show the block settings. If set to `side`, the block settings is displayed on the right sidebar when you select the block. If omitted (default), the block settings is displayed when you click the Edit icon in the block toolbar.
 
@@ -157,7 +157,7 @@ See the short video below to understand.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FOw0bPG_jjw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### `supports`
+### supports
 
 Custom supports for the block. This parameter accepts an array like this:
 
@@ -169,7 +169,9 @@ Custom supports for the block. This parameter accepts an array like this:
 ],
 ```
 
-#### `align`
+The following parameters are available for `supports`:
+
+#### align (default `false`)
 
 Add supports for the block alignment. Note that your theme must add styling for the Gutenberg alignment.
 
@@ -180,7 +182,7 @@ Add supports for the block alignment. Note that your theme must add styling for 
 'align' => [ 'left', 'right', 'full' ],
 ```
 
-#### `anchor`
+#### anchor (default `false`)
 
 Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block.
 
@@ -188,12 +190,30 @@ Anchors let you link directly to a specific block on a page. This property adds 
 'anchor' => true,
 ```
 
-#### `customClassName`
+#### customClassName (default `true`)
 
 This property adds a field to define a custom CSS class name for the block's wrapper. It's useful when you want to add custom styling for a specific instance of the block.
 
 ```php
 'customClassName' => true,
+```
+
+#### multiple (default `true`)
+
+If you want to have a block that can be inserted into each post one time only (like a hero area block), then set this parameter to `false`. A non-multiple block's icon is automatically dimmed (unclickable) to prevent multiple instances.
+
+```php
+// Use the block just once per post
+multiple: false,
+```
+
+#### reusable (default `true`)
+
+A block may want to disable the ability of being converted into a reusable block. By default all blocks can be converted to a reusable block. If supports reusable is set to `false`, the option to convert the block into a reusable block will not appear.
+
+```php
+// Don't allow the block to be converted into a reusable block.
+reusable: false,
 ```
 
 ### `render_callback`
@@ -424,7 +444,26 @@ If you view the post content via a tool like PHPMyAdmin, you'll see the block is
 <!-- wp:meta-box/hero-content {"id":"block_jyqlhbauqz4jz51ahab","data":{"image":"10","title":"Hi, I’m Martin Green","subtitle":"WEB DEVELOPER \u0026 DESIGNER","content":"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusa ntium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta suntlo explica bo. Nemo enim ipsam voluptatem quia voluptas.","signature":"9","button_text":"Discover More","button_url":"#","background_color":"#f5f7f8"},"align":"wide"} /-->
 ```
 
-When you encode the JSON string, you'll see the block data as an array like this:
+When you decode the JSON string, you'll see the block data as an object like this:
+
+```json
+{
+  "id": "block_jyqlhbauqz4jz51ahab",
+  "data": {
+    "image": "10",
+    "title": "Hi, I’m Martin Green",
+    "subtitle": "WEB DEVELOPER \u0026 DESIGNER",
+    "content": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusa ntium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta suntlo explica bo. Nemo enim ipsam voluptatem quia voluptas.",
+    "signature": "9",
+    "button_text": "Discover More",
+    "button_url": "#",
+    "background_color": "#f5f7f8"
+  },
+  "align": "wide"
+}
+```
+
+It has the following attribute:
 
 - `id`: an unique ID for the block. Note that it's different from the block settings ID. This ID can be used to set the `id` parameter in the HTML if you want.
 - `align`: block alignment
@@ -438,7 +477,15 @@ Note that: although you can access to the fields values via `$attributes['data]'
 
 ## Video Tutorial
 
+**Create Custom Gutenberg Blocks With Meta Box (only PHP)**
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PAisKy8eC2U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**Build Gutenberg Blocks Visually With Meta Box Builder**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v3ke1DBlWuk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+See more details on [using Meta Box Builder with MB Blocks](https://metabox.io/build-gutenberg-blocks-visually-with-meta-box-builder/).
 
 ## Example
 
