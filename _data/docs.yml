@@ -12,6 +12,7 @@
   - /displaying-fields/
   - /shortcode/
   - /validation/
+  - /sanitization/
   - title: Cloning Fields
     url: /cloning-fields/
 - title: Advanced
