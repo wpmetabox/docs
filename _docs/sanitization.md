@@ -41,7 +41,7 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
 } );
 
 function prefix_sanitize_money_field( $value ) {
-    if ( 0 !== strpos( '$', $value ) ) {
+    if ( 0 !== strpos( $value, '$' ) ) {
         $value = '$' . $value;
     }
     return $value;
@@ -92,7 +92,7 @@ To do this, please set the `sanitize_callback` param for the field in the `norma
 class RWMB_MyType_Field extends RWMB_Field {
     public static function normalize( $field ) {
         $field = wp_parse_args( $field, array(
-            'santitize_callback' => [ __CLASS__, 'custom_sanitize' ],
+            'sanitize_callback' => [ __CLASS__, 'custom_sanitize' ],
         ) );
         $field = parent::normalize( $field );
         return $field;
@@ -103,4 +103,42 @@ class RWMB_MyType_Field extends RWMB_Field {
         return $value;
     }
 }
+```
+
+Note that, the sanitize callback don't need to use all of the 4 passed parameters.
+
+This is an example of a custom `money` field, where the value must have "$" prefixed:
+
+```php
+class RWMB_Money_Field extends RWMB_Text_Field {
+    public static function normalize( $field ) {
+        $field = wp_parse_args( $field, array(
+            'sanitize_callback' => [ __CLASS__, 'custom_sanitize' ], // Specify a custom sanitize callback.
+        ) );
+        $field = parent::normalize( $field );
+        $field['attributes']['type'] = 'text'; // Set the `type` attribute to `text` to let users enter the data.
+        return $field;
+    }
+
+    public static function custom_sanitize( $value ) {
+        if ( 0 !== strpos( $value, '$' ) ) {
+            $value = '$' . $value;
+        }
+        return $value;
+    }
+}
+
+add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
+    $meta_boxes[] = [
+        'title' => 'Test Sanitization Money Field',
+        'fields' => [
+            [
+                'type' => 'money', // Set the field type to the custom 'money' type.
+                'id'   => 'amount',
+                'name' => 'Amount',
+            ]
+        ],
+    ];
+    return $meta_boxes;
+} );
 ```
