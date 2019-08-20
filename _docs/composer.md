@@ -25,7 +25,7 @@ Composer requires a config file named `composer.json` where we defines all the d
 ```json
 {
   "require": {
-    "wpmetabox/meta-box": "4.*"
+    "wpmetabox/meta-box": "^5"
   }
 }
 ```
