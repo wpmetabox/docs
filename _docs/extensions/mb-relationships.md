@@ -53,9 +53,7 @@ add_action( 'mb_relationships_init', function () {
             'object_type' => 'term',
             'taxonomy'    => 'category',
         ),
-        'to'   => array(
-            'object_type' => 'post',
-        ),
+        'to'   => 'post',
     ) );
 } );
 ```
