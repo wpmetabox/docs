@@ -189,6 +189,8 @@ For more convenient, the plugin supports the following variables:
 - `{% raw  %}{{ align }}{% endraw  %}`: block alignment (if the block supports it).
 - `{% raw  %}{{ anchor }}{% endraw  %}`: block anchor (if the block supports it).
 - `{% raw  %}{{ className }}{% endraw  %}`: custom CSS class name (if the block supports it).
+- `{% raw  %}{{ is_preview }}{% endraw  %}`: whether or not in preview mode.
+- `{% raw  %}{{ post_id }}{% endraw  %}`: the current post ID.
 
 To access the field value, you can use `{% raw  %}{{ field_id }}{% endraw  %}`, where `field_id` is the field ID. If the field returns an array (such as `single_image` field), you can access to field's attribute with `{% raw  %}{{ my_image.full_url }}{% endraw  %}`.
 
