@@ -48,6 +48,7 @@ Name|Description
 `default_hidden`|Hide the meta box by default (`true` or `false`)? The meta box can be toggled using the checkbox option in screen Help (on the top right). Optional. Default `false`.
 `autosave`|Auto save the custom fields' values (like post content and title)? Optional. Default: `false`.
 `media_modal`|Add custom fields to media modal when viewing/editing an attachment. Works only when `post_types` is or contains `attachment`. Optional. Default `false`.
+`class`|Custom CSS class for the meta box wrapper. Optional.
 `fields`|Array of fields. See section below.
 
 {% include alert.html type="info" content="Because of some limitations in the media modal, only simple fields such as text, select, radio, checkbox work. Other fields that require custom JavaScript don't work, unfortunately." %}
