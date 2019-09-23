@@ -40,7 +40,10 @@ Instead of trying to get the original password, you should check the saved passw
 
 ```php
 $value = rwmb_meta( $field_id );
-if ( $value === wp_hash_password( 'password to check' ) ) {
+// Or if you want to get the field value from a specific post:
+// $value = rwmb_meta( $field_id, '', $post_id );
+
+if ( wp_check_password( $value, 'password to check' ) ) {
     echo 'Password is correct';
 }
 ```
