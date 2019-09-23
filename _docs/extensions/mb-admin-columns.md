@@ -215,3 +215,40 @@ function prefix_add_custom_columns() {
 ```
 
 Note that the call `new Prefix_Custom_Admin_Columns( 'post', array() );` tells WordPress to add custom column(s) to `post`. You can change this to another post type if you want.
+
+### Example
+
+Assume you want to display featured image before post title (for posts). Featured image is a WordPress field, not Meta Box's, so you need to use a custom code to add it.
+
+In this example, let's use the [Code Snippets](https://wordpress.org/plugins/code-snippets/) plugin to add code to the plugin as you might not want to change the `functions.php` file of the theme (or you don't have access to it).
+
+So, install that plugin and add the following code:
+
+```php
+add_action( 'admin_init', function() {
+	class My_Featured_Image_Columns extends MB_Admin_Columns_Post {
+		public function columns( $columns ) {
+			$columns  = parent::columns( $columns );
+			$position = 'before';
+			$target   = 'title';
+			$this->add( $columns, 'featured_image', 'Featured Image', $position, $target );
+			// Add more if you want
+			return $columns;
+		}
+		public function show( $column, $post_id ) {
+			switch ( $column ) {
+				case 'featured_image':
+					the_post_thumbnail( [40, 40] );
+					break;
+				// More columns
+			}
+		}
+	}
+
+	new My_Featured_Image_Columns( 'post', array() );
+} );
+```
+
+And here is the result:
+
+![featured image](https://i.imgur.com/ml63gMo.png)
