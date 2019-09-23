@@ -465,6 +465,7 @@ When you decode the JSON string, you'll see the block data as an object like thi
 
 It has the following attribute:
 
+- `name`: the block name
 - `id`: an unique ID for the block. Note that it's different from the block settings ID. This ID can be used to set the `id` parameter in the HTML if you want.
 - `align`: block alignment
 - `anchor`: block anchor
