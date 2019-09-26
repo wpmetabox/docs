@@ -28,3 +28,30 @@ Name|Description
 `clone_as_multiple`| Whether to store cloned values in multiple rows in the database? [See this post](https://metabox.io/introducing-clone-as-multiple-feature/) for examples.
 
 ![sortable repeatable field](https://i.imgur.com/nNzWQgO.png)
+
+## Default values
+
+When making a field cloneable, its data is an [array of clone values](https://docs.metabox.io/database/#cloneable-fields). So, the `std` parameter (default value) should represents this structure, e.g. array of clone values.
+
+For example:
+
+```php
+add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
+	$meta_boxes[] = [
+		'title' => 'Test Meta Box',
+		'fields' => [
+			[
+				'type'  => 'text',
+				'id'    => 'name',
+				'name'  => 'Name',
+				'clone' => true,
+				'std'   => [
+					'John',
+					'Marry',
+				],
+			],
+		],
+	];
+	return $meta_boxes;
+} );
+```
