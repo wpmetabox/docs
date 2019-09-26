@@ -598,6 +598,10 @@ And here is the result:
 
 ![default group value](https://i.imgur.com/rqxfxA8.png)
 
+See this video for demonstration:
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/c8f04fb84025428c895f14137b194035" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
 ## Changing clone button text
 
 Since Meta Box version 4.11, you can change the clone button text by using `add_button` parameter for fields, like below:
