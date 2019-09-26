@@ -464,7 +464,139 @@ add_shortcode( 'my_group', function() {
 	
 	return $output;
 } );
+
+// Usage: put [my_group] into your post content or page builder modules.
 ```
+
+## Setting default group values
+
+There are 2 ways to set default group values: per sub-field or for the whole group.
+
+Setting default values for each sub-fields is very simple. Just set its value via `std` parameter for each sub-field and done.
+
+Example:
+
+```php
+add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
+	$meta_boxes[] = [
+		'title' => 'Test Group Default Value',
+		'fields' => [
+			[
+				'type' => 'group',
+				'id'   => 'group',
+				'fields' => [
+					[
+						'type' => 'text',
+						'id' => 'name',
+						'name' => 'Name',
+						'std' => 'My Name', // THIS
+					],
+					[
+						'type' => 'email',
+						'id' => 'email',
+						'name' => 'Email',
+						'std' => 'myemail@domain.com', // THIS
+					],
+				],
+			]
+		],
+	];
+	return $meta_boxes;
+} );
+```
+
+Result:
+
+![default sub-field value](https://i.imgur.com/pml8twS.png)
+
+However, doing that way makes you type quite a lot. And you hardly see the data of the whole group. To avoid this problem, Meta Box Group provides a better way to set default value for the whole group.
+
+The idea is very simple, just use the same `std` parameter for *the group* (not for sub-fields). And set its value an array of sub-field default values.
+
+For example: with a group of 2 fields above, we can default the default value like this:
+
+```php
+add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
+	$meta_boxes[] = [
+		'title' => 'Test Meta Box',
+		'fields' => [
+			[
+				'type' => 'group',
+				'id'   => 'group',
+				'fields' => [
+					[
+						'type' => 'text',
+						'id' => 'name',
+						'name' => 'Name',
+					],
+					[
+						'type' => 'email',
+						'id' => 'email',
+						'name' => 'Email',
+					],
+				],
+				
+				// THIS
+				'std' => [
+					'name' => 'My name',
+					'email' => 'myemail@domain.com',
+				],
+			]
+		],
+	];
+	return $meta_boxes;
+} );
+```
+
+If the group is *cloneable*, the `std` value should be an array of clone values. Each clone value is an array of sub-field values. Like this:
+
+```php
+add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
+	$meta_boxes[] = [
+		'title' => 'Test Meta Box',
+		'fields' => [
+			[
+				'type' => 'group',
+				'id'   => 'group',
+				'name' => 'Group',
+				'clone' => true,
+				'collapsible' => true,
+				'group_title' => '{name}',
+				'fields' => [
+					[
+						'type' => 'text',
+						'id' => 'name',
+						'name' => 'Name',
+					],
+					[
+						'type' => 'email',
+						'id' => 'email',
+						'name' => 'Email',
+					],
+				],
+				'std' => [
+					// Value for the 1st clone
+					[
+						'name' => 'Name 1',
+						'email' => 'email1@domain.com',
+					],
+
+					// Value for the 2nd clone
+					[
+						'name' => 'Name 2',
+						'email' => 'email2@domain.com',
+					]
+				],
+			]
+		],
+	];
+	return $meta_boxes;
+} );
+```
+
+And here is the result:
+
+![default group value](https://i.imgur.com/rqxfxA8.png)
 
 ## Changing clone button text
 
