@@ -370,3 +370,8 @@ The extension outputs the default fields' HTML with CSS comes from Meta Box plug
 ### Caching
 
 As you might know, Meta Box uses [nonces](https://codex.wordpress.org/WordPress_Nonces) to prevent misuse or malicious requests. As the nonce fields are outputted directly in the HTML, they might be cached by caching plugins such as W3 Total Cache, WP Super Cache, etc. And thus, the verification of the nonce might not work properly and break the form submission. In this case, please do not cache the page where the form is embeded (both caching plugins allow you to do that). For more information, please read this [technical article](https://myatus.com/p/wordpress-caching-and-nonce-lifespan/).
+
+## Tutorials
+
+- How to Add Guest Author in WordPress using Meta Box: [Part 1](https://metabox.io/p1-add-guest-author-in-wordpress/) & [Part 2](https://metabox.io/p2-add-guest-author-in-wordpress/).
+- [How to Create a Classified Ads Website using Meta Box](https://metabox.io/create-classified-ads-website-using-meta-box/)
