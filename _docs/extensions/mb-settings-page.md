@@ -389,6 +389,8 @@ Here is the result:
 
 ![settings page with tabs](https://i.imgur.com/yb9Admk.png)
 
+{% include alert.html type="warning" content="**Important:** When using tabs, you must define `tab` attribute for all meta boxes to make them appear in corresponding tabs. Missing `tab` attribute makes the meta boxes hidden." %}
+
 ## Creating Customizer Settings
 
 This is a quick video that demonstrate how to use MB Settings Page to create custom panels, sections and fields in the Customizer. You'll see how easy it is to turn a settings page into a Customizer panel.
