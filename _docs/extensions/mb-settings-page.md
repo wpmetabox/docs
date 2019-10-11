@@ -613,13 +613,20 @@ It's the recommended way by WordPress that doesn't make your options table bloat
 You're able to use helper function [rwmb_meta()](/rwmb-meta/) to get field value as follows:
 
 ```php
-$value = rwmb_meta( $field_id, array( 'object_type' => 'setting' ), $option_name );
+$value = rwmb_meta( $field_id, ['object_type' => 'setting'], $option_name );
+echo $value;
+```
+
+For network settings, please use the following code:
+
+```php
+$value = rwmb_meta( $field_id, ['object_type' => 'network_setting'], $option_name );
 echo $value;
 ```
 
 Notes:
 
-- In the 2nd parameter, you need to pass `'object_type' => 'setting'`, and
+- In the 2nd parameter, you need to pass `'object_type' => 'setting'` or `'object_type' => 'network_setting'`, and
 - In the last parameter, you need to pass the option name for the settings page
 
 Other parameters are the same as for posts. Please see [this documentation](/displaying-fields/) for details.
