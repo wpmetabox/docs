@@ -94,6 +94,75 @@ array(
 ),
 ```
 
+## Ajax Load
+
+Since version 5.2, Meta Box uses Ajax to increase the performance for the field query. Instead of fetching all terms at once, the plugin now fetches only some terms when the page is loaded, and then fetches more terms when users scroll down to the list.
+
+See this video for demonstration (made for posts, but works similar for taxonomies):
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/0437f466379e4a328fb4fcae11cd3bf5" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+This feature is available only for fields that set `field_type` to `select_advanced`. There are some extra parameters for you to disable or customize it.
+
+### Enable/Disable Ajax Requests
+
+To enable the Ajax requests, simply add `'ajax' => true` (which is added by default) to the field:
+
+```php
+array(
+    'id' => 'project_cat',
+    'title' => 'Project Categories',
+    'type' => 'taxonomy',
+    'taxonomy' => 'project_cat',
+    'ajax' => true, // THIS
+),
+```
+
+Setting this parameter to `false` will disable Ajax requests, making it work exactly the same as in previous versions.
+
+### Limit The Number of Terms for Pagination
+
+Similar to the previous version, the number of terms for pagination is set via the `number` in the `query_args` parameter:
+
+```php
+array(
+    'id' => 'project_cat',
+    'title' => 'Project Categories',
+    'type' => 'taxonomy',
+    'taxonomy' => 'project_cat',
+    'ajax' => true,
+    'query_args' => array(
+        'number' => 10, // THIS
+    ),
+),
+```
+
+Unlike in previous versions, this number is used only for Ajax requests to fetch the next bunch of terms. The new fetched terms will be appended to the list of options in the dropdown, to make the infinite scroll effect.
+
+It also _doesn't affect the initial load_ of the field. When the field is loaded, Meta Box _only queries for saved terms_ (which is usually not many). So the initial query is very minimal and doesn't cause any performance problem.
+
+### Searching Parameters
+
+You probably don't want to perform an Ajax request when open the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLengthfor` the input, as below:
+
+```php
+array(
+    'id' => 'project_cat',
+    'title' => 'Project Categories',
+    'type' => 'taxonomy',
+    'taxonomy' => 'project_cat',
+    'ajax' => true,
+    'query_args' => array(
+        'number' => 10, // THIS
+    ),
+    'js_options' => array(
+        'minimumInputLength' => 1, // THIS
+    ),
+),
+```
+
+This parameter sets the minimum number of characters required to start a search. It may be good if you don't want users to make too many Ajax requests that could harm your server.
+
 ## Data
 
 This field **does not save any value** in the database. Instead of that, it **sets the taxonomy terms for the current being edited post**. In short, it behaves exactly like the "Category" and "Tags" meta boxes.
