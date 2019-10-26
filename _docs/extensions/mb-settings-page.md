@@ -452,7 +452,7 @@ add_filter( 'mb_settings_pages', function ( $settings_pages ) {
         'menu_title'       => 'Theme Options',
         'parent'           => 'themes.php',
         'customizer'       => true,
-        'customizer_onlye' => true, // THIS
+        'customizer_only'  => true, // THIS
     );
     return $settings_pages;
 } );
