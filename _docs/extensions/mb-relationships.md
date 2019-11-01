@@ -105,16 +105,17 @@ If you pass **an array** to `from` or `to`, then the array accepts the following
 Name|Description
 ---|---
 `object_type`|The object type the relationship is created from/to. Accepts `post` (default), `term` or `user`. Optional.
-`post_type`|If the `object_type` is set to `post`, then specify the `post_type` here. Default `post`. Optional.
-`taxonomy`|If the `object_type` is set to `term`, then specify the `taxonomy` here.
-`query_args`|Custom query arguments to get objects of `object_type`. These arguments will be passed to `WP_Query()`, `get_terms()` or `get_users()` depending what `object_type` is.
-`meta_box`|Meta box settings, which accepts the following parameters:
--- `hidden`|Hide the meta box. `true` or `false` (default). This setting is applied only for "to" side, as we always need to show meta box on the "from" side to select connected items.
--- `context`|Where to show the meta box: `normal`, `advanced` (below post editor) or `side` (on the right sidebar - default). Works only if `object_type` is `post`.
--- `priority`|The meta box priority: `high` (default), `low`.
+`post_type`|The post type if the `object_type` is set to `post`. Default `post`. Optional.
+`taxonomy`|The taxonomy if the `object_type` is set to `term`.
+`empty_message`|The message displayed when there's no connections.
+`meta_box`|Meta box settings, has the [same settings as a normal meta box](https://docs.metabox.io/creating-meta-boxes/). Below are common settings you might want to change:
 -- `title`|The meta box title. Default is "Connect To" for "from" side and "Connected From" for "to" side.
--- `field_title`|The field title. Optional.
--- `empty_message`|The message displayed when there's no connections. Used for "to" side only.
+`field`|Field settings, has the [same settings as a normal post/user/taxonomy field](https://docs.metabox.io/field-settings/) according to the object type. Below are common settings you might want to change:
+-- `name` | Field title.
+-- `placeholder` | Placeholder text.
+-- `query_args`|Custom query arguments to get objects of `object_type`. These arguments will be passed to `WP_Query()`, `get_terms()` or `get_users()` depending what `object_type` is.
+-- `max_clone` | Maximum number of connections.
+
 
 ### Reciprocal relationships
 
