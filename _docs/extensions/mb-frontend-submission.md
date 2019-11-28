@@ -342,11 +342,9 @@ The action accepts 1 parameter: the instance of the `MB_Frontend_Post` class, wh
 - `$fields`: The post fields
 - `$config`: The configuration, taken from the shortcode attributes
 
-## Notes
+## Upload files / images with the media popup
 
-### Upload files / images
-
-To be able to upload files or images (via fields `file_advanced`, `file_upload`, `image_advanced`, `image_upload`), users have to login and proper capability `upload_files` to access the Media Library. If your users don't have that capability (if they have subscriber role), then the upload fields don't work. In that case, you can add the capability for that role as follows:
+To be able to upload files or images with the media popup (via fields `file_advanced`, `file_upload`, `image_advanced`, `image_upload`), users have to login and proper capability `upload_files` to access the Media Library. If your users don't have that capability (if they have subscriber role), then the upload fields don't work. In that case, you can add the capability for that role as follows:
 
 ```php
 function mb_allow_subscriber_uploads() {
@@ -362,6 +360,20 @@ add_action( 'init', 'mb_allow_subscriber_uploads' );
 ```
 
 Another solution is using `file` or `image` fields. Both of them works similar. They just don't have a nice UI, but they do the job very well.
+
+## Use the media popup for post thumbnail
+
+Another improvement you might want to add is use the media popup to pick an image as the post thumbnail. By default, it uses `image` field, which provides a simple input for image.
+
+To do that, you need to change the field type for thumbnail from `image` to `single_image`. Here are the steps:
+
+- Create a folder `mb-frontend-submission` in your theme, inside that folder, create a sub-folder `post`.
+- Copy the file `thumbnail.php` from the plugin's `templates/post` folder to the `post` folder above.
+- Replace the content of the copied `thumbnail.php` with [this code](https://pastebin.com/6AFcPF7b).
+
+Please note that, in order to open the media popup, users need to log in and have proper capability. See the section above for how to do that.
+
+## Notes
 
 ### Styling
 
