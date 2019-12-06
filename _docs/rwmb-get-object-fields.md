@@ -4,7 +4,7 @@ title: rwmb_get_object_fields
 
 ## Overview
 
-`rwmb_get_object_fields` is a helper function which gets list of custom fields for a specific object. The object can be a post or a term.
+`rwmb_get_object_fields` is a helper function which gets list of custom fields for a specific object. The object can be a post or a term or a settings page.
 
 ## Usage
 
@@ -29,7 +29,7 @@ rwmb_get_object_fields( $type_or_id, $object_type = 'post' );
 
 Name|Description
 ---|---
-`$type_or_id`|The object ID or type. Type should be post type for posts or taxonomy for terms. Required.
+`$type_or_id`|The object ID or type. Type should be post type/post ID for posts, or taxonomy/term ID for terms or settings page ID for settings pages. Required.
 `$object_type`|The object type: `post` (default), `term`, `user` or `setting`. Optional.
 
 ## Returned value
