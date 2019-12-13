@@ -54,6 +54,8 @@ Name|Description
 `label_password2`|Label for the confirm password input field.
 `label_submit`|Label for the submit button.
 `confirmation`|Confirmation message if registrion is succesful.
+`password_strength`|Set the required password strength. Available options: `strong`, `medium`, `weak`, `very-weak` or `false` to disable password strength meter.
+`email_as_username`|Use email for username. If this param is `true`, then the username field will disappear.
 
 ### Login form
 
@@ -80,7 +82,6 @@ Name|Description
 `label_lost_password`|Label for the lost password link.
 `label_submit`|Label for the submit button.
 `confirmation`|Confirmation message if registrion is succesful.
-`remember`|Whether to show remember checkbox field - `true` (default) or `false`.
 `value_username`|Default value for username field.
 `value_remember`|Default value for remember checkbox field - `true` or `false` (default).
 
