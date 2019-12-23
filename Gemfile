@@ -1,4 +1,3 @@
-gem source -r "https://rubygems.org/"
 gem source -a "http://rubygems.org/"
 
 gem 'jekyll'
