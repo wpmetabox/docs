@@ -137,6 +137,7 @@ Name|Description
 ---|---
 `id`|Page ID. Required. Will be used as the slug in URL and option name (if `option_name` missed).
 `option_name`|Option name where settings data is saved to. Optional. Takes `id` if missed. If you want to use theme mods, then set this to `theme_mods_$themeslug`.
+`class`|Custom CSS for the wrapper div.
 `menu_title`|Menu title. Optional. Takes `page_title` if missed.
 `page_title`|Page title. Optional. Takes `menu_title` if missed. Note: either `menu_title` or `page_title` (or both) must have value.
 `capability`|Required capability to access the settings page. Optional. Default `edit_theme_options`.
