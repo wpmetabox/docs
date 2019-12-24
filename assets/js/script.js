@@ -92,11 +92,6 @@ function copyToClipboard() {
 	});
 }
 
-// Google Fonts.
-window.WebFontConfig = {
-	google: { families: [ 'Roboto+Slab:700' ] }
-};
-
 docsearch({
 	apiKey: '97cd82eb9fd8fdde822c2a66377779a0',
 	indexName: 'metabox',
