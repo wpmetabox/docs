@@ -26,8 +26,8 @@ To create tabs for your meta box, you need to add these parameters to your meta 
 
 List of tabs, in one of the following formats:
 
-    - `'tab-id' => 'Tab label'`, or
-    - `'tab-id' => ['label' => 'Tab label', 'icon' => 'Tab icon']`
+- `'tab-id' => 'Tab label'`, or
+- `'tab-id' => ['label' => 'Tab label', 'icon' => 'Tab icon']`
 
 Where `tab-id` will be used in fields (below) to put fields under a tab.
 
