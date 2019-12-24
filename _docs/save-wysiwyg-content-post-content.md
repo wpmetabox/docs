@@ -10,11 +10,11 @@ Sometimes you want to move the traditional editor for the post to another locati
 - Description
 - Gallery
 
-Then keeping the description (which can be the post content) along with other fields make users easier to fill in the data. While this is impossible to do that with the default WordPress editor, we can do that with the [Meta Box plugin](/). The steps to do that are describe below:
+Then keeping the description (which can be the post content) along with other fields make users easier to fill in the data. While this is impossible to do that with the default WordPress editor, we can do that with the [Meta Box](https://metabox.io) plugin. The steps to do that are describe below:
 
 1. Remove the default editor (we don't want to display it at the top)
 1. [Create a new wysiwyg field](/fields/wysiwyg/)
-1. Set that field take the post content as the default value
+1. Set that field take the post content as the value
 1. Save that field content into post content
 
 The code is quite straight forward as below:
@@ -27,14 +27,8 @@ add_action( 'init', function () {
 
 add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
     // Get the current post content and set as the default value for the wysiwyg field.
-    $default_content = '';
-    $post_id         = filter_input( INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT );
-    if ( ! $post_id ) {
-        $post_id = filter_input( INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT );
-    }
-    if ( $post_id ) {
-        $default_content = get_post_field( 'post_content', $post_id );
-    }
+    $post_id = filter_input( INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT );
+    $post_content = get_post_field( 'post_content', $post_id );
 
     $meta_boxes[] = [
         'title'      => 'Test',
@@ -45,7 +39,7 @@ add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
                 'type' => 'wysiwyg',
                 'id'   => 'content', // This is the must!
                 'name' => 'Fake content',
-                'std'  => $default_content,
+                'std'  => $post_content,
             ],
             // Custom style to overwrite the editor style set by WordPress.
             [
@@ -58,7 +52,13 @@ add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
     return $meta_boxes;
 } );
 
-// Do not save to post meta.
+// Set the value for the 'content' field.
+add_filter( 'rwmb_content_field_meta', function() {
+    $post_id = filter_input( INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT );
+    return get_post_field( 'post_content', $post_id );
+} );
+
+// Do not save 'content' field to post meta.
 add_filter( 'rwmb_content_value', '__return_empty_string' );
 ```
 
