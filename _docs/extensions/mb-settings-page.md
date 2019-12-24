@@ -8,13 +8,15 @@ The MB Settings Page extension helps you to create one or multiple settings page
 
 It's a wrapper of [Settings API](https://codex.wordpress.org/Settings_API) (provided by WordPress) and Meta Box, that combines the power of both platforms and provides an better and simpler way to create a settings page. Briefly, it helps you create a settings page via a short and beautiful PHP syntax without going through all the low-level functions of the Settings API. Besides it supports all the field types in Meta Box as well as other [extensions](https://metabox.io/plugins/).
 
-By using Settings API, all the fields' values will be saved as an array in a single option in the WordPress's options table. Each field is an element of the array with the corresponding key (field ID). It's the recommended way by WordPress that doesn't make your options table bloat.
-
 These are the screenshots:
 
 **Tab style** (the default WordPress style for settings page):
 
 ![settings page with tabs](https://i.imgur.com/yb9Admk.png)
+
+**Left tab navigation** (often seen in theme options page):
+
+![left tab navigation for theme options](https://i.imgur.com/QoaD4la.png)
 
 **Boxed style** (the WordPress style for meta boxes):
 
@@ -117,16 +119,15 @@ Now refresh the admin page and you'll see a new settings page **Pencel** appeare
 Creating a settings page is done by filter `mb_settings_pages`. The code to add a settings page looks like this (this registers a theme options page under Appearance menu):
 
 ```php
-add_filter( 'mb_settings_pages', 'prefix_options_page' );
-function prefix_options_page( $settings_pages ) {
-    $settings_pages[] = array(
+add_filter( 'mb_settings_pages', function ( $settings_pages ) {
+    $settings_pages[] = [
         'id'          => 'theme-slug',
         'option_name' => 'theme_slug',
         'menu_title'  => 'Theme Options',
         'parent'      => 'themes.php',
-    );
+    ];
     return $settings_pages;
-}
+} );
 ```
 
 The filter takes an array of defined settings pages as the argument. The callback function must return an array of settings pages.
@@ -148,7 +149,8 @@ Name|Description
 `help_tabs`|The content displayed when clicking on the Help button on the top right (near the Screen Options button). See below for details.
 `style`|How do you want to style the settings page. Supports `boxes` which has same the style as normal WordPress meta boxes (like in the edit post screen) and `no-boxes` which has the same style as WordPress settings page. In `no-boxes` style, each meta box is a section of the settings page.
 `columns`| The number of columns in the meta boxes. Can be 1 or 2. You might want to use 1 column with `no-boxes` style to match WordPress style.
-`tabs`|Organized meta boxes and fields in tabs (see the example below). This param takes an array of (tab_id => Tab Title). Note: when using this param, you must specify which tab the meta box belongs by adding a new parameter `'tab' => tab_id`. See example below.
+`tabs`|Organized meta boxes and fields in tabs. This param takes an array of tab in either format `['tab-id' => 'Tab Label']` or `['tab-id' => ['label' => 'Tab Label', 'icon' => 'dashicons-email']]`. Note: when using this param, you must specify which tab the meta box belongs by adding a new parameter `'tab' => tab_id`. See **Using Tabs** section below for details.
+`tab_style`|Specify the tab style, value can be `default` (WordPress-native style where tabs are horizontal) or `left` (tabs are put on the left of the settings page). See **Using Tabs** section below for details.
 `submit_button`|The custom text for submit button. Optional.
 `message`|The custom message displayed when saving options. Optional.
 `customizer`|Whether to show the settings page in the Customizer as a panel. `true` or `false` (default). Optional. See below for details.
@@ -308,87 +310,50 @@ Note:
 
 ## Using tabs
 
-The example below registers 1 top level settings page with 3 tabs. Each tabs has one meta box. The style is set to `no-boxes` and `columns` is set to `1` to match WordPress style:
+To create tabs for your settings page, you need to set the `tabs` parameter. This parameter is an array of tabs. Each tab can be a simple text (for label) or an array of label and icon.
+
+For example:
+
+Simple tabs with no icons:
 
 ```php
-add_filter( 'mb_settings_pages', function ( $settings_pages ) {
-    $settings_pages[] = array(
-        'id'          => 'pencil',
-        'option_name' => 'pencil',
-        'menu_title'  => 'Pencil',
-        'icon_url'    => 'dashicons-edit',
-        'style'       => 'no-boxes',
-        'columns'     => 1,
-        'tabs'        => array(
-            'general' => 'General Settings',
-            'design'  => 'Design Customization',
-            'faq'     => 'FAQ & Help',
-        ),
-    );
-    return $settings_pages;
-} );
-
-add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
-    $meta_boxes[] = array(
-        'id'             => 'general',
-        'title'          => 'General',
-        'settings_pages' => 'pencil',
-        'tab'            => 'general',
-        'fields' => array(
-            array(
-                'name' => 'Logo',
-                'id'   => 'logo',
-                'type' => 'file_input',
-            ),
-            array(
-                'name'    => 'Layout',
-                'id'      => 'layout',
-                'type'    => 'image_select',
-                'options' => array(
-                    'sidebar-left'  => 'https://i.imgur.com/Y2sxQ2R.png',
-                    'sidebar-right' => 'https://i.imgur.com/h7ONxhz.png',
-                    'no-sidebar'    => 'https://i.imgur.com/m7oQKvk.png',
-                ),
-            ),
-        ),
-    );
-    $meta_boxes[] = array(
-        'id'             => 'colors',
-        'title'          => 'Colors',
-        'settings_pages' => 'pencil',
-        'tab'            => 'design',
-        'fields' => array(
-            array(
-                'name' => 'Heading Color',
-                'id'   => 'heading-color',
-                'type' => 'color',
-            ),
-            array(
-                'name' => 'Text Color',
-                'id'   => 'text-color',
-                'type' => 'color',
-            ),
-        ),
-    );
-    $meta_boxes[] = array(
-        'id'             => 'info',
-        'title'          => 'Theme Info',
-        'settings_pages' => 'pencil',
-        'tab'            => 'faq',
-        'fields'         => array(
-            array(
-                'type' => 'custom_html',
-                'std'  => 'Having questions? Check out our documentation',
-            ),
-        ),
-    );
-    return $meta_boxes;
-} );
+'tabs'        => [
+    'general' => 'General Settings',
+    'design'  => 'Design Customization',
+    'faq'     => 'FAQ & Help',
+],
 ```
 
-Here is the result:
+Tabs with icons:
+
+```php
+'tabs'        => [
+    'general' => [
+        'label' => 'General Settings',
+        'icon'  => 'dashicons-admin-settings',
+    ],
+    'design'  => [
+        'label' => 'Design Customization',
+        'icon'  => 'dashicons-admin-customizer',
+    ],
+    'faq'    => [
+        'label' => 'FAQ & Help',
+        'icon'  => 'http://i.imgur.com/nJtag1q.png',
+    ],
+],
+```
+
+If use the 2nd format, then `icon` parameter can be a [Dashicons](https://developer.wordpress.org/resource/dashicons/) icon or URL of your custom icon. You can also use other icon library like FontAwesome by specifying its class (e.g. `fa fa-home`), but in that case, you have to enqueue the font yourself.
+
+You can also make your settings page looks exactly like a normal WordPress page by setting the `style` to `no-boxes` and `columns` to `1`. See this screenshot:
 
 ![settings page with tabs](https://i.imgur.com/yb9Admk.png)
+
+In combination with `tabs`, you can set the `tab_style` parameter to specify the position of the tab navigation, which can be `default` or `left`.
+
+This screenshot shows the left tab navigation with icons:
+
+![left tab navigation](https://i.imgur.com/QoaD4la.png)
 
 {% include alert.html type="warning" content="**Important:** When using tabs, you must define `tab` attribute for all meta boxes to make them appear in corresponding tabs. Missing `tab` attribute makes the meta boxes hidden." %}
 
@@ -580,6 +545,42 @@ add_filter( 'mb_settings_pages', function ( $settings_pages ) {
 
 Don't forget to _network activate_ Meta Box and MB Settings Pages. And now, when you go to network admin area, you'll see a settings page like the screenshot above.
 
+## Backup & Restore Settings
+
+To backup the settings, you need to create a special field with `'type' => 'backup'`, like this:
+
+```php
+$meta_boxes[] = [
+    'id'             => 'colors',
+    'title'          => 'Colors',
+    'settings_pages' => 'theme-slug',
+    'fields'         => [
+        [
+            'name' => 'Heading Color',
+            'id'   => 'heading-color',
+            'type' => 'color',
+        ],
+        [
+            'name' => 'Text Color',
+            'id'   => 'text-color',
+            'type' => 'color',
+        ],
+        [
+            'name' => 'Backup',
+            'type' => 'backup',
+        ],
+    ],
+];
+```
+
+It will show a textarea field in your settings page like this:
+
+![backup and restore settings](https://i.imgur.com/n6d6v1n.png)
+
+When you add it to your settings page, it will show all of your settings in JSON. And you can just copy it and save to a file to backup the settings. To restore the settings, just paste the JSON again and click the Save Settings button.
+
+The backup field inherits from [`textarea`](https://docs.metabox.io/fields/textarea/) so you can customize it the way you want: change the field name, description, input size, etc. This field doesn't require an `ID`. And of course, you should have only one backup field in your settings page.
+
 ## Hooks
 
 **`mb_settings_page_load` action**
@@ -605,9 +606,7 @@ This action fires after the submit button is rendered, which allows you to add m
 
 ## Data
 
-Settings values are saved in WordPress option as an array with the option name is `option_name` in the settings page configuration. The keys of that array are the field IDs and values are the field values.
-
-It's the recommended way by WordPress that doesn't make your options table bloat.
+By using Settings API, all the fields' values will be saved as an array in a single option in the WordPress's options table  with the option name is `option_name` in the settings page configuration. Each field is an element of the array with the corresponding key (field ID). It's the recommended way by WordPress that doesn't make your options table bloat.
 
 ## Getting field value
 
