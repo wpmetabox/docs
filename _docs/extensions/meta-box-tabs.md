@@ -20,19 +20,14 @@ For more information, please see the [extension page](https://metabox.io/plugins
 
 Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continue!
 
-To create tabs for your meta box, you need to add 2 parameters to your meta box configuration:
+To create tabs for your meta box, you need to add these parameters to your meta box settings:
 
-- `tab_style`: Tab style. There are 3 styles available: `default` (like tabs for Categories), `box` (like tabs for Visual and Text modes of the main editor) or `left` (like tabs in Help screen). Optional. Default is `default`.
+### `tabs`
 
-![tab styles](https://i.imgur.com/7Oi5dx1.jpg)
+List of tabs, in one of the following formats:
 
-- `tab_wrapper`: Whether or not show the meta box wrapper around tabs. Default is `true`. If set to `false`, then the wrapper will be hidden.
-
-![tab wrapper](https://i.imgur.com/IPzfyEY.jpg)
-
-- `tabs`: List of tabs, in one of the following formats:
-    - `'tab-id' => 'Tab label'`
-    - `'tab-id' => array( 'label' => 'Tab label', 'icon' => 'Tab icon' )`
+    - `'tab-id' => 'Tab label'`, or
+    - `'tab-id' => ['label' => 'Tab label', 'icon' => 'Tab icon']`
 
 Where `tab-id` will be used in fields (below) to put fields under a tab.
 
@@ -47,11 +42,24 @@ If you want to use another icon (not Dashicons), either:
 
 Then for each field in the meta box, you need to specify which tab it belongs to by adding a parameter `'tab' => 'tab-id'` where `tab-id` is one of the tab IDs you have registered above.
 
+### `tab_style`
+
+Tab style. There are 3 styles available: `default` (like tabs for Categories), `box` (like tabs for Visual and Text modes of the main editor) or `left` (like tabs in Help screen). Optional.
+
+![tab styles](https://i.imgur.com/7Oi5dx1.jpg)
+
+### `tab_wrapper`
+
+Whether or not show the meta box wrapper around tabs. Default is `true`. If set to `false`, then the wrapper will be hidden.
+
+{% include alert.html type="warning" content="This parameter is deprecated. Please use `'style' => 'seamless'` parameter for the meta box instead." %}
+
+![tab wrapper](https://i.imgur.com/IPzfyEY.jpg)
+
 ## Sample code
 
 ```php
-add_filter( 'rwmb_meta_boxes', 'meta_box_tabs_demo_register' );
-function meta_box_tabs_demo_register( $meta_boxes ) {
+add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
     // 1st Meta Box
     $meta_boxes[] = array(
         'title'     => 'Meta Box Tabs Demo',
@@ -198,5 +206,5 @@ function meta_box_tabs_demo_register( $meta_boxes ) {
     );
 
     return $meta_boxes;
-}
+} );
 ```
