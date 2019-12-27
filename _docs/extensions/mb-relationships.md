@@ -135,7 +135,7 @@ While the relationships are registered clearly with term "from" and "to", the co
 
 The data is stored in the database as a pair of (from_id, to_id), thus making it independent from either side.
 
-## Displaying connected items
+## Getting connected items
 
 ### Posts
 
@@ -263,7 +263,7 @@ foreach ( $pages as $p ) {
 }
 ```
 
-## Displaying sibling items
+## Sibling items
 
 Assume you have 2 custom post types: student and class. Each student can join 1 or more class (many-to-many relationship). Now how to get the classmate of the given student A?
 
@@ -282,7 +282,7 @@ $siblings = new WP_Query( array(
 
 The code is similar to the above section, except the extra `sibling` parameter. That parameter works for all post, term or user query.
 
-## Admin column display
+## Admin column
 
 In order to show the connections, add the `admin_column` parameter to the `from` or `to` relationship configuration:
 
@@ -349,7 +349,7 @@ Key|Description
 `position`|Specify where to insert the new column. It's exactly the same as described in the #2 method above.
 `title`|Column title. Optional. Default is the meta box title.
 
-## Working with an archive of posts
+## Post archive
 
 All the examples above work well with single post, term or user. But if you want to display connected posts in the blog archive page, this method will create a dozen of queries for each post in the archive page. That's a lot of extra queries.
 
@@ -405,7 +405,7 @@ endwhile;
 
 The property name can be set to anything with an additional `'property' => 'your_property_name'`. See the below sections.
 
-### Using each_connected() multiple times
+### Multiple connections
 
 If you create multiple relationships between objects, you still can manipulate the query multiple time, like this:
 
@@ -478,7 +478,7 @@ while ( $my_query->have_posts() ) : $my_query->the_post();
 endwhile;
 ```
 
-## Querying by multiple relationships
+## Multiple relationships
 
 For example, you have event-to-band and event-to-artist relationships and you want to get all bands and artists that connected from an event, then you can do the following:
 
