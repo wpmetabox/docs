@@ -18,71 +18,66 @@ This documentation will show you how to create relationships between posts, term
 
 ## Creating relationships
 
-### Basic usage - Creating posts to pages relationship
+### Basic usage
 
 The code below registers a relationship from posts to pages. Open your theme's `functions.php` file and add:
 
 ```php
 add_action( 'mb_relationships_init', function() {
-    MB_Relationships_API::register( array(
+    MB_Relationships_API::register( [
         'id'   => 'posts_to_pages',
         'from' => 'post',
         'to'   => 'page',
-    ) );
+    ] );
 } );
 ```
 
-Note: you need to hook to `mb_relationships_init` to make sure the API is ready for use.
-
-This code will show 2 meta boxes for posts and pages in the editing screens:
+This code will show 2 meta boxes for posts and pages in the edit screens:
 
 - For posts: the meta box to select connected pages.
-- For pages: the meta box to show the posts that connect from. You can view the connected posts only and can't edit them. You can hide this meta box if you want (see the *Syntax* section).
+- For pages: the meta box to show the posts that connect from.
 
 Both meta boxes are registered using the *Meta Box* plugin, thus it's flexible and editable. The *Syntax* section will cover some settings for the relationship and meta boxes.
 
-### Creating categories to posts relationship
+### Terms to posts
 
 The following example registers a relationship from categories to posts. The settings for `from` and `to` is a little bit more advanced than above.
 
 ```php
 add_action( 'mb_relationships_init', function () {
-    MB_Relationships_API::register( array(
+    MB_Relationships_API::register( [
         'id'   => 'categories_to_posts',
-        'from' => array(
+        'from' => [
             'object_type' => 'term',
             'taxonomy'    => 'category',
-        ),
+        ],
         'to'   => 'post',
-    ) );
+    ] );
 } );
 ```
 
-### Creating users to posts relationship
+### Users to posts
 
 The following example registers a relationship from users to posts. It has some advanced settings that we will explain in the *Syntax* section.
 
 ```php
 add_action( 'mb_relationships_init', function () {
-    MB_Relationships_API::register( array(
+    MB_Relationships_API::register( [
         'id'   => 'users_to_posts',
-        'from' => array(
+        'from' => [
             'object_type' => 'user',
-            'meta_box'    => array(
-                'title'       => 'Manages',
-                'field_title' => 'Select Posts',
-            ),
-        ),
-        'to'   => array(
+            'meta_box'    => [
+                'title' => 'Manages',
+            ],
+        ],
+        'to'   => [
             'object_type' => 'post',
             'post_type'   => 'post',
-            'meta_box'    => array(
-                'title'         => 'Managed By',
-                'context'       => 'side',
-                'empty_message' => 'No users',
-            ),
-        ),
-    ) );
+            'meta_box'    => [
+                'title' => 'Managed By',
+            ],
+        ],
+    ] );
 } );
 ```
 
@@ -98,13 +93,13 @@ Name|Description
 
 Both sides `from` or `to` accepts various parameters for the connection and meta box.
 
-If you pass **a string** to `from` or `to` (like we did in the *Basic Usage* section above), the plugin will understand that as the **post type**. So the relationship will be created from posts to posts with specific post types.
+If you pass **a string** to `from` or `to` (like we did in the *Basic usage* section above), the plugin will understand that as the **post type**. So the relationship will be created from posts to posts with specific post types.
 
 If you pass **an array** to `from` or `to`, then the array accepts the following parameters:
 
 Name|Description
 ---|---
-`object_type`|The object type the relationship is created from/to. Accepts `post` (default), `term` or `user`. Optional.
+`object_type`|The object type the relationship is created from/to: `post` (default), `term` or `user`. Optional.
 `post_type`|The post type if the `object_type` is set to `post`. Default `post`. Optional.
 `taxonomy`|The taxonomy if the `object_type` is set to `term`.
 `empty_message`|The message displayed when there's no connections.
@@ -119,23 +114,20 @@ Name|Description
 
 ### Reciprocal relationships
 
-You can set `from` and `to` to connect from *any* post type, term or user to another. Even set both of them the same, thus creating reciprocal relationships.
-
-The following code create a relationship from posts to posts:
+To make reciprocal relationships, add another parameter `'reciprocal' => true`:
 
 ```php
 add_action( 'mb_relationships_init', function() {
-    MB_Relationships_API::register( array(
-        'id'   => 'posts_to_pages',
-        'from' => 'post',
-        'to'   => 'post',
-    ) );
+    MB_Relationships_API::register( [
+        'id'         => 'posts_to_pages',
+        'from'       => 'post',
+        'to'         => 'post',
+        'reciprocal' => true, // THIS
+    ] );
 } );
 ```
 
-When you edit a post, the plugin will show 2 meta box to let you select posts to "Connect To" and display the "Connected From" posts.
-
-This is a difference from the *Posts 2 Posts* plugin, where you have to set another parameter for reciprocal connections. We have been thinking about this and trying to make the API as simple and clear as possible.
+When you edit a post, the plugin will show only one meta box to let you select connected posts.
 
 ### Bi-directional relationships
 
@@ -143,24 +135,20 @@ While the relationships are registered clearly with term "from" and "to", the co
 
 The data is stored in the database as a pair of (from_id, to_id), thus making it independent from either side.
 
-Besides, for each side, there's a meta box that shows what are connected from/to. So you don't have to worry about the direction of the connection anymore.
-
-If you have built the relationships with field `post` or `taxonomy_advanced`, you will see the difference here. The old way is clearly just one-directional relationship from an object type to another. It will be so hard to query or store the items that connect to a specific post.
-
 ## Displaying connected items
 
-### Displaying connected posts
+### Posts
 
 To get pages that are connected from a specific post (the *Basic Usage* example), use the following code:
 
 ```php
-$connected = new WP_Query( array(
-    'relationship' => array(
+$connected = new WP_Query( [
+    'relationship' => [
         'id'   => 'posts_to_pages',
         'from' => get_the_ID(), // You can pass object ID or full object
-    ),
+    ],
     'nopaging'     => true,
-) );
+] );
 while ( $connected->have_posts() ) : $connected->the_post();
     ?>
     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
@@ -174,20 +162,18 @@ Basically, to query for connected posts, just pass another parameter `relationsh
 If you want to display posts that connected to a specific page (the **backward query**), then just replace `from` by `to` in the code above:
 
 ```php
-$connected = new WP_Query( array(
-    'relationship' => array(
+$connected = new WP_Query( [
+    'relationship' => [
         'id' => 'posts_to_pages',
         'to' => get_the_ID(), // You can pass object ID or full object
-    ),
+    ],
     'nopaging'     => true,
-) );
+] );
 ```
 
 That's all.
 
 **So, why WP_Query() you might ask?**
-
-Why don't create a specific API function that get the connected item IDs from the database? Isn't it faster with just one simple query?
 
 There are 3 reasons that we want to use `WP_Query()`:
 
@@ -199,19 +185,19 @@ Also note that, in the example above, we set `nopaging` to `true`, which disable
 
 For the full list of supported parameters for `WP_Query()`, please see the [documentation](https://codex.wordpress.org/Class_Reference/WP_Query).
 
-### Displaying connected terms
+### Terms
 
 Similar to posts, getting connected terms is simple:
 
 ```php
-$terms  = get_terms( array(
+$terms  = get_terms( [
     'taxonomy'     => 'category',
     'hide_empty'   => false,
-    'relationship' => array(
+    'relationship' => [
         'id' => 'categories_to_posts',
         'to' => get_the_ID(), // You can pass object ID or full object
-    ),
-) );
+    ],
+] );
 foreach ( $terms as $term ) {
     echo $term->name;
 }
@@ -221,17 +207,17 @@ We use the WordPress's function `get_terms()` with an additional parameter `rela
 
 For the full list of supported parameters for `get_terms()`, please see the [documentation](https://developer.wordpress.org/reference/functions/get_terms/).
 
-### Displaying connected users
+### Users
 
 Similar to posts, getting connected users is simple:
 
 ```php
-$users  = get_users( array(
-    'relationship' => array(
+$users  = get_users( [
+    'relationship' => [
         'id' => 'users_to_posts',
         'to' => get_the_ID(), // You can pass object ID or full object
-    ),
-) );
+    ],
+] );
 foreach ( $users as $user ) {
     echo $user->display_name;
 }
@@ -263,6 +249,20 @@ Function|Description
 [`get_queried_object_id()`](https://developer.wordpress.org/reference/functions/get_queried_object_id/)|Get the current-queried object ID. Similar to the above function but returns only object ID.
 [`get_current_user_id()`](https://developer.wordpress.org/reference/functions/get_current_user_id/)|Get current user ID.
 
+### API
+
+You might also use our API to get connected items for simplicity:
+
+```php
+$pages = MB_Relationships_API::get_connected( [
+    'id'   => 'posts_to_pages',
+    'from' => get_the_ID(),
+] );
+foreach ( $pages as $p ) {
+    echo $p->post_title;
+}
+```
+
 ## Displaying sibling items
 
 Assume you have 2 custom post types: student and class. Each student can join 1 or more class (many-to-many relationship). Now how to get the classmate of the given student A?
@@ -282,11 +282,9 @@ $siblings = new WP_Query( array(
 
 The code is similar to the above section, except the extra `sibling` parameter. That parameter works for all post, term or user query.
 
-## Showing connections in admin columns
+## Admin column display
 
-As of MB Relationships version 1.3.0, you're able to show list of connections in the admin columns (in the All Posts / Categories / All Users screens).
-
-By default, the admin column is disabled, e.g. not showing in the All Posts screen. In order to show the connections, add the `admin_column` parameter to the `from` or `to` relationship configuration:
+In order to show the connections, add the `admin_column` parameter to the `from` or `to` relationship configuration:
 
 ```php
 MB_Relationships_API::register( array(
@@ -305,7 +303,7 @@ MB_Relationships_API::register( array(
 
 Similar to [MB Admin Columns](/extensions/mb-admin-columns), the plugin supports 3 formats of the parameter:
 
-### Simply displays the connection in admin columns
+### Enable admin column
 
 ```php
 'admin_column' => true,
@@ -313,7 +311,7 @@ Similar to [MB Admin Columns](/extensions/mb-admin-columns), the plugin supports
 
 In this case, the column will be added to the end of the list table. And the title of the column will be the title of the connection meta box (when you edit a post).
 
-### Specify the column position
+### Column position
 
 ```php
 'admin_column' => 'after title'
@@ -358,6 +356,8 @@ All the examples above work well with single post, term or user. But if you want
 To solve this problem, we need to use the following code:
 
 ```php
+global $wp_query, $post;
+
 MB_Relationships_API::each_connected( array(
     'id'   => 'posts_to_pages',
     'from' => $wp_query->posts, // 'from' or 'to'.
@@ -366,11 +366,10 @@ MB_Relationships_API::each_connected( array(
 while ( have_posts() ) : the_post();
 
     // Display connected pages
-    foreach ( $post->connected as $post ) : setup_postdata( $post );
-        the_title();
-        ...
+    foreach ( $post->connected as $p ) :
+        echo $p->post_title;
+        // More core here...
     endforeach;
-    wp_reset_postdata(); // Set $post back to original post
 
 endwhile;
 ```
@@ -396,11 +395,10 @@ MB_Relationships_API::each_connected( array(
 while ( $my_query->have_posts() ) : $my_query->the_post();
 
     // Display connected pages
-    foreach ( $post->connected as $post ) : setup_postdata( $post );
-        the_title();
-        ...
+    foreach ( $post->connected as $p ) :
+        echo $p->post_title;
+        // More code here.
     endforeach;
-    wp_reset_postdata(); // Set $post back to original post.
 
 endwhile;
 ```
@@ -482,23 +480,23 @@ endwhile;
 
 ## Querying by multiple relationships
 
-Since version 1.6.0, you're able to get related items by multiple relationships. For example, you have event-to-band and event-to-artist relationships and you want to get all bands and artists that connected from an event, then you can do the following:
+For example, you have event-to-band and event-to-artist relationships and you want to get all bands and artists that connected from an event, then you can do the following:
 
 ```php
-$query = new WP_Query( array(
-    'relationship' => array(
+$query = new WP_Query( [
+    'relationship' => [
         'relation' => 'OR',
-        array(
+        [
             'id'   => 'events_to_bands',
             'from' => get_the_ID(),
-        ),
-        array(
+        ],
+        [
             'id'   => 'events_to_artists',
             'from' => get_the_ID(),
-        ),
-    ),
+        ],
+    ],
     'nopaging'     => true,
-) );
+] );
 while ( $query->have_posts() ) {
     $query->the_post();
     echo get_the_title() . '<br>';
@@ -577,6 +575,8 @@ Column|Description
 `from`|The ID of the "from" object
 `to`|The ID of the "to" object
 `type`|The relationship ID (type)
+`order_from`|The order if the item for the "from" side
+`order_to`|The order if the item for the "to" side
 
 This structure allows us to create simple and efficient queries. All columns are also indexed to optimize for speed.
 
