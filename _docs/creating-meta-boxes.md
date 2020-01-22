@@ -97,4 +97,4 @@ Meta Box supports more than 40 field types. All fields share some common setting
 
 {% include alert.html content="Field ID is used as the meta key and the field value is used as the meta value when saving into the post meta table." %}
 
-You can (should) add prefix to field IDs to prevent from using the same ID with other scripts. If you want to hide the fields in the detault WordPress **Custom Fields** meta box, use underscore (`_`) as the prefix.
+You can (should) add prefix to field IDs to prevent from using the same ID with other scripts. If you want to hide the fields in the default WordPress **Custom Fields** meta box, use underscore (`_`) as the prefix.
