@@ -44,10 +44,12 @@ echo do_shortcode( $form );
 Attributes|Description
 ---|---
 `id`|Meta box ID(s). If multiple meta boxes, enter their IDs separated by commas. Required.
-`edit`|Allo users to edit the post after submitting. `true` or `false` (default). Optional. Added in v1.5.0.
-`allow_delete`|Allo users to delete the submitted post. `true` or `false` (default). Optional. Added in v1.6.0.
+`ajax`|Enable Ajax submission. `true` or `false` (default).
+`edit`|Allo users to edit the post after submitting. `true` or `false` (default).
+`allow_delete`|Allo users to delete the submitted post. `true` or `false` (default).
+`force_delete`|Whether to delete the submitted post permanently or temporarily (move to Trash).
 `post_type`|The submitted post type. Optional. Default is the first post type defined in the meta box. If meta box is made for multiple post types, you should set this attribute to the correct one.
-`post_id`|The post ID. Optional. Used only when you want to update an existing post. If you want to pass the ID of the current post, set it to `current`.
+`post_id`|The post ID. Optional. Used when you want to update an existing post. If you want to pass the ID of the current post, set it to `current`.
 `post_status`|The status for submitted posts. See [the list here](https://codex.wordpress.org/Post_Status).
 `post_fields`|List of post fields you want to show in the frontend, separated by comma. Supported following fields: `title`, `content`, `excerpt`, `date`, `thumbnail`.
 `label_title`| Label for post title field.
@@ -57,10 +59,11 @@ Attributes|Description
 `label_thumbnail` | Label for post thumbnail field.
 `submit_button`|The submit button text.
 `delete_button`|The delete button text.
+`redirect`|Custom redirect URL.
 `confirmation`|The text for the confirmation message when the form is successfully submitted.
 `delete_confirmation`|The text for the confirmation message when the post is deleted.
-
-
+`recaptcha_key`|Google reCaptcha site key (version 3). Optional.
+`recaptcha_secret`|Google reCaptcha secret key (version 3). Optional.
 
 ## Dynamic population
 
@@ -157,6 +160,28 @@ add_filter( 'rwmb_frontend_validate', function( $validate, $config ) {
     return $validate;
 }, 10, 2 );
 ```
+
+## User Posts Dashboard
+
+To let users **view and edit their submitted posts**, just create a normal WordPress page, and insert the following shortcode into the page content:
+
+```php
+[mb_frontend_dashboard edit_page="124"]
+```
+
+Where `124` is the ID of the page, where you already have to let users submit posts. And when users visit this page, they'll see a dashboard like this:
+
+![user posts dashboard](https://i.imgur.com/LxPh4xH.png)
+
+On this dashboard, users can:
+
+- View list of their submitted posts with the corresponding statuses
+- Edit or delete submitted posts
+- Or submit a new post
+
+There's no settings or coding required from users!
+
+And the plugin is smart enough to detect the correct settings from the submission form to correct posts. So you can have *multiple* submission forms and multiple dashboards on a same website.
 
 ## Hooks
 
@@ -385,5 +410,6 @@ As you might know, Meta Box uses [nonces](https://codex.wordpress.org/WordPress_
 
 ## Tutorials
 
+- [MB Frontend Submission: Dashboard, Ajax, reCaptcha & More](https://metabox.io/mb-frontend-submission-dashboard-ajax-recaptcha/)
 - How to Add Guest Author in WordPress using Meta Box: [Part 1](https://metabox.io/p1-add-guest-author-in-wordpress/) & [Part 2](https://metabox.io/p2-add-guest-author-in-wordpress/).
 - [How to Create a Classified Ads Website using Meta Box](https://metabox.io/create-classified-ads-website-using-meta-box/)
