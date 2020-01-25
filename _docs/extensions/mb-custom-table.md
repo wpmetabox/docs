@@ -236,10 +236,15 @@ Here is an example:
 global $wpdb;
 $ids = $wpdb->get_col( "SELECT ID FROM your_table WHERE field1 = 'value1' OR field2 = 'value2'" );
 
-$query = new WP_Query( [
-    'post_type' => 'post',
-    'post__in'  => $id,
-] );
+if ( empty( $ids ) ) {
+    echo 'There is no posts';
+} else {
+    $query = new WP_Query( [
+        'post_type' => 'post',
+        'post__in'  => $ids,
+    ] );
+    // Do something
+}
 ```
 
 This technique also works with terms and users.
