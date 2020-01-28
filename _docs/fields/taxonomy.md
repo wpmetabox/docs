@@ -207,3 +207,18 @@ rwmb_the_value( $field_id );
 ```
 
 Read more about [rwmb_meta()](/rwmb-meta/) and [rwmb_the_value()](/rwmb-the-value/).
+
+## Filters
+
+`rwmb_taxonomy_choice_label` and `rwmb_{$field_id}_choice_label`
+
+These filters allow developers to change the label of `taxonomy` fields. The 1st label applies to all `taxonomy` fields, and the later for a specific field.
+
+Example: If you are using a field called `my_field` and you want to change the label in the select box, use this code:
+
+```php
+function my_field_filter( $label, $field, $term ) {
+    return $label . ' - Custom text';
+}
+add_filter( 'rwmb_my_field_choice_label', 'my_field_filter', 10, 3);
+```
