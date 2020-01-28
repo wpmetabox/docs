@@ -68,3 +68,13 @@ echo do_shortcode( wpautop( $value ) );
 ```
 
 Read more about [rwmb_meta()](/rwmb-meta/).
+
+## Filters
+
+`rwmb_wysiwyg_settings`
+
+This filter is used to changed the options for the editor (which is passed by `$field['option']`) and is applied to all `wysiwyg` fields.
+
+This filter accepts 1 param:
+
+- `$settings`: editor settings, which will be sent to [`wp_editor`](https://codex.wordpress.org/Function_Reference/wp_editor) function.
