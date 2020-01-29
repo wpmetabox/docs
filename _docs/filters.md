@@ -278,69 +278,25 @@ This filter is the same as `rwmb_outer_html` but is applied to fields with a spe
 
 This filter is the same as `rwmb_outer_html` but is applied to a specific field (identified by ID). It accepts same parameters.
 
-## Specific fields' filters
+### `rwmb_choice_label`
 
-### choice fields (`user`, `post`, `taxonomy`) filters:
+This filter allows developers to change the label of choice fields (`user`, `post`, `taxonomy` and `taxonomy_advanced`). It has 3 parameters:
 
-- `rwmb_choice_label`: which will effect labels for all choice fields
-- `rwmb_{$field_type}_choice_label`: which will effect all of a particular type
-- `rwmb_{$field_id}_choice_label`: which will effect all of a the field with a particular id
+- `$label`: The output label
+- `$field`: Field settings
+- `$object`: The post, user or term object
 
 Example: If you are using a field called `some_user` and you want to change the label in the select box to user `first_name` instead of the default `display_name`:
 
 ```php
-function some_user_filter( $label, $field, $user ) {
-    return $user->first_name ;
+function some_user_filter( $label, $field, $object ) {
+    return $object->first_name ;
 }
 add_filter( 'rwmb_some_user_choice_label', 'some_user_filter', 10, 3);
 ```
 
-### `wysiwyg` filters
+This filter also has variations:
 
-`rwmb_wysiwyg_settings`: This filter is used to changed the options for the editor (which is passed by `$field['option']`) and is applied to all wysiwyg fields.
-
-This filter accepts 1 param:
-
-- `$settings`: editor settings, which will be sent to [`wp_editor`](https://codex.wordpress.org/Function_Reference/wp_editor) function.
-
-### `image` filters
-
-Filter|Default|Description
----|---|---
-`rwmb_image_upload_string`|Upload Images|Image upload string
-`rwmb_image_add_string`|+ Add new image|Add new image string
-`rwmb_image_delete_string`|Delete|Image delete string
-`rwmb_image_edit_string`|Edit|Image edit string
-
-All filters above accept 2 parameters:
-
-- `$string`: the string need to be changed
-- `$field`: array of field attribute
-
-### `image_advanced` filters
-
-Filter|Default|Description
----|---|---
-`rwmb_image_advanced_select_string`|Select or Upload Images|The button text to select or upload images
-`rwmb_image_delete_string`|Delete|Image delete string (same as `image`)
-`rwmb_image_edit_string`|Edit|Image edit string (same as `image`)
-
-All filters above accept 2 parameters:
-
-- `$string`: the string need to be changed
-- `$field`: array of field attribute
-
-### `image_upload` filters
-
-Filter|Default
----|---
-`rwmb_plupload_image_drop_string`|Drop images here
-`rwmb_plupload_image_or_string`|or
-`rwmb_plupload_image_select_string`|Select Files
-
-(these strings appear in the drop area of field where users can drop or select images to upload)
-
-All filters above accept 2 parameters:
-
-- `$string`: the string need to be changed
-- `$field`: array of field attribute
+- `rwmb_choice_label`: which will effect labels for all choice fields
+- `rwmb_{$field_type}_choice_label`: which will effect all of a particular type
+- `rwmb_{$field_id}_choice_label`: which will effect all of a the field with a particular id
