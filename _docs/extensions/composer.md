@@ -85,6 +85,22 @@ This video demonstrates how to install Meta Box extensions from wordpress.org. T
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/khiCSMh3DY0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+## Versions & Updates
+
+For your information, we only provide the latest versions of extensions (`dev-master`). That means you can't set specific versions in your `composer.json` file.
+
+Due to that issue, when you run `composer update` command, you might see nothing as Composer can't load versions to check. To avoid this update issue, instead of running `composer update`, please:
+
+- Remove the `vendor` folder
+- Clear Composer cache
+- Run `composer install` command again
+
+You can do that with this command:
+
+```
+rm -rf vendor && composer clear-cache && composer install
+```
+
 ## Futher reading
 
 - [Introducing Composer support for Meta Box extensions](https://metabox.io/introducing-composer-support-for-meta-box-extensions/)
