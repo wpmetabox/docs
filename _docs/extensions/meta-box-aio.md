@@ -14,9 +14,9 @@ For more information, please see [this blog post](https://metabox.io/meta-box-ai
 
 ## Settings page
 
-The extension has a settings page under *Meta Box &rarr; All-In-One*, where you can enable/disable the modules you need/don't need.
+The extension has a settings page under *Meta Box &rarr; Extensions*, where you can enable/disable the modules you need/don't need.
 
-![meta box aio settings page](https://i.imgur.com/FA0gwWy.png)
+![meta box aio settings page](https://imgur.com/gBFCrB1.png)
 
 Simply check/uncheck the checkbox to enable/disable the corresponding extensions. Then click **Save Changes**.
 
