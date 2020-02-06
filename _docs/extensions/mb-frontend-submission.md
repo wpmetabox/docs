@@ -12,30 +12,42 @@ Here is a screenshot of a front-end form:
 
 ![submission form](https://i.imgur.com/jfXHqSc.png)
 
-MB Frontend Submission brings the meta boxes and custom fields from the back end to the front end. It supports all field types and all Meta Box extensions (columns, group, conditional logic, etc.).
+MB Frontend Submission brings the meta boxes and custom fields to the front end. It supports all field types and all Meta Box extensions (columns, group, conditional logic, etc.).
 
 Using this extension, you can create powerful forms for users to submit posts on the front end and control how it work effortlessly.
 
-For more information, please see the [extension page](https://metabox.io/plugins/mb-frontend-submission/)
+For more information, please see the [extension page](https://metabox.io/plugins/mb-frontend-submission/).
 
 {% include installation.html %}
 
 **Important:** This extension requires Meta Box version 4.11+. If you're using an older version of the plugin, please update.
 
-## Creating frontend forms
+## Creating post forms
 
-To create a frontend form, you need to [create a meta box first](/creating-meta-boxes/). Don't forget to set the meta box `id`. You need that to embed the form in the frontend.
+### Simple form
 
-Then you can show the form in the frontend using the following shortcode:
+To create a simple front-end forms, simply put this shortcode in a page content:
 
 ```php
-[mb_frontend_form id="Meta box ID"]
+[mb_frontend_form post_fields="title,content"]
 ```
 
-You can put the shortcode inside a page or post content to show it. If you want to embed the form using code, please use the following code:
+This shortcode will create a simple post form which has only 2 fields: post title and post content.
+
+### Advanced form
+
+If you want to add more fields to the post form (which are custom fields), then you need to [create a meta box first](/creating-meta-boxes/). That meta box should contains all the custom fields you want to add to the post.
+
+Then change the shortcode to:
 
 ```php
-$form = '[mb_frontend_form id="Meta box ID"]';
+[mb_frontend_form id="meta-box-id" post_fields="title,content"]
+```
+
+If you want to embed the form using code, please use the following code:
+
+```php
+$form = 'mb_frontend_form id="meta-box-id" post_fields="title,content"]';
 echo do_shortcode( $form );
 ```
 
@@ -43,7 +55,7 @@ echo do_shortcode( $form );
 
 Attributes|Description
 ---|---
-`id`|Meta box ID(s). If multiple meta boxes, enter their IDs separated by commas. Required.
+`id`|Meta box ID(s). If multiple meta boxes, enter their IDs separated by commas.
 `ajax`|Enable Ajax submission. `true` or `false` (default).
 `edit`|Allo users to edit the post after submitting. `true` or `false` (default).
 `allow_delete`|Allo users to delete the submitted post. `true` or `false` (default).
@@ -73,15 +85,15 @@ The dyanamic population feature in MB Frontend Submission extension allows you t
 
 ### Query string
 
-You can populate a shortcode attribute via the query string by appending the dynamic population parameter for the attribute to the end of your form URL along with your custom value.
+You can populate post ID for the shortcode via the query string by appending the dynamic population parameter for the attribute to the end of your form URL along with your custom value.
 
 ```
 http://siteurl.com/form-url/?rwmb_frontend_field_post_id=123
 ```
 
-The query parameter is `rwmb_frontend_field_{$attribute}`.
+The query parameter is `rwmb_frontend_field_post_id`.
 
-Assuming that a frontend form is on the page at this URL, then the `post_id` attribute would be populated with the value `123`.
+Note that *only* post ID is supported for populating via query string since version 2.2.0.
 
 ### Hooks
 
@@ -107,7 +119,6 @@ $value = apply_filters( "rwmb_frontend_field_value_{$attribute}", $value, $args 
 
 The callback function accepts 2 parameters: the attribute value and the array of all attributes. You should use `$args['id]` to check if you're filter for the right form.
 
-
 ## Post template files
 
 The plugin allows you to use a custom template files for post fields and the confirmation message (the fields defined by Meta Box is controlled by the Meta Box plugin and can't be changed).
@@ -123,6 +134,62 @@ In order to overwrite the output of post fields, please following the steps belo
 - Create a folder `mb-frontend-submission` in your theme.
 - Copy a template file that you want to change from plugins's `templates` folder to the new `mb-frontend-submission` folder, keeping the same folder structure.
 - Modify the new template file.
+
+## Reorder post fields
+
+Sometimes you want to mix post fields with the custom fields, or change post content to `textarea` field. You can do that with the following steps:
+
+- Remove the `post_fields` attribute from the shortcode
+- Add post fields as normal custom fields to your meta box settings, like this:
+
+```php
+$meta_boxes[] = [
+    'title'  => 'Bill Submit',
+    'id'     => 'bill',
+    'fields' => [
+        [
+            'name' => 'Submission Date',
+            'id'   => 'submission_date',
+            'type' => 'date',
+        ],
+        [
+            'name' => 'Title',
+            'id'   => 'post_title', // THIS
+        ],
+        [
+            'name'    => 'Type',
+            'id'      => 'type',
+            'type'    => 'select',
+            'options' => [
+                'docs'    => 'Document',
+                'receipt' => 'Receipt',
+            ],
+        ],
+        [
+            'name' => 'Description',
+            'type' => 'textarea',
+            'id'   => 'post_content', // THIS
+        ],
+        [
+            'name' => 'Thumbnail',
+            'type' => 'single_image',
+            'id'   => '_thumbnail_id', // THIS
+        ],
+    ],
+]
+```
+
+In order to make the plugin recognize the post fields, you need to set correct ID for them. See the table below:
+
+Field|ID
+---|---
+Post title|`post_title`
+Post content|`post_content`
+Post excerpt|`post_excerpt`
+Post date|`post_date`
+Post thumbnail|`_thumbnail_id`
+
+With this method, you're able to set the label for post fields, or change settings (even field type) for them easily using any Meta Box [field settings](/field-settings).
 
 ## Validation
 
