@@ -404,6 +404,24 @@ In that case, use `enqueue_assets` to enqueue your assets. This parameter accept
 }
 ```
 
+### `preview`
+
+This attribute allows you to set preview data for the block, which will show when you click on the plus icon (+) on the toolbar:
+
+![block preview](https://i.imgur.com/bwMPY4t.png)
+
+The block preview is just the block rendered with a sample data. And you'll just need to set the parameter `preview` as an array of that sample data.
+
+For example, if you have a "Team Member" block (as above) which has 3 fields: image, title and description, you can set the `preview` parameter as follows:
+
+```php
+'preview' => [
+	'image'       => 'http://domain.com/person.jpg', // Image ID
+	'title'       => 'William Shakespeare',
+	'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+]
+```
+
 ## Adding Fields To Blocks
 
 Each block can have unlimited fields. Adding fields to blocks is similar to adding fields to a custom meta box. All you need to do is specify the fields in the parameter `fields` from the block settings.
