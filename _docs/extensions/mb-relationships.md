@@ -326,6 +326,7 @@ Param|Description
 |`after`: Insert the column after an existing column
 |`replace`: Replace an existing column by the new one
 `column`|The target existing column
+`link`|Config the link for the items displayed in the admin column. Can be `view` (click to view item on the front end - default), `edit` (click to edit item) or `false` (no link).
 
 Using this configuration, you are able to insert the column in any position you want.
 
