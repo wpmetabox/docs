@@ -251,36 +251,25 @@ Or make a field visible only if featured image is a specific image with ID `123`
 
 ## Using outside meta boxes
 
-The extension can even work with elements outside meta boxes, for example: post title, post content, post excerpt...
-
-Let's say you want to hide the WordPress core `submitdiv` meta box (the meta box that contains **Publish** button) when `brand` is 'Microsoft':
+The extension can even work with elements outside meta boxes. Let's say you want to hide an element `.custom-div` when a field with ID `brand` is `Microsoft`, then you can do that with the following code:
 
 ```php
 add_filter( 'rwmb_outside_conditions', function( $conditions ) {
-    $conditions['submitdiv'] = array(
-        'hidden' => array( 'brand', 'Microsoft' ),
+    $conditions['.custom-div'] = array(
+        'hidden' => ['brand', 'Microsoft'],
+        // or you can write this for clarity
+        'hidden' => ['#brand', 'Microsoft'],
     );
     return $conditions;
 } );
 ```
 
-Another example: hide post title for `aside` post format:
+If you want to hide an element `.custom-div` based on a value of an input, which is not a Meta Box field, simply specify its ID as follows:
 
 ```php
-add_filter( 'rwmb_outside_conditions', function( $conditions ){
-    $conditions['post_title'] = array(
-        'hidden' => array( 'post_format', 'aside' )
-    );
-    return $conditions;
-} );
-```
-
-The key for the conditions can be ID of the element (default) or any CSS selector:
-
-```php
-add_filter( 'rwmb_outside_conditions', function( $conditions ){
-    $conditions['.rwmb-tab-bio'] = array(
-        'hidden' => array( 'post_format', 'aside' )
+add_filter( 'rwmb_outside_conditions', function( $conditions ) {
+    $conditions['.custom-div'] = array(
+        'hidden' => ['#input-id', 'value'],
     );
     return $conditions;
 } );
