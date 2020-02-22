@@ -264,6 +264,8 @@ add_filter( 'rwmb_outside_conditions', function( $conditions ) {
 } );
 ```
 
+Note that the `.custom-div` can be any CSS selector, like `#custom-id` or `.my-class .children`.
+
 If you want to hide an element `.custom-div` based on a value of an input, which is not a Meta Box field, simply specify its ID as follows:
 
 ```php
