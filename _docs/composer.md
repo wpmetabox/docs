@@ -52,20 +52,25 @@ After a minute, Composer will download Meta Box and put it in a local folder. Yo
 
 ## Autoloading
 
-To make Meta Box works, we need to include the plugin's file in our plugin. Although we can [hardcode](/integration/) that, Composer has an intelligent autoloading mechanism to load packages. Simply put the following line in the plugin's main file:
+By default, Meta Box is not autoloaded. To make it autoloaded via Composer, you need to add the plugin's file in your `composer.json`. So your `composer.json` looks like this:
 
-```php
-require plugin_dir_path( __FILE__) . 'vendor/autoload.php';
+```json
+{
+  "require": {
+    "wpmetabox/meta-box": "^5"
+  },
+  "autoload": {
+    "files": [
+      "vendor/meta-box/meta-box/meta-box.php"
+    ]
+  }
+}
 ```
 
-We use `plugin_dir_path` function because this is a WordPress environment. But you can ignore it and use a simpler version like this:
+Now you can use Composer autoload to load Meta Box. Simply put the following line in the plugin's main file:
 
 ```php
-require __DIR__ . 'vendor/autoload.php';
-
-// or
-
-require 'vendor/autoload.php'; // Relative path.
+require __DIR__ . '/vendor/autoload.php';
 ```
 
 Now Meta Box is available in your plugin and we can start using it.
