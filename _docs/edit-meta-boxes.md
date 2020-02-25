@@ -36,7 +36,7 @@ function prefix_register_meta_boxes( $meta_boxes ) {
         'fields' => array(
             array(
                 'name'  => 'Street',
-                'id'    => 'street',
+                'id'    => 'st5reet',
                 'type'  => 'text',
             ),
             array(
