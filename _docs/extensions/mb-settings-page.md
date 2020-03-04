@@ -110,7 +110,7 @@ add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
 } );
 ```
 
-Now refresh the admin page and you'll see a new settings page **Pencel** appeared in the main menu, like this:
+Now refresh the admin page and you'll see a new settings page **Pencil** appeared in the main menu, like this:
 
 ![settings page with tabs](https://i.imgur.com/yb9Admk.png)
 
