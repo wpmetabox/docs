@@ -63,9 +63,11 @@ To insert a cloneable field, click on the field title, like inserting a normal f
 The plugin will generate a snippet for the field, like this:
 
 ```
+{% raw %}
 {% for clone in post.tickets %}
     Content here might be different depends on the field type
 {% endfor %}
+{% endraw %}
 ```
 
 This is a `for` loop, created using Twig template engine. You'll find more details about it below. The content inside the `for` loop might be different depends on the field type.
@@ -126,25 +128,29 @@ In some cases, when you need to set a condition for an HTML section or loop thro
 For example, if you want to output an image if the post doesn't have a featured image, then you can use the following snippet:
 
 ```
+{% raw %}
 {% if post.thumbnail.full %}
     <img src="{{ post.thumbnail.full.url }}">
 {% else %}
     <img src="https://via.placeholder.com/800x100">
 {% endif %}
+{% endraw %}
 ```
 
 If a field has multiple values, then you can use `for`-loop to render all the values, like this:
 
 ```
+{% raw %}
 {% for country in post.countries %}
     {{ country }}
 {% endfor %}
+{% endraw %}
 ```
 
 You can also use filter to transform the value, like this:
 
 ```
-{{ post.date | date( 'm/d/Y' ) }}
+{% raw %}{{ post.date | date( 'm/d/Y' ) }}{% endraw %}
 ```
 
 For details about using Twig, please see the [documentation](https://twig.symfony.com/doc/1.x/templates.html).
