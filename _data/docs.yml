@@ -88,7 +88,8 @@
   - /extensions/mb-term-meta/
   - /extensions/mb-user-meta/
   - /extensions/mb-user-profile/
-  - /extensions/mb-views/
+  - title: MB Views
+    url: /extensions/mb-views/
   - /extensions/meta-box-builder/
   - /extensions/meta-box-columns/
   - /extensions/meta-box-conditional-logic/
