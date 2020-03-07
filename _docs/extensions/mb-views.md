@@ -6,9 +6,9 @@ title: MB Views - Creating WordPress templates without touching theme files
 
 MB Views is an extension for Meta Box, which helps you to get Meta Box fields and build your templates on the front end fast and easily.
 
-With MB Views, you can just select fields you want to show, fill in some parameters and done! The extension supports all custom fields built with Meta Box, and also post fields (such as post title and post content), site settings, user fields and even query fields.
+With MB Views, you can just select fields you want to show, fill in some parameters and done! The extension supports all custom fields built with Meta Box, and also post fields (such as post title and post content), site settings, user fields, and even query fields.
 
-You can also customizer all templates in WordPress, even for post types that don’t have Meta Box fields.
+You can also customize all templates in WordPress, even for post types that don’t have Meta Box fields.
 
 See more details on the [plugin page](https://metabox.io/plugins/mb-views/).
 
@@ -54,7 +54,7 @@ If a field doesn't have options, then the plugin will insert a snippet into the 
 
 ### Cloneable Fields
 
-Clonetable fields are marked with a *repeat* icon, like this:
+Cloneable fields are marked with a *repeat* icon, like this:
 
 ![cloneable group fields](https://i.imgur.com/6KoyJGB.png)
 
@@ -64,7 +64,7 @@ The plugin will generate a snippet for the field, like this:
 
 ```
 {% for clone in post.tickets %}
-	Content here might be different depends on the field type
+    Content here might be different depends on the field type
 {% endfor %}
 ```
 
@@ -80,7 +80,7 @@ To insert a sub-field, click on the sub-field title, like inserting a normal fie
 
 ## Setting Locations
 
-Each view can served multiple pages on your website. To set where the view appear, go to **Settings** meta box below the editor:
+Each view can serve multiple pages on your website. To set where the view appears, go to **Settings** meta box below the editor:
 
 ![view locations](https://i.imgur.com/Szjmvnd.png)
 
@@ -88,13 +88,13 @@ There are several options:
 
 ### Type
 
-What type of page do you want to set the view for. Supports singular, archive pages and custom location, where you need to use a shortcode to insert the view to the location you want. The shortcode is available *after* you save the view.
+What type of page do you want to set the view for? Supports singular, archive pages and custom locations, where you need to use a shortcode to insert the view to the location you want. The shortcode is available *after* you save the view.
 
 ### Location Rules
 
-Where you set the rules for the singular and archive pages. Location rules are divided into groups, and in each group you can set multiple rules.
+Where you set the rules for the singular and archive pages. Location rules are divided into groups, and in each group, you can set multiple rules.
 
-Rules inside a groups are combined with `OR` logical operator, which means the views will serve this page if either condition is satisfied.
+Rules inside a group are combined with `OR` logical operator, which means the views will serve this page if either condition is satisfied.
 
 Groups are combined with `AND` logical operator, which means the views will serve this page if all conditions are satisfied.
 
@@ -104,22 +104,22 @@ With the combination of `OR` and `AND`, you can build complex rules for views.
 
 After choosing location rules, you can decide where to render the view for those chosen pages. You have 2 options:
 
-- Render for the whole layout between header and footer. Using this options, you have full control to build the layout.
-- Render only for the post content area. Using this options, you leave the layout to the theme and control only the post content area.
+- Render for the whole layout between header and footer. Using this option, you have full control to build the layout.
+- Render only for the post content area. Using this option, you leave the layout to the theme and control only the post content area.
 
 ### Position
 
-If you choose render the view for the post content area, then you can set it appear before, after or replace the content area.
+If you choose to render the view for the post content area, then you can set it to appear before, after or replace the content area.
 
 ### Order
 
-The order settings is used to set the loading order for views. If you have multiple views for a same page, then views with a lower order will render first.
+The order settings is used to set the loading order for views. If you have multiple views for the same page, then views with a lower order will render first.
 
 ## Twig
 
-When editing template for views, you can use any HTML/CSS/JavaScript.
+When editing a template for views, you can use any HTML/CSS/JavaScript.
 
-In some cases, when you need to set condition for a HTML section, or loop through all values of an array, then you can use Twig.
+In some cases, when you need to set a condition for an HTML section or loop through all values of an array, then you can use Twig.
 
 [Twig](https://twig.symfony.com/) is a powerful template engine for PHP, which allows you to write conditions (`if..else`), control structure (`for`) and use filters to transform the output.
 
