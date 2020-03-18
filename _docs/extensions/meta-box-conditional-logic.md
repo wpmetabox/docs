@@ -99,16 +99,42 @@ The normal operators like `=`, `!=`, etc. are pretty clear. Let's see the advanc
 
 ### `contains`
 
-The operator `contains` can check with string if it contains another string
+The operator `contains` can check if **a field value contains another string or value**:
 
 ```php
-'visible' => array( 'brand', 'contains', 'pp' ) // Apple, App, ...
+'visible' => ['brand', 'contains', 'pp'] // Apple, App, ...
 ```
 
-It also can check if an array contains another array or string. For instance, if `brand` is a multiple field (checkbox list, select multiple...), its value is an array, then you can check if user selected 'Apple':
+In case a field has multiple value (checkbox list, select multiple...), this operator checks **if the field value (which is an array) contains a value**:
 
 ```php
-'visible' => array( 'brand', 'contains', array( 'Apple' ) )
+'visible' => ['brand', 'contains', 'Apple'];
+```
+
+It also works with `taxonomy_advanced` field. In this case, please **set the value to the term ID**. For example, if you need to check if a taxonomy advanced field has a value:
+
+```php
+'visible' => ['product_type', 'contains', 4]; // 4 is a term ID.
+```
+
+### `in`
+
+This operator is used to check if **a field value is in an array of specific values**:
+
+```php
+'visible' => ['brand', 'in', ['Apple', 'Samsung']];
+```
+
+In case a field has multiple value (checkbox list, select multiple...), this operator checks if **any of the field value is in the specified array**. For example, if the `brand` field above is a `checkbox_list` field, then it will be visible if users select any of the value "Apple" or "Samsung":
+
+```php
+'visible' => ['brand', 'in', ['Apple', 'Samsung']];
+```
+
+If you use with a `taxonomy_advanced` field, please **set the value to the term IDs**:
+
+```php
+'visible' => ['product_type', 'contains', [2, 4]]; // The field will be visible if the product type has any term with ID 2 or 4.
 ```
 
 ### `between`
@@ -281,18 +307,20 @@ If you want to hide a tab created by [Meta Box Tabs](https://metabox.io/plugins/
 
 ## Using with taxonomies
 
+The following section is **for `taxonomy` field type only**. If you're using `taxonomy_advanced` field, then it works similarly as normal fields.
+
 ### Post category
 
 For post category, use `post_category` as the first parameter:
 
 ```php
-'visible' => array( 'post_category', 'in', array( 4, 5, 6 ) )
+'visible' => ['post_category', 'in', [4, 5, 6]]
 ```
 
 By default, the extension uses category IDs to check. Since 1.3, you can define the condition's value using `slug`:
 
 ```php
-'visible' => array( 'slug:post_category', 'in', array( 'fashion', 'gaming', 'technology' ) )
+'visible' => ['slug:post_category', 'in', ['fashion', 'gaming', 'technology']]
 ```
 
 ### Post tag
@@ -302,7 +330,7 @@ Support for post tag is added in version 1.6.5 and works only for Gutenberg edit
 To add conditions by post tag, use `tags` as the first parameter:
 
 ```php
-'visible' => array( 'tags', 'in', array( 4, 5, 6 ) )
+'visible' => ['tags', 'in', [4, 5, 6]]
 ```
 
 Unlike post category, you have to use tag IDs.
@@ -312,13 +340,13 @@ Unlike post category, you have to use tag IDs.
 For custom taxonomies, use `tax_input[taxonomy_slug]` as the first parameter:
 
 ```php
-'hidden' => array( 'tax_input[product]', 'in', array( 5, 6, 7 ) ),
+'hidden' => ['tax_input[product]', 'in', [5, 6, 7]],
 ```
 
 Similarly to post category, it works with `slug`, too.
 
 ```php
-'hidden' => array( 'slug:tax_input[product]', '!=', 'drones' )
+'hidden' => ['slug:tax_input[product]', '!=', 'drones']
 ```
 
 ## Custom callback
