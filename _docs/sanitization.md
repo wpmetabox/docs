@@ -82,7 +82,9 @@ If you don't want to sanitize the input value for a specific field (we don't enc
 
 In this case, whatever users input will be saved.
 
-{% include alert.html type="info" content="If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), please go to **Advanced** tab and add a custom attribute with name `sanitize_callback` and value `none`." %}
+{% include alert.html type="info" content="If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), please go to **Advanced** tab and add a custom attribute with name `sanitize_callback` and value `none`. See the screenshot below:" %}
+
+![adding sanitize callback to fields](https://imgur.com/9UyYN71.png)
 
 ## Sanitize custom field types
 
