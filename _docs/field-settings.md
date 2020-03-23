@@ -28,6 +28,11 @@ Name | Description
 `clone_as_multiple`|Whether to store clone values in multiple rows in the database? Optional. Default `false`. See [this post](https://metabox.io/introducing-clone-as-multiple-feature/) for details.
 `attributes` | Custom attributes for inputs. See [more details](/custom-attributes/).
 `save_field` | Whether to save field value. Optional. Default `true`. This option doesn't work in the block editor (Gutenberg).
+`sanitize_callback` | Custom PHP callback for sanitizing field value before saving into the database. Set it to `none` to bypass the sanitization. See [more details](/sanitization/).
+
+{% include alert.html type="info" content="If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), and you don't find these settings, please go to **Advanced** tab and add a custom attribute with the setting name and custom value. See the screenshot below for setting `sanitize_callback` to `none`:" %}
+
+![adding sanitize callback to fields](https://imgur.com/9UyYN71.png)
 
 ### Field types
 
