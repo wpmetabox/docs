@@ -175,10 +175,10 @@ By default, the extension is made to work with fields created by the Meta Box pl
 
 ### Creating custom class
 
-Create a new file `custom.php` (you can name it anything you want) in your plugin / theme folder with the following content:
+Create a new file `custom.php` (you can name it anything you want) in your plugin / theme folder where you need to extends the `\MBAC\Post` class (since version 1.5.0) or `MB_Admin_Columns_Post class` (for older versions of the plugin):
 
 ```php
-class Prefix_Custom_Admin_Columns extends MB_Admin_Columns_Post {
+class Prefix_Custom_Admin_Columns extends \MBAC\Post {
     public function columns( $columns ) {
         $columns  = parent::columns( $columns );
         $position = '';
@@ -226,7 +226,7 @@ So, install that plugin and add the following code:
 
 ```php
 add_action( 'admin_init', function() {
-	class My_Featured_Image_Columns extends MB_Admin_Columns_Post {
+	class My_Featured_Image_Columns extends \MBAC\Post {
 		public function columns( $columns ) {
 			$columns  = parent::columns( $columns );
 			$position = 'before';
