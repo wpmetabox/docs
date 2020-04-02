@@ -43,7 +43,7 @@ $value = rwmb_meta( $field_id );
 // Or if you want to get the field value from a specific post:
 // $value = rwmb_meta( $field_id, '', $post_id );
 
-if ( wp_check_password( $value, 'password to check' ) ) {
+if ( wp_check_password( 'password to check', $value ) ) {
     echo 'Password is correct';
 }
 ```
