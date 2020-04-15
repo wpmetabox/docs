@@ -337,10 +337,10 @@ In this case, the title of the column will be the title of the connection meta b
 To add more rules for the admin column, you can declare `admin_column` parameter as an array which accepts the following keys:
 
 ```php
-'admin_columns' => array(
-    'position'   => 'after title',
-    'title'      => 'Price',
-),
+'admin_column' => [
+    'position' => 'after title',
+    'title'    => 'Price',
+],
 ```
 
 The meaning of keys are described below:
