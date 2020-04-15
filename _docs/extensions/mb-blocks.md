@@ -266,6 +266,8 @@ function my_hero_callback( $attributes, $is_preview = false, $post_id = null ) {
 			<?php endif ?>
 		</div>
 	</div>
+	<?php
+}
 ```
 
 When using the callback, you can access to the block fields data via `$attribute['data'][$field_id]`. However, to make it's convenient for you, we have created 2 helper functions: `mb_get_block_field()` and `mb_the_block_field()`.
