@@ -137,6 +137,22 @@ The data is stored in the database as a pair of (from_id, to_id), thus making it
 
 ## Getting connected items
 
+### API
+
+Using the API is the fastest and simplest way to get connected items:
+
+```php
+$pages = MB_Relationships_API::get_connected( [
+    'id'   => 'posts_to_pages',
+    'from' => get_the_ID(),
+] );
+foreach ( $pages as $p ) {
+    echo $p->post_title;
+}
+```
+
+If you need more control on connected items (like sorting, limiting the number of items), see the sections below for each type of content.
+
 ### Posts
 
 To get pages that are connected from a specific post (the *Basic Usage* example), use the following code:
@@ -234,8 +250,8 @@ The `relationship` parameter for querying accepts the following parameters:
 Name|Description
 ---|---
 `id`|The relationship ID.
-`from`|The object(s) that you want to get connect items from. Accept single or array of object(s) or object ID(s).
-`to`|The object(s) that you want to get connect items to. Accept single or array of object(s) or object ID(s).
+`from`|The object(s) that you want to get connected items from. Accept single or array of object(s) or object ID(s).
+`to`|The object(s) that you want to get connected items to. Accept single or array of object(s) or object ID(s).
 
 **How to get the ID of current item**
 
@@ -248,20 +264,6 @@ Function|Description
 [`get_queried_object()`](https://codex.wordpress.org/Function_Reference/get_queried_object)|Get the current-queried object. If you're on a single post/page, it will return the post object. If you're on a category archive, it will return the category object and so on. Note that in the code above, `from` and `to` accepts both object ID add full object.
 [`get_queried_object_id()`](https://developer.wordpress.org/reference/functions/get_queried_object_id/)|Get the current-queried object ID. Similar to the above function but returns only object ID.
 [`get_current_user_id()`](https://developer.wordpress.org/reference/functions/get_current_user_id/)|Get current user ID.
-
-### API
-
-You might also use our API to get connected items for simplicity:
-
-```php
-$pages = MB_Relationships_API::get_connected( [
-    'id'   => 'posts_to_pages',
-    'from' => get_the_ID(),
-] );
-foreach ( $pages as $p ) {
-    echo $p->post_title;
-}
-```
 
 ## Sibling items
 
