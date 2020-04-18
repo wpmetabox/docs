@@ -102,13 +102,16 @@ The block ID. Must be unique.
 
 ### `icon`
 
-The block icon. Can be any of [WordPress' Dashicons](https://developer.wordpress.org/resource/dashicons/) (without the prefix `dashicons-`), or a custom `svg` element (string).
+The block icon. Can be any of [WordPress' Dashicons](https://developer.wordpress.org/resource/dashicons/) (without the prefix `dashicons-`), or a custom `svg` element (string) or [FontAwesome 5 free icons](https://fontawesome.com/) (added in version 1.2.0).
 
 Example:
 
 ```php
 // Specifying a dashicon for the block
 'icon' => 'book-alt',
+
+// FontAwesome 5 icon
+'icon' => 'fas fa-user',
 
 // Specifying a custom svg for the block
 'icon' => '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z" /><path d="M19 13H5v-2h14v2z" /></svg>',
