@@ -22,6 +22,13 @@ Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields
 
 To create tabs for your meta box, you need to add these parameters to your meta box settings:
 
+Parameter|Description
+---|---
+`tabs`|Array of tabs. See below for details.
+`tab_style`|The tab style: `default` (like tabs for Categories), `box` (like tabs for Visual and Text modes of the main editor) or `left` (like tabs in Help screen)
+`tab_wrapper`|Whether or not show the meta box wrapper around tabs (deprecated). Please use `'style' => 'seamless'` parameter for the meta box instead.
+`tab_default_active`|Default active tab ID.
+
 ### `tabs`
 
 List of tabs, in one of the following formats:
@@ -47,14 +54,6 @@ Then for each field in the meta box, you need to specify which tab it belongs to
 Tab style. There are 3 styles available: `default` (like tabs for Categories), `box` (like tabs for Visual and Text modes of the main editor) or `left` (like tabs in Help screen). Optional.
 
 ![tab styles](https://i.imgur.com/7Oi5dx1.jpg)
-
-### `tab_wrapper`
-
-Whether or not show the meta box wrapper around tabs. Default is `true`. If set to `false`, then the wrapper will be hidden.
-
-{% include alert.html type="warning" content="This parameter is deprecated. Please use `'style' => 'seamless'` parameter for the meta box instead." %}
-
-![tab wrapper](https://i.imgur.com/IPzfyEY.jpg)
 
 ## Sample code
 
