@@ -176,6 +176,11 @@ Display name|`display_name`
 First name|`first_name`
 Last name|`last_name`
 Biography|`description`
+Rich editing|`rich_editing`
+Syntax highlighting|`syntax_highlighting`
+Admin color|`admin_color`
+Comment shortcuts|`comment_shortcuts`
+Show admin bar on the front|`admin_bar_front`
 
 #### Edit user password
 
