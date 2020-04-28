@@ -6,9 +6,7 @@ title: Meta Box Tabs
 
 The Meta Box Tabs extension is an UI extension for Meta Box, which helps you to put custom fields into tabs for a better view. It's extremely useful when you have many custom fields (which can lead to a super long page).
 
-Screenshot:
-
-![meta box tab styles](https://i2.wp.com/metabox.io/wp-content/uploads/2014/07/meta-box-tabs-icon-left.png)
+![tab styles](https://i.imgur.com/7Oi5dx1.jpg)
 
 The tabs can be used with [columns](https://metabox.io/plugins/meta-box-columns/) to structure your fields in a better way.
 
@@ -29,9 +27,9 @@ Parameter|Description
 `tab_wrapper`|Whether or not show the meta box wrapper around tabs (deprecated). Please use `'style' => 'seamless'` parameter for the meta box instead.
 `tab_default_active`|Default active tab ID.
 
-### `tabs`
+### Defining tabs
 
-List of tabs, in one of the following formats:
+List of tabs are defined in the `tabs` parameter, in one of the following formats:
 
 - `'tab-id' => 'Tab label'`, or
 - `'tab-id' => ['label' => 'Tab label', 'icon' => 'Tab icon']`
@@ -48,12 +46,6 @@ If you want to use another icon (not Dashicons), either:
 (Take a look at demo code to see how to implement)
 
 Then for each field in the meta box, you need to specify which tab it belongs to by adding a parameter `'tab' => 'tab-id'` where `tab-id` is one of the tab IDs you have registered above.
-
-### `tab_style`
-
-Tab style. There are 3 styles available: `default` (like tabs for Categories), `box` (like tabs for Visual and Text modes of the main editor) or `left` (like tabs in Help screen). Optional.
-
-![tab styles](https://i.imgur.com/7Oi5dx1.jpg)
 
 ## Sample code
 
