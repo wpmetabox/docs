@@ -134,7 +134,7 @@ In case a field has multiple value (checkbox list, select multiple...), this ope
 If you use with a `taxonomy_advanced` field, please **set the value to the term IDs**:
 
 ```php
-'visible' => ['product_type', 'contains', [2, 4]]; // The field will be visible if the product type has any term with ID 2 or 4.
+'visible' => ['product_type', 'in', [2, 4]]; // The field will be visible if the product type has any term with ID 2 or 4.
 ```
 
 ### `between`
