@@ -143,6 +143,11 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
                 'type' => 'text',
             ],
             [
+                'id'   => 'display_name', // THIS
+                'name' => 'Display Name',
+                'type' => 'text',
+            ],
+            [
                 'id'   => 'description', // THIS
                 'name' => 'Biography',
                 'type' => 'textarea',
@@ -158,6 +163,19 @@ And use it in the user edit profile form with this shortcode:
 ```php
 [mb_user_profile_info id="default-fields"]
 ```
+
+In order to make the plugin recognize the user fields, you need to set correct ID for them. See the table below:
+
+Field|ID
+---|---
+User login|`user_login`
+User email|`user_email`
+User nicename|`user_nicename`
+User URL|`user_url`
+Display name|`display_name`
+First name|`first_name`
+Last name|`last_name`
+Biography|`description`
 
 #### Edit user password
 
