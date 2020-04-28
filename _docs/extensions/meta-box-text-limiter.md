@@ -6,6 +6,8 @@ title: Meta Box Text Limiter
 
 Meta Box Text Limiter is a free extension which allows you to limit the number of characters or words entered for text and textarea fields.
 
+{% include installation.html %}
+
 ## Usage
 
 Assume you have a text field with the following settings:
