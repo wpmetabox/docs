@@ -307,8 +307,6 @@ If you want to hide a tab created by [Meta Box Tabs](https://metabox.io/plugins/
 
 ## Using with taxonomies
 
-The following section is **for `taxonomy` field type only**. If you're using `taxonomy_advanced` field, then it works similarly as normal fields.
-
 ### Post category
 
 For post category, use `post_category` as the first parameter:
