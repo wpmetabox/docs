@@ -298,22 +298,7 @@ if ( ! empty( $group_values ) ) {
 }
 ```
 
-### Special fields
-
-The helper function returns only raw data of group's value, e.g. it does exactly what `get_post_meta( $post_id, 'group_id', true );` does. It doesn't return meaningful information for images, file, etc. To do that, please add a small piece of code as follow:
-
-```php
-$group = rwmb_meta( 'group_id' );
-$image_ids = $group['image_key'] ?? : [];
-foreach ( $image_ids as $image_id ) {
-	$image = RWMB_Image_Field::file_info( $image_id, ['size' => 'thumbnail'] );
-	echo '<img src="' . $image['url'] . '">';
-}
-```
-
-{% include helpers.html %}
-
-### Example
+### Examples
 
 This sample code registers a group of fields: contact name, contact email, contact phone number:
 
@@ -425,7 +410,7 @@ foreach ( $sectors as $sector ) {
 }
 ```
 
-### Outputing group in a page builder
+### Outputing group with page builders
 
 If you want to output a group in a page builder like [Beaver Builder](https://metabox.io/recommends/beaver-builder/) or [Elementor](https://metabox.io/recommends/elementor/), please understand that there's no way to output each sub-field in a group as a element in these page builders.
 
@@ -467,6 +452,30 @@ add_shortcode( 'my_group', function() {
 
 // Usage: put [my_group] into your post content or page builder modules.
 ```
+
+### Sub-field values
+
+It's important to note that the helper function returns only raw array of sub-field values. It doesn't transform value to meaning full details like [rwmb_meta](https://docs.metabox.io/rwmb-meta/) function for specific fields. Specifically:
+
+Sub-field type|Value
+---|---
+`taxonomy_advanced`, `user`, `post`|Object ID(s)
+`file`, `file_advanced`, `file_upload`, `image`, `image_advanced`, `image_upload`, `single_image`|Attachment ID(s)
+`map`, `osm`|Text in format "latitude,longitude,zoom"
+`oembed`|URL
+
+To get more details for fields, you might need to add some extra code as below.
+
+```php
+$group = rwmb_meta( 'group_id' );
+$image_ids = $group['image_key'] ?? : [];
+foreach ( $image_ids as $image_id ) {
+	$image = RWMB_Image_Field::file_info( $image_id, ['size' => 'thumbnail'] );
+	echo '<img src="' . $image['url'] . '">';
+}
+```
+
+{% include helpers.html %}
 
 ## Setting default group values
 
