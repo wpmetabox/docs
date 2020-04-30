@@ -100,8 +100,10 @@ echo $post->post_title;
 With the `mb` proxy, you can call the `get_post()` function like this:
 
 ```html
+{% raw %}
 {% set post = mb.get_post( 123 ) %}
 {{ post.post_title }}
+{% endraw %}
 ```
 
 Here you see, the normal PHP function is prefixed by `mb.`, e.g. `get_post` becomes `mb.get_post`. So if you want to call a function `my_custom_function`, you need to write `mb.my_custom_function`. The parameters passed to the function remain the same.
@@ -109,10 +111,12 @@ Here you see, the normal PHP function is prefixed by `mb.`, e.g. `get_post` beco
 In case you want to set arguments for functions, use the `set` syntax. Twig allows you to set complex variables, like [lists with keys and values](https://twig.symfony.com/doc/1.x/templates.html#literals) and then you can pass it to the function:
 
 ```html
+{% raw %}
 {% set my_var = ["first", "second"] %}
 {% set my_var = {first: "first value", second: "second value"}
 
 {% set value = mb.custom_function( my_var ) %}
+{% endraw %}
 ```
 
 ## Locations
