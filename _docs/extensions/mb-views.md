@@ -80,7 +80,42 @@ To insert a sub-field, click on the sub-field title, like inserting a normal fie
 
 {% include alert.html type="warning" content="Important: if you have a cloneable group, before inserting sub-fields, you MUST insert the `for` loop for the group first. To insert the group, click on the group title. See the Cloneable Fields section above for details." %}
 
-## Setting Locations
+### Relationship Fields
+
+Relationships created with [MB Relationships](https://metabox.io/plugins/mb-relationships/) extension can be inserted in the tab **Query**.
+
+Once you registered a relationship, it will show 2 fields here: one for "from" side, and one for "to" side. Clicking a field will insert a loop of connected items, and inside the loop, you can insert post/term/user fields as usual.
+
+## Running PHP functions
+
+To run PHP functions, use the `mb` proxy. It acts as a transformer between views and PHP.
+
+Assume you want to get another post in WordPress with post ID 123, you can write a simple PHP code:
+
+```php
+$post = get_post( 123 );
+echo $post->post_title;
+```
+
+With the `mb` proxy, you can call the `get_post()` function like this:
+
+```html
+{% set post = mb.get_post( 123 ) %}
+{{ post.post_title }}
+```
+
+Here you see, the normal PHP function is prefixed by `mb.`, e.g. `get_post` becomes `mb.get_post`. So if you want to call a function `my_custom_function`, you need to write `mb.my_custom_function`. The parameters passed to the function remain the same.
+
+In case you want to set arguments for functions, use the `set` syntax. Twig allows you to set complex variables, like [lists with keys and values](https://twig.symfony.com/doc/1.x/templates.html#literals) and then you can pass it to the function:
+
+```html
+{% set my_var = ["first", "second"] %}
+{% set my_var = {first: "first value", second: "second value"}
+
+{% set value = mb.custom_function( my_var ) %}
+```
+
+## Locations
 
 Each view can serve multiple pages on your website. To set where the view appears, go to **Settings** meta box below the editor:
 
