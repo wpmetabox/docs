@@ -113,6 +113,7 @@
   - /filters/
   - /rwmb-field-class/
   - /rwmb-meta/
+  - /rwmb-set-meta/
   - /rwmb-the-value/
   - /rwmb-get-value/
   - /rwmb-get-object-fields/
