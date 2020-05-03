@@ -59,7 +59,7 @@ add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
         ],
     ];
     return $meta_boxes;
-}
+});
 ```
 
 Then go to **Posts → Add New**, you will see a new meta box appears below the post editor:
