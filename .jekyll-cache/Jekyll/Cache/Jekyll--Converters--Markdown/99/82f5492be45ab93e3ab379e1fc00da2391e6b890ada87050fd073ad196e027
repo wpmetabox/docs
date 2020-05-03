@@ -1,0 +1,183 @@
+I"�6<h2 id="overview">Overview</h2>
+
+<p>The MB Term Meta helps you to add custom fields to taxonomy terms like categories, tags or any custom taxonomy. It makes custom fields work not only for posts (which is supported by Meta Box), but also for terms. See this screenshot for a demo:</p>
+
+<p><img src="https://i0.wp.com/metabox.io/wp-content/uploads/2016/01/term-meta.png?resize=768%2C576&amp;ssl=1" alt="category custom fields" /></p>
+
+<p>The plugin is simple and supports all the field types in Meta Box. It also uses the same syntax as for custom fields for posts, so you unlikely have to learn a new thing.</p>
+
+<p>For more information, please see the <a href="https://metabox.io/plugins/mb-term-meta/">extension page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<h2 id="creating-meta-boxes">Creating meta boxes</h2>
+
+<p>Creating custom meta boxes and custom fields for taxonomy terms is similar to posts. See <a href="/creating-meta-boxes/">this documentation</a> to know how to create a meta box, and <a href="/field-settings/">this documentation</a> to know how to define fields.</p>
+
+<p>The only difference here is when you create a meta box for a taxonomy, you need to specify a parameter <code class="highlighter-rouge">taxonomies</code> which the meta box will be added to. This parameter can be an array of taxonomy slugs or a string of single taxonomy slug. And you have to remove the parameter <code class="highlighter-rouge">post_types</code>.</p>
+
+<h2 id="example">Example</h2>
+
+<p>The code below register a meta box for category which has 4 custom fields:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="s1">'prefix_register_taxonomy_meta_boxes'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_register_taxonomy_meta_boxes</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">){</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>      <span class="o">=&gt;</span> <span class="s1">'Standard Fields'</span><span class="p">,</span>
+        <span class="s1">'taxonomies'</span> <span class="o">=&gt;</span> <span class="s1">'category'</span><span class="p">,</span> <span class="c1">// List of taxonomies. Array or string</span>
+
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Featured?'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'featured'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Featured Content'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'featured_content'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'wysiwyg'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Featured Image'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'image_advanced'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'image_advanced'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Color'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'color'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'color'</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Result:</p>
+
+<p><img src="https://i.imgur.com/zMaoafC.png" alt="mb term meta" /></p>
+
+<h2 id="data">Data</h2>
+
+<p>WordPress provides an identical way to store values in the meta tables for post / term / user. This extension utilizes that API and stores field value in the term meta exactly like post meta.</p>
+
+<h2 id="getting-field-value">Getting field value</h2>
+
+<p>You’re able to use helper function <a href="/rwmb-meta/">rwmb_meta()</a> to get field value for terms.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'object_type'</span> <span class="o">=&gt;</span> <span class="s1">'term'</span> <span class="p">),</span> <span class="nv">$term_id</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Notes:</p>
+
+<ul>
+  <li>In the 2nd parameter, you need to pass <code class="highlighter-rouge">'object_type' =&gt; 'term'</code>, and</li>
+  <li>In the last parameter, you need to pass the term ID</li>
+</ul>
+
+<p>To get the <code class="highlighter-rouge">$term_id</code> for the current category/term page, please use the function <code class="highlighter-rouge">get_queried_object_id()</code>. So the statement look like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$term_id</span> <span class="o">=</span> <span class="nx">get_queried_object_id</span><span class="p">();</span>
+<span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'object_type'</span> <span class="o">=&gt;</span> <span class="s1">'term'</span> <span class="p">),</span> <span class="nv">$term_id</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Other parameters are the same as for post. Please see <a href="/displaying-fields/">this documentation</a> for details.</p>
+
+<div class="alert alert-warning">
+	
+		<svg class="icon icon-warning" aria-hidden="true" role="img"><use href="#icon-warning" xlink:href="#icon-warning"></use></svg>
+	
+	<p>It requires the extension version 1.1+ to use the helper function. If you’re using an older version, please <a href="/extensions/update/">update now</a>.</p>
+
+</div>
+
+<p>In case you use an older version than 1.1, you can get fiel value manually:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta</span> <span class="o">=</span> <span class="nx">get_term_meta</span><span class="p">(</span> <span class="nv">$term_id</span><span class="p">,</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="kc">true</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$meta</span><span class="p">;</span>
+
+<span class="c1">// Or use this code if field has multiple value</span>
+<span class="nv">$meta</span> <span class="o">=</span> <span class="nx">get_term_meta</span><span class="p">(</span> <span class="nv">$term_id</span><span class="p">,</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="kc">false</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$meta</span> <span class="k">as</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that the <code class="highlighter-rouge">get_term_meta</code> function returns only raw data of field value. It doesn’t return meaningful information for images, file, etc. To do that, please add a small piece of code as follow:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Getting images</span>
+<span class="nv">$image_ids</span> <span class="o">=</span> <span class="nx">get_term_meta</span><span class="p">(</span> <span class="nv">$term_id</span><span class="p">,</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="kc">false</span> <span class="p">);</span> <span class="c1">// Media fields are always multiple.</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$image_ids</span> <span class="k">as</span> <span class="nv">$image_id</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$image</span> <span class="o">=</span> <span class="nx">RWMB_Image_Field</span><span class="o">::</span><span class="na">file_info</span><span class="p">(</span> <span class="nv">$image_id</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'size'</span> <span class="o">=&gt;</span> <span class="s1">'thumbnail'</span> <span class="p">)</span> <span class="p">);</span>
+    <span class="k">echo</span> <span class="s1">'&lt;img src="'</span> <span class="o">.</span> <span class="nv">$image</span><span class="p">[</span><span class="s1">'url'</span><span class="p">]</span> <span class="o">.</span> <span class="s1">'"&gt;'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>These are some helper functions that you can use to retrieve more info:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field type</th>
+      <th>Helper function(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">image</code>, <code class="highlighter-rouge">image_advanced</code>, <code class="highlighter-rouge">plupload_image</code>, <code class="highlighter-rouge">thickbox_image</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/"><code class="highlighter-rouge">wp_get_attachment_image_src()</code></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><a href="https://developer.wordpress.org/reference/functions/wp_get_attachment_image_url/"><code class="highlighter-rouge">wp_get_attachment_image_url()</code></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">RWMB_Image_Field::file_info( $image_id, $args );</code> (where <code class="highlighter-rouge">$args</code> is an array and accepts only <code class="highlighter-rouge">size</code> attribute)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">file</code>, <code class="highlighter-rouge">file_advanced</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_attached_file/"><code class="highlighter-rouge">get_attached_file()</code></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">RWMB_File_Field::file_info( $image_id );</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">oembed</code></td>
+      <td><code class="highlighter-rouge">RWMB_OEmbed_Field::get_embed( $url );</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">taxonomy</code>, <code class="highlighter-rouge">taxonomy_advanced</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_term/"><code class="highlighter-rouge">get_term()</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">user</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_userdata/"><code class="highlighter-rouge">get_userdata()</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">post</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_post/"><code class="highlighter-rouge">get_post()</code></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Read more on <a href="/database/">how field values are saved into the database</a>.</p>
+:ET

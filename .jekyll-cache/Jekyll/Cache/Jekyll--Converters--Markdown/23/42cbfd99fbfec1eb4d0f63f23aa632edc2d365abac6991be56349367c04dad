@@ -1,0 +1,2 @@
+I"—<p>BLOB and TEXT columns also can be indexed, but a fixed length must be given. Make sure you set the length when you want to index a text column.</p>
+:ET

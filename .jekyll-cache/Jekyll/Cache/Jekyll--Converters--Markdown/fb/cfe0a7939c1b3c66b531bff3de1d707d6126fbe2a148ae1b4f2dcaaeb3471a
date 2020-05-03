@@ -1,0 +1,121 @@
+I""<h2 id="overview">Overview</h2>
+
+<p>The autocomplete field creates a simple text input with autocomplete feature. You are able to select multiple values from the predefined list.</p>
+
+<p>This field uses jQuery UI library to perform the autocomplete action.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/zvZI8qs.png" alt="autocomplete" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">options</code></td>
+      <td>Array of <code class="highlighter-rouge">'value' =&gt; 'Label'</code> pairs. <code class="highlighter-rouge">'value'</code> is stored in the custom field and <code class="highlighter-rouge">'Label'</code> is used for autocomplete. You can also set this param an URL to remote resource that returns the array of data in JSON format. Required.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">size</code></td>
+      <td>Input size. Default <code class="highlighter-rouge">30</code>. Optional.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that the <code class="highlighter-rouge">multiple</code> setting is always set to <code class="highlighter-rouge">true</code> for this field.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Autocomplete'</span><span class="p">,</span>
+    <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'field_id'</span><span class="p">,</span>
+    <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'autocomplete'</span><span class="p">,</span>
+    <span class="c1">// Options of autocomplete, in format 'value' =&gt; 'Label'</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'java'</span>       <span class="o">=&gt;</span> <span class="s1">'Java'</span><span class="p">,</span>
+        <span class="s1">'javascript'</span> <span class="o">=&gt;</span> <span class="s1">'JavaScript'</span><span class="p">,</span>
+        <span class="s1">'php'</span>        <span class="o">=&gt;</span> <span class="s1">'PHP'</span><span class="p">,</span>
+        <span class="s1">'c'</span>          <span class="o">=&gt;</span> <span class="s1">'C'</span><span class="p">,</span>
+        <span class="s1">'cplusplus'</span>  <span class="o">=&gt;</span> <span class="s1">'C++'</span><span class="p">,</span>
+        <span class="s1">'csharp'</span>     <span class="o">=&gt;</span> <span class="s1">'C#'</span><span class="p">,</span>
+        <span class="s1">'objectivec'</span> <span class="o">=&gt;</span> <span class="s1">'Objective-C'</span><span class="p">,</span>
+        <span class="s1">'kotlin'</span>     <span class="o">=&gt;</span> <span class="s1">'Kotlin'</span><span class="p">,</span>
+        <span class="s1">'swift'</span>      <span class="o">=&gt;</span> <span class="s1">'Swift'</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="getting-options-remotely-via-ajax">Getting options remotely via Ajax</h2>
+
+<p>In case you want to use remote data instead of user-defined data for the <code class="highlighter-rouge">options</code>, you can set this parameter an URL of your remote data source.</p>
+
+<p>This is an example:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Some Field'</span><span class="p">,</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'some_field'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'autocomplete'</span><span class="p">,</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="nx">admin_url</span><span class="p">(</span> <span class="s1">'admin-ajax.php?action=some_field'</span> <span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>This field will fetch the data via Ajax. The ajax callback is handled in the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'wp_ajax_some_field'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="nv">$s</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span> <span class="s1">'term'</span> <span class="p">];</span>
+   <span class="c1">// Do some stuff here to find matches.</span>
+
+  <span class="nv">$response</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+      <span class="k">array</span><span class="p">(</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'123'</span><span class="p">,</span> <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Some Post'</span> <span class="p">),</span>
+      <span class="k">array</span><span class="p">(</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'77'</span><span class="p">,</span> <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Another Post'</span> <span class="p">)</span>
+  <span class="p">);</span>
+
+  <span class="c1">// Do some stuff to prepare JSON response ( headers, etc ).</span>
+  <span class="k">echo</span> <span class="nx">wp_json_encode</span><span class="p">(</span> <span class="nv">$response</span> <span class="p">);</span>
+  <span class="k">die</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Note that the data returned must be in JSON format as above. The ajax request also sends the search term via <code class="highlighter-rouge">$_REQUEST['term']</code> parameter as you see above.</p>
+
+<h2 id="data">Data</h2>
+
+<p>This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what <code class="highlighter-rouge">add_post_meta</code> does with last parameter <code class="highlighter-rouge">false</code>).</p>
+
+<p>If the field is cloneable, then the value is stored as a serialized array in a single row in the database. Each value of that array is an array of clone’s values.</p>
+
+<p>Note that this field stores the options’ values, not labels.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>If field is not cloneable:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$values</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$values</span> <span class="k">as</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If field is cloneable:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$values</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$values</span> <span class="k">as</span> <span class="nv">$clone</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$clone</span> <span class="k">as</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The values get and displayed here are the options’ values, not labels.</p>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a>.</p>
+:ET

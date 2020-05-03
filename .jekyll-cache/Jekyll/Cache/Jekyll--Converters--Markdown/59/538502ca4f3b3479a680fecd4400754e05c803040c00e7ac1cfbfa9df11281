@@ -1,0 +1,150 @@
+I"78<p>To ensure the user input is safe to save to the database, Meta Box provides a mechanism to sanitize fields’ values. The sanitization is automatically applied for all built-in field types. For some fields such as select or radio, Meta Box also validates the submitted value to ensure it’s a valid value (e.g. available in the field options).</p>
+
+<p>The sanitization is applied for both single and cloneable fields. With cloneable fields, the sanitization is applied for each clone value.</p>
+
+<h2 id="default-sanitize-callbacks">Default sanitize callbacks</h2>
+
+<p>We try to provide appropriate callbacks for built-in field types and use built-in WordPress sanitization functions as much as possible.</p>
+
+<p>To see the list of default sanitize callbacks, please <a href="https://github.com/wpmetabox/meta-box/blob/master/inc/sanitizer.php#L50">see the plugin source code</a>.</p>
+
+<p>Quick notes:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">textarea</code>: the default callback is <code class="highlighter-rouge">wp_kses_post</code>. If you want to enter scripts and styles in a <code class="highlighter-rouge">textarea</code> field (like you make an option in <a href="https://metabox.io/plugins/mb-settings-page/">a settings page</a> that allows users to enter Google Analytics code), then you need to use a custom sanitize callback.</li>
+  <li>Choice fields (<code class="highlighter-rouge">select</code>, <code class="highlighter-rouge">radio</code>, <code class="highlighter-rouge">button_group</code>, etc.): a custom callback is used which validates the input to make sure it’s a valid value (e.g. available in the field options).</li>
+  <li><a href="https://metabox.io/plugins/meta-box-group/">Group field</a> is not sanitized due to its complexity.</li>
+</ul>
+
+<h2 id="custom-sanitize-callback">Custom sanitize callback</h2>
+
+<p>To provide a custom sanitize callback for a field, please pass <a href="https://secure.php.net/manual/en/language.types.callable.php">a callback</a> to the <code class="highlighter-rouge">sanitize_callback</code> parameter.</p>
+
+<p>For example, the code below auto add a currency symbol “$” to a text field if it’s missed:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Test Sanitization Money Field'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">'type'</span>              <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                <span class="s1">'id'</span>                <span class="o">=&gt;</span> <span class="s1">'amount'</span><span class="p">,</span>
+                <span class="s1">'name'</span>              <span class="o">=&gt;</span> <span class="s1">'Amount'</span><span class="p">,</span>
+                <span class="s1">'sanitize_callback'</span> <span class="o">=&gt;</span> <span class="s1">'prefix_sanitize_money_field'</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">],</span>
+    <span class="p">];</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+
+<span class="k">function</span> <span class="nf">prefix_sanitize_money_field</span><span class="p">(</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="mi">0</span> <span class="o">!==</span> <span class="nb">strpos</span><span class="p">(</span> <span class="nv">$value</span><span class="p">,</span> <span class="s1">'$'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$value</span> <span class="o">=</span> <span class="s1">'$'</span> <span class="o">.</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The sanitize callback is passed 4 parameters as follows:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$value</code>: The submitted value</li>
+  <li><code class="highlighter-rouge">$field</code>: The field settings</li>
+  <li><code class="highlighter-rouge">$old_value</code>: The old value which is in the database</li>
+  <li><code class="highlighter-rouge">$object_id</code>: The current object ID</li>
+</ul>
+
+<p>So your sanitize callback might look like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="nf">prefix_custom_sanitize_callback</span><span class="p">(</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$old_value</span><span class="p">,</span> <span class="nv">$object_id</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do something with $value.</span>
+    
+    <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If you don’t need all parameters, you can just omit them from the function param list, like we did in the example with the money field above.</p>
+
+<h2 id="bypass-the-sanitization">Bypass the sanitization</h2>
+
+<p>If you don’t want to sanitize the input value for a specific field (we don’t encourage this, obviously), then simply set the <code class="highlighter-rouge">sanitize_callback</code> to <code class="highlighter-rouge">none</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+    <span class="s1">'type'</span>              <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+    <span class="s1">'id'</span>                <span class="o">=&gt;</span> <span class="s1">'amount'</span><span class="p">,</span>
+    <span class="s1">'name'</span>              <span class="o">=&gt;</span> <span class="s1">'Amount'</span><span class="p">,</span>
+    <span class="s1">'sanitize_callback'</span> <span class="o">=&gt;</span> <span class="s1">'none'</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>In this case, whatever users input will be saved.</p>
+
+<div class="alert alert-info">
+	
+		<svg class="icon icon-info" aria-hidden="true" role="img"><use href="#icon-info" xlink:href="#icon-info"></use></svg>
+	
+	<p>If you’re using <a href="https://metabox.io/plugins/meta-box-builder/">Meta Box Builder</a>, please go to <strong>Advanced</strong> tab and add a custom attribute with name <code class="highlighter-rouge">sanitize_callback</code> and value <code class="highlighter-rouge">none</code>. See the screenshot below:</p>
+
+</div>
+
+<p><img src="https://imgur.com/9UyYN71.png" alt="adding sanitize callback to fields" /></p>
+
+<h2 id="sanitize-custom-field-types">Sanitize custom field types</h2>
+
+<p>If you create <a href="https://docs.metabox.io/custom-field-type/">a custom field type</a>, then you need to implement a default sanitize callback for that type.</p>
+
+<p>To do this, please set the <code class="highlighter-rouge">sanitize_callback</code> param for the field in the <code class="highlighter-rouge">normalize</code> method as follows:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">RWMB_MyType_Field</span> <span class="k">extends</span> <span class="nx">RWMB_Field</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">normalize</span><span class="p">(</span> <span class="nv">$field</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$field</span> <span class="o">=</span> <span class="nx">wp_parse_args</span><span class="p">(</span> <span class="nv">$field</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'sanitize_callback'</span> <span class="o">=&gt;</span> <span class="p">[</span> <span class="k">__CLASS__</span><span class="p">,</span> <span class="s1">'custom_sanitize'</span> <span class="p">],</span>
+        <span class="p">)</span> <span class="p">);</span>
+        <span class="nv">$field</span> <span class="o">=</span> <span class="k">parent</span><span class="o">::</span><span class="na">normalize</span><span class="p">(</span> <span class="nv">$field</span> <span class="p">);</span>
+        <span class="k">return</span> <span class="nv">$field</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">custom_sanitize</span><span class="p">(</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$old_value</span><span class="p">,</span> <span class="nv">$object_id</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Do something with $value.</span>
+        <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that, the sanitize callback don’t need to use all of the 4 passed parameters.</p>
+
+<p>This is an example of a custom <code class="highlighter-rouge">money</code> field, where the value must have “$” prefixed:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">RWMB_Money_Field</span> <span class="k">extends</span> <span class="nx">RWMB_Text_Field</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">normalize</span><span class="p">(</span> <span class="nv">$field</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$field</span> <span class="o">=</span> <span class="nx">wp_parse_args</span><span class="p">(</span> <span class="nv">$field</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'sanitize_callback'</span> <span class="o">=&gt;</span> <span class="p">[</span> <span class="k">__CLASS__</span><span class="p">,</span> <span class="s1">'custom_sanitize'</span> <span class="p">],</span> <span class="c1">// Specify a custom sanitize callback.</span>
+        <span class="p">)</span> <span class="p">);</span>
+        <span class="nv">$field</span> <span class="o">=</span> <span class="k">parent</span><span class="o">::</span><span class="na">normalize</span><span class="p">(</span> <span class="nv">$field</span> <span class="p">);</span>
+        <span class="nv">$field</span><span class="p">[</span><span class="s1">'attributes'</span><span class="p">][</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'text'</span><span class="p">;</span> <span class="c1">// Set the `type` attribute to `text` to let users enter the data.</span>
+        <span class="k">return</span> <span class="nv">$field</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">custom_sanitize</span><span class="p">(</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="mi">0</span> <span class="o">!==</span> <span class="nb">strpos</span><span class="p">(</span> <span class="nv">$value</span><span class="p">,</span> <span class="s1">'$'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$value</span> <span class="o">=</span> <span class="s1">'$'</span> <span class="o">.</span> <span class="nv">$value</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Test Sanitization Money Field'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'money'</span><span class="p">,</span> <span class="c1">// Set the field type to the custom 'money' type.</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'amount'</span><span class="p">,</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Amount'</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">],</span>
+    <span class="p">];</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+:ET

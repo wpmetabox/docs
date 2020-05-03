@@ -1,0 +1,54 @@
+I"P<h2 id="overview">Overview</h2>
+
+<p>The background field allows you to set background properties for a post. You can set background color, select an image and set other background settings.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/BKfxPaSl.png" alt="background" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>This field doesn’t have any specific settings. It only uses  <a href="/field-settings/">common settings</a>.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'background'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Background'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'background'</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>This field stores background properties in a serialized array in the post meta.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>To get the background properties, use the helper function <a href="/rwmb-meta/">rwmb_meta()</a>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$background</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'background'</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$background</span><span class="p">[</span><span class="s1">'color'</span><span class="p">];</span>
+<span class="k">echo</span> <span class="nv">$background</span><span class="p">[</span><span class="s1">'image'</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>This helper function returns an array of background properties:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'color'</span>      <span class="o">=&gt;</span> <span class="s1">'#111222'</span><span class="p">,</span>
+    <span class="s1">'image'</span>      <span class="o">=&gt;</span> <span class="s1">'https://domain.com/wp-uploads/2017/12/bg.png'</span><span class="p">,</span>
+    <span class="s1">'position'</span>   <span class="o">=&gt;</span> <span class="s1">'top left'</span><span class="p">,</span>
+    <span class="s1">'attachment'</span> <span class="o">=&gt;</span> <span class="s1">'fixed'</span><span class="p">,</span>
+    <span class="s1">'size'</span>       <span class="o">=&gt;</span> <span class="s1">'cover'</span><span class="p">,</span>
+    <span class="s1">'repeat'</span>     <span class="o">=&gt;</span> <span class="s1">'no-repeat'</span><span class="p">,</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>If you want to <strong>get the CSS for the background</strong>, use the <a href="/rwmb-the-value/">rwmb_the_value()</a>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$css</span> <span class="o">=</span> <span class="nx">rwmb_the_value</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="kc">false</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="s1">'&lt;div style="'</span><span class="p">,</span> <span class="nv">$css</span><span class="p">,</span> <span class="s1">'"&gt;&lt;/div&gt;'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a> and <a href="/rwmb-the-value/">rwmb_the_value()</a>.</p>
+:ET

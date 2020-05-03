@@ -1,0 +1,129 @@
+I"-<p>When you use a WordPress theme or plugin which <a href="/integration/">integrates Meta Box</a>, all the information of fields and meta boxes are fixed, such as: meta box title, number of fields, fields’ names and descriptions, … How to change these texts or add/remove fields of an existing meta box or even remove a meta box?</p>
+
+<p>Assuming we have 2 meta boxes registered in a parent theme:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="s1">'prefix_register_meta_boxes'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_register_meta_boxes</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 1st meta box</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>     <span class="o">=&gt;</span> <span class="s1">'personal'</span><span class="p">,</span>
+        <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Personal Information'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'Name'</span><span class="p">,</span>
+                <span class="s1">'id'</span>    <span class="o">=&gt;</span> <span class="s1">'name'</span><span class="p">,</span>
+                <span class="s1">'desc'</span>  <span class="o">=&gt;</span> <span class="s1">'Enter your full name: First Last'</span><span class="p">,</span>
+                <span class="s1">'type'</span>  <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'Occupation'</span><span class="p">,</span>
+                <span class="s1">'id'</span>    <span class="o">=&gt;</span> <span class="s1">'occupation'</span><span class="p">,</span>
+                <span class="s1">'desc'</span>  <span class="o">=&gt;</span> <span class="s1">'What do you do?'</span><span class="p">,</span>
+                <span class="s1">'type'</span>  <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+
+    <span class="c1">// 2nd meta box</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>     <span class="o">=&gt;</span> <span class="s1">'address'</span><span class="p">,</span>
+        <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Address Info'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'Street'</span><span class="p">,</span>
+                <span class="s1">'id'</span>    <span class="o">=&gt;</span> <span class="s1">'street'</span><span class="p">,</span>
+                <span class="s1">'type'</span>  <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'City'</span><span class="p">,</span>
+                <span class="s1">'id'</span>    <span class="o">=&gt;</span> <span class="s1">'city'</span><span class="p">,</span>
+                <span class="s1">'type'</span>  <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'State'</span><span class="p">,</span>
+                <span class="s1">'id'</span>    <span class="o">=&gt;</span> <span class="s1">'state'</span><span class="p">,</span>
+                <span class="s1">'type'</span>  <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>which are rendered as following:</p>
+
+<p><img src="https://i.imgur.com/VwDhVeD.png" alt="meta boxes" /></p>
+
+<p>We want to:</p>
+
+<ul>
+  <li>Remove “Personal Information” meta box</li>
+  <li>Change title of “Address Info” meta box to “Address”</li>
+  <li>Add description for field “Street” in “Address” meta box</li>
+  <li>Add field “zip_code” (text field) to “Address” meta box</li>
+</ul>
+
+<p>Our custom code will be put in <code class="highlighter-rouge">functions.php</code> file of the child theme.</p>
+
+<p>The principle is simple as following:</p>
+
+<ul>
+  <li>Hook to <code class="highlighter-rouge">rwmb_meta_boxes</code> filter with a high priority to get all registered meta boxes</li>
+  <li>Then we check meta boxes by ID or title to get the meta boxes we want to edit / remove</li>
+  <li>Remove or change meta boxes information if needed (such as meta box title)</li>
+  <li>For that meta box, we loop through all custom fields and change fields’ info</li>
+  <li>And finally add more fields to that meta box if needed</li>
+</ul>
+
+<p>The code is quite straight as following (with all necessary comments):</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Priority 20 makes sure all meta boxes are already registered</span>
+<span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="s1">'prefix_edit_meta_boxes'</span><span class="p">,</span> <span class="mi">20</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_edit_meta_boxes</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Loop throught all meta boxes to find the ones we need</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="k">as</span> <span class="nv">$k</span> <span class="o">=&gt;</span> <span class="nv">$meta_box</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Remove "Personal Information" meta box</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="nb">isset</span><span class="p">(</span> <span class="nv">$meta_box</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="s1">'personal'</span> <span class="o">==</span> <span class="nv">$meta_box</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nb">unset</span><span class="p">(</span> <span class="nv">$meta_boxes</span><span class="p">[</span><span class="nv">$k</span><span class="p">]</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Edit "Address Info" meta box</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="nb">isset</span><span class="p">(</span> <span class="nv">$meta_box</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="s1">'address'</span> <span class="o">==</span> <span class="nv">$meta_box</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Change title to "Address"</span>
+            <span class="nv">$meta_boxes</span><span class="p">[</span><span class="nv">$k</span><span class="p">][</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Address'</span><span class="p">;</span>
+
+            <span class="c1">// Loop through all fields</span>
+            <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$meta_box</span><span class="p">[</span><span class="s1">'fields'</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$j</span> <span class="o">=&gt;</span> <span class="nv">$field</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Add description for "Street" field</span>
+                <span class="k">if</span> <span class="p">(</span> <span class="s1">'street'</span> <span class="o">==</span> <span class="nv">$field</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="nv">$meta_boxes</span><span class="p">[</span><span class="nv">$k</span><span class="p">][</span><span class="nv">$j</span><span class="p">][</span><span class="s1">'desc'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Enter street address'</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Add field "zip_code" to this meta box</span>
+            <span class="nv">$meta_boxes</span><span class="p">[</span><span class="nv">$k</span><span class="p">][</span><span class="s1">'fields'</span><span class="p">][]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Zip code'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'zip_code'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return edited meta boxes</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here is the result:</p>
+
+<p><img src="https://i.imgur.com/CxkIV6L.png" alt="edit remove meta boxes" /></p>
+
+<div class="alert">
+	
+		<svg class="icon icon-info" aria-hidden="true" role="img"><use href="#icon-info" xlink:href="#icon-info"></use></svg>
+	
+	<p>It’s recommended to set meta box ID to easier looping through all meta boxes.</p>
+
+</div>
+:ET

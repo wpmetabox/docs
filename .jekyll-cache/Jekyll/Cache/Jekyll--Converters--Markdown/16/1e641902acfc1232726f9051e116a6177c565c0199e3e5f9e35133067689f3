@@ -1,0 +1,43 @@
+I"Ü	<p><code class="highlighter-rouge">rwmb_set_meta</code> is a helper function that helps you to set meta value for an object.</p>
+
+<p>To set meta value, use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_set_meta</span><span class="p">(</span> <span class="nv">$object_id</span><span class="p">,</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$args</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">$object_id</code></td>
+      <td>Object (post, term, user) ID. If you need to set value for an option (using MB Settings Page), object ID is the option name.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$field_id</code></td>
+      <td>Field ID.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$value</code></td>
+      <td>Value. Should be compatible with field value format. See <a href="https://docs.metabox.io/database/">database</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$args</code></td>
+      <td>Extra arguments for some object types or storages. It works similarly in <a href="https://docs.metabox.io/rwmb-meta/">rwmb_meta</a> function. Can be array or a string in format param1=value1&amp;param2=value2.Optional.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Important Note</strong></p>
+
+<p>This function works only when the field is already registered. In Meta Box, fields are registered at hook <code class="highlighter-rouge">init</code> with priority 20. So, you need to run this function after that:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'init'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">rwmb_set_meta</span><span class="p">(</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">'my_field'</span><span class="p">,</span> <span class="s1">'my_value'</span> <span class="p">);</span>
+<span class="p">},</span> <span class="mi">99</span> <span class="p">);</span>
+</code></pre></div></div>
+:ET

@@ -1,0 +1,50 @@
+I"#<h2 id="overview">Overview</h2>
+
+<p>Meta Box for Yoast SEO is a free extension which allows developers to add content of custom fields to Yoast SEO Content Analysis to have better SEO score.</p>
+
+<p>It allows you to live preview the result with Javascript.</p>
+
+<p><img src="https://i2.wp.com/metabox.io/wp-content/uploads/2015/08/meta-box-yoast-seo.png?w=760" alt="yoast seo preview" /></p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<h2 id="usage">Usage</h2>
+
+<p>Assume you have a <a href="https://docs.metabox.io/fields/wysiwyg/">wysiwyg</a> field where you enter content:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+	<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'My custom editor'</span><span class="p">,</span>
+	<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'custom_content'</span><span class="p">,</span>
+	<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'wysiwyg'</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>And you want Yoast SEO to get its content to analyze. To do that, add <code class="highlighter-rouge">'add_to_wpseo_analysis' =&gt; true</code> to the field:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+	<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'My custom editor'</span><span class="p">,</span>
+	<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'custom_content'</span><span class="p">,</span>
+	<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'wysiwyg'</span><span class="p">,</span>
+	<span class="s1">'add_to_wpseo_analysis'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>That’s all.</p>
+
+<p>The plugin supports all types of fields, such as text, textarea and wysiwyg.</p>
+:ET

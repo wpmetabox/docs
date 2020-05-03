@@ -1,0 +1,778 @@
+I"A�<h2 id="overview">Overview</h2>
+
+<p>The MB Relationships extension helps you to create many-to-many relationships between posts, terms and users in WordPress. Creating and managing relationships between objects is a missing feature in WordPress and this extension resolves it.</p>
+
+<p>MB Relationships creates an UI when you edit a post, a term or an user and let you select related objects. Then you can show them in the front end.</p>
+
+<p>The extension is built with performance in mind. It creates a custom table for storing relationships and integrates with default WordPress’s queries to retrieve the connected items easily.</p>
+
+<p>For more information about the extension, please see the <a href="https://metabox.io/plugins/mb-relationships/">extension page</a>.</p>
+
+<p>This documentation will show you how to create relationships between posts, terms, users, and how to display connected items in the frontend.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<h2 id="creating-relationships">Creating relationships</h2>
+
+<h3 id="basic-usage">Basic usage</h3>
+
+<p>The code below registers a relationship from posts to pages. Open your theme’s <code class="highlighter-rouge">functions.php</code> file and add:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'mb_relationships_init'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">register</span><span class="p">(</span> <span class="p">[</span>
+        <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+        <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+        <span class="s1">'to'</span>   <span class="o">=&gt;</span> <span class="s1">'page'</span><span class="p">,</span>
+    <span class="p">]</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>This code will show 2 meta boxes for posts and pages in the edit screens:</p>
+
+<ul>
+  <li>For posts: the meta box to select connected pages.</li>
+  <li>For pages: the meta box to show the posts that connect from.</li>
+</ul>
+
+<p>Both meta boxes are registered using the <em>Meta Box</em> plugin, thus it’s flexible and editable. The <em>Syntax</em> section will cover some settings for the relationship and meta boxes.</p>
+
+<h3 id="terms-to-posts">Terms to posts</h3>
+
+<p>The following example registers a relationship from categories to posts. The settings for <code class="highlighter-rouge">from</code> and <code class="highlighter-rouge">to</code> is a little bit more advanced than above.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'mb_relationships_init'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">register</span><span class="p">(</span> <span class="p">[</span>
+        <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'categories_to_posts'</span><span class="p">,</span>
+        <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">'object_type'</span> <span class="o">=&gt;</span> <span class="s1">'term'</span><span class="p">,</span>
+            <span class="s1">'taxonomy'</span>    <span class="o">=&gt;</span> <span class="s1">'category'</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s1">'to'</span>   <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+    <span class="p">]</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="users-to-posts">Users to posts</h3>
+
+<p>The following example registers a relationship from users to posts. It has some advanced settings that we will explain in the <em>Syntax</em> section.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'mb_relationships_init'</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">register</span><span class="p">(</span> <span class="p">[</span>
+        <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'users_to_posts'</span><span class="p">,</span>
+        <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">'object_type'</span> <span class="o">=&gt;</span> <span class="s1">'user'</span><span class="p">,</span>
+            <span class="s1">'meta_box'</span>    <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Manages'</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+        <span class="s1">'to'</span>   <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">'object_type'</span> <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+            <span class="s1">'post_type'</span>   <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+            <span class="s1">'meta_box'</span>    <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Managed By'</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">]</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="syntax">Syntax</h3>
+
+<p>The main API function <code class="highlighter-rouge">MB_Relationships_API::register</code> has the following parameters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>The relationship ID (or type). It’s used to identify a relationship from others. Required.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">from</code></td>
+      <td>The “from” side of the relationship. Required. See below for details.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">to</code></td>
+      <td>The “to” side of the relationship. Required. See below for details.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Both sides <code class="highlighter-rouge">from</code> or <code class="highlighter-rouge">to</code> accepts various parameters for the connection and meta box.</p>
+
+<p>If you pass <strong>a string</strong> to <code class="highlighter-rouge">from</code> or <code class="highlighter-rouge">to</code> (like we did in the <em>Basic usage</em> section above), the plugin will understand that as the <strong>post type</strong>. So the relationship will be created from posts to posts with specific post types.</p>
+
+<p>If you pass <strong>an array</strong> to <code class="highlighter-rouge">from</code> or <code class="highlighter-rouge">to</code>, then the array accepts the following parameters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">object_type</code></td>
+      <td>The object type the relationship is created from/to: <code class="highlighter-rouge">post</code> (default), <code class="highlighter-rouge">term</code> or <code class="highlighter-rouge">user</code>. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">post_type</code></td>
+      <td>The post type if the <code class="highlighter-rouge">object_type</code> is set to <code class="highlighter-rouge">post</code>. Default <code class="highlighter-rouge">post</code>. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">taxonomy</code></td>
+      <td>The taxonomy if the <code class="highlighter-rouge">object_type</code> is set to <code class="highlighter-rouge">term</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">empty_message</code></td>
+      <td>The message displayed when there’s no connections.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">meta_box</code></td>
+      <td>Meta box settings, has the <a href="https://docs.metabox.io/creating-meta-boxes/">same settings as a normal meta box</a>. Below are common settings you might want to change:</td>
+    </tr>
+    <tr>
+      <td>– <code class="highlighter-rouge">title</code></td>
+      <td>The meta box title. Default is “Connect To” for “from” side and “Connected From” for “to” side.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">field</code></td>
+      <td>Field settings, has the <a href="https://docs.metabox.io/field-settings/">same settings as a normal post/user/taxonomy field</a> according to the object type. Below are common settings you might want to change:</td>
+    </tr>
+    <tr>
+      <td>– <code class="highlighter-rouge">name</code></td>
+      <td>Field title.</td>
+    </tr>
+    <tr>
+      <td>– <code class="highlighter-rouge">placeholder</code></td>
+      <td>Placeholder text.</td>
+    </tr>
+    <tr>
+      <td>– <code class="highlighter-rouge">query_args</code></td>
+      <td>Custom query arguments to get objects of <code class="highlighter-rouge">object_type</code>. These arguments will be passed to <code class="highlighter-rouge">WP_Query()</code>, <code class="highlighter-rouge">get_terms()</code> or <code class="highlighter-rouge">get_users()</code> depending what <code class="highlighter-rouge">object_type</code> is.</td>
+    </tr>
+    <tr>
+      <td>– <code class="highlighter-rouge">max_clone</code></td>
+      <td>Maximum number of connections.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="reciprocal-relationships">Reciprocal relationships</h3>
+
+<p>To make reciprocal relationships, add another parameter <code class="highlighter-rouge">'reciprocal' =&gt; true</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'mb_relationships_init'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">register</span><span class="p">(</span> <span class="p">[</span>
+        <span class="s1">'id'</span>         <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+        <span class="s1">'from'</span>       <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+        <span class="s1">'to'</span>         <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+        <span class="s1">'reciprocal'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// THIS</span>
+    <span class="p">]</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>When you edit a post, the plugin will show only one meta box to let you select connected posts.</p>
+
+<h3 id="bi-directional-relationships">Bi-directional relationships</h3>
+
+<p>While the relationships are registered clearly with term “from” and “to”, the connections are actually bi-directional. You will be able to query back and forth without any problem. The query API is explained in the next section.</p>
+
+<p>The data is stored in the database as a pair of (from_id, to_id), thus making it independent from either side.</p>
+
+<h2 id="getting-connected-items">Getting connected items</h2>
+
+<h3 id="api">API</h3>
+
+<p>Using the API is the fastest and simplest way to get connected items:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$pages</span> <span class="o">=</span> <span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">get_connected</span><span class="p">(</span> <span class="p">[</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+    <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="nx">get_the_ID</span><span class="p">(),</span>
+<span class="p">]</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$pages</span> <span class="k">as</span> <span class="nv">$p</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$p</span><span class="o">-&gt;</span><span class="na">post_title</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If you need more control on connected items (like sorting, limiting the number of items), see the sections below for each type of content.</p>
+
+<h3 id="posts">Posts</h3>
+
+<p>To get pages that are connected from a specific post (the <em>Basic Usage</em> example), use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$connected</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WP_Query</span><span class="p">(</span> <span class="p">[</span>
+    <span class="s1">'relationship'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+        <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="nx">get_the_ID</span><span class="p">(),</span> <span class="c1">// You can pass object ID or full object</span>
+    <span class="p">],</span>
+    <span class="s1">'nopaging'</span>     <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">]</span> <span class="p">);</span>
+<span class="k">while</span> <span class="p">(</span> <span class="nv">$connected</span><span class="o">-&gt;</span><span class="na">have_posts</span><span class="p">()</span> <span class="p">)</span> <span class="o">:</span> <span class="nv">$connected</span><span class="o">-&gt;</span><span class="na">the_post</span><span class="p">();</span>
+    <span class="cp">?&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="nx">the_permalink</span><span class="p">();</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;?php</span> <span class="nx">the_title</span><span class="p">();</span> <span class="cp">?&gt;</span><span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;?php</span>
+<span class="k">endwhile</span><span class="p">;</span>
+<span class="nx">wp_reset_postdata</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Basically, to query for connected posts, just pass another parameter <code class="highlighter-rouge">relationship</code> to <code class="highlighter-rouge">WP_Query()</code>.</p>
+
+<p>If you want to display posts that connected to a specific page (the <strong>backward query</strong>), then just replace <code class="highlighter-rouge">from</code> by <code class="highlighter-rouge">to</code> in the code above:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$connected</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WP_Query</span><span class="p">(</span> <span class="p">[</span>
+    <span class="s1">'relationship'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+        <span class="s1">'to'</span> <span class="o">=&gt;</span> <span class="nx">get_the_ID</span><span class="p">(),</span> <span class="c1">// You can pass object ID or full object</span>
+    <span class="p">],</span>
+    <span class="s1">'nopaging'</span>     <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">]</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>That’s all.</p>
+
+<p><strong>So, why WP_Query() you might ask?</strong></p>
+
+<p>There are 3 reasons that we want to use <code class="highlighter-rouge">WP_Query()</code>:</p>
+
+<ol>
+  <li>Using <code class="highlighter-rouge">WP_Query()</code> allows developers to create a <strong>flexible</strong> query to database. Imagine you want to get related posts (which are set manually by the plugin) <em>and</em> in the same category. <code class="highlighter-rouge">WP_Query()</code> allows you to do that easily. Without it, you probably need to create 2 manual queries (1 from relationship, 1 from category).</li>
+  <li><code class="highlighter-rouge">WP_Query()</code> is optimized for getting posts. It actually creates <strong>only 1 query</strong> to the database. Besides, in that single query, you’ll be able to retrieve <strong>full post objects</strong>, not just post IDs. (You still can retrieve only post IDs if you set <code class="highlighter-rouge">'fields' =&gt; 'ids'</code> - how flexible it is!).</li>
+  <li><code class="highlighter-rouge">WP_Query()</code> is so familiar with WordPress developers. No need to introduce another API just for the same purpose.</li>
+</ol>
+
+<p>Also note that, in the example above, we set <code class="highlighter-rouge">nopaging</code> to <code class="highlighter-rouge">true</code>, which disable pagination. So the query returns all the connected posts.</p>
+
+<p>For the full list of supported parameters for <code class="highlighter-rouge">WP_Query()</code>, please see the <a href="https://codex.wordpress.org/Class_Reference/WP_Query">documentation</a>.</p>
+
+<h3 id="terms">Terms</h3>
+
+<p>Similar to posts, getting connected terms is simple:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$terms</span>  <span class="o">=</span> <span class="nx">get_terms</span><span class="p">(</span> <span class="p">[</span>
+    <span class="s1">'taxonomy'</span>     <span class="o">=&gt;</span> <span class="s1">'category'</span><span class="p">,</span>
+    <span class="s1">'hide_empty'</span>   <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s1">'relationship'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'categories_to_posts'</span><span class="p">,</span>
+        <span class="s1">'to'</span> <span class="o">=&gt;</span> <span class="nx">get_the_ID</span><span class="p">(),</span> <span class="c1">// You can pass object ID or full object</span>
+    <span class="p">],</span>
+<span class="p">]</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$terms</span> <span class="k">as</span> <span class="nv">$term</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$term</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We use the WordPress’s function <code class="highlighter-rouge">get_terms()</code> with an additional parameter <code class="highlighter-rouge">relationship</code> with the same reasons as for posts.</p>
+
+<p>For the full list of supported parameters for <code class="highlighter-rouge">get_terms()</code>, please see the <a href="https://developer.wordpress.org/reference/functions/get_terms/">documentation</a>.</p>
+
+<h3 id="users">Users</h3>
+
+<p>Similar to posts, getting connected users is simple:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$users</span>  <span class="o">=</span> <span class="nx">get_users</span><span class="p">(</span> <span class="p">[</span>
+    <span class="s1">'relationship'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'users_to_posts'</span><span class="p">,</span>
+        <span class="s1">'to'</span> <span class="o">=&gt;</span> <span class="nx">get_the_ID</span><span class="p">(),</span> <span class="c1">// You can pass object ID or full object</span>
+    <span class="p">],</span>
+<span class="p">]</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$users</span> <span class="k">as</span> <span class="nv">$user</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">display_name</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We use the WordPress’s function <code class="highlighter-rouge">get_users()</code> with an additional parameter <code class="highlighter-rouge">relationship</code> with the same reasons as for posts.</p>
+
+<p>For the full list of supported parameters for <code class="highlighter-rouge">get_users()</code>, please see the <a href="https://codex.wordpress.org/Function_Reference/get_users">documentation</a>.</p>
+
+<h3 id="syntax-1">Syntax</h3>
+
+<p>The <code class="highlighter-rouge">relationship</code> parameter for querying accepts the following parameters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>The relationship ID.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">from</code></td>
+      <td>The object(s) that you want to get connected items from. Accept single or array of object(s) or object ID(s).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">to</code></td>
+      <td>The object(s) that you want to get connected items to. Accept single or array of object(s) or object ID(s).</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>How to get the ID of current item</strong></p>
+
+<p>In the examples above, we use <code class="highlighter-rouge">get_the_ID()</code> to get the ID of the current post. But if we query for connected posts from a relationship <code class="highlighter-rouge">terms_to_posts</code>, then that function doesn’t work.</p>
+
+<p>In that case, we need to use the following functions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://codex.wordpress.org/Function_Reference/get_queried_object"><code class="highlighter-rouge">get_queried_object()</code></a></td>
+      <td>Get the current-queried object. If you’re on a single post/page, it will return the post object. If you’re on a category archive, it will return the category object and so on. Note that in the code above, <code class="highlighter-rouge">from</code> and <code class="highlighter-rouge">to</code> accepts both object ID add full object.</td>
+    </tr>
+    <tr>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_queried_object_id/"><code class="highlighter-rouge">get_queried_object_id()</code></a></td>
+      <td>Get the current-queried object ID. Similar to the above function but returns only object ID.</td>
+    </tr>
+    <tr>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_current_user_id/"><code class="highlighter-rouge">get_current_user_id()</code></a></td>
+      <td>Get current user ID.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sibling-items">Sibling items</h2>
+
+<p>Assume you have 2 custom post types: student and class. Each student can join 1 or more class (many-to-many relationship). Now how to get the classmate of the given student A?</p>
+
+<p>Since version 1.2.0, the plugin introduces new API to get sibling items. To get sibling of a post, simply add <code class="highlighter-rouge">'sibling' =&gt; true</code> to the query as follows:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$siblings</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WP_Query</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'relationship'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+        <span class="s1">'to'</span>      <span class="o">=&gt;</span> <span class="nx">get_the_ID</span><span class="p">(),</span>
+        <span class="s1">'sibling'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="s1">'nopaging'</span>     <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">)</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>The code is similar to the above section, except the extra <code class="highlighter-rouge">sibling</code> parameter. That parameter works for all post, term or user query.</p>
+
+<h2 id="admin-column">Admin column</h2>
+
+<p>In order to show the connections, add the <code class="highlighter-rouge">admin_column</code> parameter to the <code class="highlighter-rouge">from</code> or <code class="highlighter-rouge">to</code> relationship configuration:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">register</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+    <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'object_type'</span>  <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+        <span class="s1">'admin_column'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>  <span class="c1">// THIS!</span>
+    <span class="p">),</span>
+    <span class="s1">'to'</span>   <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'object_type'</span>  <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+        <span class="s1">'post_type'</span>    <span class="o">=&gt;</span> <span class="s1">'page'</span><span class="p">,</span>
+        <span class="s1">'admin_column'</span> <span class="o">=&gt;</span> <span class="s1">'after title'</span><span class="p">,</span> <span class="c1">// THIS!</span>
+    <span class="p">),</span>
+<span class="p">)</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Similar to <a href="/extensions/mb-admin-columns">MB Admin Columns</a>, the plugin supports 3 formats of the parameter:</p>
+
+<h3 id="enable-admin-column">Enable admin column</h3>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'admin_column'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+</code></pre></div></div>
+
+<p>In this case, the column will be added to the end of the list table. And the title of the column will be the title of the connection meta box (when you edit a post).</p>
+
+<h3 id="column-position">Column position</h3>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'admin_column'</span> <span class="o">=&gt;</span> <span class="s1">'after title'</span>
+</code></pre></div></div>
+
+<p>The format is <code class="highlighter-rouge">'admin_column' =&gt; 'type column'</code> where:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">type</code></td>
+      <td>Must be <code class="highlighter-rouge">before</code>, <code class="highlighter-rouge">after</code> or <code class="highlighter-rouge">replace</code>. Specify the position of the custom column.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">before</code>: Insert the column before an existing column</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">after</code>: Insert the column after an existing column</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">replace</code>: Replace an existing column by the new one</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">column</code></td>
+      <td>The target existing column</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">link</code></td>
+      <td>Config the link for the items displayed in the admin column. Can be <code class="highlighter-rouge">view</code> (click to view item on the front end - default), <code class="highlighter-rouge">edit</code> (click to edit item) or <code class="highlighter-rouge">false</code> (no link).</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Using this configuration, you are able to insert the column in any position you want.</p>
+
+<p>In this case, the title of the column will be the title of the connection meta box (when you edit a post).</p>
+
+<h3 id="advanced-configuration">Advanced configuration</h3>
+
+<p>To add more rules for the admin column, you can declare <code class="highlighter-rouge">admin_column</code> parameter as an array which accepts the following keys:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'admin_column'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="s1">'after title'</span><span class="p">,</span>
+    <span class="s1">'title'</span>    <span class="o">=&gt;</span> <span class="s1">'Price'</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>The meaning of keys are described below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">position</code></td>
+      <td>Specify where to insert the new column. It’s exactly the same as described in the #2 method above.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">title</code></td>
+      <td>Column title. Optional. Default is the meta box title.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="post-archive">Post archive</h2>
+
+<p>All the examples above work well with single post, term or user. But if you want to display connected posts in the blog archive page, this method will create a dozen of queries for each post in the archive page. That’s a lot of extra queries.</p>
+
+<p>To solve this problem, we need to use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">global</span> <span class="nv">$wp_query</span><span class="p">,</span> <span class="nv">$post</span><span class="p">;</span>
+
+<span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">each_connected</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+    <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="nv">$wp_query</span><span class="o">-&gt;</span><span class="na">posts</span><span class="p">,</span> <span class="c1">// 'from' or 'to'.</span>
+<span class="p">)</span> <span class="p">);</span>
+
+<span class="k">while</span> <span class="p">(</span> <span class="nx">have_posts</span><span class="p">()</span> <span class="p">)</span> <span class="o">:</span> <span class="nx">the_post</span><span class="p">();</span>
+
+    <span class="c1">// Display connected pages</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">connected</span> <span class="k">as</span> <span class="nv">$p</span> <span class="p">)</span> <span class="o">:</span>
+        <span class="k">echo</span> <span class="nv">$p</span><span class="o">-&gt;</span><span class="na">post_title</span><span class="p">;</span>
+        <span class="c1">// More core here...</span>
+    <span class="k">endforeach</span><span class="p">;</span>
+
+<span class="k">endwhile</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="how-does-it-work">How does it work?</h3>
+
+<p>On each request, WordPress automatically runs a query which finds the appropriate posts to display. These posts are stored in the global <code class="highlighter-rouge">$wp_query</code> variable.</p>
+
+<p>The API function <code class="highlighter-rouge">MB_Relationships_API::each_connected()</code> will the take list of posts from <code class="highlighter-rouge">$wp_query-&gt;posts</code> and pull the related pages from the database (with a single database query) and assign them to each post via <code class="highlighter-rouge">connected</code> property. So, you can loop through <code class="highlighter-rouge">$post-&gt;connected</code> and display connected pages.</p>
+
+<p>If you create a custom query than default WordPress query, just pass the array of objects to the function, like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$my_query</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WP_Query</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="c1">// your parameters</span>
+<span class="p">)</span> <span class="p">);</span>
+
+<span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">each_connected</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+    <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="nv">$my_query</span><span class="o">-&gt;</span><span class="na">posts</span><span class="p">,</span> <span class="c1">// Set to $my_query.</span>
+<span class="p">)</span> <span class="p">);</span>
+
+<span class="k">while</span> <span class="p">(</span> <span class="nv">$my_query</span><span class="o">-&gt;</span><span class="na">have_posts</span><span class="p">()</span> <span class="p">)</span> <span class="o">:</span> <span class="nv">$my_query</span><span class="o">-&gt;</span><span class="na">the_post</span><span class="p">();</span>
+
+    <span class="c1">// Display connected pages</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">connected</span> <span class="k">as</span> <span class="nv">$p</span> <span class="p">)</span> <span class="o">:</span>
+        <span class="k">echo</span> <span class="nv">$p</span><span class="o">-&gt;</span><span class="na">post_title</span><span class="p">;</span>
+        <span class="c1">// More code here.</span>
+    <span class="k">endforeach</span><span class="p">;</span>
+
+<span class="k">endwhile</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The property name can be set to anything with an additional <code class="highlighter-rouge">'property' =&gt; 'your_property_name'</code>. See the below sections.</p>
+
+<h3 id="multiple-connections">Multiple connections</h3>
+
+<p>If you create multiple relationships between objects, you still can manipulate the query multiple time, like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Get connected pages and assign to property 'connected_pages'.</span>
+<span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">each_connected</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>       <span class="o">=&gt;</span> <span class="s1">'posts_to_pages'</span><span class="p">,</span>
+    <span class="s1">'from'</span>     <span class="o">=&gt;</span> <span class="nv">$wp_query</span><span class="o">-&gt;</span><span class="na">posts</span><span class="p">,</span>
+    <span class="s1">'property'</span> <span class="o">=&gt;</span> <span class="s1">'connected_pages'</span><span class="p">,</span>
+<span class="p">)</span> <span class="p">);</span>
+
+<span class="c1">// Get connected users and assign to property 'artists'.</span>
+<span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">each_connected</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>       <span class="o">=&gt;</span> <span class="s1">'users_to_posts'</span><span class="p">,</span>
+    <span class="s1">'from'</span>     <span class="o">=&gt;</span> <span class="nv">$wp_query</span><span class="o">-&gt;</span><span class="na">posts</span><span class="p">,</span>
+    <span class="s1">'property'</span> <span class="o">=&gt;</span> <span class="s1">'artists'</span><span class="p">,</span>
+<span class="p">)</span> <span class="p">);</span>
+
+<span class="k">while</span> <span class="p">(</span> <span class="nx">have_posts</span><span class="p">()</span> <span class="p">)</span> <span class="o">:</span> <span class="nx">the_post</span><span class="p">();</span>
+
+    <span class="c1">// Display connected pages</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">connected_pages</span> <span class="k">as</span> <span class="nv">$post</span> <span class="p">)</span> <span class="o">:</span> <span class="nx">setup_postdata</span><span class="p">(</span> <span class="nv">$post</span> <span class="p">);</span>
+        <span class="nx">the_title</span><span class="p">();</span>
+        <span class="o">...</span>
+    <span class="k">endforeach</span><span class="p">;</span>
+    <span class="nx">wp_reset_postdata</span><span class="p">();</span> <span class="c1">// Set $post back to original post</span>
+
+    <span class="c1">// Displayin connected users</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">artists</span> <span class="k">as</span> <span class="nv">$artist</span> <span class="p">)</span> <span class="o">:</span>
+        <span class="k">echo</span> <span class="nv">$artist</span><span class="o">-&gt;</span><span class="na">display_name</span><span class="p">;</span>
+    <span class="k">endforeach</span><span class="p">;</span>
+
+<span class="k">endwhile</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="nesting">Nesting</h3>
+
+<p>Since the <code class="highlighter-rouge">each_connected()</code> function accepts array of post objects, it’s easy to create nested query like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$my_query</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WP_Query</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'post_type'</span> <span class="o">=&gt;</span> <span class="s1">'movie'</span>
+<span class="p">)</span> <span class="p">);</span>
+<span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">each_connected</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>       <span class="o">=&gt;</span> <span class="s1">'movies_to_actors'</span><span class="p">,</span>
+    <span class="s1">'from'</span>     <span class="o">=&gt;</span> <span class="nv">$my_query</span><span class="o">-&gt;</span><span class="na">posts</span><span class="p">,</span>
+    <span class="s1">'property'</span> <span class="o">=&gt;</span> <span class="s1">'actors'</span><span class="p">,</span>
+<span class="p">)</span> <span class="p">);</span>
+
+<span class="k">while</span> <span class="p">(</span> <span class="nv">$my_query</span><span class="o">-&gt;</span><span class="na">have_posts</span><span class="p">()</span> <span class="p">)</span> <span class="o">:</span> <span class="nv">$my_query</span><span class="o">-&gt;</span><span class="na">the_post</span><span class="p">();</span>
+
+    <span class="c1">// Another level of nesting</span>
+    <span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">each_connected</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>       <span class="o">=&gt;</span> <span class="s1">'actors_to_producers'</span><span class="p">,</span>
+        <span class="s1">'from'</span>     <span class="o">=&gt;</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">actors</span><span class="p">,</span>
+        <span class="s1">'property'</span> <span class="o">=&gt;</span> <span class="s1">'actors'</span><span class="p">,</span>
+    <span class="p">)</span> <span class="p">);</span>
+
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">actors</span> <span class="k">as</span> <span class="nv">$post</span> <span class="p">)</span> <span class="o">:</span> <span class="nx">setup_postdata</span><span class="p">(</span> <span class="nv">$post</span> <span class="p">);</span>
+        <span class="k">echo</span> <span class="s1">'&lt;h3&gt;Connected Producers&lt;/h3&gt;'</span><span class="p">;</span>
+
+        <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">producers</span> <span class="k">as</span> <span class="nv">$post</span> <span class="p">)</span> <span class="o">:</span> <span class="nx">setup_postdata</span><span class="p">(</span> <span class="nv">$post</span> <span class="p">);</span>
+            <span class="nx">the_title</span><span class="p">();</span>
+
+            <span class="o">...</span>
+        <span class="k">endforeach</span><span class="p">;</span>
+    <span class="k">endforeach</span><span class="p">;</span>
+
+    <span class="nx">wp_reset_postdata</span><span class="p">();</span>
+<span class="k">endwhile</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="multiple-relationships">Multiple relationships</h2>
+
+<p>For example, you have event-to-band and event-to-artist relationships and you want to get all bands and artists that connected from an event, then you can do the following:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$query</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WP_Query</span><span class="p">(</span> <span class="p">[</span>
+    <span class="s1">'relationship'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'relation'</span> <span class="o">=&gt;</span> <span class="s1">'OR'</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'events_to_bands'</span><span class="p">,</span>
+            <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="nx">get_the_ID</span><span class="p">(),</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+            <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'events_to_artists'</span><span class="p">,</span>
+            <span class="s1">'from'</span> <span class="o">=&gt;</span> <span class="nx">get_the_ID</span><span class="p">(),</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">'nopaging'</span>     <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">]</span> <span class="p">);</span>
+<span class="k">while</span> <span class="p">(</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">have_posts</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">the_post</span><span class="p">();</span>
+    <span class="k">echo</span> <span class="nx">get_the_title</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'&lt;br&gt;'</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">wp_reset_postdata</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h2 id="creating-connections-programmatically">Creating connections programmatically</h2>
+
+<p>The plugin has several public APIs that can help you create or delete connections between 2 items using code.</p>
+
+<h3 id="has"><code class="highlighter-rouge">has</code></h3>
+
+<p>This function checks if 2 objects has a specific relationship.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$has_connection</span> <span class="o">=</span> <span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">has</span><span class="p">(</span> <span class="nv">$from</span><span class="p">,</span> <span class="nv">$to</span><span class="p">,</span> <span class="nv">$id</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nv">$has_connection</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'They have a relationship.'</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'No, they do not have any relationship.'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">$from</code></td>
+      <td>The ID of “from” object.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$to</code></td>
+      <td>The ID of “to” object.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$id</code></td>
+      <td>The relationship ID.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="add"><code class="highlighter-rouge">add</code></h3>
+
+<p>This function adds a specific relationship for 2 objects.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">add</span><span class="p">(</span> <span class="nv">$from</span><span class="p">,</span> <span class="nv">$to</span><span class="p">,</span> <span class="nv">$id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>This function checks if the 2 objects already have a relationship and adds a new relationship only if they haven’t.</p>
+
+<h3 id="delete"><code class="highlighter-rouge">delete</code></h3>
+
+<p>This function deletes a specific relationship for 2 objects.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">MB_Relationships_API</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span> <span class="nv">$from</span><span class="p">,</span> <span class="nv">$to</span><span class="p">,</span> <span class="nv">$id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>This function checks if the 2 objects already have a relationship and delete that relationshp only if they have.</p>
+
+<h2 id="shortcode">Shortcode</h2>
+
+<p>The plugin provides a single flexible shortcode to display connected items.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nx">mb_relationships</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"posts_to_pages"</span> <span class="nx">direction</span><span class="o">=</span><span class="s2">"from"</span> <span class="nx">mode</span><span class="o">=</span><span class="s2">"ul"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>It accepts the following parameters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>Relationship ID. Required.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">items</code></td>
+      <td>List of items for getting connected items from/to. Optional. If missed, the shortcode will get the current object ID.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">direction</code></td>
+      <td>Get connected items <code class="highlighter-rouge">from</code> (default) or <code class="highlighter-rouge">to</code>. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">mode</code></td>
+      <td>How to display connected items? <code class="highlighter-rouge">ul</code> (unordered list - default), <code class="highlighter-rouge">ol</code> (ordered list) or <code class="highlighter-rouge">inline</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">separator</code></td>
+      <td>The separator between connected items if <code class="highlighter-rouge">mode</code> is set to <code class="highlighter-rouge">inline</code>. Optional.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="database">Database</h2>
+
+<p>The relationship data is stored in a single database <code class="highlighter-rouge">mb_relationships</code> with the following columns:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">ID</code></td>
+      <td>The connection ID</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">from</code></td>
+      <td>The ID of the “from” object</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">to</code></td>
+      <td>The ID of the “to” object</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">type</code></td>
+      <td>The relationship ID (type)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">order_from</code></td>
+      <td>The order if the item for the “from” side</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">order_to</code></td>
+      <td>The order if the item for the “to” side</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This structure allows us to create simple and efficient queries. All columns are also indexed to optimize for speed.</p>
+
+<p>If you use the extension as a separated plugin, e.g. not bundle it within another, then the table is created during plugin activation. It’s the ideal situation, where the plugin only checks for table existence only once.</p>
+
+<p>If you bundle the extension within another plugin, then the table is checked and created when it’s loaded. While the check is relatively fast, it’s still an extra small query to the database.</p>
+:ET

@@ -1,0 +1,59 @@
+I"<h2 id="overview">Overview</h2>
+
+<p><code class="highlighter-rouge">rwmb_get_field_settings</code> is a helper function which gets the field settings by field ID.</p>
+
+<p>It’s very helpful in case you want to refer to field’s name, field’s options array (in a select field) or other settings later in your code.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>To get field settings by field ID, just call:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$field</span> <span class="o">=</span> <span class="nx">rwmb_get_field_settings</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="c1">// Result: array( 'id' =&gt; 'field_id', 'name' =&gt; 'Field Name', 'type' =&gt; 'text, ... );</span>
+</code></pre></div></div>
+
+<p>However, if you create a custom field for <a href="https://metabox.io/plugins/mb-term-meta/">terms</a>, <a href="https://metabox.io/plugins/mb-user-meta/">users</a> or <a href="https://metabox.io/plugins/mb-settings-page/">settings pages</a>, you will need to specify object type in the second parameter:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$field</span> <span class="o">=</span> <span class="nx">rwmb_get_field_settings</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'object_type'</span> <span class="o">=&gt;</span> <span class="s1">'term'</span> <span class="p">)</span> <span class="p">);</span> <span class="c1">// or 'user', 'setting</span>
+</code></pre></div></div>
+
+<h2 id="arguments">Arguments</h2>
+
+<p>This function accepts 3 arguments as below:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$field</span> <span class="o">=</span> <span class="nx">rwmb_get_field_settings</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="nv">$args</span><span class="p">,</span> <span class="nv">$object_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">$field_id</code></td>
+      <td>The field ID. Required.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$args</code></td>
+      <td>Extra arguments for some object types or storages. It works similarly in <a href="https://docs.metabox.io/rwmb-meta/">rwmb_meta</a> function. Can be array or a string in format <code class="highlighter-rouge">param1=value1&amp;param2=value2</code>. See more details in field types (on the left menu, section Fields). Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$object_id</code></td>
+      <td>Object ID that custom fields are get from. Optional. If not present, current post ID is used.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="returned-value">Returned value</h2>
+
+<p>This function returns full array of field settings.</p>
+
+<h2 id="see-also">See also</h2>
+
+<ul>
+  <li><a href="https://metabox.io/get-field-settings/">How to get field settings by field ID?</a></li>
+</ul>
+:ET

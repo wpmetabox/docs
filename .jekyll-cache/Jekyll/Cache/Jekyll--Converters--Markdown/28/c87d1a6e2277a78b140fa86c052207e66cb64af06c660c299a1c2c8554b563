@@ -1,0 +1,73 @@
+I"t<h2 id="overview">Overview</h2>
+
+<p>The MB Custom Post Type extension is a powerful tool that helps you manage your custom post types and custom taxonomies via a user-friendly interface. It’s very helpful when you want to create or edit a custom post type / custom taxonomy without touching code.</p>
+
+<p><img src="https://i.imgur.com/mmbVRPn.png" alt="screenshot" /></p>
+
+<p>For more information, please see the <a href="https://metabox.io/plugins/custom-post-type/">extension page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<h2 id="usage">Usage</h2>
+
+<p>After installing and activating the plugin, you’ll see new menu items <strong>Meta Box → Post Types</strong> and <strong>Meta Box → Taxonomies</strong>. Clicking on each menu will go to the admin page where you can create/edit custom post types and custom taxonomies.</p>
+
+<p>Here is the video tutorial on using the plugin to create a custom post type:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9c4w5zdeTJI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<h2 id="notes">Notes</h2>
+
+<h3 id="custom-capabilities-for-custom-post-types">Custom capabilities for custom post types</h3>
+
+<p>When creating custom post types, you have 3 options to set capabilities: copy from “post”, copy from “page” or create custom capabilities. While copying from “post” or “page” is clear (the plugin simply applies the same capabilities from post or page for this custom post type), creating custom capabilities might be confusing.</p>
+
+<p>When you select “custom” for capabilities, the plugin does the following (assumming we have a post type <code class="highlighter-rouge">book</code>):</p>
+
+<ul>
+  <li>Set <code class="highlighter-rouge">'capability_type' =&gt; array( 'book', 'books' ),</code>, and</li>
+  <li>Set <code class="highlighter-rouge">'map_meta_cap' =&gt; true</code></li>
+</ul>
+
+<p>These 2 steps will create the following capabilities for the post types:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nx">edit_post</span><span class="p">]</span>              <span class="o">=&gt;</span> <span class="s1">'edit_book'</span>
+<span class="p">[</span><span class="nx">read_post</span><span class="p">]</span>              <span class="o">=&gt;</span> <span class="s1">'read_book'</span>
+<span class="p">[</span><span class="nx">delete_post</span><span class="p">]</span>            <span class="o">=&gt;</span> <span class="s1">'delete_book'</span>
+
+<span class="c1">// Primitive capabilities used outside of map_meta_cap():</span>
+
+<span class="p">[</span><span class="nx">edit_posts</span><span class="p">]</span>             <span class="o">=&gt;</span> <span class="s1">'edit_books'</span>
+<span class="p">[</span><span class="nx">edit_others_posts</span><span class="p">]</span>      <span class="o">=&gt;</span> <span class="s1">'edit_others_books'</span>
+<span class="p">[</span><span class="nx">publish_posts</span><span class="p">]</span>          <span class="o">=&gt;</span> <span class="s1">'publish_books'</span>
+<span class="p">[</span><span class="nx">read_private_posts</span><span class="p">]</span>     <span class="o">=&gt;</span> <span class="s1">'read_private_books'</span>
+
+<span class="c1">// Primitive capabilities used within map_meta_cap():</span>
+
+<span class="p">[</span><span class="nx">read</span><span class="p">]</span>                   <span class="o">=&gt;</span> <span class="s1">'read'</span><span class="p">,</span>
+<span class="p">[</span><span class="nx">delete_posts</span><span class="p">]</span>           <span class="o">=&gt;</span> <span class="s1">'delete_books'</span>
+<span class="p">[</span><span class="nx">delete_private_posts</span><span class="p">]</span>   <span class="o">=&gt;</span> <span class="s1">'delete_private_books'</span>
+<span class="p">[</span><span class="nx">delete_published_posts</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="s1">'delete_published_books'</span>
+<span class="p">[</span><span class="nx">delete_others_posts</span><span class="p">]</span>    <span class="o">=&gt;</span> <span class="s1">'delete_others_books'</span>
+<span class="p">[</span><span class="nx">edit_private_posts</span><span class="p">]</span>     <span class="o">=&gt;</span> <span class="s1">'edit_private_books'</span>
+<span class="p">[</span><span class="nx">edit_published_posts</span><span class="p">]</span>   <span class="o">=&gt;</span> <span class="s1">'edit_published_books'</span>
+<span class="p">[</span><span class="nx">create_posts</span><span class="p">]</span>           <span class="o">=&gt;</span> <span class="s1">'edit_books'</span>
+</code></pre></div></div>
+
+<p>And thanks to <code class="highlighter-rouge">map_meta_cap</code>, standard admin role is able to edit the posts types.</p>
+:ET

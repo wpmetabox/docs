@@ -1,0 +1,34 @@
+I"�<h2 id="overview">Overview</h2>
+
+<p>The hidden field creates a simple hidden input. It’s usually used to store custom data that cannot be changed.</p>
+
+<h2 id="settings">Settings</h2>
+
+<p>This field doesn’t have any specific settings. It only uses <a href="/field-settings/">common field settings</a>.</p>
+
+<p>To store the hidden value, put it in the <code class="highlighter-rouge">std</code> setting.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'field_id'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'hidden'</span><span class="p">,</span>
+    <span class="c1">// Hidden field must have predefined value</span>
+    <span class="s1">'std'</span>  <span class="o">=&gt;</span> <span class="s1">'Hidden value'</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>Although the value is fixed in the code, this field still saves it in the post meta.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>To get the field value, use this code</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a>.</p>
+:ET

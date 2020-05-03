@@ -1,0 +1,829 @@
+I"�<h2 id="overview">Overview</h2>
+
+<p>The MB Settings Page extension helps you to create one or multiple settings pages for your website. You can use it to create a theme options page, or a settings page for your plugin, or a custom settings page for clients’ websites.</p>
+
+<p>It’s a wrapper of <a href="https://codex.wordpress.org/Settings_API">Settings API</a> (provided by WordPress) and Meta Box, that combines the power of both platforms and provides an better and simpler way to create a settings page. Briefly, it helps you create a settings page via a short and beautiful PHP syntax without going through all the low-level functions of the Settings API. Besides it supports all the field types in Meta Box as well as other <a href="https://metabox.io/plugins/">extensions</a>.</p>
+
+<p>These are the screenshots:</p>
+
+<p><strong>Tab style</strong> (the default WordPress style for settings page):</p>
+
+<p><img src="https://i.imgur.com/yb9Admk.png" alt="settings page with tabs" /></p>
+
+<p><strong>Left tab navigation</strong> (often seen in theme options page):</p>
+
+<p><img src="https://i.imgur.com/QoaD4la.png" alt="left tab navigation for theme options" /></p>
+
+<p><strong>Boxed style</strong> (the WordPress style for meta boxes):</p>
+
+<p><img src="https://i0.wp.com/metabox.io/wp-content/uploads/2015/12/settings-page.jpg" alt="settings page boxed style" /></p>
+
+<p>For more info, please see the <a href="https://metabox.io/plugins/mb-settings-page/">extension page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<p>After installing, you need to register a settings page and register meta boxes (and fields) for that settings page.</p>
+
+<h2 id="quick-example">Quick example</h2>
+
+<p>Just copy and paste the code below to your theme’s <code class="highlighter-rouge">functions.php</code> file, or your plugin file:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Register a theme options page</span>
+<span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'mb_settings_pages'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$settings_pages</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'pencil'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span> <span class="o">=&gt;</span> <span class="s1">'pencil'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>  <span class="o">=&gt;</span> <span class="s1">'Pencil'</span><span class="p">,</span>
+        <span class="s1">'icon_url'</span>    <span class="o">=&gt;</span> <span class="s1">'dashicons-edit'</span><span class="p">,</span>
+        <span class="s1">'style'</span>       <span class="o">=&gt;</span> <span class="s1">'no-boxes'</span><span class="p">,</span>
+        <span class="s1">'columns'</span>     <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">'tabs'</span>        <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'general'</span> <span class="o">=&gt;</span> <span class="s1">'General Settings'</span><span class="p">,</span>
+            <span class="s1">'design'</span>  <span class="o">=&gt;</span> <span class="s1">'Design Customization'</span><span class="p">,</span>
+            <span class="s1">'faq'</span>     <span class="o">=&gt;</span> <span class="s1">'FAQ &amp; Help'</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$settings_pages</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+
+<span class="c1">// Register meta boxes and fields for settings page</span>
+<span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>             <span class="o">=&gt;</span> <span class="s1">'general'</span><span class="p">,</span>
+        <span class="s1">'title'</span>          <span class="o">=&gt;</span> <span class="s1">'General'</span><span class="p">,</span>
+        <span class="s1">'settings_pages'</span> <span class="o">=&gt;</span> <span class="s1">'pencil'</span><span class="p">,</span>
+        <span class="s1">'tab'</span>            <span class="o">=&gt;</span> <span class="s1">'general'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Logo'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'logo'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'file_input'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Layout'</span><span class="p">,</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'layout'</span><span class="p">,</span>
+                <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'image_select'</span><span class="p">,</span>
+                <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'sidebar-left'</span>  <span class="o">=&gt;</span> <span class="s1">'https://i.imgur.com/Y2sxQ2R.png'</span><span class="p">,</span>
+                    <span class="s1">'sidebar-right'</span> <span class="o">=&gt;</span> <span class="s1">'https://i.imgur.com/h7ONxhz.png'</span><span class="p">,</span>
+                    <span class="s1">'no-sidebar'</span>    <span class="o">=&gt;</span> <span class="s1">'https://i.imgur.com/m7oQKvk.png'</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>             <span class="o">=&gt;</span> <span class="s1">'colors'</span><span class="p">,</span>
+        <span class="s1">'title'</span>          <span class="o">=&gt;</span> <span class="s1">'Colors'</span><span class="p">,</span>
+        <span class="s1">'settings_pages'</span> <span class="o">=&gt;</span> <span class="s1">'pencil'</span><span class="p">,</span>
+        <span class="s1">'tab'</span>            <span class="o">=&gt;</span> <span class="s1">'design'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Heading Color'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'heading-color'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'color'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Text Color'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'text-color'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'color'</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>             <span class="o">=&gt;</span> <span class="s1">'info'</span><span class="p">,</span>
+        <span class="s1">'title'</span>          <span class="o">=&gt;</span> <span class="s1">'Theme Info'</span><span class="p">,</span>
+        <span class="s1">'settings_pages'</span> <span class="o">=&gt;</span> <span class="s1">'pencil'</span><span class="p">,</span>
+        <span class="s1">'tab'</span>            <span class="o">=&gt;</span> <span class="s1">'faq'</span><span class="p">,</span>
+        <span class="s1">'fields'</span>         <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'custom_html'</span><span class="p">,</span>
+                <span class="s1">'std'</span>  <span class="o">=&gt;</span> <span class="s1">'Having questions? Check out our documentation'</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Now refresh the admin page and you’ll see a new settings page <strong>Pencil</strong> appeared in the main menu, like this:</p>
+
+<p><img src="https://i.imgur.com/yb9Admk.png" alt="settings page with tabs" /></p>
+
+<h2 id="creating-settings-pages">Creating settings pages</h2>
+
+<p>Creating a settings page is done by filter <code class="highlighter-rouge">mb_settings_pages</code>. The code to add a settings page looks like this (this registers a theme options page under Appearance menu):</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'mb_settings_pages'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$settings_pages</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'theme-slug'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span> <span class="o">=&gt;</span> <span class="s1">'theme_slug'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>  <span class="o">=&gt;</span> <span class="s1">'Theme Options'</span><span class="p">,</span>
+        <span class="s1">'parent'</span>      <span class="o">=&gt;</span> <span class="s1">'themes.php'</span><span class="p">,</span>
+    <span class="p">];</span>
+    <span class="k">return</span> <span class="nv">$settings_pages</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>The filter takes an array of defined settings pages as the argument. The callback function must return an array of settings pages.</p>
+
+<p>Each settings page is defined by an array of the following options:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>Page ID. Required. Will be used as the slug in URL and option name (if <code class="highlighter-rouge">option_name</code> missed).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">option_name</code></td>
+      <td>Option name where settings data is saved to. Optional. Takes <code class="highlighter-rouge">id</code> if missed. If you want to use theme mods, then set this to <code class="highlighter-rouge">theme_mods_$themeslug</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">class</code></td>
+      <td>Custom CSS for the wrapper div.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">menu_title</code></td>
+      <td>Menu title. Optional. Takes <code class="highlighter-rouge">page_title</code> if missed.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">page_title</code></td>
+      <td>Page title. Optional. Takes <code class="highlighter-rouge">menu_title</code> if missed. Note: either <code class="highlighter-rouge">menu_title</code> or <code class="highlighter-rouge">page_title</code> (or both) must have value.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">capability</code></td>
+      <td>Required capability to access the settings page. Optional. Default <code class="highlighter-rouge">edit_theme_options</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">icon_url</code></td>
+      <td>The icon for the menu. To use <a href="https://developer.wordpress.org/resource/dashicons/">a Dashicon</a>, set this to <code class="highlighter-rouge">dashicon-icon-name</code>. To use a SVG data image as a CSS background, set this to <code class="highlighter-rouge">data:image/svg+xml;base64...</code>. To use an image, set this to image URL. See <code class="highlighter-rouge">icon_url</code> parameter of <a href="https://codex.wordpress.org/Function_Reference/add_menu_page">add_menu_page()</a> function.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">position</code></td>
+      <td>Menu position. See <code class="highlighter-rouge">position</code> parameter of <a href="https://codex.wordpress.org/Function_Reference/add_menu_page">add_menu_page()</a> function.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">parent</code></td>
+      <td>ID of the parent page. Optional. Can be WordPress menu or custom settings page menu. See examples below for more details.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">submenu_title</code></td>
+      <td>Set this to the default submenu title (first submenu) if the settings page is a top-level menu. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">help_tabs</code></td>
+      <td>The content displayed when clicking on the Help button on the top right (near the Screen Options button). See below for details.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">style</code></td>
+      <td>How do you want to style the settings page. Supports <code class="highlighter-rouge">boxes</code> which has same the style as normal WordPress meta boxes (like in the edit post screen) and <code class="highlighter-rouge">no-boxes</code> which has the same style as WordPress settings page. In <code class="highlighter-rouge">no-boxes</code> style, each meta box is a section of the settings page.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">columns</code></td>
+      <td>The number of columns in the meta boxes. Can be 1 or 2. You might want to use 1 column with <code class="highlighter-rouge">no-boxes</code> style to match WordPress style.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tabs</code></td>
+      <td>Organized meta boxes and fields in tabs. This param takes an array of tab in either format <code class="highlighter-rouge">['tab-id' =&gt; 'Tab Label']</code> or <code class="highlighter-rouge">['tab-id' =&gt; ['label' =&gt; 'Tab Label', 'icon' =&gt; 'dashicons-email']]</code>. Note: when using this param, you must specify which tab the meta box belongs by adding a new parameter <code class="highlighter-rouge">'tab' =&gt; tab_id</code>. See <strong>Using Tabs</strong> section below for details.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tab_style</code></td>
+      <td>Specify the tab style, value can be <code class="highlighter-rouge">default</code> (WordPress-native style where tabs are horizontal) or <code class="highlighter-rouge">left</code> (tabs are put on the left of the settings page). See <strong>Using Tabs</strong> section below for details.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">submit_button</code></td>
+      <td>The custom text for submit button. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">message</code></td>
+      <td>The custom message displayed when saving options. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">customizer</code></td>
+      <td>Whether to show the settings page in the Customizer as a panel. <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> (default). Optional. See below for details.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">customizer_only</code></td>
+      <td>Whether to show only as a Customizer panel, no admin settings page. <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> (default). Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">network</code></td>
+      <td>Make the settings page network-wide (in multisite environment). <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> (default). Optional.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="examples">Examples</h3>
+
+<p>This example registers a top-level menu pages and 2 sub settings page:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'mb_settings_pages'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$settings_pages</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>            <span class="o">=&gt;</span> <span class="s1">'my-options'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>    <span class="o">=&gt;</span> <span class="s1">'Options'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span>   <span class="o">=&gt;</span> <span class="s1">'my_options'</span><span class="p">,</span>
+        <span class="s1">'icon_url'</span>      <span class="o">=&gt;</span> <span class="s1">'dashicons-images-alt'</span><span class="p">,</span>
+        <span class="s1">'submenu_title'</span> <span class="o">=&gt;</span> <span class="s1">'Options'</span><span class="p">,</span> <span class="c1">// Note this</span>
+    <span class="p">);</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'my-options-im'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span> <span class="o">=&gt;</span> <span class="s1">'my_options'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>  <span class="o">=&gt;</span> <span class="s1">'Import'</span><span class="p">,</span>
+        <span class="s1">'parent'</span>      <span class="o">=&gt;</span> <span class="s1">'my-options'</span><span class="p">,</span> <span class="c1">// Note this</span>
+    <span class="p">);</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'my-options-ex'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span> <span class="o">=&gt;</span> <span class="s1">'my_options'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>  <span class="o">=&gt;</span> <span class="s1">'Export'</span><span class="p">,</span>
+        <span class="s1">'parent'</span>      <span class="o">=&gt;</span> <span class="s1">'my-options'</span><span class="p">,</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$settings_pages</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Here is the result:</p>
+
+<p><img src="https://i.imgur.com/5M3cwut.png" alt="registrer settings pages" /></p>
+
+<p>Note that:</p>
+
+<ul>
+  <li>The <code class="highlighter-rouge">submenu_title</code> allows us to set the first submenu text which can be different from the top-level menu text.</li>
+  <li>The <code class="highlighter-rouge">parent</code> of submenus are set to the ID of top-level menu (<code class="highlighter-rouge">my-options</code>).</li>
+</ul>
+
+<p>In case you want to add submenu to existing WordPress pages, set the <code class="highlighter-rouge">parent</code> option to:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">index.php</code></td>
+      <td>Dashboard</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">edit.php</code></td>
+      <td>Posts</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">upload.php</code></td>
+      <td>Media</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">link-manager.php</code></td>
+      <td>Links</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">edit.php?post_type=page</code></td>
+      <td>Pages</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">edit-comments.php</code></td>
+      <td>Comments</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">edit.php?post_type=your_post_type</code></td>
+      <td>Custom post type</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">themes.php</code></td>
+      <td>Apperance</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">plugins.php</code></td>
+      <td>Plugins</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">users.php</code></td>
+      <td>Uses</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tools.php</code></td>
+      <td>Tools</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">options-general.php</code></td>
+      <td>Settings</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="help-tabs">Help tabs</h3>
+
+<p>WordPress has a nice feature that allows us to define instruction, guidelines in the “Help” section of each admin screen. To see the help content, click on the “Help” button on the top right, near the “Screen Options” button. Note that, the button appears only when there’s some help content.</p>
+
+<p>With <strong>MB Settings Page</strong>, you’re able to define the help content. The content is divided into tabs. To define the tabs and their content, use the following structure:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'help_tabs'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>   <span class="o">=&gt;</span> <span class="s1">'General'</span><span class="p">,</span>
+        <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="s1">'&lt;p&gt;This tab displays the general information about the theme.&lt;/p&gt;'</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>   <span class="o">=&gt;</span> <span class="s1">'Homepage'</span><span class="p">,</span>
+        <span class="s1">'content'</span> <span class="o">=&gt;</span> <span class="s1">'&lt;p&gt;This tab displays the instruction for setting up the homepage.&lt;/p&gt;'</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<p>In short, each tab is an array of <code class="highlighter-rouge">title</code> and <code class="highlighter-rouge">content</code>. You can pass more parameters just like the <a href="https://codex.wordpress.org/Class_Reference/WP_Screen/add_help_tab">add_help_tab()</a> function. However, the <code class="highlighter-rouge">title</code> and <code class="highlighter-rouge">content</code> are the most important parameters and they’re required.</p>
+
+<p>Then when clicking “Help” button, you’ll see:</p>
+
+<p><img src="https://i.imgur.com/c7bIf3P.png" alt="wordpress admin page help tabs" /></p>
+
+<h2 id="creating-settings-fields">Creating settings fields</h2>
+
+<p>Creating settings meta boxes and fields for settings pages is the same as <a href="https://docs.metabox.io/creating-meta-boxes/">for posts</a>. You need to hook to <code class="highlighter-rouge">rwmb_meta_boxes</code> and set a param <code class="highlighter-rouge">settings_pages</code> to the settings page(s) you want to add to.</p>
+
+<p>The sample code is below:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>             <span class="o">=&gt;</span> <span class="s1">'general'</span><span class="p">,</span>
+        <span class="s1">'title'</span>          <span class="o">=&gt;</span> <span class="s1">'General'</span><span class="p">,</span>
+        <span class="s1">'settings_pages'</span> <span class="o">=&gt;</span> <span class="s1">'theme-slug'</span><span class="p">,</span>
+        <span class="s1">'fields'</span>         <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Logo'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'logo'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'file_input'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Layout'</span><span class="p">,</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'layout'</span><span class="p">,</span>
+                <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'image_select'</span><span class="p">,</span>
+                <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'sidebar-left'</span>  <span class="o">=&gt;</span> <span class="s1">'https://i.imgur.com/Y2sxQ2R.png'</span><span class="p">,</span>
+                    <span class="s1">'sidebar-right'</span> <span class="o">=&gt;</span> <span class="s1">'https://i.imgur.com/h7ONxhz.png'</span><span class="p">,</span>
+                    <span class="s1">'no-sidebar'</span>    <span class="o">=&gt;</span> <span class="s1">'https://i.imgur.com/m7oQKvk.png'</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>             <span class="o">=&gt;</span> <span class="s1">'colors'</span><span class="p">,</span>
+        <span class="s1">'title'</span>          <span class="o">=&gt;</span> <span class="s1">'Colors'</span><span class="p">,</span>
+        <span class="s1">'settings_pages'</span> <span class="o">=&gt;</span> <span class="s1">'theme-slug'</span><span class="p">,</span>
+        <span class="s1">'fields'</span>         <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Heading Color'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'heading-color'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'color'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Text Color'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'text-color'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'color'</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>             <span class="o">=&gt;</span> <span class="s1">'info'</span><span class="p">,</span>
+        <span class="s1">'title'</span>          <span class="o">=&gt;</span> <span class="s1">'Theme Info'</span><span class="p">,</span>
+        <span class="s1">'context'</span>        <span class="o">=&gt;</span> <span class="s1">'side'</span><span class="p">,</span>
+        <span class="s1">'settings_pages'</span> <span class="o">=&gt;</span> <span class="s1">'theme-slug'</span><span class="p">,</span>
+        <span class="s1">'fields'</span>         <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'custom_html'</span><span class="p">,</span>
+                <span class="s1">'std'</span>  <span class="o">=&gt;</span> <span class="s1">'A responsive theme for businesses and agencies.'</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Note:</p>
+
+<ul>
+  <li>You must set <code class="highlighter-rouge">settings_pages</code> to the ID of the settings page. If you want to add meta boxes to 2 or more settings pages, set it to an array of settings pages’ IDs</li>
+  <li>All fields settings stay unchanged.</li>
+  <li>The settings page uses 2 columns layout, which mimic WordPress post screen and the value for <code class="highlighter-rouge">context</code> has the same meaning.</li>
+</ul>
+
+<h2 id="using-tabs">Using tabs</h2>
+
+<p>To create tabs for your settings page, you need to set the <code class="highlighter-rouge">tabs</code> parameter. This parameter is an array of tabs. Each tab can be a simple text (for label) or an array of label and icon.</p>
+
+<p>For example:</p>
+
+<p>Simple tabs with no icons:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'tabs'</span>        <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'general'</span> <span class="o">=&gt;</span> <span class="s1">'General Settings'</span><span class="p">,</span>
+    <span class="s1">'design'</span>  <span class="o">=&gt;</span> <span class="s1">'Design Customization'</span><span class="p">,</span>
+    <span class="s1">'faq'</span>     <span class="o">=&gt;</span> <span class="s1">'FAQ &amp; Help'</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>Tabs with icons:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'tabs'</span>        <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">'general'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'General Settings'</span><span class="p">,</span>
+        <span class="s1">'icon'</span>  <span class="o">=&gt;</span> <span class="s1">'dashicons-admin-settings'</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">'design'</span>  <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Design Customization'</span><span class="p">,</span>
+        <span class="s1">'icon'</span>  <span class="o">=&gt;</span> <span class="s1">'dashicons-admin-customizer'</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">'faq'</span>    <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'FAQ &amp; Help'</span><span class="p">,</span>
+        <span class="s1">'icon'</span>  <span class="o">=&gt;</span> <span class="s1">'http://i.imgur.com/nJtag1q.png'</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>If use the 2nd format, then <code class="highlighter-rouge">icon</code> parameter can be a <a href="https://developer.wordpress.org/resource/dashicons/">Dashicons</a> icon or URL of your custom icon. You can also use other icon library like FontAwesome by specifying its class (e.g. <code class="highlighter-rouge">fa fa-home</code>), but in that case, you have to enqueue the font yourself.</p>
+
+<p>You can also make your settings page looks exactly like a normal WordPress page by setting the <code class="highlighter-rouge">style</code> to <code class="highlighter-rouge">no-boxes</code> and <code class="highlighter-rouge">columns</code> to <code class="highlighter-rouge">1</code>. See this screenshot:</p>
+
+<p><img src="https://i.imgur.com/yb9Admk.png" alt="settings page with tabs" /></p>
+
+<p>In combination with <code class="highlighter-rouge">tabs</code>, you can set the <code class="highlighter-rouge">tab_style</code> parameter to specify the position of the tab navigation, which can be <code class="highlighter-rouge">default</code> or <code class="highlighter-rouge">left</code>.</p>
+
+<p>This screenshot shows the left tab navigation with icons:</p>
+
+<p><img src="https://i.imgur.com/QoaD4la.png" alt="left tab navigation" /></p>
+
+<div class="alert alert-warning">
+	
+		<svg class="icon icon-warning" aria-hidden="true" role="img"><use href="#icon-warning" xlink:href="#icon-warning"></use></svg>
+	
+	<p><strong>Important:</strong> When using tabs, you must define <code class="highlighter-rouge">tab</code> attribute for all meta boxes to make them appear in corresponding tabs. Missing <code class="highlighter-rouge">tab</code> attribute makes the meta boxes hidden.</p>
+
+</div>
+
+<h2 id="creating-customizer-settings">Creating Customizer Settings</h2>
+
+<p>This is a quick video that demonstrate how to use MB Settings Page to create custom panels, sections and fields in the Customizer. You’ll see how easy it is to turn a settings page into a Customizer panel.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LeV0CsiTe74" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<h3 id="creating-a-customizer-panel">Creating A Customizer Panel</h3>
+
+<p>The idea behind Customizer support is map a settings page to a Customizer panel. And each meta box in the settings page will be a Customizer section. The mapping is quite simple, clear, but very powerful. It allows you to bring everything in a settings page into the Customizer with a single line of code.</p>
+
+<p>Assuming you have a settings page, registered with this code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'mb_settings_pages'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$settings_pages</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'rubik'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span> <span class="o">=&gt;</span> <span class="s1">'theme_mods_justread'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>  <span class="o">=&gt;</span> <span class="s1">'Theme Options'</span><span class="p">,</span>
+        <span class="s1">'parent'</span>      <span class="o">=&gt;</span> <span class="s1">'themes.php'</span><span class="p">,</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$settings_pages</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>To bring it to the Customizer, simply add <code class="highlighter-rouge">'customizer' =&gt; true</code>, e.g.:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'mb_settings_pages'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$settings_pages</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'rubik'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span> <span class="o">=&gt;</span> <span class="s1">'theme_mods_justread'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>  <span class="o">=&gt;</span> <span class="s1">'Theme Options'</span><span class="p">,</span>
+        <span class="s1">'parent'</span>      <span class="o">=&gt;</span> <span class="s1">'themes.php'</span><span class="p">,</span>
+        <span class="s1">'customizer'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// THIS</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$settings_pages</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>And you’ll see a new panel in the Customizer as follows:</p>
+
+<p><img src="https://i.imgur.com/D78hKyG.png" alt="A new panel in the Customizer" /></p>
+
+<p>And each meta box in the settings page now are the Customize section:</p>
+
+<p><img src="https://i.imgur.com/AfaWiGK.png" alt="Meta boxes become Customize sections" /></p>
+
+<h3 id="disabling-admin-settings-pages">Disabling Admin Settings Pages</h3>
+
+<p>When you have Customizer panels, sections and fields, you might not want to use settings pages in the WordPress admin anymore. The Customizer now becomes the all-in-one place for entering the settings and customization.</p>
+
+<p>Understanding it, we added a new parameter ‘customizer_only’ =&gt; true that disables the admin settings page and allows only Customizer settings:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'mb_settings_pages'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$settings_pages</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>               <span class="o">=&gt;</span> <span class="s1">'rubik'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span>      <span class="o">=&gt;</span> <span class="s1">'theme_mods_justread'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>       <span class="o">=&gt;</span> <span class="s1">'Theme Options'</span><span class="p">,</span>
+        <span class="s1">'parent'</span>           <span class="o">=&gt;</span> <span class="s1">'themes.php'</span><span class="p">,</span>
+        <span class="s1">'customizer'</span>       <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'customizer_only'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// THIS</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$settings_pages</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="creating-top-level-customizer-sections">Creating Top-Level Customizer Sections</h3>
+
+<p>Sometimes you don’t want the top-level panel that creates too much hierarchy (panel → sections → fields). You just want top-level sections (sections → fields). That will help users to navigate to your settings in the Customizer faster and easier.</p>
+
+<p>In that case, you need to do 2 steps:</p>
+
+<p><strong>Step 1:</strong> Remove the code that registers settings pages as you don’t need settings pages anymore. This is the code you should remove:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'mb_settings_pages'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$settings_pages</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'rubik'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span> <span class="o">=&gt;</span> <span class="s1">'theme_mods_justread'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>  <span class="o">=&gt;</span> <span class="s1">'Theme Options'</span><span class="p">,</span>
+        <span class="s1">'parent'</span>      <span class="o">=&gt;</span> <span class="s1">'themes.php'</span><span class="p">,</span>
+        <span class="s1">'customizer'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$settings_pages</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Step 2:</strong> In each meta box, replace the parameter <code class="highlighter-rouge">'settings_pages' =&gt; 'rubik'</code> with <code class="highlighter-rouge">'panel' =&gt; ''</code>.</p>
+
+<p>For example, you have a meta box for your settings page, which has the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>             <span class="o">=&gt;</span> <span class="s1">'general'</span><span class="p">,</span>
+        <span class="s1">'title'</span>          <span class="o">=&gt;</span> <span class="s1">'General'</span><span class="p">,</span>
+        <span class="s1">'settings_pages'</span> <span class="o">=&gt;</span> <span class="s1">'rubik'</span><span class="p">,</span>
+        <span class="s1">'fields'</span>         <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Logo'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'logo'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'file_input'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Layout'</span><span class="p">,</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'layout'</span><span class="p">,</span>
+                <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'image_select'</span><span class="p">,</span>
+                <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'sidebar-left'</span>  <span class="o">=&gt;</span> <span class="s1">'http://i.imgur.com/Y2sxQ2R.png'</span><span class="p">,</span>
+                    <span class="s1">'sidebar-right'</span> <span class="o">=&gt;</span> <span class="s1">'http://i.imgur.com/h7ONxhz.png'</span><span class="p">,</span>
+                    <span class="s1">'no-sidebar'</span>    <span class="o">=&gt;</span> <span class="s1">'http://i.imgur.com/m7oQKvk.png'</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Then you need to change it to:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>             <span class="o">=&gt;</span> <span class="s1">'general'</span><span class="p">,</span>
+        <span class="s1">'title'</span>          <span class="o">=&gt;</span> <span class="s1">'General'</span><span class="p">,</span>
+        <span class="s1">'panel'</span>          <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="c1">// THIS</span>
+        <span class="s1">'fields'</span>         <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Logo'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'logo'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'file_input'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Layout'</span><span class="p">,</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'layout'</span><span class="p">,</span>
+                <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'image_select'</span><span class="p">,</span>
+                <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'sidebar-left'</span>  <span class="o">=&gt;</span> <span class="s1">'http://i.imgur.com/Y2sxQ2R.png'</span><span class="p">,</span>
+                    <span class="s1">'sidebar-right'</span> <span class="o">=&gt;</span> <span class="s1">'http://i.imgur.com/h7ONxhz.png'</span><span class="p">,</span>
+                    <span class="s1">'no-sidebar'</span>    <span class="o">=&gt;</span> <span class="s1">'http://i.imgur.com/m7oQKvk.png'</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>It’s very simple, isn’t it? And you’ll see the section on the Customizer like this:</p>
+
+<p><img src="https://i.imgur.com/xICe0u3.png" alt="Sections now appear as top-level in the Customizer" /></p>
+
+<p>What if you want the <em>section to be inside another panel</em>? Like inside another plugin’s panel? Simply set the <code class="highlighter-rouge">panel</code> parameter to ID of the target panel: <code class="highlighter-rouge">'panel' =&gt; 'panel_id'</code>.</p>
+
+<h3 id="compatibility">Compatibility</h3>
+
+<p>At the moment, all Meta Box fields are supported in the Customizer, except <a href="https://docs.metabox.io/fields/file/">file</a> and <a href="https://docs.metabox.io/fields/image/">image</a> field types. But other upload field types such as <a href="https://docs.metabox.io/fields/file-advanced/">file_advanced</a>, <a href="https://docs.metabox.io/fields/file-upload/">file_upload</a>, <a href="https://docs.metabox.io/fields/image-advanced/">image_advanced</a>, <a href="https://docs.metabox.io/fields/image-upload/">image_upload</a>, <a href="https://docs.metabox.io/fields/single-image/">single_image</a> still work very well. (The reason is that the Customizer doesn’t handle file uploads and the submission is performed via Ajax)</p>
+
+<p>The good news is all the extensions such as <a href="https://metabox.io/plugins/meta-box-conditional-logic/">Meta Box Conditional Logic</a>, <a href="https://metabox.io/plugins/meta-box-tabs/">Meta Box Tabs</a> are supported. That will help you create much better experiences for your users.</p>
+
+<p>Known issues: because of the complexity, the <code class="highlighter-rouge">postMessage</code> transport for the Customizer is not supported yet. Your browser will refresh the whole page to see the updated settings.</p>
+
+<h2 id="creating-network-settings-pages">Creating Network Settings Pages</h2>
+
+<p>A network settings page is a settings page that provide settings for all the websites in the network (multisite environment). For example, you might want to enter Google Maps API key for all the websites, or set the contact phone number for all of them.</p>
+
+<p><img src="https://i.imgur.com/pjZzrKf.png" alt="Sample network settings page" /></p>
+
+<p>Using <em>MB Settings Page</em>, you’re now able to do that easily with just one line of code. Simply add <code class="highlighter-rouge">'network' =&gt; true</code> to the settings pages args. Like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'mb_settings_pages'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$settings_pages</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$settings_pages</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'custom-options'</span><span class="p">,</span>
+        <span class="s1">'option_name'</span> <span class="o">=&gt;</span> <span class="s1">'custom_options'</span><span class="p">,</span>
+        <span class="s1">'menu_title'</span>  <span class="o">=&gt;</span> <span class="s1">'Custom Options'</span><span class="p">,</span>
+        <span class="s1">'icon_url'</span>    <span class="o">=&gt;</span> <span class="s1">'dashicons-welcome-widgets-menus'</span><span class="p">,</span>
+        <span class="s1">'network'</span>     <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// THIS</span>
+    <span class="p">);</span>
+
+    <span class="k">return</span> <span class="nv">$settings_pages</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Don’t forget to <em>network activate</em> Meta Box and MB Settings Pages. And now, when you go to network admin area, you’ll see a settings page like the screenshot above.</p>
+
+<h2 id="backup--restore-settings">Backup &amp; Restore Settings</h2>
+
+<p>To backup the settings, you need to create a special field with <code class="highlighter-rouge">'type' =&gt; 'backup'</code>, like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'id'</span>             <span class="o">=&gt;</span> <span class="s1">'colors'</span><span class="p">,</span>
+    <span class="s1">'title'</span>          <span class="o">=&gt;</span> <span class="s1">'Colors'</span><span class="p">,</span>
+    <span class="s1">'settings_pages'</span> <span class="o">=&gt;</span> <span class="s1">'theme-slug'</span><span class="p">,</span>
+    <span class="s1">'fields'</span>         <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="p">[</span>
+            <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Heading Color'</span><span class="p">,</span>
+            <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'heading-color'</span><span class="p">,</span>
+            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'color'</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+            <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Text Color'</span><span class="p">,</span>
+            <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'text-color'</span><span class="p">,</span>
+            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'color'</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+            <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Backup'</span><span class="p">,</span>
+            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'backup'</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<p>It will show a textarea field in your settings page like this:</p>
+
+<p><img src="https://i.imgur.com/n6d6v1n.png" alt="backup and restore settings" /></p>
+
+<p>When you add it to your settings page, it will show all of your settings in JSON. And you can just copy it and save to a file to backup the settings. To restore the settings, just paste the JSON again and click the Save Settings button.</p>
+
+<p>The backup field inherits from <a href="https://docs.metabox.io/fields/textarea/"><code class="highlighter-rouge">textarea</code></a> so you can customize it the way you want: change the field name, description, input size, etc. This field doesn’t require an <code class="highlighter-rouge">ID</code>. And of course, you should have only one backup field in your settings page.</p>
+
+<h2 id="hooks">Hooks</h2>
+
+<p><strong><code class="highlighter-rouge">mb_settings_page_load</code> action</strong></p>
+
+<p>This action fires when a settings page is loaded. It’s used internally to:</p>
+
+<ul>
+  <li>Register meta boxes and custom fields in the settings page, and</li>
+  <li>Save the submitted data.</li>
+</ul>
+
+<p>These actions use the default priority <code class="highlighter-rouge">10</code>. So you can hook to this action to do something <em>after</em> the data is saved with a higher priority (like <code class="highlighter-rouge">20</code>):</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'mb_settings_page_load'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$args</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nv">$args</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="o">===</span> <span class="s1">'YOUR SETTINGS PAGE ID'</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Do something</span>
+    <span class="p">}</span>
+<span class="p">},</span> <span class="mi">20</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong><code class="highlighter-rouge">mb_settings_page_submit_buttons</code> action</strong></p>
+
+<p>This action fires after the submit button is rendered, which allows you to add more custom buttons next to the submit button.</p>
+
+<h2 id="data">Data</h2>
+
+<p>By using Settings API, all the fields’ values will be saved as an array in a single option in the WordPress’s options table  with the option name is <code class="highlighter-rouge">option_name</code> in the settings page configuration. Each field is an element of the array with the corresponding key (field ID). It’s the recommended way by WordPress that doesn’t make your options table bloat.</p>
+
+<h2 id="getting-field-value">Getting field value</h2>
+
+<p>You’re able to use helper function <a href="/rwmb-meta/">rwmb_meta()</a> to get field value as follows:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="p">[</span><span class="s1">'object_type'</span> <span class="o">=&gt;</span> <span class="s1">'setting'</span><span class="p">],</span> <span class="nv">$option_name</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>For network settings, please use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="p">[</span><span class="s1">'object_type'</span> <span class="o">=&gt;</span> <span class="s1">'network_setting'</span><span class="p">],</span> <span class="nv">$option_name</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Notes:</p>
+
+<ul>
+  <li>In the 2nd parameter, you need to pass <code class="highlighter-rouge">'object_type' =&gt; 'setting'</code> or <code class="highlighter-rouge">'object_type' =&gt; 'network_setting'</code>, and</li>
+  <li>In the last parameter, you need to pass the option name for the settings page</li>
+</ul>
+
+<p>Other parameters are the same as for posts. Please see <a href="/displaying-fields/">this documentation</a> for details.</p>
+
+<div class="alert alert-warning">
+	
+		<svg class="icon icon-warning" aria-hidden="true" role="img"><use href="#icon-warning" xlink:href="#icon-warning"></use></svg>
+	
+	<p>It requires the extension version 1.2+ to use the helper function. If you’re using an older version, please <a href="/extensions/update/">update now</a>.</p>
+
+</div>
+
+<p>In case you use an older version than 1.2, you can get the settings manually:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$settings</span> <span class="o">=</span> <span class="nx">get_option</span><span class="p">(</span> <span class="s1">'option_name'</span> <span class="p">);</span>
+<span class="nv">$field_id</span> <span class="o">=</span> <span class="s1">'your_field_id'</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nb">isset</span><span class="p">(</span> <span class="nv">$settings</span><span class="p">[</span><span class="nv">$field_id</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$settings</span><span class="p">[</span><span class="nv">$field_id</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that this code returns only raw data of field value. It doesn’t return meaningful information for images, file, etc. To do that, please add a small piece of code as follow:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Getting images</span>
+<span class="nv">$settings</span> <span class="o">=</span> <span class="nx">get_option</span><span class="p">(</span> <span class="s1">'option_name'</span> <span class="p">);</span>
+<span class="nv">$image_ids</span> <span class="o">=</span> <span class="nv">$settings</span><span class="p">[</span><span class="s1">'images'</span><span class="p">];</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$image_ids</span> <span class="k">as</span> <span class="nv">$image_id</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$image</span> <span class="o">=</span> <span class="nx">RWMB_Image_Field</span><span class="o">::</span><span class="na">file_info</span><span class="p">(</span> <span class="nv">$image_id</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'size'</span> <span class="o">=&gt;</span> <span class="s1">'thumbnail'</span> <span class="p">)</span> <span class="p">);</span>
+    <span class="k">echo</span> <span class="s1">'&lt;img src="'</span> <span class="o">.</span> <span class="nv">$image</span><span class="p">[</span><span class="s1">'url'</span><span class="p">]</span> <span class="o">.</span> <span class="s1">'"&gt;'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>These are some helper functions that you can use to retrieve more info:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field type</th>
+      <th>Helper function(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">image</code>, <code class="highlighter-rouge">image_advanced</code>, <code class="highlighter-rouge">plupload_image</code>, <code class="highlighter-rouge">thickbox_image</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/"><code class="highlighter-rouge">wp_get_attachment_image_src()</code></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><a href="https://developer.wordpress.org/reference/functions/wp_get_attachment_image_url/"><code class="highlighter-rouge">wp_get_attachment_image_url()</code></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">RWMB_Image_Field::file_info( $image_id, $args );</code> (where <code class="highlighter-rouge">$args</code> is an array and accepts only <code class="highlighter-rouge">size</code> attribute)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">file</code>, <code class="highlighter-rouge">file_advanced</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_attached_file/"><code class="highlighter-rouge">get_attached_file()</code></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">RWMB_File_Field::file_info( $image_id );</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">oembed</code></td>
+      <td><code class="highlighter-rouge">RWMB_OEmbed_Field::get_embed( $url );</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">taxonomy</code>, <code class="highlighter-rouge">taxonomy_advanced</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_term/"><code class="highlighter-rouge">get_term()</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">user</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_userdata/"><code class="highlighter-rouge">get_userdata()</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">post</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_post/"><code class="highlighter-rouge">get_post()</code></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Read more on <a href="/database/">how field values are saved into the database</a>.</p>
+:ET

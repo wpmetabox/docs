@@ -1,0 +1,36 @@
+I"ë<h2 id="overview">Overview</h2>
+
+<p>To display field value on the website, besides the <a href="/displaying-fields/">helper functions</a>, the Meta Box plugin provides a simple shortcode <code class="highlighter-rouge">[rwmb_meta]</code> to help users show the value in the post content or widget text without opening theme files and inserting PHP code.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nx">rwmb_meta</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"field_id"</span> <span class="nx">object_id</span><span class="o">=</span><span class="s2">"15"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="attributes">Attributes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>The field ID. Required. Prior to version 4.17.0, this attribute was <code class="highlighter-rouge">meta_key</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">object_id</code></td>
+      <td>The object ID. Optional. If not defined, then the current object ID is used. Prior to version 4.17.0, this attribute was <code class="highlighter-rouge">post_id</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">attribute</code></td>
+      <td>Get a single attribute from the field value (such as URL of the image or term slug). The field value is get with the <a href="/rwmb-get-value/">rwmb_get_value()</a> helper function. This works only when the value is an array. Available since version 4.17.0.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This shortcode works exactly like <a href="/rwmb-the-value/">rwmb_the_value()</a> function with the same parameters.</p>
+
+<p>If you pass other attributes to the shortcode, those attributes will be passed to <a href="/rwmb-the-value/">rwmb_the_value()</a> function as the 2nd parameter.</p>
+:ET

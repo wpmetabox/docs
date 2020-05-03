@@ -1,0 +1,101 @@
+I"F<h2 id="overview">Overview</h2>
+
+<p>The single image field allows user to select or upload one image via the WordPress media library. It’s similar to the <a href="/fields/image-advanced/">image_advanced</a> field, but limit to select only one image.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/c7Pa4eH.png" alt="single image" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">force_delete</code></td>
+      <td>Whether or not delete the files from Media Library when deleting them from post meta. <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> (default). Optional. Note: it might affect other posts if you use same file for multiple posts.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'single_image'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Single Image'</span><span class="p">,</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'my_image'</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>This field saves the image ID in the post meta.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>To get the uploaded image, use the helper function <a href="/rwmb-meta/">rwmb_meta()</a>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$image</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'info'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'size'</span> <span class="o">=&gt;</span> <span class="s1">'thumbnail'</span> <span class="p">)</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="s1">'&lt;a href="'</span><span class="p">,</span> <span class="nv">$image</span><span class="p">[</span><span class="s1">'full_url'</span><span class="p">],</span> <span class="s1">'"&gt;&lt;img src="'</span><span class="p">,</span> <span class="nv">$image</span><span class="p">[</span><span class="s1">'url'</span><span class="p">],</span> <span class="s1">'"&gt;&lt;/a&gt;'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>This 2nd argument for <code class="highlighter-rouge">rwmb_meta</code> is an array of extra parameters and accepts the following parameters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">size</code></td>
+      <td>Image size returned. Optional. If missed, <code class="highlighter-rouge">thumbnail</code> will be used.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This helper function returns an array of image information:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'ID'</span>   <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'logo-150x80.png'</span><span class="p">,</span>
+    <span class="s1">'path'</span> <span class="o">=&gt;</span> <span class="s1">'/var/www/wp-content/uploads/logo-150x80.png'</span><span class="p">,</span>
+    <span class="s1">'url'</span> <span class="o">=&gt;</span> <span class="s1">'https://example.com/wp-content/uploads/logo-150x80.png'</span><span class="p">,</span>
+    <span class="s1">'width'</span> <span class="o">=&gt;</span> <span class="mi">150</span><span class="p">,</span>
+    <span class="s1">'height'</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+    <span class="s1">'full_url'</span> <span class="o">=&gt;</span> <span class="s1">'https://example.com/wp-content/uploads/logo.png'</span><span class="p">,</span>
+    <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Logo'</span><span class="p">,</span>
+    <span class="s1">'caption'</span> <span class="o">=&gt;</span> <span class="s1">'Logo caption'</span><span class="p">,</span>
+    <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'Used in the header'</span><span class="p">,</span>
+    <span class="s1">'alt'</span> <span class="o">=&gt;</span> <span class="s1">'Logo ALT text'</span><span class="p">,</span>
+    <span class="s1">'srcset'</span> <span class="o">=&gt;</span> <span class="s1">'large.jpg 1920w, medium.jpg 960w, small.jpg 480w'</span> <span class="c1">// List of responsive image src</span>
+    <span class="s1">'sizes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(),</span> <span class="c1">// List of image sizes. See https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata</span>
+    <span class="s1">'image_meta'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(),</span> <span class="c1">// List of image meta. See https://codex.wordpress.org/Function_Reference/wp_get_attachment_metadata</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>If you only want to display the uploaded image, use the <a href="/rwmb-the-value/">rwmb_the_value()</a>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_the_value</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'size'</span> <span class="o">=&gt;</span> <span class="s1">'thumbnail'</span> <span class="p">)</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>which outputs:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"link/to/full-size"</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">"link/to/image"</span><span class="nt">&gt;&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a> and <a href="/rwmb-the-value/">rwmb_the_value()</a>.</p>
+
+<h2 id="filters">Filters</h2>
+
+<p>This field inherits from image advanced and thus, uses the <a href="/fields/image-advanced/">same filters</a> to change the texts that display on the screen.</p>
+:ET

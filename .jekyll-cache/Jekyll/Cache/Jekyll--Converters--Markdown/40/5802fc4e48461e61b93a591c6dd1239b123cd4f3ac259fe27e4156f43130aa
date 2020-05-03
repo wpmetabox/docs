@@ -1,0 +1,111 @@
+I"<h2 id="overview">Overview</h2>
+
+<p>The checkbox list field creates a list of tick-able checkboxes. You are able to select multiple choices from the predefined list.</p>
+
+<h2 id="screenshots">Screenshots</h2>
+
+<p>Default:</p>
+
+<p><img src="https://i.imgur.com/HTqO71G.png" alt="checkbox list" /></p>
+
+<p>With “Select All / None” button:</p>
+
+<p><img src="https://i.imgur.com/XQDaCFO.png" alt="checkbox list toggle" /></p>
+
+<p>Inline:</p>
+
+<p><img src="https://i.imgur.com/0WuJEv6.png" alt="checkbox list inline" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">options</code></td>
+      <td>Array of <code class="highlighter-rouge">'value' =&gt; 'Label'</code> pairs. <code class="highlighter-rouge">value</code> is stored in the custom field. Required.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">inline</code></td>
+      <td>Display choices in a single line? <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>. Default <code class="highlighter-rouge">false</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">select_all_none</code></td>
+      <td>Display “Select All / None” button to fast toggle choices.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that the <code class="highlighter-rouge">multiple</code> setting is always set to <code class="highlighter-rouge">true</code> for this field.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Checkbox list'</span><span class="p">,</span>
+    <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'field_id'</span><span class="p">,</span>
+    <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'checkbox_list'</span><span class="p">,</span>
+    <span class="c1">// Options of checkboxes, in format 'value' =&gt; 'Label'</span>
+    <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'java'</span>       <span class="o">=&gt;</span> <span class="s1">'Java'</span><span class="p">,</span>
+        <span class="s1">'javascript'</span> <span class="o">=&gt;</span> <span class="s1">'JavaScript'</span><span class="p">,</span>
+        <span class="s1">'php'</span>        <span class="o">=&gt;</span> <span class="s1">'PHP'</span><span class="p">,</span>
+        <span class="s1">'csharp'</span>     <span class="o">=&gt;</span> <span class="s1">'C#'</span><span class="p">,</span>
+        <span class="s1">'objectivec'</span> <span class="o">=&gt;</span> <span class="s1">'Objective-C'</span><span class="p">,</span>
+        <span class="s1">'kotlin'</span>     <span class="o">=&gt;</span> <span class="s1">'Kotlin'</span><span class="p">,</span>
+        <span class="s1">'swift'</span>      <span class="o">=&gt;</span> <span class="s1">'Swift'</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="c1">// Display options in a single row?</span>
+    <span class="c1">// 'inline' =&gt; true,</span>
+    <span class="c1">// Display "Select All / None" button?</span>
+    <span class="s1">'select_all_none'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what <code class="highlighter-rouge">add_post_meta</code> does with last parameter <code class="highlighter-rouge">false</code>).</p>
+
+<p>If the field is cloneable, then the value is stored as a serialized array in a single row in the database.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>If field is not cloneable:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$values</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$values</span> <span class="k">as</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If field is cloneable:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$values</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$values</span> <span class="k">as</span> <span class="nv">$clone</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$clone</span> <span class="k">as</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The function <a href="/rwmb-meta/">rwmb_meta()</a> only returns the value of the field, e.g. the key in the <code class="highlighter-rouge">options</code> array. To display the field label, use this code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_the_value</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>which outputs:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Java<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>JavaScript<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a> and <a href="/rwmb-the-value/">rwmb_the_value()</a>.</p>
+:ET

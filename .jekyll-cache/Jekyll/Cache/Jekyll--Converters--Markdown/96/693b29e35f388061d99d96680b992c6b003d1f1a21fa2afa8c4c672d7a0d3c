@@ -1,0 +1,61 @@
+I"ç<h2 id="overview">Overview</h2>
+
+<p>The custom HTML field allows you to output anything. You can even use a PHP callback function to output the HTML.</p>
+
+<p>This field is usually used to display custom message/instruction to users. Sometimes, itâ€™s used with PHP callback to display more advanced content (such as content from a query).</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/LO5Akul.png" alt="custom html" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">std</code></td>
+      <td>Custom HTML content.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">callback</code></td>
+      <td>PHP function that is called to show custom HTML content. Optional.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="c1">// Field name: usually not used</span>
+
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'custom_html'</span><span class="p">,</span>
+    <span class="c1">// HTML content</span>
+    <span class="s1">'std'</span>  <span class="o">=&gt;</span> <span class="s1">'&lt;div class="alert alert-warning"&gt;This is a custom HTML content&lt;/div&gt;'</span><span class="p">,</span>
+
+    <span class="c1">// PHP function to show custom HTML</span>
+    <span class="c1">// 'callback' =&gt; 'display_warning',</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="styling">Styling</h2>
+
+<p>Because this field is usually used to display custom content, it requires some CSS to make the content looks good. To enqueue a CSS file to the admin editing page, use the <code class="highlighter-rouge">rwmb_enqueue_scripts</code> hook:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'rwmb_enqueue_scripts'</span><span class="p">,</span> <span class="s1">'prefix_enqueue_custom_style'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_enqueue_custom_style</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">wp_enqueue_style</span><span class="p">(</span> <span class="s1">'style-id'</span><span class="p">,</span> <span class="nx">get_template_directory_uri</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/css/admin.css'</span> <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And in the <code class="highlighter-rouge">admin.css</code> you can put your custom styles.</p>
+
+<p>Read more about the <a href="/actions/">rwmb_enqueue_scripts</a> hook.</p>
+:ET

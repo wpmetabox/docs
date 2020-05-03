@@ -1,0 +1,83 @@
+I"Y<h2 id="overview">Overview</h2>
+
+<p>Wondering how the Meta Box plugin stores custom field value in the database? Understanding this can help you get the custom field value easily and understand the returned value from <code class="highlighter-rouge">get_post_meta</code> or <a href="/displaying-fields/">helper functions</a>.</p>
+
+<p>For all custom fields, the <code class="highlighter-rouge">id</code> is always the <code class="highlighter-rouge">meta_key</code> and the value is the <code class="highlighter-rouge">meta_value</code> in the <code class="highlighter-rouge">wp_postmeta</code> table. The sections below describe how the value is formatted.</p>
+
+<h2 id="non-cloneable-fields">Non-cloneable fields</h2>
+
+<p>For non-cloneable fields, the plugin stores field value in the data base in a WordPress-compatible way as following:</p>
+
+<ul>
+  <li>If field has single value, it will be saved in single row in the post meta table.</li>
+  <li>If field has multiple values (set by <code class="highlighter-rouge">'multiple' =&gt; true</code> like <code class="highlighter-rouge">select</code>, <code class="highlighter-rouge">checkbox_list</code>, <code class="highlighter-rouge">file</code>, <code class="highlighter-rouge">image</code>, etc.), each value will be saved in single row in the post meta table.</li>
+</ul>
+
+<p>This way you can use <code class="highlighter-rouge">add_post_meta</code> or <code class="highlighter-rouge">update_post_meta</code> to update meta values and <code class="highlighter-rouge">get_post_meta</code> to retrieve them.</p>
+
+<h2 id="cloneable-fields">Cloneable fields</h2>
+
+<p>For cloneable fields, cloned values are stored as a serialized array in a single row in the post meta table.</p>
+
+<p>The plugin does not to store cloned values in separated rows in the database because it’s confusing that we don’t know these are values of clones, or values of the field with <code class="highlighter-rouge">'multiple' =&gt; true</code>. To make it work for all field types and for consistency, storing cloned values in a single row of the database is a better choice.</p>
+
+<p>Due to this reason, you still can use <code class="highlighter-rouge">get_post_meta</code> function to retrieve field value from the database (WordPress automatically unserializes string and returns an array). You will get an array of all cloned values.</p>
+
+<p><strong>Summary:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cloneable</th>
+      <th>Multiple</th>
+      <th>Custom Field Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>N</td>
+      <td>N</td>
+      <td>Single row</td>
+    </tr>
+    <tr>
+      <td>N</td>
+      <td>Y</td>
+      <td>Multiple rows</td>
+    </tr>
+    <tr>
+      <td>Y</td>
+      <td>N</td>
+      <td>Serialized array <code class="highlighter-rouge">[value1, value2]</code> in a single row</td>
+    </tr>
+    <tr>
+      <td>Y</td>
+      <td>Y</td>
+      <td>Serialized of 2-dimensional array <code class="highlighter-rouge">[[value11,value12], [value21, value22]]</code> in a single row</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="alert">
+	
+		<svg class="icon icon-info" aria-hidden="true" role="img"><use href="#icon-info" xlink:href="#icon-info"></use></svg>
+	
+	<p>Since version 4.14.7, you are able to store clone values in multiple rows in the database. See <a href="https://metabox.io/introducing-clone-as-multiple-feature/">this post</a> for more details.</p>
+
+</div>
+
+<h2 id="field-value">Field value</h2>
+
+<p>For normal fields, the value saved in the database is the value entered or selected by users. But for some specific fields, the values store is not as obvious as that (for example, <code class="highlighter-rouge">checkbox</code> saves the checked/unchecked status as <code class="highlighter-rouge">1</code> and <code class="highlighter-rouge">0</code>). Please see more details in each field in the left menu, section Fields.</p>
+
+<h2 id="notes">Notes</h2>
+
+<p>Although you can use <code class="highlighter-rouge">get_post_meta</code> to retrieve meta value, it’s recommended to <a href="/displaying-fields/">use helper functions</a> to get the value and display it in the frontend. The helper function takes care of all the logic above and returns to you the needed data in a correct format.</p>
+
+<p>To understand how the value is stored in the database, please use <code class="highlighter-rouge">print_r</code> function, like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">get_post_meta</span><span class="p">(</span> <span class="nx">get_the_ID</span><span class="p">(),</span> <span class="s1">'field_id'</span><span class="p">,</span> <span class="kc">true</span> <span class="p">);</span> <span class="c1">// Last param should be 'false' if field is multiple</span>
+<span class="k">echo</span> <span class="s1">'&lt;pre&gt;'</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span> <span class="nv">$value</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="s1">'&lt;/pre&gt;'</span><span class="p">;</span>
+</code></pre></div></div>
+:ET

@@ -1,0 +1,77 @@
+I"�<h2 id="overview">Overview</h2>
+
+<p>While editing posts, you want to track what has been changed between edits. WordPress lets you do that via a feature called <a href="https://codex.wordpress.org/Revisions">revision</a>. Unfortunately, WordPress revision only supports post title and post content. That might be a problem since you might have content in custom fields (which can be many).</p>
+
+<p>The MB Revision resolves this problem by adding support for custom fields in WordPress revision. You’re able to track changes that you or others have made in custom fields. It works with all field types in Meta Box, even with <a href="https://metabox.io/plugins/meta-box-group/">groups</a>. Using this extension, you will never wonder when you changed or deleted a field.</p>
+
+<p>For more information, please see the <a href="https://metabox.io/plugins/mb-revision/">extension page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<p><strong>Important:</strong> This extension requires Meta Box version 4.12+. If you’re using an older version of the plugin, please update.</p>
+
+<h2 id="enabling-revision-support">Enabling revision support</h2>
+
+<p>First of all, please make sure that you didn’t turn off revision in WordPress. To check this, please open your <code class="highlighter-rouge">wp-config.php</code> and see if this line presents:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">define</span><span class="p">(</span> <span class="s1">'WP_POST_REVISIONS'</span><span class="p">,</span> <span class="kc">false</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>If you can’t find it, that means revision is turned on, which is great!</p>
+
+<p>Now back to Meta Box. Please make sure you understand how to <a href="/creating-meta-boxes/">create meta boxes</a> before continuing.</p>
+
+<p>To enable revision support for a meta box, simply add a new setting to the meta box as follows:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'revision'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+</code></pre></div></div>
+
+<p>Now whenever you update a post, WordPress will create a revision for it. And MB Revision ensures all the values of the custom fields are copied from the parent post to that revision.</p>
+
+<h2 id="comparing-the-changes">Comparing the changes</h2>
+
+<p>When you update a post, WordPress automatically creates a revision for that post. You can see the list of revisions in the <strong>Revisions</strong> meta box below the main editor:</p>
+
+<p><img src="https://i.imgur.com/rThtMe0.png" alt="revision list" /></p>
+
+<p>Also, in the <strong>Publish</strong> meta box, you’ll see a link to browse all revisions:</p>
+
+<p><img src="https://i.imgur.com/RqXRfhG.png" alt="browse revision" /></p>
+
+<p>Clicking either on any revision in the list or on <em>Browse</em> link brings you to the revision comparison screen. There you’ll see something like this:</p>
+
+<p><img src="https://i.imgur.com/oObKhaE.png" alt="revision compare" /></p>
+
+<p>Except title and content, which are post fields, other items on this screen are custom fields created by Meta Box. There you’ll see highlighted lines or words, which are added or removed by users.</p>
+
+<p>If the custom field has simple value (like a string), it will display fully here. If the custom field has structural value (array), it will display here as a JSON-encoded string. Using JSON allows you to see the values of each element in the array as well as the structure in general.</p>
+
+<p>Please note that the extension works well with <a href="https://metabox.io/plugins/meta-box-group/">Meta Box Group</a> extension.</p>
+
+<h2 id="restoring-the-revision">Restoring the revision</h2>
+
+<p>If you find out that the current version of the post is incorrect, you can compare it with the previous version and optionally restore it. In order to restore a revision, simply click on the <strong>Restore this revision</strong> button on the comparison screen.</p>
+
+<p>MB Revision will copy values of the custom fields from the revision to the parent post. So your post will have the correct values of custom fields like it used to be.</p>
+
+<h2 id="notes">Notes</h2>
+
+<p>Because WordPress supports revision for posts and custom post types only, the extension doesn’t work for <a href="https://metabox.io/plugins/mb-term-meta/">term meta</a>, <a href="https://metabox.io/plugins/mb-user-meta/">user meta</a> or <a href="https://metabox.io/plugins/mb-settings-page/">settings pages</a>.</p>
+
+<p>Please make sure you either not define <code class="highlighter-rouge">WP_POST_REVISIONS</code> or set it to a proper value in <code class="highlighter-rouge">wp-config.php</code>. This constant disables or limits the number of revisions. Therefore, it might cause unexprected result. Please see <a href="https://codex.wordpress.org/Revisions#Revision_Options">WordPress Codex</a> for more information.</p>
+:ET

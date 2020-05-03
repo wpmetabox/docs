@@ -1,0 +1,305 @@
+I"3^<p>This page lists all filters for Meta Box plugin:</p>
+
+<h2 id="general-filters">General filters</h2>
+
+<h3 id="rwmb_meta_boxes"><code class="highlighter-rouge">rwmb_meta_boxes</code></h3>
+
+<p>This is the most important filter of the plugin. It is used to add/remove/edit meta boxes. See <a href="/creating-meta-boxes/">this documentation</a> for more details on how to use it.</p>
+
+<p>This filter has 1 parameter - array of meta boxes.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">array</span><span class="p">()</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_shortcode"><code class="highlighter-rouge">rwmb_shortcode</code></h3>
+
+<p>This filter is used to change the output of <code class="highlighter-rouge">[rwmb_shortcode]</code> shortcode. It has 1 parameter - output of the shortcode.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_shortcode'</span><span class="p">,</span> <span class="nv">$content</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_meta"><code class="highlighter-rouge">rwmb_meta</code></h3>
+
+<p>This filter is used to change the returned value of helper function <a href="/rwmb-meta/">rwmb_meta()</a>. It accepts 4 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$meta</code>: the meta value returned by <code class="highlighter-rouge">rwmb_meta</code> function</li>
+  <li><code class="highlighter-rouge">$key</code>: meta key (custom field ID)</li>
+  <li><code class="highlighter-rouge">$args</code>: arguments passed to <code class="highlighter-rouge">rwmb_meta</code> function</li>
+  <li><code class="highlighter-rouge">$object_id</code>: object ID</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_meta'</span><span class="p">,</span> <span class="nv">$meta</span><span class="p">,</span> <span class="nv">$key</span><span class="p">,</span> <span class="nv">$args</span><span class="p">,</span> <span class="nv">$post_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_get_value"><code class="highlighter-rouge">rwmb_get_value</code></h3>
+
+<p>This filter is used to change the returned value of helper function <a href="/rwmb-get-value//">rwmb_get_value()</a>. It accepts 4 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$value</code>: the value returned by <code class="highlighter-rouge">rwmb_get_value</code> function</li>
+  <li><code class="highlighter-rouge">$field</code>: field settings</li>
+  <li><code class="highlighter-rouge">$args</code>: arguments passed to <code class="highlighter-rouge">rwmb_get_value</code> function</li>
+  <li><code class="highlighter-rouge">$object_id</code>: object ID</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_get_value'</span><span class="p">,</span> <span class="nv">$value</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$args</span><span class="p">,</span> <span class="nv">$object_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_the_value"><code class="highlighter-rouge">rwmb_the_value</code></h3>
+
+<p>This filter is used to change the returned value of helper function <a href="/rwmb-the-value//">rwmb_the_value()</a>. It accepts 4 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$output</code>: the HTML output returned by <code class="highlighter-rouge">rwmb_the_value</code> function</li>
+  <li><code class="highlighter-rouge">$field</code>: field settings</li>
+  <li><code class="highlighter-rouge">$args</code>: arguments passed to <code class="highlighter-rouge">rwmb_the_value</code> function</li>
+  <li><code class="highlighter-rouge">$object_id</code>: object ID</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_the_value'</span><span class="p">,</span> <span class="nv">$output</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$args</span><span class="p">,</span> <span class="nv">$object_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="meta-box-filters">Meta Box filters</h2>
+
+<h3 id="rwmb_show"><code class="highlighter-rouge">rwmb_show</code></h3>
+
+<p>This filter is used to change the visibility of a meta box (by default meta box is shown). It accepts 2 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$show</code>: current visibility of the meta box</li>
+  <li><code class="highlighter-rouge">$meta_box</code>: array of a meta box definition</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$show</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_show'</span><span class="p">,</span> <span class="nv">$show</span><span class="p">,</span> <span class="nv">$meta_box</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_show_meta_box_id"><code class="highlighter-rouge">rwmb_show_{$meta_box_id}</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_show</code> but is applied to a specific meta box (identified by ID). It accepts same parameters.</p>
+
+<h3 id="rwmb_normalize_meta_box"><code class="highlighter-rouge">rwmb_normalize_meta_box</code></h3>
+
+<p>This filter is used to normalize a meta box’s parameters. It’s useful when you want to set default values for a meta box. It accepts 1 parameter - meta box array of definition.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta_box</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_normalize_meta_box'</span><span class="p">,</span> <span class="nv">$meta_box</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_normalize_meta_box_id_meta_box"><code class="highlighter-rouge">rwmb_normalize_{$meta_box_id}_meta_box</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_normalize_meta_box</code> but is applied to a specific meta box (identified by ID). It accepts same parameters.</p>
+
+<h2 id="field-general-filters">Field general filters</h2>
+
+<h3 id="rwmb_normalize_field"><code class="highlighter-rouge">rwmb_normalize_field</code></h3>
+
+<p>This filter is used to normalize a field’s parameters. It’s useful when you want to set default values for a field. It accepts 1 parameter - array of field attributes.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta_box</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_normalize_field'</span><span class="p">,</span> <span class="nv">$field</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_normalize_field_type_field"><code class="highlighter-rouge">rwmb_normalize_{$field_type}_field</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_normalize_field</code> but is applied to fields with a specific type. It accepts same parameters.</p>
+
+<h3 id="rwmb_normalize_field_id_field"><code class="highlighter-rouge">rwmb_normalize_{$field_id}_field</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_normalize_field</code> but is applied to a specific field (identified by ID). It accepts same parameters.</p>
+
+<h3 id="rwmb_field_meta"><code class="highlighter-rouge">rwmb_field_meta</code></h3>
+
+<p>This filter is used to change a field meta value before displaying it in the meta box. It accepts 3 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$meta</code>: field meta value</li>
+  <li><code class="highlighter-rouge">$field</code>: array of field attributes</li>
+  <li><code class="highlighter-rouge">$saved</code>: a param used to detect whether this meta box is saved into database or not. It’s useful when you want to set default value for a field</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_field_meta'</span><span class="p">,</span> <span class="nv">$meta</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$saved</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_field_type_field_meta"><code class="highlighter-rouge">rwmb_{$field_type}_field_meta</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_field_meta</code> but is applied to fields with a specific type. It accepts same parameters.</p>
+
+<h3 id="rwmb_field_id_field_meta"><code class="highlighter-rouge">rwmb_{$field_id}_field_meta</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_field_meta</code> but is applied to a specific field (identified by ID). It accepts same parameters.</p>
+
+<h3 id="rwmb_field_type_value"><code class="highlighter-rouge">rwmb_{$field_type}_value</code></h3>
+
+<p>This filter is used to change a field meta value before saving it in the database. It accepts 3 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$new</code>: field meta value which will be saved in the database</li>
+  <li><code class="highlighter-rouge">$field</code>: array of field attributes</li>
+  <li><code class="highlighter-rouge">$old</code>: old meta value of field</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$new</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s2">"rwmb_</span><span class="si">{</span><span class="nv">$field</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span><span class="si">}</span><span class="s2">_value"</span><span class="p">,</span> <span class="nv">$new</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$old</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_field_id_value"><code class="highlighter-rouge">rwmb_{$field_id}_value</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_{$field_type}_value</code> but is applied to a specific field (identified by ID). It accepts same parameters.</p>
+
+<h2 id="field-appearance-filters">Field appearance filters</h2>
+
+<h3 id="rwmb_begin_html"><code class="highlighter-rouge">rwmb_begin_html</code></h3>
+
+<p>This filter is used to change the beginning HTML output of a field. The beginning HTML is defined in field’s <code class="highlighter-rouge">begin_html</code> function (see documentation for <code class="highlighter-rouge">RWMB_Field</code> class). Each field can overwrite this function and output different HTML.</p>
+
+<p>By default it has the following markup:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"rwmb-label"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"{$field_id}"</span><span class="nt">&gt;</span>{$field_name}<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"rwmb-input"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>This filter accepts 3 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$begin</code>: the beginning HTML output of the field</li>
+  <li><code class="highlighter-rouge">$field</code>: array of field attributes</li>
+  <li><code class="highlighter-rouge">$meta</code>: field meta value</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$begin</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_begin_html'</span><span class="p">,</span> <span class="nv">$begin</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$meta</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_field_type_begin_html"><code class="highlighter-rouge">rwmb_{$field_type}_begin_html</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_begin_html</code> but is applied to fields with a specific type. It accepts same parameters.</p>
+
+<h3 id="rwmb_field_id_begin_html"><code class="highlighter-rouge">rwmb_{$field_id}_begin_html</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_begin_html</code> but is applied to a specific field (identified by ID). It accepts same parameters.</p>
+
+<h3 id="rwmb_end_html"><code class="highlighter-rouge">rwmb_end_html</code></h3>
+
+<p>This filter is similar to <code class="highlighter-rouge">rwmb_begin_html</code> and is used to change the ending HTML output of a field. The ending HTML is defined in field’s <code class="highlighter-rouge">end_html</code> function (see documentation for <code class="highlighter-rouge">RWMB_Field</code> class). Each field can overwrite this function and output different HTML.</p>
+
+<p>By default it has the following markup:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="nv">$clone_button</span><span class="p">}</span>
+<span class="p">{</span><span class="nv">$field_description</span><span class="p">}</span>
+<span class="o">&lt;/</span><span class="nx">div</span><span class="o">&gt;&lt;!--</span> <span class="o">.</span><span class="nx">rwmb</span><span class="o">-</span><span class="nx">input</span> <span class="o">--&gt;</span>
+</code></pre></div></div>
+
+<p>This filter accepts 3 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$end</code>: the ending HTML output of the field</li>
+  <li><code class="highlighter-rouge">$field</code>: array of field attributes</li>
+  <li><code class="highlighter-rouge">$meta</code>: field meta value</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$end</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_end_html'</span><span class="p">,</span> <span class="nv">$end</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$meta</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_field_type_end_html"><code class="highlighter-rouge">rwmb_{$field_type}_end_html</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_end_html</code> but is applied to fields with a specific type. It accepts same parameters.</p>
+
+<h3 id="rwmb_field_id_end_html"><code class="highlighter-rouge">rwmb_{$field_id}_end_html</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_end_html</code> but is applied to a specific field (identified by ID). It accepts same parameters.</p>
+
+<h3 id="rwmb_field_type_html"><code class="highlighter-rouge">rwmb_{$field_type}_html</code></h3>
+
+<p>This filter is used to changed the HTML output of a field, which is inside <code class="highlighter-rouge">rwmb-input</code> class, e.g. after beginning HTML and before ending HTML.</p>
+
+<p>The HTML output of a field is various and depends on field type. For example: a text field simply outputs a <code class="highlighter-rouge">input</code> tag, while wysiwyg field outputs a complicated <code class="highlighter-rouge">div</code>.</p>
+
+<p>This filter accepts 3 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$field_html</code>: HTML output of a field</li>
+  <li><code class="highlighter-rouge">$field</code>: array of field attributes</li>
+  <li><code class="highlighter-rouge">$meta</code>: field meta value</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$field_html</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s2">"rwmb_</span><span class="si">{</span><span class="nv">$field_type</span><span class="si">}</span><span class="s2">_html"</span><span class="p">,</span> <span class="nv">$field_html</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$meta</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_field_id_html"><code class="highlighter-rouge">rwmb_{$field_id}_html</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_{$field_type}_html</code> but is applied to a specific field (identified by ID). It accepts same parameters.</p>
+
+<h3 id="rwmb_wrapper_html"><code class="highlighter-rouge">rwmb_wrapper_html</code></h3>
+
+<p>This filter is used to change the wrapper HTML output of a field. Wrapper HTML is the string concatenation of beginning HTML, field HTML and ending HTML.</p>
+
+<p>This filter accepts 3 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$html</code>: wrapper HTML output of the field</li>
+  <li><code class="highlighter-rouge">$field</code>: array of field attributes</li>
+  <li><code class="highlighter-rouge">$meta</code>: field meta value</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$html</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_wrapper_html'</span><span class="p">,</span> <span class="s2">"</span><span class="si">{</span><span class="nv">$begin</span><span class="si">}{</span><span class="nv">$field_html</span><span class="si">}{</span><span class="nv">$end</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$meta</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_field_type_wrapper_html"><code class="highlighter-rouge">rwmb_{$field_type}_wrapper_html</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_wrapper_html</code> but is applied to fields with a specific type. It accepts same parameters.</p>
+
+<h3 id="rwmb_field_id_wrapper_html"><code class="highlighter-rouge">rwmb_{$field_id}_wrapper_html</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_wrapper_html</code> but is applied to a specific field (identified by ID). It accepts same parameters.</p>
+
+<h3 id="rwmb_outer_html"><code class="highlighter-rouge">rwmb_outer_html</code></h3>
+
+<p>This filter is used to change the outer HTML output of a field. Outer HTML is surrounding div (the most outside) of the field. By default it has the following markup:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$outer_html</span> <span class="o">=</span> <span class="nv">$field</span><span class="p">[</span><span class="s1">'before'</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"&lt;div class='</span><span class="si">{</span><span class="nv">$field_classes</span><span class="si">}</span><span class="s2">'&gt;</span><span class="si">{</span><span class="nv">$wrapper_html</span><span class="si">}</span><span class="s2">&lt;/div&gt;"</span> <span class="o">.</span> <span class="nv">$field</span><span class="p">[</span><span class="s1">'after'</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>This filter accepts 3 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$outer_html </code>: outer HTML output of the field</li>
+  <li><code class="highlighter-rouge">$field</code>: array of field attributes</li>
+  <li><code class="highlighter-rouge">$meta</code>: field meta value</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$outer_html</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_outer_html'</span><span class="p">,</span> <span class="nv">$outer_html</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$meta</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="rwmb_field_type_outer_html"><code class="highlighter-rouge">rwmb_{$field_type}_outer_html</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_outer_html</code> but is applied to fields with a specific type. It accepts same parameters.</p>
+
+<h3 id="rwmb_field_id_outer_html"><code class="highlighter-rouge">rwmb_{$field_id}_outer_html</code></h3>
+
+<p>This filter is the same as <code class="highlighter-rouge">rwmb_outer_html</code> but is applied to a specific field (identified by ID). It accepts same parameters.</p>
+
+<h3 id="rwmb_choice_label"><code class="highlighter-rouge">rwmb_choice_label</code></h3>
+
+<p>This filter allows developers to change the label of choice fields (<code class="highlighter-rouge">user</code>, <code class="highlighter-rouge">post</code>, <code class="highlighter-rouge">taxonomy</code> and <code class="highlighter-rouge">taxonomy_advanced</code>). It has 3 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$label</code>: The output label</li>
+  <li><code class="highlighter-rouge">$field</code>: Field settings</li>
+  <li><code class="highlighter-rouge">$object</code>: The post, user or term object</li>
+</ul>
+
+<p>Example: If you are using a field called <code class="highlighter-rouge">some_user</code> and you want to change the label in the select box to user <code class="highlighter-rouge">first_name</code> instead of the default <code class="highlighter-rouge">display_name</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="nf">some_user_filter</span><span class="p">(</span> <span class="nv">$label</span><span class="p">,</span> <span class="nv">$field</span><span class="p">,</span> <span class="nv">$object</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$object</span><span class="o">-&gt;</span><span class="na">first_name</span> <span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_some_user_choice_label'</span><span class="p">,</span> <span class="s1">'some_user_filter'</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>This filter also has variations:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">rwmb_choice_label</code>: which will effect labels for all choice fields</li>
+  <li><code class="highlighter-rouge">rwmb_{$field_type}_choice_label</code>: which will effect all of a particular type</li>
+  <li><code class="highlighter-rouge">rwmb_{$field_id}_choice_label</code>: which will effect all of a the field with a particular id</li>
+</ul>
+:ET

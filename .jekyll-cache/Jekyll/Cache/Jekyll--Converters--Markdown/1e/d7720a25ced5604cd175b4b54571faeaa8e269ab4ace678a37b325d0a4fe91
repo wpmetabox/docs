@@ -1,0 +1,93 @@
+I"�<h2 id="overview">Overview</h2>
+
+<p>Meta Box plugin is so flexible that you can create your own field type easily. This documentation will show you how to create a new field type <code class="highlighter-rouge">phone</code> which accepts the only phone in format <code class="highlighter-rouge">xxx-xxxx</code>.</p>
+
+<h2 id="field-class">Field class</h2>
+
+<p>We need create a class name <code class="highlighter-rouge">RWMB_Phone_Field</code> for <code class="highlighter-rouge">phone</code> field. Generally, if we want to create a new field type, we need create a class name <code class="highlighter-rouge">RWMB_{$field_type}_Field</code> (make sure it has a correct case) extending <code class="highlighter-rouge">RWMB_Field</code> class.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span> <span class="nb">class_exists</span><span class="p">(</span> <span class="s1">'RWMB_Field'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">class</span> <span class="nc">RWMB_Phone_Field</span> <span class="k">extends</span> <span class="nx">RWMB_Field</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Save this class in a PHP file with any name, assuming <code class="highlighter-rouge">field-phone.php</code>. Then include that file in <code class="highlighter-rouge">functions.php</code> file of your theme or in plugin’s file:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'init'</span><span class="p">,</span> <span class="s1">'prefix_load_phone_type'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_load_phone_type</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">require</span> <span class="s1">'path/to/field-phone.php'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="alert">
+	
+		<svg class="icon icon-info" aria-hidden="true" role="img"><use href="#icon-info" xlink:href="#icon-info"></use></svg>
+	
+	<p>We use <code class="highlighter-rouge">init</code> action to make sure all Meta Box files are loaded and class <code class="highlighter-rouge">RWMB_Field</code> is defined.</p>
+
+</div>
+
+<h2 id="methods">Methods</h2>
+
+<p>The phone class inherits all methods from <code class="highlighter-rouge">RWMB_Field</code> class. The full list of <code class="highlighter-rouge">RWMB_Field</code> methods and their description are described in <a href="/rwmb-field-class/">this documentation</a>.</p>
+
+<p>For phone field, we have to define content of <code class="highlighter-rouge">html</code> method to define field HTML:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">html</span><span class="p">(</span> <span class="nv">$meta</span><span class="p">,</span> <span class="nv">$field</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">sprintf</span><span class="p">(</span>
+        <span class="s1">'&lt;input type="tel" name="%s" id="%s" value="%s" pattern="d{3}-d{4}"&gt;'</span><span class="p">,</span>
+        <span class="nv">$field</span><span class="p">[</span><span class="s1">'field_name'</span><span class="p">],</span>
+        <span class="nv">$field</span><span class="p">[</span><span class="s1">'id'</span><span class="p">],</span>
+        <span class="nv">$meta</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here we use new HTML5 input type <code class="highlighter-rouge">tel</code> with new attribute <code class="highlighter-rouge">pattern</code> to force users to enter correct phone number format <code class="highlighter-rouge">xxx-xxxx</code>.</p>
+
+<p>For this field, we don’t need to handle saving or retrieving meta value or enqueueing scripts and styles. Everything is handled automatically by the Meta Box plugin.</p>
+
+<p>The complete code for this class is the following:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span> <span class="nb">class_exists</span><span class="p">(</span> <span class="s1">'RWMB_Field'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">class</span> <span class="nc">RWMB_Phone_Field</span> <span class="k">extends</span> <span class="nx">RWMB_Field</span> <span class="p">{</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">html</span><span class="p">(</span> <span class="nv">$meta</span><span class="p">,</span> <span class="nv">$field</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">sprintf</span><span class="p">(</span>
+                <span class="s1">'&lt;input type="tel" name="%s" id="%s" value="%s" pattern="d{3}-d{4}"&gt;'</span><span class="p">,</span>
+                <span class="nv">$field</span><span class="p">[</span><span class="s1">'field_name'</span><span class="p">],</span>
+                <span class="nv">$field</span><span class="p">[</span><span class="s1">'id'</span><span class="p">],</span>
+                <span class="nv">$meta</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="using-new-field-type">Using new field type</h2>
+
+<p>Now we can register fields with <code class="highlighter-rouge">phone</code> type, like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Test'</span><span class="p">,</span>
+    <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Phone'</span><span class="p">,</span>
+            <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'field_id'</span><span class="p">,</span>
+            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'phone'</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="c1">// Other fields</span>
+    <span class="p">),</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Now when you go to edit post page, you’ll see a new field like this:</p>
+
+<p><img src="https://i.imgur.com/lK8DRW7.png" alt="new field type" /></p>
+
+<p>That’s all for this simple field type. If you want to create a more complicated field, just overwrite methods from <a href="/rwmb-field-class/"><code class="highlighter-rouge">RWMB_Field</code> class</a>. You might want to enqueue scripts and styles, sanitizing field value before saving in the database, etc. The <code class="highlighter-rouge">RWMB_Field</code> class has all methods for that you just need to overwrite necessary methods.</p>
+
+<h2 id="notes">Notes</h2>
+
+<p>If you need to make the field cloneable using the same clone feature in Meta Box, it’s recommended to add a CSS class to your inputs that start with <code class="highlighter-rouge">rwmb</code>. The clone script will automatically detect all the inputs started with <code class="highlighter-rouge">rwmb</code> and set the correct <code class="highlighter-rouge">id</code> and <code class="highlighter-rouge">name</code> attribute.</p>
+:ET

@@ -1,0 +1,587 @@
+I"c�<h2 id="overview">Overview</h2>
+
+<p>MB User Profile is an improvement for the <a href="https://metabox.io/plugins/mb-user-meta/">MB User Meta</a> extension. It allows you to add information to user profile and edit these details on the front end.</p>
+
+<p>To be able to do the profile on the front end, the extension provides you a full toolkit that includes: register form, login form and edit profile form. You’re able to embed these forms anywhere using shortcodes.</p>
+
+<p>Please note that this extension already includes <strong>MB User Meta</strong>. So, you can use it to add as many fields to user profile as you want.</p>
+
+<p>This is a screenshot of a user profile page:</p>
+
+<p><img src="https://i.imgur.com/bqVnDDF.png" alt="user profile page" /></p>
+
+<p>For more information, please see the <a href="https://metabox.io/plugins/mb-user-profile/">extension page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<p><strong>Important:</strong> This extension requires Meta Box version 4.11+. If you’re using an older version of the plugin, please update.</p>
+
+<h2 id="shortcodes">Shortcodes</h2>
+
+<p>The extension has the following shortcodes for 3 forms:</p>
+
+<h3 id="registration-form">Registration form</h3>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nx">mb_user_profile_register</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"meta-box-id"</span> <span class="nx">label_submit</span><span class="o">=</span><span class="s2">"Register"</span> <span class="nx">confirmation</span><span class="o">=</span><span class="s2">"Your account has been created successfully."</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>This shortcode shows the user register form. If you want to add more fields in this form, <a href="/extensions/mb-user-meta/">create a meta box for users</a> with some fields. Then add the meta box ID in the <code class="highlighter-rouge">id</code> attribute of the shortcode.</p>
+
+<p>If you have multiple meta boxes that you want to display in the register form, enter their IDs separated by commas.</p>
+
+<p>If the <code class="highlighter-rouge">id</code> has no value, then it shows the default registration form.</p>
+
+<p><strong>Shortcode attributes</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>Meta Box ID(s), separated by commas. All fields from meta boxes will be included in the registration form. If not specify, it shows the default registration form.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">redirect</code></td>
+      <td>Redirect URL, to which users will be redirected after successful registration.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">form_id</code></td>
+      <td>ID (HTML attribute) of the form.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_username</code></td>
+      <td>ID (HTML attribute) of the username input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_email</code></td>
+      <td>ID (HTML attribute) of the email input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_password</code></td>
+      <td>ID (HTML attribute) of the password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_password2</code></td>
+      <td>ID (HTML attribute) of the confirm password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_submit</code></td>
+      <td>ID (HTML attribute) of the submit button.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_username</code></td>
+      <td>Label for the username input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_email</code></td>
+      <td>Label for the email input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_password</code></td>
+      <td>Label for the password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_password2</code></td>
+      <td>Label for the confirm password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_submit</code></td>
+      <td>Label for the submit button.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">confirmation</code></td>
+      <td>Confirmation message if registrion is succesful.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">password_strength</code></td>
+      <td>Set the required password strength. Available options: <code class="highlighter-rouge">strong</code>, <code class="highlighter-rouge">medium</code>, <code class="highlighter-rouge">weak</code>, <code class="highlighter-rouge">very-weak</code> or <code class="highlighter-rouge">false</code> to disable password strength meter.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">email_as_username</code></td>
+      <td>Use email for username. If this param is <code class="highlighter-rouge">true</code>, then the username field will disappear.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">recaptcha_key</code></td>
+      <td>Google reCaptcha site key (version 3). Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">recaptcha_secret</code></td>
+      <td>Google reCaptcha secret key (version 3). Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">show_if_user_can</code></td>
+      <td>Always show the form if the current user has a proper capability. Should be a <a href="https://wordpress.org/support/article/roles-and-capabilities/">WordPress capability</a>. Useful if admins want to register for other people.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="login-form">Login form</h3>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nx">mb_user_profile_login</span> <span class="nx">label_submit</span><span class="o">=</span><span class="s2">"Submit"</span> <span class="nx">label_remember</span><span class="o">=</span><span class="s2">"Remember"</span> <span class="nx">label_lost_password</span><span class="o">=</span><span class="s2">"Lost Password?"</span> <span class="nx">confirmation</span><span class="o">=</span><span class="s2">"You are now logged in."</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>This shortcode shows the normal login form. You can use either this shortcode or the WordPress’s built-in function <code class="highlighter-rouge">wp_login_form()</code>.</p>
+
+<p><strong>Shortcode attributes</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">redirect</code></td>
+      <td>Redirect URL, to which users will be redirected after successful login.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">form_id</code></td>
+      <td>ID (HTML attribute) of the form.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_username</code></td>
+      <td>ID (HTML attribute) of the username input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_password</code></td>
+      <td>ID (HTML attribute) of the password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_remember</code></td>
+      <td>ID (HTML attribute) of the remember checkbox field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_submit</code></td>
+      <td>ID (HTML attribute) of the submit button.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_username</code></td>
+      <td>Label for the username input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_password</code></td>
+      <td>Label for the password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_remember</code></td>
+      <td>Label for the remember checkbox field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_lost_password</code></td>
+      <td>Label for the lost password link.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_submit</code></td>
+      <td>Label for the submit button.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">confirmation</code></td>
+      <td>Confirmation message if registrion is succesful.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">value_username</code></td>
+      <td>Default value for username field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">value_remember</code></td>
+      <td>Default value for remember checkbox field - <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> (default).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">recaptcha_key</code></td>
+      <td>Google reCaptcha site key (version 3). Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">recaptcha_secret</code></td>
+      <td>Google reCaptcha secret key (version 3). Optional.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="edit-profile-form">Edit profile form</h3>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nx">mb_user_profile_info</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"meta-box-id"</span> <span class="nx">submit_button</span><span class="o">=</span><span class="s2">"Submit"</span> <span class="nx">confirmation</span><span class="o">=</span><span class="s2">"Your information has been successfully submitted. Thank you."</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>This shortcode shows the user profile form that allows users to edit their information. If you want to add more fields in this form, <a href="/extensions/mb-user-meta/">create a meta box for users</a> with some fields. Then add the meta box ID in the <code class="highlighter-rouge">id</code> attribute of the shortcode.</p>
+
+<p>If you have multiple meta boxes that you want to display in the profile form, enter their IDs separated by commas.</p>
+
+<p><strong>Shortcode attributes</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>Meta Box ID(s), separated by commas. All fields from meta boxes will be included in the profile form. Required.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">user_id</code></td>
+      <td>User ID, whose info will be edited. If not specified, current user ID is used.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">redirect</code></td>
+      <td>Redirect URL, to which users will be redirected after successful submission.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">form_id</code></td>
+      <td>ID (HTML attribute) of the form.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_password</code></td>
+      <td>ID (HTML attribute) of the password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_password2</code></td>
+      <td>ID (HTML attribute) of the confirm password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id_submit</code></td>
+      <td>ID (HTML attribute) of the submit button.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_password</code></td>
+      <td>Label for the password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_password2</code></td>
+      <td>Label for the confirm password input field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_submit</code></td>
+      <td>Label for the submit button.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">confirmation</code></td>
+      <td>Confirmation message if registrion is succesful.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">recaptcha_key</code></td>
+      <td>Google reCaptcha site key (version 3). Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">recaptcha_secret</code></td>
+      <td>Google reCaptcha secret key (version 3). Optional.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="edit-default-fields">Edit default fields</h4>
+
+<p>By default, the user profile form doesn’t include any default user fields, such as first name, last name or biography. To be able to edit these fields, please <a href="/extensions/mb-user-meta/">create a meta box for users</a> and add those fields to that meta box. Keep the same field ID.</p>
+
+<p>For example, the code below creates a meta box for editing user first name, last name and biography:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Default Fields'</span><span class="p">,</span>
+        <span class="s1">'id'</span>     <span class="o">=&gt;</span> <span class="s1">'default-fields'</span><span class="p">,</span>
+        <span class="s1">'type'</span>   <span class="o">=&gt;</span> <span class="s1">'user'</span><span class="p">,</span> <span class="c1">// NOTICE THIS</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="p">[</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'first_name'</span><span class="p">,</span> <span class="c1">// THIS</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'First Name'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'last_name'</span><span class="p">,</span> <span class="c1">// THIS</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Last Name'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'display_name'</span><span class="p">,</span> <span class="c1">// THIS</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Display Name'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'description'</span><span class="p">,</span> <span class="c1">// THIS</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Biography'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'textarea'</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">];</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>And use it in the user edit profile form with this shortcode:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nx">mb_user_profile_info</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"default-fields"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>In order to make the plugin recognize the user fields, you need to set correct ID for them. See the table below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>User login</td>
+      <td><code class="highlighter-rouge">user_login</code></td>
+    </tr>
+    <tr>
+      <td>User email</td>
+      <td><code class="highlighter-rouge">user_email</code></td>
+    </tr>
+    <tr>
+      <td>User nicename</td>
+      <td><code class="highlighter-rouge">user_nicename</code></td>
+    </tr>
+    <tr>
+      <td>User URL</td>
+      <td><code class="highlighter-rouge">user_url</code></td>
+    </tr>
+    <tr>
+      <td>Display name</td>
+      <td><code class="highlighter-rouge">display_name</code></td>
+    </tr>
+    <tr>
+      <td>First name</td>
+      <td><code class="highlighter-rouge">first_name</code></td>
+    </tr>
+    <tr>
+      <td>Last name</td>
+      <td><code class="highlighter-rouge">last_name</code></td>
+    </tr>
+    <tr>
+      <td>Biography</td>
+      <td><code class="highlighter-rouge">description</code></td>
+    </tr>
+    <tr>
+      <td>Rich editing</td>
+      <td><code class="highlighter-rouge">rich_editing</code></td>
+    </tr>
+    <tr>
+      <td>Syntax highlighting</td>
+      <td><code class="highlighter-rouge">syntax_highlighting</code></td>
+    </tr>
+    <tr>
+      <td>Admin color</td>
+      <td><code class="highlighter-rouge">admin_color</code></td>
+    </tr>
+    <tr>
+      <td>Comment shortcuts</td>
+      <td><code class="highlighter-rouge">comment_shortcuts</code></td>
+    </tr>
+    <tr>
+      <td>Show admin bar on the front</td>
+      <td><code class="highlighter-rouge">admin_bar_front</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="edit-user-password">Edit user password</h4>
+
+<p>To let users change their password, please use the meta box ID <code class="highlighter-rouge">rwmb-user-info</code> in the shortcode as below:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nx">mb_user_profile_info</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"rwmb-user-info"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="usage">Usage</h2>
+
+<p>To use the shortcodes, add them into a page content or in a widget. If you want to embed the form using code, please use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$form</span> <span class="o">=</span> <span class="s1">'[mb_user_profile_register]'</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">do_shortcode</span><span class="p">(</span> <span class="nv">$form</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="hooks">Hooks</h2>
+
+<p>In order to allow developers to do other things with the user form, we have created some actions and filters.</p>
+
+<h3 id="general-hooks">General hooks</h3>
+
+<p><code class="highlighter-rouge">rwmb_profile_redirect</code></p>
+
+<p>This filter allows you to change the URL of the redirect page after form is submitted. It accepts 2 parameters: redirect URL and form config - the shortcode attributes.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$redirect</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_profile_redirect'</span><span class="p">,</span> <span class="nv">$redirect</span><span class="p">,</span> <span class="nv">$config</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>You can use this filter to change the redirect URL after an user updated his profile.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_profile_redirect'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$redirect</span><span class="p">,</span> <span class="nv">$config</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="s1">'my-meta-box'</span> <span class="o">===</span> <span class="nv">$config</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$redirect</span> <span class="o">=</span> <span class="s1">'https://domain.com/thank-you/'</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$redirect</span><span class="p">;</span>
+<span class="p">},</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="form-actions">Form actions</h3>
+
+<p><code class="highlighter-rouge">rwmb_profile_before_process</code></p>
+
+<p>This action fires before the form is processed. It accepts one parameter <code class="highlighter-rouge">$config</code> - the form configuration, taken from the shortcode attributes.</p>
+
+<p><code class="highlighter-rouge">rwmb_profile_after_process</code></p>
+
+<p>This action fires after the form is processed, e.g. saved or updated. It accepts 2 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$config</code> - the form configuration, taken from the shortcode attributes.</li>
+  <li><code class="highlighter-rouge">$user_id</code> - the submitted user ID</li>
+</ul>
+
+<p>You can use this action to do a custom redirect to your Thank you page or send an email notification.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_action</span><span class="p">(</span> <span class="s1">'rwmb_profile_after_process'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$config</span><span class="p">,</span> <span class="nv">$user_id</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="s1">'my-meta-box'</span> <span class="o">===</span> <span class="nv">$config</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">wp_mail</span><span class="p">(</span> <span class="s1">'admin@domain.com'</span><span class="p">,</span> <span class="s1">'New submission'</span><span class="p">,</span> <span class="s1">'A new user has been just submitted.'</span> <span class="p">);</span>
+
+        <span class="nx">wp_safe_redirect</span><span class="p">(</span> <span class="s1">'thank-you'</span> <span class="p">);</span>
+        <span class="k">die</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">},</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">rwmb_profile_before_form</code></p>
+
+<p>This action fires before form output. It accepts one parameter <code class="highlighter-rouge">$config</code> - the form configuration, taken from the shortcode attributes.</p>
+
+<p><code class="highlighter-rouge">rwmb_profile_after_form</code></p>
+
+<p>This action fires after form output. It accepts one parameter <code class="highlighter-rouge">$config</code> - the form configuration, taken from the shortcode attributes.</p>
+
+<p><code class="highlighter-rouge">rwmb_profile_before_display_confirmation</code></p>
+
+<p>This action fires before the confirmation message is displayed. It accepts one parameter <code class="highlighter-rouge">$config</code> - the form configuration, taken from the shortcode attributes.</p>
+
+<p><code class="highlighter-rouge">rwmb_profile_after_display_confirmation</code></p>
+
+<p>This action fires after the confirmation message is displayed. It accepts one parameter <code class="highlighter-rouge">$config</code> - the form configuration, taken from the shortcode attributes.</p>
+
+<p><code class="highlighter-rouge">rwmb_profile_before_submit_button</code></p>
+
+<p>This action fires before the submit button is displayed. It accepts one parameter <code class="highlighter-rouge">$config</code> - the form configuration, taken from the shortcode attributes.</p>
+
+<p><code class="highlighter-rouge">rwmb_profile_after_submit_button</code></p>
+
+<p>This action fires after the submit button is displayed. It accepts one parameter <code class="highlighter-rouge">$config</code> - the form configuration, taken from the shortcode attributes.</p>
+
+<h3 id="form-fitlers">Form fitlers</h3>
+
+<p><code class="highlighter-rouge">rwmb_profile_validate</code></p>
+
+<p>This filter is used to check if the form is validated. You can use this filter to add custom check for the data before it’s processed.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$is_valid</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_profile_validate'</span><span class="p">,</span> <span class="nv">$is_valid</span><span class="p">,</span> <span class="nv">$config</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="user-data-filters">User data filters</h3>
+
+<p><code class="highlighter-rouge">rwmb_profile_insert_user_data</code></p>
+
+<p>This filter is used to modify the submitted user data before it’s passed to the <code class="highlighter-rouge">wp_insert_user</code> function to <strong>create a new user</strong>. It accepts 2 parameters: the array of user data and the shortcode parameters.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$data</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_profile_insert_user_data'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="nv">$config</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Please note that this filter works only for default user fields such as user email or password. For changing custom fields data, please use <a href="https://docs.metabox.io/filters/#rwmb_field_id_value">rwmb_{field_id}_value</a> filter.</p>
+
+<p><code class="highlighter-rouge">rwmb_profile_update_user_data</code></p>
+
+<p>This filter is used to modify the submitted user data before it’s passed to the <code class="highlighter-rouge">wp_update_user</code> function to <strong>update an existing user</strong>. It accepts 2 parameters: the array of user data and the shortcode parameters.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$data</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_profile_update_user_data'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">,</span> <span class="nv">$config</span> <span class="p">);</span>
+</code></pre></div></div>
+<p>Please note that this filter works only for default user fields such as user email or password. For changing custom fields data, please use <a href="https://docs.metabox.io/filters/#rwmb_field_id_value">rwmb_{field_id}_value</a> filter.</p>
+
+<h3 id="form-fields-filters">Form fields filters</h3>
+
+<p>To modify the defautl register, login or edit profile form fields, please use the following filters:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$fields</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_profile_register_fields'</span><span class="p">,</span> <span class="nv">$fields</span> <span class="p">);</span>
+<span class="nv">$fields</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_profile_login_fields'</span><span class="p">,</span> <span class="nv">$fields</span> <span class="p">);</span>
+<span class="nv">$fields</span> <span class="o">=</span> <span class="nx">apply_filters</span><span class="p">(</span> <span class="s1">'rwmb_profile_info_fields'</span><span class="p">,</span> <span class="nv">$fields</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="user-actions">User actions</h3>
+
+<p><code class="highlighter-rouge">rwmb_profile_before_save_user</code></p>
+
+<p>This action fires before the user is created or updated.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>do_action( 'rwmb_profile_before_save_user', $object );
+</code></pre></div></div>
+
+<p>The action accepts 1 parameter: the instance of the <code class="highlighter-rouge">MB_User_Profile_User</code> class, which handles the submission. It has the following public properties that you can use:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$user_id</code>: The submitted user ID</li>
+  <li><code class="highlighter-rouge">$config</code>: The configuration, taken from the shortcode attributes</li>
+</ul>
+
+<p><code class="highlighter-rouge">rwmb_profile_after_save_user</code></p>
+
+<p>This action fires after the user is created or updated. At that time, all the custom fields in the meta box are already saved into the user meta.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>do_action( 'rwmb_profile_after_save_user', $object );
+</code></pre></div></div>
+
+<p>The action accepts 1 parameter: the instance of the <code class="highlighter-rouge">MB_User_Profile_User</code> class, which handles the submission. It has the following public properties that you can use:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$user_id</code>: The submitted user ID</li>
+  <li><code class="highlighter-rouge">$config</code>: The configuration, taken from the shortcode attributes</li>
+</ul>
+
+<h2 id="notes">Notes</h2>
+
+<h3 id="upload-files--images">Upload files / images</h3>
+
+<p>To be able to upload files or images (via fields <code class="highlighter-rouge">file_advanced</code>, <code class="highlighter-rouge">file_upload</code>, <code class="highlighter-rouge">image_advanced</code>, <code class="highlighter-rouge">image_upload</code>), users have to login and proper capability <code class="highlighter-rouge">upload_files</code> to access the Media Library. If your users don’t have that capability (if they have subscriber role), then the upload fields don’t work. In that case, you can add the capability for that role as follows:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="nf">mb_allow_subscriber_uploads</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">is_admin</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Replace 'subscriber' with the required role to update, can also be contributor.</span>
+    <span class="nv">$subscriber</span> <span class="o">=</span> <span class="nx">get_role</span><span class="p">(</span> <span class="s1">'subscriber'</span> <span class="p">);</span>
+    <span class="nv">$subscriber</span><span class="o">-&gt;</span><span class="na">add_cap</span><span class="p">(</span> <span class="s1">'upload_files'</span> <span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">add_action</span><span class="p">(</span> <span class="s1">'init'</span><span class="p">,</span> <span class="s1">'mb_allow_subscriber_uploads'</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Another solution is using <code class="highlighter-rouge">file</code> or <code class="highlighter-rouge">image</code> fields. Both of them works similar. They just don’t have a nice UI, but they do the job very well.</p>
+
+<h3 id="styling">Styling</h3>
+
+<p>The extension outputs the default fields’ HTML with CSS comes from Meta Box plugin. The style is basic and works in most cases. However, to make it match perfectly with your theme’s style, you need to do some work with CSS.</p>
+
+<h3 id="caching">Caching</h3>
+
+<p>As you might know, Meta Box uses <a href="https://codex.wordpress.org/WordPress_Nonces">nonces</a> to prevent misuse or malicious requests. As the nonce fields are outputted directly in the HTML, they might be cached by caching plugins such as W3 Total Cache, WP Super Cache, etc. And thus, the verification of the nonce might not work properly and break the form submission. In this case, please do not cache the page where the form is embeded (both caching plugins allow you to do that). For more information, please read this <a href="https://myatus.com/p/wordpress-caching-and-nonce-lifespan/">technical article</a>.</p>
+:ET

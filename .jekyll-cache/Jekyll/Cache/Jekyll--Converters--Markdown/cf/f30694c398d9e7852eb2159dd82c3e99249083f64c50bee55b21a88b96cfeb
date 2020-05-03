@@ -1,0 +1,35 @@
+I"�<p>If you’ve used <a href="/field-settings/"><code class="highlighter-rouge">taxonomy</code> field type</a>, you will see it has an option to display options in a checkbox / select tree. When users select a parent item, it will show children item. It’s quite a nice feature for users. But how to do that with normal checkbox list or select field types?</p>
+
+<p>The answer is simple: it’s already built-in the <a href="https://metabox.io">Meta Box plugin</a>. And here is the sample code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Test'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'select_tree'</span><span class="p">,</span> <span class="c1">// or checkbox_list</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'cb'</span><span class="p">,</span>
+                <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Hierarchical checkboxes'</span><span class="p">,</span>
+                <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="k">array</span><span class="p">(</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'value1'</span><span class="p">,</span> <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'label 1'</span> <span class="p">),</span>
+                    <span class="k">array</span><span class="p">(</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'value2'</span><span class="p">,</span> <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'label 2'</span> <span class="p">),</span>
+                    <span class="k">array</span><span class="p">(</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'sub1'</span><span class="p">,</span> <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Sub 1'</span><span class="p">,</span> <span class="s1">'parent'</span> <span class="o">=&gt;</span> <span class="s1">'value1'</span> <span class="p">),</span>
+                    <span class="k">array</span><span class="p">(</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'sub2'</span><span class="p">,</span> <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Sub 2'</span><span class="p">,</span> <span class="s1">'parent'</span> <span class="o">=&gt;</span> <span class="s1">'value1'</span> <span class="p">),</span>
+                <span class="p">),</span>
+                <span class="s1">'flatten'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>To enable select/checkbox tree, you need to:</p>
+
+<ul>
+  <li>Set the option in format of <code class="highlighter-rouge">array( 'value' =&gt; 'Your value', 'label' =&gt; 'Your label' )</code>, e.g. no more short type of <code class="highlighter-rouge">'value' =&gt; 'Label'</code> anymore.</li>
+  <li>For child items, please add <code class="highlighter-rouge">'parent' =&gt; 'parent_value'</code></li>
+  <li>Set <code class="highlighter-rouge">'flatten' =&gt; false</code> for the field</li>
+  <li>Set the field type <code class="highlighter-rouge">checkbox_list</code> if you want a checkbox tree or <code class="highlighter-rouge">select_tree</code> if you want a select tree.</li>
+</ul>
+:ET

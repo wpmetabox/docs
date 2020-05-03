@@ -1,0 +1,90 @@
+I"
+<h2 id="overview">Overview</h2>
+
+<p><code class="highlighter-rouge">rwmb_get_value</code> is a helper function which helps you get the field value.</p>
+
+<p>It’s actually a wrapper of <code class="highlighter-rouge">get_post_meta()</code> function with some additions to match <a href="/database/">the way the plugin saves post meta in the database</a>.</p>
+
+<p>It also adds some additional information to the returned value (such as image info) to make it’s easier for developers.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>To get field value or displaying it in your theme, copy the following code and paste it in your theme’s template file:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_get_value</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>You can put it in the theme <code class="highlighter-rouge">single.php</code> or <code class="highlighter-rouge">template-parts/content.php</code> file, depending on your <a href="https://developer.wordpress.org/themes/basics/template-files/">theme structure</a>.</p>
+
+<h2 id="arguments">Arguments</h2>
+
+<p>The helper function <code class="highlighter-rouge">rwmb_get_value</code> accepts 3 arguments as below:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_get_value</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="nv">$args</span><span class="p">,</span> <span class="nv">$post_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">$field_id</code></td>
+      <td>The field ID. Required.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$args</code></td>
+      <td>Extra arguments for some field types (image, file, etc.). Optional. Can be array or a string in format <code class="highlighter-rouge">param1=value1&amp;param2=value2</code>. See more details in field types (on the left menu, section Fields). Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$post_id</code></td>
+      <td>Post ID that custom fields are get from. Optional. If not present, current post ID is used.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="returned-value">Returned value</h2>
+
+<ul>
+  <li>If the field has a single value (not <code class="highlighter-rouge">multiple</code> nor <code class="highlighter-rouge">clone</code>), then the function returns that value.</li>
+  <li>If the field has multiple values (<code class="highlighter-rouge">multiple</code> or <code class="highlighter-rouge">clone</code>), then the function returns an array of values.</li>
+</ul>
+
+<p>This is an example how to display date of birth (which is a <code class="highlighter-rouge">date</code> field):</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">echo</span> <span class="nx">rwmb_get_value</span><span class="p">(</span> <span class="s1">'dob'</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>This is an example how to display list of interests (a <code class="highlighter-rouge">checkbox_list</code> field):</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$interests</span> <span class="o">=</span> <span class="nx">rwmb_get_value</span><span class="p">(</span> <span class="s1">'interests'</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$interests</span> <span class="k">as</span> <span class="nv">$interest</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$interest</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="alert alert-warning">
+	
+		<svg class="icon icon-warning" aria-hidden="true" role="img"><use href="#icon-warning" xlink:href="#icon-warning"></use></svg>
+	
+	<p>Depends on the field types, the returned value can be different. See more details in field types (on the left menu, section Fields).</p>
+
+</div>
+
+<h2 id="undefined-function-error">Undefined function error</h2>
+
+<p>If you’re using <code class="highlighter-rouge">rwmb_get_value</code> in your theme, there may be a situation when an admin accidentally deactivate the Meta Box plugin and you will see error “Undefined function rwmb_get_value…” and your site will be broken.</p>
+
+<p>To prevent this problem, a simple fix for that is adding the following code into your theme’s <code class="highlighter-rouge">functions.php</code> file:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">function_exists</span><span class="p">(</span> <span class="s1">'rwmb_get_value'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">function</span> <span class="nf">rwmb_get_value</span><span class="p">(</span> <span class="nv">$key</span><span class="p">,</span> <span class="nv">$args</span> <span class="o">=</span> <span class="s1">''</span><span class="p">,</span> <span class="nv">$post_id</span> <span class="o">=</span> <span class="kc">null</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

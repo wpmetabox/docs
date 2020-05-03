@@ -1,0 +1,154 @@
+I"`"<p><a href="https://metabox.io/online-generator/">Online Generator</a> is a tool to help you create and set up custom fields using a simple, friendly User Interface. With this tool, all you need to do is drag and drop, then set parameters and options for the fields you want to add. That means, you don’t even need to write one single line of code to work with custom fields.</p>
+
+<p>We hope that this tool would help you save more time and effort than manual coding, especially if you are PHP beginners.</p>
+
+<p>Our Online Generator is part of our Meta Box Builder plugin, built for the same purpose. It has most of the basic features you might need, but if you are looking for more advanced options or integration with other plugins, give Meta Box Builder a try instead.</p>
+
+<p>Below are our instructions of how to use Online Generator. This guide includes simple actions you can apply when using Online Generator.</p>
+
+<h2 id="basic-requirement-to-use-online-generator">Basic requirement to use Online Generator.</h2>
+
+<p>Before using Online Generator you need to install Meta Box plugin (If you’re new with Meta Box, please read <a href="https://metabox.io/what-is-meta-box-plugin/">here</a>)</p>
+
+<ul>
+  <li>In the admin Dashboard, go to Plugins, click Add new and look for Meta Box in WordPress plugins list.</li>
+  <li>Click Install Now button to install Meta Box.</li>
+  <li>After installing, click Activate Plugin to activate the Meta Box plugin.</li>
+</ul>
+
+<p>After installing Meta Box, you can start to set up meta boxes and custom fields right away with Online Generator.</p>
+
+<p>For installation details of Meta Box, check <a href="https://docs.metabox.io/installation/">here</a>.</p>
+
+<h2 id="online-generator-main-parts">Online Generator main parts</h2>
+
+<p>On the Online Generator page there are 3 main parts you need to notice to create meta boxes and custom fields:</p>
+
+<h3 id="1-general-tab">1. General tab:</h3>
+
+<p>This is the area where you fill in general information such as function name, text domain name and Field ID Prefix.</p>
+
+<p><img src="https://i.imgur.com/AOjFxjb.png" alt="online generator general tab" /></p>
+
+<h3 id="2-meta-box-tab">2. Meta Box tab:</h3>
+
+<p>This is the area which helps you set up parameters for the meta box you need.</p>
+
+<p><img src="https://i.imgur.com/HPdXsHk.png" alt="online generator meta box tab" /></p>
+
+<h3 id="3-fields-tab">3. Fields tab:</h3>
+
+<p>This is the tab you can optionally set up custom fields, includes parameters, actions, orders.</p>
+
+<p><img src="https://i.imgur.com/8ABkxoi.png" alt="online generator fields tab" /></p>
+
+<h2 id="how-to-use-the-online-generator">How to use the Online Generator</h2>
+
+<h3 id="step-1-enter-general-information">Step 1: Enter general information</h3>
+
+<p>In General tab, you will need to enter the function name and text domain for meta box.</p>
+
+<ul>
+  <li><strong>Function name:</strong> is the callback function name used to register meta boxes. This function name needs to be unique, unrepeatable with any previous functions. We recommend you a use prefix in the name.</li>
+  <li><strong>Text domain:</strong> is used to translate meta boxes’ and fields’ labels and texts into many different languages. If your website is multilingual, you should fill in this field. If your website has been set up with just one language, you can set the value to default.</li>
+</ul>
+
+<p><img src="https://i.imgur.com/6g4gGXn.png" alt="general information" /></p>
+
+<h3 id="step-2-setup-the-meta-boxs-parameters">Step 2: Setup the meta box’s parameters</h3>
+
+<p>Moving to Meta Box tab, you’ll see several fields that need to be set up for your meta box. Here’s what they really mean:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ID</td>
+      <td>Meta box ID. This field is not compulsory. If you didn’t type anything in here, meta box’s ID would be automatically created from the title by using the sanitize_title function.</td>
+    </tr>
+    <tr>
+      <td>Title</td>
+      <td>Meta box title. This a very important field and you are asked to fill in the information.</td>
+    </tr>
+    <tr>
+      <td>Priority</td>
+      <td>Order priority when displaying multiple fields. This field is not compulsory. But if your meta box is important and you want users to easily see it, you should set it a high number so meta box will display it on top.</td>
+    </tr>
+    <tr>
+      <td>Context</td>
+      <td>Position you want the meta box placed.</td>
+    </tr>
+    <tr>
+      <td>Post type</td>
+      <td>What kind of post does your meta box belong to? Select your target post types only.</td>
+    </tr>
+    <tr>
+      <td>Autosave</td>
+      <td>Do you want to automatically save custom fields’ values? If yes, tick the box.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="https://i.imgur.com/ggmxRo6.png" alt="meta box settings" /></p>
+
+<p>These are explanations of <a href="https://docs.metabox.io/creating-meta-boxes/">meta box’s parameters</a> you should refer to before setting up your meta box.</p>
+
+<h3 id="step-3-add-and-set-up-custom-fields">Step 3: Add and set up custom fields</h3>
+
+<p>Online Generator supports more than 38 custom fields. To create and choose the custom field you want, move to Field tab.</p>
+
+<p><img src="https://i.imgur.com/Sipay0l.png" alt="select a field type" /></p>
+
+<p>In the left column, you’ll see a list of fields. You can search the field you need by entering field type in search section, or looking into each field group. When you found the field type you want to create, just click on it.</p>
+
+<p>Next, you need to set up and configure that custom field. Click on the triangle symbol in the upper right corner (picture) to enlarge the setting frame for your field.</p>
+
+<p><img src="https://i.imgur.com/NjGG9Vi.png" alt="field settings" /></p>
+
+<p>Fill in all information needed for your custom field.</p>
+
+<p>However, as we mentioned earlier, Online Generator is a basic version of Meta Box Builder, so it doesn’t support all the fields/actions that Meta Box supports. In case, you created a custom field and had errors, it might be because Online Generator is not supporting those fields/actions. You can read again <a href="https://docs.metabox.io/extensions/meta-box-builder/#customizing-field-settings">the instructions</a> and if necessary, you should use <a href="https://metabox.io/plugins/meta-box-builder/">Meta Box Builder</a> instead.</p>
+
+<p>You can also have other actions in this display such as: delete, duplicate, rearrange custom fields’ orders.</p>
+
+<p>For instance:</p>
+
+<p>Delete 1 custom fields by clicking to the trash bin symbol on the top:</p>
+
+<p><img src="https://i.imgur.com/1CnjjZo.png" alt="delete a field" /></p>
+
+<p>If you want to create another custom field with the same parameters as an existing one, you can choose to duplicate the existing custom field by clicking on the symbol at the top right corner.</p>
+
+<p>These functions can save you a lot of time.</p>
+
+<p><img src="https://i.imgur.com/GGvATA1.png" alt="duplicate a field" /></p>
+
+<p>Or you can move custom fields up and down to adjust their orders by clicking in that field and drag and drop.</p>
+
+<p><img src="https://i.imgur.com/0KIEAzX.png" alt="reorder fields" /></p>
+
+<h3 id="step-4-export-code-and-embed-in-your-website">Step 4: Export code and embed in your website</h3>
+
+<p>After you finished configuring your custom fields and meta boxes, you need to export their codes and add them to the website.</p>
+
+<p>Right below the Online Generator Interface, there’s a <strong>Generate code</strong> button that you need to click on to get the code. Copy and paste them into the theme’s <code class="highlighter-rouge">function.php</code> file or your plugin’s file.</p>
+
+<p><img src="https://i.imgur.com/aRE46Mx.png" alt="copy code" /></p>
+
+<p>You have finished creating meta boxes and custom fields on your website. Now it’s time to test them to make sure they work as intended.</p>
+
+<p><img src="https://i.imgur.com/QtbAxOj.png" alt="preview meta box" /></p>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>It’s simple and efficient to create meta boxes with the Online Generator tool, isn’t it?</p>
+
+<p>Hope this tool will help you save time building custom meta boxes and custom fields. In addition, the tool is not contained on your website, doesn’t make your site heavier, so your website will run faster and more smooth.</p>
+
+<p>However, just keep in mind that <a href="https://metabox.io/online-generator/">Online Generator</a> is used for creating basic meta boxes and custom fields. If you want some advanced functions, don’t forget to try <a href="https://metabox.io/plugins/meta-box-builder/">Meta Box Builder</a>.</p>
+:ET

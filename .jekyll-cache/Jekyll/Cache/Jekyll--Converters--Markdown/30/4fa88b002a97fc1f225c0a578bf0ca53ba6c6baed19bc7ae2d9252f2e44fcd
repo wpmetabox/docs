@@ -1,0 +1,57 @@
+I"�<h2 id="overview">Overview</h2>
+
+<p>Meta Box Text Limiter is a free extension which allows you to limit the number of characters or words entered for text and textarea fields.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<h2 id="usage">Usage</h2>
+
+<p>Assume you have a text field with the following settings:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+	<span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'My Text Field'</span><span class="p">,</span>
+	<span class="s1">'id'</span>    <span class="o">=&gt;</span> <span class="s1">'t'</span><span class="p">,</span>
+	<span class="s1">'type'</span>  <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>And you want to limit the number of characters for that field to 40. Doing that by adding <code class="highlighter-rouge">'limit' =&gt; 40</code> to the field:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+	<span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'My Text Field'</span><span class="p">,</span>
+	<span class="s1">'id'</span>    <span class="o">=&gt;</span> <span class="s1">'t'</span><span class="p">,</span>
+	<span class="s1">'type'</span>  <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+	<span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="mi">40</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>If you need to limit by words, just add <code class="highlighter-rouge">'limit_type' =&gt; 'word'</code>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+	<span class="s1">'title'</span>      <span class="o">=&gt;</span> <span class="s1">'My Text Field'</span><span class="p">,</span>
+	<span class="s1">'id'</span>         <span class="o">=&gt;</span> <span class="s1">'t'</span><span class="p">,</span>
+	<span class="s1">'type'</span>       <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+	<span class="s1">'limit'</span>      <span class="o">=&gt;</span> <span class="mi">40</span><span class="p">,</span>
+	<span class="s1">'limit type'</span> <span class="o">=&gt;</span> <span class="s1">'word'</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>That’s all!</p>
+
+<p>Note that this extension works only with <a href="https://docs.metabox.io/fields/text/">text</a> and <a href="https://docs.metabox.io/fields/textarea/">textarea</a> fields.</p>
+:ET

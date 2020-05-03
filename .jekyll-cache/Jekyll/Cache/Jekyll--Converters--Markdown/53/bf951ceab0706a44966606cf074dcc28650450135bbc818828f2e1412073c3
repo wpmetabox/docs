@@ -1,0 +1,61 @@
+I"Ç	<h2 id="overview">Overview</h2>
+
+<p>The textarea field creates a simple textarea (multiline) input. You can use this field for entering a paragraph of text or custom HTML.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/Wrg9ISA.png" alt="textarea" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">placeholder</code></td>
+      <td>The placeholder text. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">cols</code></td>
+      <td>Number of columns. Optional. Default 60.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rows</code></td>
+      <td>Number of rows. Optional. Default 4.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="data">Data</h2>
+
+<p>This field simply saves a single entered value in the database. The value is saved as it is. So if you enter HTML, it will save exactly that HTML part.</p>
+
+<p>If the field is cloneable, then the value is stored as a serialized array in a single row in the database.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>If field is not cloneable:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>If field is cloneable:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$values</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$values</span> <span class="k">as</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This field outputs exactly what you have entered. So be careful if you enter HTML.</p>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a>.</p>
+:ET

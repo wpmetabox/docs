@@ -1,0 +1,324 @@
+I":6<h2 id="overview">Overview</h2>
+
+<p>Fields are added to a meta box via the key <code class="highlighter-rouge">fields</code>. Each field is an array which contains settings to determine where and how data is loaded and saved. All fields share some common settings, but also offer unique settings per field type.</p>
+
+<h2 id="common-settings">Common settings</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">name</code></td>
+      <td>Field label. Optional. If empty, the field input is 100% width.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>Field ID. Required and must be unique. <strong>It will be used as <code class="highlighter-rouge">meta_key</code> when saving to the database</strong>. It’s a good practice to use only numbers, letters, and underscores.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">type</code></td>
+      <td>Field type. Required. See below.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">desc</code></td>
+      <td>Field description, displayed below the field input. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">label_description</code></td>
+      <td>Label description, displayed below the field label. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">std</code></td>
+      <td>Default value. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">multiple</code></td>
+      <td>Does the field have multiple values (like the <code class="highlighter-rouge">select</code> field)? Optional. Default <code class="highlighter-rouge">false</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">class</code></td>
+      <td>Custom CSS class, in case you want to customize the field. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">before</code></td>
+      <td>Custom HTML outputted before field’s HTML.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">after</code></td>
+      <td>Custom HTML outputted after field’s HTML.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">clone</code></td>
+      <td>Is the field clonable (repeatable)? <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>. Optional. Default <code class="highlighter-rouge">false</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">max_clone</code></td>
+      <td>Maximum number of clones. Optional. Default <code class="highlighter-rouge">0</code> (unlimited).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sort_clone</code></td>
+      <td>Ability to drag-and-drop reorder clones (<code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>). Optional. Default <code class="highlighter-rouge">false</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">clone_default</code></td>
+      <td>Clone the default value of fields? <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> (default).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">add_button</code></td>
+      <td>The text for <strong>Add more</strong> clone button. Optional. Default “+ Add more”.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">clone_as_multiple</code></td>
+      <td>Whether to store clone values in multiple rows in the database? Optional. Default <code class="highlighter-rouge">false</code>. See <a href="https://metabox.io/introducing-clone-as-multiple-feature/">this post</a> for details.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">attributes</code></td>
+      <td>Custom attributes for inputs. See <a href="/custom-attributes/">more details</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">save_field</code></td>
+      <td>Whether to save field value. Optional. Default <code class="highlighter-rouge">true</code>. This option doesn’t work in the block editor (Gutenberg).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sanitize_callback</code></td>
+      <td>Custom PHP callback for sanitizing field value before saving into the database. Set it to <code class="highlighter-rouge">none</code> to bypass the sanitization. See <a href="/sanitization/">more details</a>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="alert alert-info">
+	
+		<svg class="icon icon-info" aria-hidden="true" role="img"><use href="#icon-info" xlink:href="#icon-info"></use></svg>
+	
+	<p>If you’re using <a href="https://metabox.io/plugins/meta-box-builder/">Meta Box Builder</a>, and you don’t find these settings, please go to <strong>Advanced</strong> tab and add a custom attribute with the setting name and custom value. See the screenshot below for setting <code class="highlighter-rouge">sanitize_callback</code> to <code class="highlighter-rouge">none</code>:</p>
+
+</div>
+
+<p><img src="https://imgur.com/9UyYN71.png" alt="adding sanitize callback to fields" /></p>
+
+<h3 id="field-types">Field types</h3>
+
+<p>Below is the list of all supported field types with brief description:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">autocomplete</code></td>
+      <td>Text input that uses jQuery autocomplete library to perform the autocomplete action.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">background</code></td>
+      <td>Set background properties. Added in version 4.13.0.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">button</code></td>
+      <td>Display simple button. Usually used for JavaScript triggers.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">button_group</code></td>
+      <td>Select one or multiple choices by enabling button(s) from a group. Added in version 4.13.0.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">checkbox</code></td>
+      <td>Checkbox.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">checkbox_list</code></td>
+      <td>List of checkboxes.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">color</code></td>
+      <td>Color picker.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">custom_html</code></td>
+      <td>Output custom HTML content.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">date</code></td>
+      <td>Date picker.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">datetime</code></td>
+      <td>Date and time picker.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">divider</code></td>
+      <td>Simple horizontal line.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">fieldset_text</code></td>
+      <td>Group of text inputs.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">file</code></td>
+      <td>Simple file upload with default UI like <code class="highlighter-rouge">&lt;input type="file" /&gt;</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">file_advanced</code></td>
+      <td>File upload with WordPress media popup.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">file_input</code></td>
+      <td>Enter file URL or select a file from media library.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">file_upload</code></td>
+      <td>File upload with drag and drop area.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">heading</code></td>
+      <td>Heading text.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hidden</code></td>
+      <td>Input field with <code class="highlighter-rouge">hidden</code> type.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">image</code></td>
+      <td>Similar to <code class="highlighter-rouge">file</code> but for images only.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">image_advanced</code></td>
+      <td>Similar to <code class="highlighter-rouge">file_advanced</code>, but for images only.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">image_select</code></td>
+      <td>Similar to radio select, but use images instead of “radio”.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">image_upload</code> or <code class="highlighter-rouge">plupload_image</code></td>
+      <td>Similar to <code class="highlighter-rouge">file_upload</code> but for images only.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">key_value</code></td>
+      <td>Add an unlimited group of key-value pairs.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">map</code></td>
+      <td>Google maps.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">number</code></td>
+      <td>Input for numbers which uses HTML5 input <code class="highlighter-rouge">type="number"</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">oembed</code></td>
+      <td>Input for media from Youtube, Vimeo and all <a href="https://codex.wordpress.org/Embeds">supported sites</a> by WordPress.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">password</code></td>
+      <td>Password input.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">post</code></td>
+      <td>Select dropdown for posts.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">radio</code></td>
+      <td>Radio input.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">range</code></td>
+      <td>HTML 5 range input.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">select</code></td>
+      <td>Select dropdown.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">select_advanced</code></td>
+      <td>Beautiful select dropdown using <a href="https://select2.github.io">select2</a> library.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">single_image</code></td>
+      <td>Select or upload a single image via WordPress media popup. Added in version 4.13.0.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">slider</code></td>
+      <td>jQuery UI slider.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">switch</code></td>
+      <td>On/off switch with iOS style. Added in version 4.13.0.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">taxonomy</code></td>
+      <td>Select dropdown for taxonomy terms. Doesn’t save term IDs in post meta, but set post terms.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">taxonomy_advanced</code></td>
+      <td>Same as <code class="highlighter-rouge">taxonomy</code> but saves term IDs in post meta as a comma separated string. It doesn’t set post terms.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">text</code></td>
+      <td>Text field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">text_list</code></td>
+      <td>Group of text inputs. Similar to <code class="highlighter-rouge">fieldset_text</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">textarea</code></td>
+      <td>Textarea field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">time</code></td>
+      <td>Time picker.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">user</code></td>
+      <td>Select dropdown for users.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">video</code></td>
+      <td>Upload or select a video from the Media Library using the WordPress media popup.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">wysiwyg</code></td>
+      <td>WordPress editor.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="alert">
+	
+		<svg class="icon icon-info" aria-hidden="true" role="img"><use href="#icon-info" xlink:href="#icon-info"></use></svg>
+	
+	<p>In addition to the above field types, you can also use HTML5 input types. See <a href="/html5-input-types/">this guide</a> for details.</p>
+
+</div>
+
+<h2 id="default-value">Default value</h2>
+
+<p>The mechanism of <code class="highlighter-rouge">std</code> in Meta Box works only if the <strong>meta box has not been saved before</strong>. Here “meta box” means all fields in that meta box, not just the specific field that you set the <code class="highlighter-rouge">std</code> for. So if there’s any field that already has value, then <code class="highlighter-rouge">std</code> won’t work for other fields, even new fields you’ve just added.</p>
+
+<p>Examples:</p>
+
+<p>When you create a new post, then no fields have values (of course), then <code class="highlighter-rouge">std</code> works for all fields.</p>
+
+<p>When you edit an existing post that has a meta box, then some fields might have values. Therefore, <code class="highlighter-rouge">std</code> doesn’t work for all fields. In this case, if you edit the meta box and add a new field, <code class="highlighter-rouge">std</code> still doesn’t work for that new field (even it has no value before), because the meta box has been saved before.</p>
+
+<h2 id="field-specific-settings">Field-specific settings</h2>
+
+<p>Besides all common settings, each field type can have its own settings. Please see more details for each field type on the left menu (section “Fields”).</p>
+
+<div class="alert">
+	
+		<svg class="icon icon-info" aria-hidden="true" role="img"><use href="#icon-info" xlink:href="#icon-info"></use></svg>
+	
+	<p>To save time read and write settings for fields, we’ve already prepared some code examples that you can get from <a href="https://github.com/wpmetabox/library/">Meta Box Code Snippet Library</a>.</p>
+
+</div>
+:ET

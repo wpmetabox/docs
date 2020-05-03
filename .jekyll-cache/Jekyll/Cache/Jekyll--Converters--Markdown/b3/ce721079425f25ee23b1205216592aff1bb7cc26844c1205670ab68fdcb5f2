@@ -1,0 +1,768 @@
+I"4�<h2 id="overview">Overview</h2>
+
+<p>The <strong>Meta Box Group</strong> extensions helps you to organizing custom fields into repeatable and collapsible groups. You can use this extension to group similar fields into one group to create hierarchy. You can clone the whole group, or sub-group. There’s no limitation on the nesting level.</p>
+
+<p><img src="https://i1.wp.com/metabox.io/wp-content/uploads/2015/02/meta-box-group-example.png" alt="meta box group example" /></p>
+
+<p>For more information, please see the <a href="https://metabox.io/plugins/meta-box-group/">extension page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<h2 id="tutorial">Tutorial</h2>
+
+<p>If this is the first time you use <a href="https://metabox.io/plugins/meta-box-group/">Meta Box Group</a>, please follow the beginner tutorial here:</p>
+
+<p><a href="https://metabox.io/create-group-of-custom-fields-with-meta-box-group/">How to Create a Group of Custom Fields with Meta Box Group</a></p>
+
+<p>The documentation below is like a detailed reference that you can use anytime you want to look for something in Meta Box Group.</p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Make sure you know how to <a href="/creating-meta-boxes/">create meta boxes</a> and <a href="/field-settings/">fields</a> before continuing!</p>
+
+<p>The Meta Box Group adds a new field type <code class="highlighter-rouge">group</code>. This field type has following settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">name</code></td>
+      <td>Field name (label), same like other normal fields. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>Field ID, will be used to store custom field values of all sub-field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">type</code></td>
+      <td>Must be <code class="highlighter-rouge">group</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">fields</code></td>
+      <td>Array of sub-fields. Each sub-field is declared as a normal field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">clone</code></td>
+      <td>Is the group clonable?</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sort_clone</code></td>
+      <td>Can clones be sorted? <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>. If <code class="highlighter-rouge">true</code>, you can drag and drop group clones to reorder them.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">collapsible</code></td>
+      <td>Make group collapsible? <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>. Default <code class="highlighter-rouge">false</code>. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">save_state</code></td>
+      <td>Whether or not save the collapse/expand state? <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>. Default <code class="highlighter-rouge">false</code>. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">default_state</code></td>
+      <td>Is the group collapsed or expanded by default (when page loads)? <code class="highlighter-rouge">collapsed</code> or <code class="highlighter-rouge">expanded</code> (default).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">group_title</code></td>
+      <td>The title of collapsible group. See section collapsible groups for details.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So, to add a group, you need to add a field with type <code class="highlighter-rouge">group</code> and list of sub-fields in its <code class="highlighter-rouge">fields</code> attribute, like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Meta Box Title'</span><span class="p">,</span>
+    <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'name'</span>   <span class="o">=&gt;</span> <span class="s1">'Group'</span><span class="p">,</span> <span class="c1">// Optional</span>
+            <span class="s1">'id'</span>     <span class="o">=&gt;</span> <span class="s1">'group_id'</span><span class="p">,</span>
+            <span class="s1">'type'</span>   <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+            <span class="c1">// List of sub-fields</span>
+            <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Text'</span><span class="p">,</span>
+                    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="c1">// Other sub-fields here</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="sample-code">Sample code</h3>
+
+<p>The code below creates a group for tracks in an album, each track is a group and is clonable (see screenshot below):</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="s1">'meta_box_group_demo_register'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">meta_box_group_demo_register</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Album Tracks'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'id'</span>     <span class="o">=&gt;</span> <span class="s1">'standard'</span><span class="p">,</span>
+                <span class="c1">// Group field</span>
+                <span class="s1">'type'</span>   <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+                <span class="c1">// Clone whole group?</span>
+                <span class="s1">'clone'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="c1">// Drag and drop clones to reorder them?</span>
+                <span class="s1">'sort_clone'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="c1">// Sub-fields</span>
+                <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Track name'</span><span class="p">,</span>
+                        <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Release Date'</span><span class="p">,</span>
+                        <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'date'</span><span class="p">,</span>
+                        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'date'</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Genre'</span><span class="p">,</span>
+                        <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'genre'</span><span class="p">,</span>
+                        <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'select_advanced'</span><span class="p">,</span>
+                        <span class="s1">'options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                            <span class="s1">'pop'</span>  <span class="o">=&gt;</span> <span class="s1">'Pop'</span><span class="p">,</span>
+                            <span class="s1">'rock'</span> <span class="o">=&gt;</span> <span class="s1">'Rock'</span><span class="p">,</span>
+                        <span class="p">),</span>
+                    <span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here is how it appears:</p>
+
+<p><img src="https://i.imgur.com/KVIJzSa.png" alt="clone group (repeater)" /></p>
+
+<h3 id="multi-level-nested-groups">Multi-level nested groups</h3>
+
+<p>Since version 1.1, the Meta Box Group extension supports multi-level nested groups. To add nested groups to a group, simply register a new field with type <code class="highlighter-rouge">group</code> and add subfields to it. Here is an example:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="s1">'demo_nested_groups'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">demo_nested_groups</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Multi-level nested groups'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'id'</span>     <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+                <span class="s1">'type'</span>   <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+                <span class="s1">'clone'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="c1">// Normal field (cloned)</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'Text'</span><span class="p">,</span>
+                        <span class="s1">'id'</span>    <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                        <span class="s1">'type'</span>  <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                        <span class="s1">'clone'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="c1">// Nested group level 2</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'name'</span>   <span class="o">=&gt;</span> <span class="s1">'Sub group'</span><span class="p">,</span>
+                        <span class="s1">'id'</span>     <span class="o">=&gt;</span> <span class="s1">'sub_group'</span><span class="p">,</span>
+                        <span class="s1">'type'</span>   <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+                        <span class="s1">'clone'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                            <span class="c1">// Normal field (cloned)</span>
+                            <span class="k">array</span><span class="p">(</span>
+                                <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'Sub text'</span><span class="p">,</span>
+                                <span class="s1">'id'</span>    <span class="o">=&gt;</span> <span class="s1">'sub_text'</span><span class="p">,</span>
+                                <span class="s1">'type'</span>  <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                                <span class="s1">'clone'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                            <span class="p">),</span>
+                        <span class="p">),</span>
+                    <span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Result:</p>
+
+<p><img src="https://i.imgur.com/gWazAFA.png" alt="multi-level nested groups" /></p>
+
+<h3 id="collapsible-groups">Collapsible Groups</h3>
+
+<p>To make a group collapsible, you need to set the settings <code class="highlighter-rouge">'collapsible' =&gt; true</code>. The collapsible group also has the following settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">save_state</code></td>
+      <td>Whether or not save the collapse/expand state? <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>. Default <code class="highlighter-rouge">false</code>. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">default_state</code></td>
+      <td>Is the group collapsed or expanded by default (when page loads)? <code class="highlighter-rouge">collapsed</code> or <code class="highlighter-rouge">expanded</code> (default).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">group_title</code></td>
+      <td>The title of collapsible group.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Since version 1.3.0, we have imporved the <code class="highlighter-rouge">group_title</code> settings so it is able to show static text, the group index (if group is cloneable), sub-field value or <em>any combination of them</em>. To do that, simply set a <code class="highlighter-rouge">group_title</code> as a text and use the following format:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'group_title' =&gt; 'Static text {#} {sub_field_1} {sub_field_2}',
+</code></pre></div></div>
+
+<p>To specify the group index, use <code class="highlighter-rouge">{#}</code>. To specify a sub field value, use <code class="highlighter-rouge">{sub_field_id}</code>. You can add as many sub fields as you want. The order of elements in the group title is not important. You can mix them in any way.</p>
+
+<p>This is an example of a collapsible group:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>      <span class="o">=&gt;</span> <span class="s1">'Company Branches'</span><span class="p">,</span>
+        <span class="s1">'post_types'</span> <span class="o">=&gt;</span> <span class="s1">'page'</span><span class="p">,</span>
+        <span class="s1">'fields'</span>     <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'g1'</span><span class="p">,</span>
+                <span class="s1">'name'</span>        <span class="o">=&gt;</span> <span class="s1">'Branches'</span><span class="p">,</span>
+                <span class="s1">'type'</span>        <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+                <span class="s1">'clone'</span>       <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="s1">'sort_clone'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="s1">'collapsible'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="s1">'group_title'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'field'</span> <span class="o">=&gt;</span> <span class="s1">'name'</span> <span class="p">),</span> <span class="c1">// ID of the subfield</span>
+                <span class="s1">'save_state'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+
+                <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Name'</span><span class="p">,</span>
+                        <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'name'</span><span class="p">,</span>
+                        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Address'</span><span class="p">,</span>
+                        <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'address'</span><span class="p">,</span>
+                        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'contacts'</span><span class="p">,</span>
+                        <span class="s1">'type'</span>        <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+                        <span class="s1">'clone'</span>       <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                        <span class="s1">'collapsible'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                        <span class="s1">'save_state'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                        <span class="s1">'group_title'</span> <span class="o">=&gt;</span> <span class="s1">'{person}'</span><span class="p">,</span>
+                        <span class="s1">'fields'</span>      <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                            <span class="k">array</span><span class="p">(</span>
+                                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'person'</span><span class="p">,</span>
+                                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Person'</span><span class="p">,</span>
+                            <span class="p">),</span>
+                            <span class="k">array</span><span class="p">(</span>
+                                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'phone'</span><span class="p">,</span>
+                                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Phone'</span><span class="p">,</span>
+                            <span class="p">),</span>
+                        <span class="p">),</span>
+                    <span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="getting-sub-field-value">Getting sub-field value</h2>
+
+<p>To get sub-field value, you need to get meta value of the group. This is done with following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$group_value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'group_id'</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>The returned value is associated array of sub-fields’ values with keys are sub-fields IDs, like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'sub_field_1_key'</span> <span class="o">=&gt;</span> <span class="s1">'sub_field_1_value'</span><span class="p">,</span>
+    <span class="s1">'sub_field_2_key'</span> <span class="o">=&gt;</span> <span class="s1">'sub_field_2_value'</span><span class="p">,</span>
+    <span class="s1">'sub_field_3_key'</span> <span class="o">=&gt;</span> <span class="s1">'sub_field_3_value'</span><span class="p">,</span>
+    <span class="c1">//...</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>So, to get value of a sub-field, use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span> <span class="nv">$group_value</span><span class="p">[</span><span class="nv">$sub_field_key</span><span class="p">]</span> <span class="p">)</span> <span class="o">?</span> <span class="nv">$group_value</span><span class="p">[</span><span class="nv">$sub_field_key</span><span class="p">]</span> <span class="o">:</span> <span class="s1">''</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span> <span class="c1">// Display sub-field value</span>
+</code></pre></div></div>
+
+<p>If the group is <strong>cloneable</strong>, then the value returned by <code class="highlighter-rouge">rwmb_meta</code> is array of group values, each group value is an array of sub-fields’ values:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'sub_field_1_key'</span> <span class="o">=&gt;</span> <span class="s1">'sub_field_1_value'</span><span class="p">,</span>
+        <span class="s1">'sub_field_2_key'</span> <span class="o">=&gt;</span> <span class="s1">'sub_field_2_value'</span><span class="p">,</span>
+        <span class="s1">'sub_field_3_key'</span> <span class="o">=&gt;</span> <span class="s1">'sub_field_3_value'</span><span class="p">,</span>
+        <span class="c1">//...</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'sub_field_1_key'</span> <span class="o">=&gt;</span> <span class="s1">'sub_field_1_value'</span><span class="p">,</span>
+        <span class="s1">'sub_field_2_key'</span> <span class="o">=&gt;</span> <span class="s1">'sub_field_2_value'</span><span class="p">,</span>
+        <span class="s1">'sub_field_3_key'</span> <span class="o">=&gt;</span> <span class="s1">'sub_field_3_value'</span><span class="p">,</span>
+        <span class="c1">//...</span>
+    <span class="p">),</span>
+    <span class="c1">//...</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>To output values of cloneable groups, use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$group_values</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'group_id'</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">empty</span><span class="p">(</span> <span class="nv">$group_values</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$group_values</span> <span class="k">as</span> <span class="nv">$group_value</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$value</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span> <span class="nv">$group_value</span><span class="p">[</span><span class="nv">$sub_field_key</span><span class="p">]</span> <span class="p">)</span> <span class="o">?</span> <span class="nv">$group_value</span><span class="p">[</span><span class="nv">$sub_field_key</span><span class="p">]</span> <span class="o">:</span> <span class="s1">''</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span> <span class="c1">// Display sub-field value</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="examples">Examples</h3>
+
+<p>This sample code registers a group of fields: contact name, contact email, contact phone number:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="s1">'prefix_register_contacts'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_register_contacts</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Contacts'</span><span class="p">,</span>
+        <span class="s1">'post_types'</span> <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'contacts'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+                <span class="s1">'clone'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'name'</span><span class="p">,</span>
+                        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Name'</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+                        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Email'</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="k">array</span><span class="p">(</span>
+                        <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'phone'</span><span class="p">,</span>
+                        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                        <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Phone'</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In the <code class="highlighter-rouge">single.php</code>, you can add the following code to display contacts:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$contacts</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'contacts'</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">empty</span><span class="p">(</span> <span class="nv">$contacts</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$contacts</span> <span class="k">as</span> <span class="nv">$contact</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">'&lt;div class="contact"&gt;'</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s1">'&lt;h4&gt;'</span><span class="p">,</span> <span class="s1">'Contact info'</span><span class="p">,</span> <span class="s1">'&lt;/h4&gt;'</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s1">'&lt;p&gt;&lt;label&gt;'</span><span class="p">,</span> <span class="s1">'Name:'</span><span class="p">,</span> <span class="s1">'&lt;label&gt; '</span><span class="p">,</span> <span class="nv">$contact</span><span class="p">[</span><span class="s1">'name'</span><span class="p">],</span> <span class="s1">'&lt;/p&gt;'</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s1">'&lt;p&gt;&lt;label&gt;'</span><span class="p">,</span> <span class="s1">'Email:'</span><span class="p">,</span> <span class="s1">'&lt;label&gt; '</span><span class="p">,</span> <span class="nv">$contact</span><span class="p">[</span><span class="s1">'email'</span><span class="p">],</span> <span class="s1">'&lt;/p&gt;'</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s1">'&lt;p&gt;&lt;label&gt;'</span><span class="p">,</span> <span class="s1">'Phone number:'</span><span class="p">,</span> <span class="s1">'&lt;label&gt; '</span><span class="p">,</span> <span class="nv">$contact</span><span class="p">[</span><span class="s1">'phone'</span><span class="p">],</span> <span class="s1">'&lt;/p&gt;'</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is another more advanced example with nested group:</p>
+
+<p>Group field declaration:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>     <span class="o">=&gt;</span> <span class="s1">'sector'</span><span class="p">,</span>
+    <span class="s1">'type'</span>   <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+    <span class="s1">'clone'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Title'</span><span class="p">,</span>
+            <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'sector-title'</span><span class="p">,</span>
+            <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="c1">// Group nested</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'id'</span>     <span class="o">=&gt;</span> <span class="s1">'sector-object'</span><span class="p">,</span>
+            <span class="s1">'type'</span>   <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+            <span class="s1">'clone'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Images'</span><span class="p">,</span>
+                    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'sector-object-img'</span><span class="p">,</span>
+                    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'image_advanced'</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Description'</span><span class="p">,</span>
+                    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'sector-object-description'</span><span class="p">,</span>
+                    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'textarea'</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<p>How to get value and output in the frontend:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Requires PHP 7+.</span>
+<span class="nv">$sectors</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'sector'</span> <span class="p">);</span>
+<span class="nv">$sectors</span> <span class="o">=</span> <span class="nv">$sectors</span> <span class="o">??</span> <span class="p">[];</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$sectors</span> <span class="k">as</span> <span class="nv">$sector</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$sector</span><span class="p">[</span><span class="s1">'sector-title'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span><span class="p">;</span>
+
+    <span class="nv">$objects</span> <span class="o">=</span> <span class="nv">$sector</span><span class="p">[</span><span class="s1">'sector-object'</span><span class="p">]</span> <span class="o">??</span> <span class="p">[];</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$objects</span> <span class="k">as</span> <span class="nv">$object</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$imgs</span> <span class="o">=</span> <span class="nv">$object</span><span class="p">[</span><span class="s1">'sector-object-img'</span><span class="p">]</span> <span class="o">??</span> <span class="o">:</span> <span class="p">[];</span>
+        <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$imgs</span> <span class="k">as</span> <span class="nv">$img</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">echo</span> <span class="s1">'&lt;img src="'</span> <span class="o">.</span> <span class="nx">wp_get_attachment_image_url</span><span class="p">(</span> <span class="nv">$img</span><span class="p">,</span> <span class="s1">'your_image_size'</span> <span class="p">)</span> <span class="o">.</span> <span class="s1">'"&gt;'</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">echo</span> <span class="nv">$object</span><span class="p">[</span><span class="s1">'sector-object-description'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="outputing-group-with-page-builders">Outputing group with page builders</h3>
+
+<p>If you want to output a group in a page builder like <a href="https://metabox.io/recommends/beaver-builder/">Beaver Builder</a> or <a href="https://metabox.io/recommends/elementor/">Elementor</a>, please understand that there’s no way to output each sub-field in a group as a element in these page builders.</p>
+
+<p>In order to display group value, the recommended way is creating a shortcode to display the group. Then you can insert the shortcode anywhere with the page builder.</p>
+
+<p>Here is an example of a custom shortcode for a group with 3 fields: title (<code class="highlighter-rouge">text</code>), images (<code class="highlighter-rouge">image_advanced</code>) and description (<code class="highlighter-rouge">wysiwyg</code>). You can use it as a start:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Requires PHP 7+.</span>
+<span class="nx">add_shortcode</span><span class="p">(</span> <span class="s1">'my_group'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nv">$group</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'group_field_id'</span> <span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="nb">empty</span><span class="p">(</span> <span class="nv">$group</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="s1">''</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="nv">$output</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+	
+	<span class="c1">// Sub-field title.</span>
+	<span class="nv">$title</span> <span class="o">=</span> <span class="nv">$group</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span><span class="p">;</span>
+	<span class="nv">$output</span> <span class="o">.=</span> <span class="s1">'&lt;h3 class="my-title"&gt;'</span> <span class="o">.</span> <span class="nv">$title</span> <span class="o">.</span> <span class="s1">'&lt;/h3&gt;'</span><span class="p">;</span>
+	
+	<span class="c1">// Sub-field image_advanced.</span>
+	<span class="nv">$image_ids</span> <span class="o">=</span> <span class="nv">$group</span><span class="p">[</span><span class="s1">'images'</span><span class="p">]</span> <span class="o">??</span> <span class="p">[];</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="nv">$image_ids</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="nv">$output</span> <span class="o">.=</span> <span class="s1">'&lt;div class="my-images"&gt;'</span><span class="p">;</span>
+		<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$image_ids</span> <span class="k">as</span> <span class="nv">$image_id</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="nv">$image</span> <span class="o">=</span> <span class="nx">RWMB_Image_Field</span><span class="o">::</span><span class="na">file_info</span><span class="p">(</span> <span class="nv">$image_id</span><span class="p">,</span> <span class="p">[</span><span class="s1">'size'</span> <span class="o">=&gt;</span> <span class="s1">'my-image-size'</span><span class="p">]</span> <span class="p">);</span>
+			<span class="nv">$output</span> <span class="o">.=</span> <span class="s1">'&lt;img src="'</span> <span class="o">.</span> <span class="nv">$image</span><span class="p">[</span><span class="s1">'url'</span><span class="p">]</span> <span class="o">.</span> <span class="s1">'"&gt;'</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="nv">$output</span> <span class="o">.=</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="c1">// Sub-field description.</span>
+	<span class="nv">$desc</span> <span class="o">=</span> <span class="nv">$group</span><span class="p">[</span><span class="s1">'desc'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span><span class="p">;</span>
+	<span class="nv">$output</span> <span class="o">.=</span> <span class="s1">'&lt;div class="my-description"&gt;'</span> <span class="o">.</span> <span class="nx">wpautop</span><span class="p">(</span> <span class="nv">$desc</span> <span class="p">)</span><span class="o">.</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">;</span>
+	
+	<span class="k">return</span> <span class="nv">$output</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+
+<span class="c1">// Usage: put [my_group] into your post content or page builder modules.</span>
+</code></pre></div></div>
+
+<h3 id="sub-field-values">Sub-field values</h3>
+
+<p>It’s important to note that the helper function returns only raw array of sub-field values. It doesn’t transform value to meaning full details like <a href="https://docs.metabox.io/rwmb-meta/">rwmb_meta</a> function for specific fields. Specifically:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sub-field type</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">taxonomy_advanced</code>, <code class="highlighter-rouge">user</code>, <code class="highlighter-rouge">post</code></td>
+      <td>Object ID(s)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">file</code>, <code class="highlighter-rouge">file_advanced</code>, <code class="highlighter-rouge">file_upload</code>, <code class="highlighter-rouge">image</code>, <code class="highlighter-rouge">image_advanced</code>, <code class="highlighter-rouge">image_upload</code>, <code class="highlighter-rouge">single_image</code></td>
+      <td>Attachment ID(s)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">map</code>, <code class="highlighter-rouge">osm</code></td>
+      <td>Text in format “latitude,longitude,zoom”</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">oembed</code></td>
+      <td>URL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To get more details for fields, you might need to add some extra code as below.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$group</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'group_id'</span> <span class="p">);</span>
+<span class="nv">$image_ids</span> <span class="o">=</span> <span class="nv">$group</span><span class="p">[</span><span class="s1">'image_key'</span><span class="p">]</span> <span class="o">??</span> <span class="o">:</span> <span class="p">[];</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$image_ids</span> <span class="k">as</span> <span class="nv">$image_id</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$image</span> <span class="o">=</span> <span class="nx">RWMB_Image_Field</span><span class="o">::</span><span class="na">file_info</span><span class="p">(</span> <span class="nv">$image_id</span><span class="p">,</span> <span class="p">[</span><span class="s1">'size'</span> <span class="o">=&gt;</span> <span class="s1">'thumbnail'</span><span class="p">]</span> <span class="p">);</span>
+	<span class="k">echo</span> <span class="s1">'&lt;img src="'</span> <span class="o">.</span> <span class="nv">$image</span><span class="p">[</span><span class="s1">'url'</span><span class="p">]</span> <span class="o">.</span> <span class="s1">'"&gt;'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>These are some helper functions that you can use to retrieve more info:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field type</th>
+      <th>Helper function(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">image</code>, <code class="highlighter-rouge">image_advanced</code>, <code class="highlighter-rouge">plupload_image</code>, <code class="highlighter-rouge">thickbox_image</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/"><code class="highlighter-rouge">wp_get_attachment_image_src()</code></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><a href="https://developer.wordpress.org/reference/functions/wp_get_attachment_image_url/"><code class="highlighter-rouge">wp_get_attachment_image_url()</code></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">RWMB_Image_Field::file_info( $image_id, $args );</code> (where <code class="highlighter-rouge">$args</code> is an array and accepts only <code class="highlighter-rouge">size</code> attribute)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">file</code>, <code class="highlighter-rouge">file_advanced</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_attached_file/"><code class="highlighter-rouge">get_attached_file()</code></a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="highlighter-rouge">RWMB_File_Field::file_info( $image_id );</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">oembed</code></td>
+      <td><code class="highlighter-rouge">RWMB_OEmbed_Field::get_embed( $url );</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">taxonomy</code>, <code class="highlighter-rouge">taxonomy_advanced</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_term/"><code class="highlighter-rouge">get_term()</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">user</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_userdata/"><code class="highlighter-rouge">get_userdata()</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">post</code></td>
+      <td><a href="https://developer.wordpress.org/reference/functions/get_post/"><code class="highlighter-rouge">get_post()</code></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Read more on <a href="/database/">how field values are saved into the database</a>.</p>
+
+<h2 id="setting-default-group-values">Setting default group values</h2>
+
+<p>There are 2 ways to set default group values: per sub-field or for the whole group.</p>
+
+<p>Setting default values for each sub-fields is very simple. Just set its value via <code class="highlighter-rouge">std</code> parameter for each sub-field and done.</p>
+
+<p>Example:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+		<span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Test Group Default Value'</span><span class="p">,</span>
+		<span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+				<span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+					<span class="p">[</span>
+						<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+						<span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'name'</span><span class="p">,</span>
+						<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Name'</span><span class="p">,</span>
+						<span class="s1">'std'</span> <span class="o">=&gt;</span> <span class="s1">'My Name'</span><span class="p">,</span> <span class="c1">// THIS</span>
+					<span class="p">],</span>
+					<span class="p">[</span>
+						<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+						<span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+						<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Email'</span><span class="p">,</span>
+						<span class="s1">'std'</span> <span class="o">=&gt;</span> <span class="s1">'myemail@domain.com'</span><span class="p">,</span> <span class="c1">// THIS</span>
+					<span class="p">],</span>
+				<span class="p">],</span>
+			<span class="p">]</span>
+		<span class="p">],</span>
+	<span class="p">];</span>
+	<span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Result:</p>
+
+<p><img src="https://i.imgur.com/pml8twS.png" alt="default sub-field value" /></p>
+
+<p>However, doing that way makes you type quite a lot. And you hardly see the data of the whole group. To avoid this problem, Meta Box Group provides a better way to set default value for the whole group.</p>
+
+<p>The idea is very simple, just use the same <code class="highlighter-rouge">std</code> parameter for <em>the group</em> (not for sub-fields). And set its value an array of sub-field default values.</p>
+
+<p>For example: with a group of 2 fields above, we can default the default value like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+		<span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Test Meta Box'</span><span class="p">,</span>
+		<span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+				<span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+					<span class="p">[</span>
+						<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+						<span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'name'</span><span class="p">,</span>
+						<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Name'</span><span class="p">,</span>
+					<span class="p">],</span>
+					<span class="p">[</span>
+						<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+						<span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+						<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Email'</span><span class="p">,</span>
+					<span class="p">],</span>
+				<span class="p">],</span>
+				
+				<span class="c1">// THIS</span>
+				<span class="s1">'std'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+					<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'My name'</span><span class="p">,</span>
+					<span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'myemail@domain.com'</span><span class="p">,</span>
+				<span class="p">],</span>
+			<span class="p">]</span>
+		<span class="p">],</span>
+	<span class="p">];</span>
+	<span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>If the group is <em>cloneable</em>, the <code class="highlighter-rouge">std</code> value should be an array of clone values. Each clone value is an array of sub-field values. Like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+		<span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Test Meta Box'</span><span class="p">,</span>
+		<span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Group'</span><span class="p">,</span>
+				<span class="s1">'clone'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="s1">'collapsible'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+				<span class="s1">'group_title'</span> <span class="o">=&gt;</span> <span class="s1">'{name}'</span><span class="p">,</span>
+				<span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+					<span class="p">[</span>
+						<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+						<span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'name'</span><span class="p">,</span>
+						<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Name'</span><span class="p">,</span>
+					<span class="p">],</span>
+					<span class="p">[</span>
+						<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+						<span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+						<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Email'</span><span class="p">,</span>
+					<span class="p">],</span>
+				<span class="p">],</span>
+				<span class="s1">'std'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+					<span class="c1">// Value for the 1st clone</span>
+					<span class="p">[</span>
+						<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Name 1'</span><span class="p">,</span>
+						<span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'email1@domain.com'</span><span class="p">,</span>
+					<span class="p">],</span>
+
+					<span class="c1">// Value for the 2nd clone</span>
+					<span class="p">[</span>
+						<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Name 2'</span><span class="p">,</span>
+						<span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'email2@domain.com'</span><span class="p">,</span>
+					<span class="p">]</span>
+				<span class="p">],</span>
+			<span class="p">]</span>
+		<span class="p">],</span>
+	<span class="p">];</span>
+	<span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>And here is the result:</p>
+
+<p><img src="https://i.imgur.com/rqxfxA8.png" alt="default group value" /></p>
+
+<p>See this video for demonstration:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/c8f04fb84025428c895f14137b194035" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+<h2 id="changing-clone-button-text">Changing clone button text</h2>
+
+<p>Since Meta Box version 4.11, you can change the clone button text by using <code class="highlighter-rouge">add_button</code> parameter for fields, like below:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'group'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Tracks'</span><span class="p">,</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'tracks'</span><span class="p">,</span>
+    <span class="s1">'add_button'</span> <span class="o">=&gt;</span> <span class="s1">'Add another track'</span><span class="p">,</span>
+    <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="c1">// Sub-fields here.</span>
+    <span class="p">),</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<p>If you’re using Meta Box prior to 4.11, you can use a filter to change the add clone button text. There are 3 filters that you can use:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_add_clone_button_text</span>
+<span class="nx">rwmb_group_clone_button_text</span>
+<span class="nx">rwmb_</span><span class="p">{</span><span class="nv">$field_id</span><span class="p">}</span><span class="nx">_add_clone_button_text</span>
+</code></pre></div></div>
+
+<p>Each filter receives 2 parameters: <code class="highlighter-rouge">$text</code> - the clone button text and <code class="highlighter-rouge">$field</code> - the group field parameters.</p>
+
+<p>To use the filter, add the following code to your theme <code class="highlighter-rouge">functions.php</code> file or inside your plugin:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_tracks_add_clone_button_text'</span><span class="p">,</span> <span class="s1">'prefix_tracks_add_clone_button_text'</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_group_add_clone_button_text</span><span class="p">(</span> <span class="nv">$text</span><span class="p">,</span> <span class="nv">$field</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'Add another track'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="known-issues">Known issues</h2>
+
+<ul>
+  <li>When cloning fields or groups, <code class="highlighter-rouge">id</code> attribute of inputs are adjusted. In multi-level nested groups, they’re changed without any rule. So please don’t rely on them to perform custom JavaScript actions.</li>
+  <li>If you have a <code class="highlighter-rouge">wysiwyg</code> field in a cloneable group, please set its <code class="highlighter-rouge">ID</code> not ended with <code class="highlighter-rouge">_{number}</code> (e.g. <code class="highlighter-rouge">_12</code>). This format is reserved by the clone script to update the editor ID/name. Please just change the ID to another format.</li>
+</ul>
+:ET

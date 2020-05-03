@@ -1,0 +1,51 @@
+I"�
+<h2 id="overview">Overview</h2>
+
+<p>The checkbox field creates a single checkbox.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/gMkTEfB.png" alt="checkbox" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>This field doesn’t have any specific settings. It only uses <a href="/field-settings/">common field settings</a>.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Checkbox'</span><span class="p">,</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'field_id'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'checkbox'</span><span class="p">,</span>
+    <span class="s1">'std'</span>  <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 0 or 1</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>This field saves the “checked” and “unchecked” values in the database as “1” or “0”.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>To get the field value, use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="c1">// If field is checked.</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Checked'</span><span class="p">;</span>
+    <span class="c1">// Do something.</span>
+<span class="p">}</span>
+<span class="c1">// If field is unchecked.</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Unchecked'</span><span class="p">;</span>
+    <span class="c1">// Do something else.</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Or if you only want to display “Yes/No”:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_the_value</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span> <span class="c1">// echo 'Yes' or 'No'.</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a> and <a href="/rwmb-the-value/">rwmb_the_value()</a>.</p>
+:ET

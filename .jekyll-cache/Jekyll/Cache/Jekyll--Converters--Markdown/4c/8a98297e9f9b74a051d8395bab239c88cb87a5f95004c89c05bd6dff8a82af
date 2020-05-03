@@ -1,0 +1,21 @@
+I"�<h2 id="overview">Overview</h2>
+
+<p>The heading field creates a simple <code class="highlighter-rouge">&lt;h4&gt;</code> heading, which has an optional description. It doesn’t have any value and is usually used to separate fields into sections for better reading experience.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/CrDtd5s.png" alt="heading" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>This field doesn’t have any specific settings. It only requires the <code class="highlighter-rouge">'type' =&gt; 'heading'</code>.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'heading'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Heading'</span><span class="p">,</span>
+    <span class="s1">'desc'</span> <span class="o">=&gt;</span> <span class="s1">'Optional description'</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+:ET

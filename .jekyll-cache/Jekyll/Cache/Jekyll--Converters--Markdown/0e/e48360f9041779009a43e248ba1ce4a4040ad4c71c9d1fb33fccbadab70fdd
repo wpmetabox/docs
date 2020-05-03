@@ -1,0 +1,105 @@
+I"�$<h2 id="overview">Overview</h2>
+
+<p><code class="highlighter-rouge">rwmb_get_registry</code> is used to get list of registered meta boxes or fields.</p>
+
+<p>Meta boxes and fields are stored in a meta box registry and field registry correspondingly. This function allows you to retrieve them (and filter them) to get the meta box or field you want.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>To get meta box or field registry use the code below:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta_box_registry</span> <span class="o">=</span> <span class="nx">rwmb_get_registry</span><span class="p">(</span> <span class="s1">'meta_box'</span> <span class="p">);</span>
+<span class="nv">$field_registry</span> <span class="o">=</span> <span class="nx">rwmb_get_registry</span><span class="p">(</span> <span class="s1">'field'</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Each registry has some methods as described below:</p>
+
+<h3 id="meta-box-registry">Meta box registry</h3>
+
+<p>Meta box registry is a storage of all meta box objects (instances of <code class="highlighter-rouge">RW_Meta_Box</code> class). The registry stores all meta box objects in a private array of the form meta_box_id =&gt; meta_box_object.</p>
+
+<p>To get all meta box objects, use this method:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta_boxes</span> <span class="o">=</span> <span class="nv">$meta_box_registry</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>To get a specific meta box object by id, use this method:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$meta_box</span> <span class="o">=</span> <span class="nv">$meta_box_registry</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span> <span class="s1">'meta_box_id'</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>To get meta boxes by some attributes, use this method:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$args</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'object_type'</span> <span class="o">=&gt;</span> <span class="s1">'post'</span><span class="p">,</span>
+    <span class="s1">'post_type'</span>   <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'post'</span><span class="p">],</span>
+<span class="p">];</span>
+<span class="nv">$meta_boxes</span> <span class="o">=</span> <span class="nv">$meta_box_registry</span><span class="o">-&gt;</span><span class="na">get_by</span><span class="p">(</span> <span class="nv">$args</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Here <code class="highlighter-rouge">$args</code> is an array of <a href="https://docs.metabox.io/creating-meta-boxes/">meta box settings</a> that you use to filter the list of meta boxes.</p>
+
+<h3 id="field-registry">Field registry</h3>
+
+<p>Similar to meta box registry, field registry is a storage of all fields. Each field is an array of its own settings. Note that fields are not objects.</p>
+
+<p>Since fields can have the same ID for different object types (posts, terms, users, settings pages), we can’t store fields in the registry in a one-dimentional array as meta box registry. Instead of that, we store it in a multi-dimentional array like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+    <span class="s1">'post'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'post'</span>             <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$field1</span><span class="p">,</span> <span class="nv">$field2</span><span class="p">],</span>
+        <span class="s1">'page'</span>             <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$field3</span><span class="p">,</span> <span class="nv">$field4</span><span class="p">],</span>
+        <span class="s1">'custom_post_type'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$field5</span><span class="p">,</span> <span class="nv">$field6</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">'term'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'category'</span>        <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$field1</span><span class="p">,</span> <span class="nv">$field2</span><span class="p">],</span>
+        <span class="s1">'post_tag'</span>        <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$field3</span><span class="p">,</span> <span class="nv">$field4</span><span class="p">],</span>
+        <span class="s1">'custom_taxonomy'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$field5</span><span class="p">,</span> <span class="nv">$field6</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">'user'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'user'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$field1</span><span class="p">,</span> <span class="nv">$field2</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">'setting'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">'setting_page_1'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$field1</span><span class="p">,</span> <span class="nv">$field2</span><span class="p">],</span>
+        <span class="s1">'settings_page_2'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nv">$field1</span><span class="p">,</span> <span class="nv">$field2</span><span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>To get a specific field, you need to specify object type and the sub-type for it:</p>
+
+<ul>
+  <li>For <code class="highlighter-rouge">post</code> object type, sub-type is the post type slug.</li>
+  <li>For <code class="highlighter-rouge">term</code>, it’s the taxonomy slug.</li>
+  <li>For <code class="highlighter-rouge">user</code>, it’s always <code class="highlighter-rouge">user</code>.</li>
+  <li>For <code class="highlighter-rouge">setting</code>, it’s the settings page ID.</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$field</span> <span class="o">=</span> <span class="nv">$field_registry</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span> <span class="nv">$id</span><span class="p">,</span> <span class="nv">$type</span><span class="p">,</span> <span class="nv">$object_type</span> <span class="o">=</span> <span class="s1">'post'</span> <span class="p">);</span>
+
+<span class="c1">// Example:</span>
+<span class="nv">$field</span> <span class="o">=</span> <span class="nv">$field_registry</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span> <span class="s1">'my_field_id'</span><span class="p">,</span> <span class="s1">'my_custom_post_type'</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>The last parameter <code class="highlighter-rouge">$object_type</code> can be omitted. Its default value is <code class="highlighter-rouge">post</code>.</p>
+
+<p>To get all fields by object type, use this code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$fields</span> <span class="o">=</span> <span class="nv">$field_registry</span><span class="o">-&gt;</span><span class="na">get_by_object_type</span><span class="p">(</span> <span class="nv">$object_type</span> <span class="o">=</span> <span class="s1">'post'</span> <span class="p">);</span>
+
+<span class="c1">// Example: Get all fields for posts</span>
+<span class="nv">$fields</span> <span class="o">=</span> <span class="nv">$field_registry</span><span class="o">-&gt;</span><span class="na">get_by_object_type</span><span class="p">(</span> <span class="s1">'post'</span> <span class="p">);</span>
+
+
+<span class="c1">// Example: Get all fields for terms</span>
+<span class="nv">$fields</span> <span class="o">=</span> <span class="nv">$field_registry</span><span class="o">-&gt;</span><span class="na">get_by_object_type</span><span class="p">(</span> <span class="s1">'term'</span> <span class="p">);</span>
+
+
+<span class="c1">// Example: Get all fields for users</span>
+<span class="nv">$fields</span> <span class="o">=</span> <span class="nv">$field_registry</span><span class="o">-&gt;</span><span class="na">get_by_object_type</span><span class="p">(</span> <span class="s1">'user'</span> <span class="p">);</span>
+
+
+<span class="c1">// Example: Get all fields for settings pages</span>
+<span class="nv">$fields</span> <span class="o">=</span> <span class="nv">$field_registry</span><span class="o">-&gt;</span><span class="na">get_by_object_type</span><span class="p">(</span> <span class="s1">'setting'</span> <span class="p">);</span>
+</code></pre></div></div>
+:ET

@@ -1,0 +1,173 @@
+I"m9<h2 id="overview">Overview</h2>
+
+<p>The Meta Box Show Hide extensions helps you to toggle the visibility of a meta box based on some conditions such as categories, page template or post format. So when your users set a page template for your page, you can decide whether to show a meta box for extra settings.</p>
+
+<p>Meta Box Show Hide is a simplified version of <a href="https://metabox.io/plugins/meta-box-conditional-logic/">Meta Box Conditional Logic</a>, where it controls the visibility for only meta box. In Meta Box Conditional Logic, you can control the visibility of custom fields and other HTML elements. Besides, Meta Box Conditional Logic supports more type of conditions.</p>
+
+<p>For more information, please see the <a href="https://metabox.io/plugins/meta-box-show-hide/">extension page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<h2 id="usage">Usage</h2>
+
+<p>Make sure you know how to <a href="/creating-meta-boxes/">create meta boxes</a> and <a href="/field-settings/">fields</a> before continuing!</p>
+
+<p>To add show, hide conditions to your meta box, you need to add parameter <code class="highlighter-rouge">show</code> or <code class="highlighter-rouge">hide</code> accordingly to the meta box configuration.</p>
+
+<p>Each parameter (<code class="highlighter-rouge">show</code>, <code class="highlighter-rouge">hide</code>) is an array and has the same following elements:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">relation</code>: The logical operator to combine conditions: <code class="highlighter-rouge">AND</code> or <code class="highlighter-rouge">OR</code>. The default value is <code class="highlighter-rouge">OR</code>. Case insensitive. Optional.</li>
+</ul>
+
+<p>If one of the following conditions matched (<code class="highlighter-rouge">relation</code> = <code class="highlighter-rouge">OR</code>) or all of the following conditions matched (<code class="highlighter-rouge">relation</code> = <code class="highlighter-rouge">AND</code>), then the meta box is shown or hid.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">template</code></td>
+      <td>List of page templates, match if the current page has a page template in the list. Array. Case insensitive. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">post_format</code></td>
+      <td>List of post formats, match if the current post has a format in the list. Array. Case insensitive. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">category</code></td>
+      <td>List of categories IDs or names (NO slugs), match if the current post has a category in the list. Array. Case sensitive. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">taxonomy_slug</code></td>
+      <td>List of custom taxonomy terms’ IDs or names (NO slugs). Here <code class="highlighter-rouge">taxonomy_slug</code> is the slug of the taxonomy (like <code class="highlighter-rouge">section</code>, <code class="highlighter-rouge">region</code>, etc.). Match if the current post has a term in the list. Array. Case sensitive. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">is_child</code></td>
+      <td>Boolean. Match if the current page is a child page or not. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">input_value</code></td>
+      <td>Array of pairs of CSS selectors and values. Match if the inputs (with specified CSS selector) has the defined value. Note: the <code class="highlighter-rouge">relation</code> is also applied to rules here. Added in version 0.2.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Since version 4.7, WordPress has added support for <a href="https://make.wordpress.org/core/2016/11/03/post-type-templates-in-4-7/">post type templates</a>. To make it work with <code class="highlighter-rouge">template</code> rule in Show Hide, you need to update to version 1.2.0+ and set the syntax to:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'template'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'post:my-template.php'</span><span class="p">,</span> <span class="s1">'my_post_type:template-one.php'</span> <span class="p">),</span>
+</code></pre></div></div>
+
+<p>e.g, the value should be in form of <code class="highlighter-rouge">post_type:template-file.php</code>. If the <code class="highlighter-rouge">post_type:</code> is missing, then the plugin automatically understands that the template is used for pages only.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="s1">'prefix_show_hide_demo_register'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_show_hide_demo_register</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Meta Box Show Hide Demo: Show'</span><span class="p">,</span>
+
+        <span class="c1">// Show this meta box for posts matched below conditions</span>
+        <span class="s1">'show'</span>   <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="c1">// With all conditions below, use this logical operator to combine them. Default is 'OR'. Case insensitive. Optional.</span>
+            <span class="s1">'relation'</span>    <span class="o">=&gt;</span> <span class="s1">'OR'</span><span class="p">,</span>
+
+            <span class="c1">// List of page templates (used for page only). Array. Optional.</span>
+            <span class="s1">'template'</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'tpl/blog.php'</span><span class="p">,</span> <span class="s1">'tpl/homepage.php'</span> <span class="p">),</span>
+
+            <span class="c1">// List of post formats. Array. Case insensitive. Optional.</span>
+            <span class="s1">'post_format'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'Standard'</span><span class="p">,</span> <span class="s1">'Gallery'</span> <span class="p">),</span>
+
+            <span class="c1">// List of categories IDs or names (NOT slugs). Array. Case sensitive. Optional.</span>
+            <span class="s1">'category'</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'Unpublished'</span><span class="p">,</span> <span class="s1">'Template'</span> <span class="p">),</span>
+
+            <span class="c1">// Custom taxonomy. Optional.</span>
+            <span class="c1">// Format: 'taxonomy' =&gt; list of term IDs or names (NOT slugs). Array. Case sensitive. Optional.</span>
+            <span class="s1">'location'</span>    <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">'USA'</span><span class="p">,</span> <span class="s1">'europe'</span> <span class="p">),</span>
+            <span class="s1">'os'</span>          <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'Windows'</span><span class="p">,</span> <span class="s1">'mac-os'</span> <span class="p">),</span>
+
+            <span class="c1">// Check if page is a child page</span>
+            <span class="s1">'is_child'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// Check the value of selector. Format: array( selector, value )</span>
+            <span class="c1">// Added in version 0.2</span>
+            <span class="s1">'input_value'</span>   <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'#hide-demo-mb'</span>              <span class="o">=&gt;</span> <span class="s1">'yes'</span><span class="p">,</span>
+                <span class="s1">'#hide-demo-mb-2'</span>            <span class="o">=&gt;</span> <span class="s1">'yes'</span><span class="p">,</span>
+                <span class="s1">'input[name=hide-demo-mb-3]'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// If it's a checkbox then true == checked</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Name'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'name'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+
+    <span class="c1">// 2nd meta box</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Meta Box Show Hide Demo: Hide'</span><span class="p">,</span>
+
+        <span class="c1">// Hide this meta box for posts matched below conditions</span>
+        <span class="s1">'hide'</span>   <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="c1">// With all conditions below, use this logical operator to combine them. Default is 'OR'. Optional.</span>
+            <span class="s1">'relation'</span>      <span class="o">=&gt;</span> <span class="s1">'OR'</span><span class="p">,</span>
+
+            <span class="c1">// List of page templates. Can be array or comma separated. Optional.</span>
+            <span class="s1">'template'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'full-width.php'</span><span class="p">,</span> <span class="s1">'left-sidebar.php'</span> <span class="p">),</span>
+
+            <span class="c1">// List of categories IDs or names or slugs. Can be array or comma separated. Optional.</span>
+            <span class="s1">'category'</span>      <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'News'</span> <span class="p">),</span>
+
+            <span class="c1">// Custom taxonomy. Optional.</span>
+            <span class="c1">// Format: 'taxonomy' =&gt; list of terms (can be array or comma separated of IDs or names or slugs)</span>
+            <span class="s1">'location'</span>      <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">'USA'</span><span class="p">,</span> <span class="s1">'europe'</span> <span class="p">),</span>
+            <span class="s1">'os'</span>            <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'Windows'</span><span class="p">,</span> <span class="s1">'mac-os'</span> <span class="p">),</span>
+
+            <span class="c1">// Check if page is a child page</span>
+            <span class="s1">'is_child'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+
+            <span class="c1">// Check the value of selector. Format: array( selector, value )</span>
+            <span class="c1">// Added in version 0.2</span>
+            <span class="s1">'input_value'</span>   <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'#hide-demo-mb'</span>              <span class="o">=&gt;</span> <span class="s1">'yes'</span><span class="p">,</span>
+                <span class="s1">'#hide-demo-mb-2'</span>            <span class="o">=&gt;</span> <span class="s1">'yes'</span><span class="p">,</span>
+                <span class="s1">'input[name=hide-demo-mb-3]'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// If it's a checkbox then true == checked</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Job'</span><span class="p">,</span>
+                <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'job'</span><span class="p">,</span>
+                <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

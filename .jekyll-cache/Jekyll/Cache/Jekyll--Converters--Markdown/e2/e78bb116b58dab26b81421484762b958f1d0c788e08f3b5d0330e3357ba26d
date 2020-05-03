@@ -1,0 +1,2 @@
+I"T<p><code class="highlighter-rouge">custom_html</code> is a very useful field in Meta Box, which helps you to <em>output anything</em> in the post edit screen. It can be a warning box or an instruction for users to help them enter the correct data. But do you know that <strong>you can use PHP</strong> to render the HTML for the field?</p>
+:ET

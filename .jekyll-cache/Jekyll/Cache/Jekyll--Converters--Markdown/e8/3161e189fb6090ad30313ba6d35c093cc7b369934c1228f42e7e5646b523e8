@@ -1,0 +1,41 @@
+I"ú<p>With Meta Box, you can add custom attributes for inputs like text, URL, email field. This feature is very helpful if developers want to add HTML5 attributes or something like <code class="highlighter-rouge">data-*</code> attribute for their custom JavaScript code.</p>
+
+<p>To add custom attributes to the fields, just define them as a <code class="highlighter-rouge">'key' =&gt; 'value'</code> like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'disabled'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s1">'minlength'</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<p>If you want to add custom <code class="highlighter-rouge">data-*</code> attribute, you can add like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="c1">// Simple value</span>
+    <span class="s1">'data-option1'</span>  <span class="o">=&gt;</span> <span class="s1">'value1'</span><span class="p">,</span>
+    <span class="c1">// Array of values</span>
+    <span class="s1">'data-option2'</span>  <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'key1'</span> <span class="o">=&gt;</span> <span class="s1">'value1'</span><span class="p">,</span> <span class="s1">'key2'</span> <span class="o">=&gt;</span> <span class="s1">'value2'</span> <span class="p">)</span> <span class="p">),</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<p>Currently, this feature is supported in field <code class="highlighter-rouge">text</code>, <code class="highlighter-rouge">url</code>, <code class="highlighter-rouge">email</code>, <code class="highlighter-rouge">checkbox</code>, <code class="highlighter-rouge">radio</code>, <code class="highlighter-rouge">date</code>, <code class="highlighter-rouge">time</code>, <code class="highlighter-rouge">datetime</code> field.</p>
+
+<p>Common attributes <code class="highlighter-rouge">disabled</code>, <code class="highlighter-rouge">required</code>, <code class="highlighter-rouge">readonly</code>, <code class="highlighter-rouge">maxlength</code> and <code class="highlighter-rouge">pattern</code> are also registered to be used as global parameters for fields, so you can use both these ways below as they are the same:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'attributes'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'disabled'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s1">'required'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s1">'readonly'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s1">'maxlength'</span> <span class="o">=&gt;</span> <span class="mi">140</span><span class="p">,</span>
+    <span class="s1">'pattern'</span>   <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">),</span>
+
+<span class="c1">// or simpler, e.g. without wrapping inside 'attributes'</span>
+
+<span class="s1">'disabled'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="s1">'required'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="s1">'readonly'</span>  <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="s1">'maxlength'</span> <span class="o">=&gt;</span> <span class="mi">140</span><span class="p">,</span>
+<span class="s1">'pattern'</span>   <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+</code></pre></div></div>
+:ET

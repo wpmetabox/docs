@@ -1,0 +1,133 @@
+I"ö(<h2 id="overview">Overview</h2>
+
+<p>Meta Box Tooltip is an UI extension for Meta Box which helps you to add help information via tooltips. Using tooltips is a great way to let users know what a custom field is and what need to be entered in the field.</p>
+
+<p>Screenshot:</p>
+
+<p><img src="https://i0.wp.com/metabox.io/wp-content/uploads/2014/10/meta-box-tooltip.png" alt="meta box tooltip screenshot" /></p>
+
+<p>It supports various position for tooltips and is easy to customize with icons (from Dashicons or custom icon).</p>
+
+<p>For more information, please see the <a href="https://metabox.io/plugins/meta-box-tooltip/">extension page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins â†’ Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<h2 id="usage">Usage</h2>
+
+<p>Make sure you know how to <a href="/creating-meta-boxes/">create meta boxes</a> and <a href="/field-settings/">fields</a> before continuing!</p>
+
+<p>To add a tooltip to a meta field, simply add <code class="highlighter-rouge">tooltip</code> parameter for that field. You can define tooltip in one of following formats:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">'tooltip' =&gt; 'Tooltip content',</code></li>
+  <li><code class="highlighter-rouge">'tooltip' =&gt; array( 'icon' =&gt; 'info', 'position' =&gt; 'top', 'content' =&gt; 'Tooltip content' )</code></li>
+</ul>
+
+<p>e.g. if the <code class="highlighter-rouge">tooltip</code> is a string, the plugin will use icon info and take the string as the tooltip content. If the <code class="highlighter-rouge">tooltip</code> is an array, then it accepts the following parameters:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">icon</code></td>
+      <td>The tooltip icon. It can be <code class="highlighter-rouge">info</code> (default), <code class="highlighter-rouge">help</code> or <em>URL to custom icon image</em>. Since version 0.1.1, you can <em>use any Dashicons</em> for the icon by specifying its name, for example <code class="highlighter-rouge">dashicons-email</code>. For full list of Dashicons, please read <a href="https://developer.wordpress.org/resource/dashicons/">this page</a>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">position</code></td>
+      <td>The tooltip position. Can be <code class="highlighter-rouge">top</code> (default), <code class="highlighter-rouge">bottom</code>, <code class="highlighter-rouge">left</code> or <code class="highlighter-rouge">right</code>. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">content</code></td>
+      <td>Tooltip content.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sample-code">Sample code</h2>
+
+<p>This code below adds tooltip to 3 fields:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="s1">'meta_box_tooltip_demo_register'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">meta_box_tooltip_demo_register</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'title'</span>  <span class="o">=&gt;</span> <span class="s1">'Meta Box Tooltip Demo'</span><span class="p">,</span>
+        <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Default'</span><span class="p">,</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'name'</span><span class="p">,</span>
+                <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+
+                <span class="c1">// Add tooltip to field label, in one of following formats</span>
+                <span class="c1">// 1) 'tooltip' =&gt; 'Tooltip Content'</span>
+                <span class="c1">// 2) 'tooltip' =&gt; array( 'icon' =&gt; 'info', 'content' =&gt; 'Tooltip Content', 'position' =&gt; 'top' )</span>
+                <span class="c1">// 3) 'tooltip' =&gt; array( 'icon' =&gt; 'https://url-to-icon-image.png', 'content' =&gt; 'Tooltip Content', 'position' =&gt; 'top' )</span>
+                <span class="c1">//</span>
+                <span class="c1">// In 1st format, icon will be 'info' by default</span>
+                <span class="c1">// In 2nd format, icon can be 'info' (default), 'help' or any Dashicons (see https://developer.wordpress.org/resource/dashicons/)</span>
+                <span class="c1">// In 3rd format, icon can be URL to custom icon image</span>
+                <span class="c1">//</span>
+                <span class="c1">// 'position' is optional. Value can be 'top' (default), 'bottom', 'left', 'right'</span>
+                <span class="s1">'tooltip'</span> <span class="o">=&gt;</span> <span class="s1">'Info icon, top position'</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Help icon'</span><span class="p">,</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'job'</span><span class="p">,</span>
+                <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                <span class="s1">'tooltip'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'icon'</span>     <span class="o">=&gt;</span> <span class="s1">'help'</span><span class="p">,</span>
+                    <span class="s1">'content'</span>  <span class="o">=&gt;</span> <span class="s1">'Right position'</span><span class="p">,</span>
+                    <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="s1">'right'</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Dashicon'</span><span class="p">,</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+                <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                <span class="s1">'tooltip'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'icon'</span>     <span class="o">=&gt;</span> <span class="s1">'dashicons-email'</span><span class="p">,</span>
+                    <span class="s1">'content'</span>  <span class="o">=&gt;</span> <span class="s1">'Dashicon'</span><span class="p">,</span>
+                    <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="s1">'right'</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Custom image'</span><span class="p">,</span>
+                <span class="s1">'id'</span>      <span class="o">=&gt;</span> <span class="s1">'email'</span><span class="p">,</span>
+                <span class="s1">'type'</span>    <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+                <span class="s1">'tooltip'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'icon'</span>     <span class="o">=&gt;</span> <span class="s1">'https://i.imgur.com/ZQI2DNx.png'</span><span class="p">,</span>
+                    <span class="s1">'content'</span>  <span class="o">=&gt;</span> <span class="s1">'Custom icon'</span><span class="p">,</span>
+                    <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="s1">'right'</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="adding-tooltip-for-inputs">Adding tooltip for inputs</h2>
+
+<p>The default behavior adds tootips for field labels. Since version 1.1, the plugin supports adding tooltips for field inputs. Because of variation in the UI, the plugin supports only these fields: date time fields, text input fields (<code class="highlighter-rouge">text</code>, <code class="highlighter-rouge">url</code>, <code class="highlighter-rouge">email</code>, <code class="highlighter-rouge">number</code>, <code class="highlighter-rouge">password</code>) and select fields.</p>
+
+<p>The option for this feature is <code class="highlighter-rouge">tooltip_input</code>, which accepts the same parameters as for <code class="highlighter-rouge">tooltip</code>.</p>
+:ET

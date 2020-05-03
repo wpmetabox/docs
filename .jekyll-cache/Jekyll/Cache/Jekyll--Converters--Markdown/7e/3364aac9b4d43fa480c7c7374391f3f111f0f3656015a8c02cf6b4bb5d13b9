@@ -1,0 +1,368 @@
+I"pR<h2 id="overview">Overview</h2>
+
+<p>The Meta Box Geolocation is helpful if you have multiple custom fields for location such as address, zipcode, city, state and country. Letting users manually fill in these fields might be a boring time-consuming job. This extension helps you fill in these information quickly by using Geocoding API from Google. So that you just need to enter an address, it will autosuggest a complete address and fill all other fields.</p>
+
+<p>Take a look at the screenshot:</p>
+
+<p><img src="https://i1.wp.com/metabox.io/wp-content/uploads/2016/03/meta-box-geolocation.gif" alt="auto suggest geolocation data" /></p>
+
+<p>For more information, please see the <a href="https://metabox.io/plugins/meta-box-geolocation/">extension page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<p>Make sure you know how to <a href="/creating-meta-boxes/">create meta boxes</a> and <a href="/field-settings/">fields</a> before continuing!</p>
+
+<h2 id="enabling-geolocation">Enabling geolocation</h2>
+
+<h3 id="google-maps-api">Google Maps API</h3>
+
+<p>Before enabling Geolocation, make sure you create a project for Google Maps in the <a href="https://console.cloud.google.com/google/maps-apis/overview">Google Cloud Platform Console</a>. And don’t forget to enable the following APIs:</p>
+
+<ul>
+  <li>Google Maps API</li>
+  <li>Geocoding API</li>
+  <li>Places API</li>
+</ul>
+
+<p>And then create an API key for Google Maps. See <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">here</a> for instruction. You’ll need this key to perform any call to Google Maps platform.</p>
+
+<h3 id="enable-geolocation-support-for-a-meta-box">Enable geolocation support for a meta box.</h3>
+
+<p>To enable geolocation support for a meta box, add this line to your Meta Box (not field) settings:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'geo'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'api_key'</span> <span class="o">=&gt;</span> <span class="s1">'YOUR API KEY'</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>If you’re using <a href="https://metabox.io/plugins/meta-box-builder/">Meta Box Builder</a>, then please go to tab <em>Settings</em> and add a custom attribute for the geolocation as follows:</p>
+
+<p><img src="https://i.imgur.com/sk6NzTj.png" alt="adding google maps api key in builder" /></p>
+
+<p>You can also add options to Geolocation. Which can contains these properties:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">types</code>: array of geocode types:
+    <ul>
+      <li><code class="highlighter-rouge">geocode</code>: only geocoding results, no business results.</li>
+      <li><code class="highlighter-rouge">address</code>: only geocoding results with a precise address.</li>
+      <li><code class="highlighter-rouge">establishment</code>: business results.</li>
+      <li><code class="highlighter-rouge">(cities)</code>: only results that match either <code class="highlighter-rouge">locality</code> or <code class="highlighter-rouge">administrative_area3</code>.</li>
+      <li><code class="highlighter-rouge">(regions)</code>: any result matching the following types:
+        <ul>
+          <li><code class="highlighter-rouge">locality</code></li>
+          <li><code class="highlighter-rouge">sublocality</code></li>
+          <li><code class="highlighter-rouge">postal_code</code></li>
+          <li><code class="highlighter-rouge">country</code></li>
+          <li><code class="highlighter-rouge">administrative_area1</code></li>
+          <li><code class="highlighter-rouge">administrative_area2</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">componentRestrictions</code>: restrict results to a specific country, must be ISO 3166-1 Alpha-2 compatible country code. You can find code information at <a href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes">Wikipedia: List of ISO 3166 country codes</a>.</li>
+</ul>
+
+<p>Examples:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Restrict the result in Australia only</span>
+<span class="s1">'geo'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'api_key'</span> <span class="o">=&gt;</span> <span class="s1">'YOUR API KEY'</span><span class="p">,</span>
+    <span class="s1">'componentRestrictions'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'country'</span> <span class="o">=&gt;</span> <span class="s1">'au'</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// Return only business results</span>
+<span class="s1">'geo'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'api_key'</span> <span class="o">=&gt;</span> <span class="s1">'YOUR API KEY'</span><span class="p">,</span>
+    <span class="s1">'types'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'establishment'</span> <span class="p">)</span>
+<span class="p">),</span>
+
+<span class="c1">// Return only cities and business results</span>
+<span class="s1">'geo'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'api_key'</span> <span class="o">=&gt;</span> <span class="s1">'YOUR API KEY'</span><span class="p">,</span>
+    <span class="s1">'types'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'(cities)'</span><span class="p">,</span> <span class="s1">'establishment'</span> <span class="p">)</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="adding-autocomplete-field">Adding autocomplete field</h2>
+
+<p>To add an auto complete field. Simply add a <code class="highlighter-rouge">text</code> field and set it id starts with <code class="highlighter-rouge">address</code>. Like <code class="highlighter-rouge">address</code> or <code class="highlighter-rouge">address_something</code>… The plugin will treat that field as auto complete address field.</p>
+
+<p>You can add auto complete to <code class="highlighter-rouge">textarea</code>, it works but will generate warning messages.</p>
+
+<h2 id="populating-field-data">Populating field data</h2>
+
+<h3 id="address-components">Address Components</h3>
+<p>When you selected an address from Auto-Complete field. It returns an array of <em>Address Component Types</em>. Which you can use it to populate to other fields. The following types are supported by Google:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">street_address</code></td>
+      <td>indicates a precise street address.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">route</code></td>
+      <td>indicates a named route (such as “US 101”).</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">intersection</code></td>
+      <td>indicates a major intersection, usually of two major roads.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">political</code></td>
+      <td>indicates a political entity. Usually, this type indicates a polygon of some civil administration.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">country</code></td>
+      <td>indicates the national political entity and is typically the highest order type returned by the Geocoder.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">administrative_area_level_1</code></td>
+      <td>indicates a first-order civil entity below the country level. Within the United States, these administrative levels are states. Not all nations exhibit these administrative levels.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">administrative_area_level_2</code></td>
+      <td>indicates a second-order civil entity below the country level. Within the United States, these administrative levels are counties. Not all nations exhibit these administrative levels.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">administrative_area_level_3</code></td>
+      <td>indicates a third-order civil entity below the country level. This type indicates a minor civil division. Not all nations exhibit these administrative levels.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">administrative_area_level_4</code></td>
+      <td>indicates a fourth-order civil entity below the country level. This type indicates a minor civil division. Not all nations exhibit these administrative levels.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">administrative_area_level_5</code></td>
+      <td>indicates a fifth-order civil entity below the country level. This type indicates a minor civil division. Not all nations exhibit these administrative levels.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">colloquial_area</code></td>
+      <td>indicates a commonly-used alternative name for the entity.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">locality</code></td>
+      <td>indicates an incorporated city or town political entity.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sublocality</code></td>
+      <td>indicates a first-order civil entity below a locality. For some locations may receive one of the additional types: sublocality_level_1 through to sublocality_level_5. Each <code class="highlighter-rouge">sublocality</code></td>
+      <td>level is a civil entity. Larger numbers indicate a smaller geographic area.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">neighborhood</code></td>
+      <td>indicates a named neighborhood.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">premise</code></td>
+      <td>indicates a named location, usually a building or collection of buildings with a common name</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">subpremise</code></td>
+      <td>indicates the first-order entity below a named location, usually a singular building within a collection of buildings with a common name.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">postal_code</code></td>
+      <td>indicates a postal code as used to address postal mail within the country.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">natural_feature</code></td>
+      <td>indicates a prominent natural feature.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">airport</code></td>
+      <td>indicates an airport.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">park</code></td>
+      <td>indicates a named park.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">post_box</code></td>
+      <td>indicates a specific postal box.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">street_number</code></td>
+      <td>indicates the precise street number.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">floor</code></td>
+      <td>indicates the floor of a building address.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">room</code></td>
+      <td>indicates the room of a building address.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">lat</code></td>
+      <td>indicates latitude of the result</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">lng</code></td>
+      <td>indicates longitude of the result</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">geometry</code></td>
+      <td>same as <code class="highlighter-rouge">latitude,longitude</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">formatted_address</code></td>
+      <td>returns human readable complete address</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">id</code></td>
+      <td>unique id of current location</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">url</code></td>
+      <td>url of current location</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For more information about address components visit: <a href="https://developers.google.com/maps/documentation/geocoding/intro#Types">Google Address Component Types</a></p>
+
+<h3 id="auto-populate">Auto Populate</h3>
+
+<p>To auto populate data to the field. Just set that field’s ID same as one of Address Component Type above. For example, you create a <code class="highlighter-rouge">number</code> field with ID <code class="highlighter-rouge">postal_code</code>. The postal code type will auto populate to that field if exists.</p>
+
+<p><strong>Long name and Short Name</strong></p>
+
+<p>Let’s say we have a country named ‘Australia’. The long name is ‘Australia’ and short name is ‘AU’. And so on, if we have a state named ‘Queensland’, so ‘Queensland’ is the long name and ‘QLD’ is the short name.</p>
+
+<p>By default, Meta Box Geolocation will populate the long name of the field. But you can use the short name by adding <code class="highlighter-rouge">_short</code> at the end of field id. For example: <code class="highlighter-rouge">administrative_area_level_1_short</code>, <code class="highlighter-rouge">country_short</code></p>
+
+<h3 id="binding-template">Binding Template</h3>
+
+<p>The power of Meta Box Geolocation is you can bind anything into a field. Let’s say we have a field with id <code class="highlighter-rouge">dummy_field</code>, this field id is not in <em>Address Component Types</em> list so by default the plugin won’t auto populate data to it. Now we’ll bind <code class="highlighter-rouge">administrative_area_level_1</code> to that field. Just add</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'binding'</span> <span class="o">=&gt;</span> <span class="s1">'administrative_area_level_1'</span>
+</code></pre></div></div>
+
+<p>Example Result: <code class="highlighter-rouge">Queensland</code></p>
+
+<p>You can tell that field to use short version by prepending <code class="highlighter-rouge">short:</code> keyword</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'binding'</span> <span class="o">=&gt;</span> <span class="s1">'short:administrative_area_level_1'</span>
+</code></pre></div></div>
+
+<p>Example Result: <code class="highlighter-rouge">QLD</code></p>
+
+<p>You can also merge two fields, add any character you want to bind to that field. Like so:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'binding'</span> <span class="o">=&gt;</span> <span class="s1">'short:administrative_area_level_1 + " " + country'</span>
+</code></pre></div></div>
+
+<p>Example Result: <code class="highlighter-rouge">QLD Australia</code></p>
+
+<h2 id="multiple-autocomplete-addresses">Multiple autocomplete addresses</h2>
+
+<p>In case you have multiple “group” of address fields, such as address details for head office and address details for a company branch. In each group, there are an autocomplete address field. And it will autopopulate only fields in the group, e.g. the address for head office only populates the fields in the head office group, not in the company branch.</p>
+
+<p>In this case, please set another attribute <code class="highlighter-rouge">'address_field' =&gt; 'address_id'</code> for <em>each</em> field in the group. See an example code below:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cd">/**
+ * Head office
+ */</span>
+ 
+<span class="c1">// Address</span>
+<span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'address_ho'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Address - Head Office'</span><span class="p">,</span>
+<span class="p">),</span>
+<span class="c1">// City</span>
+<span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'city_ho'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'City - Head Office'</span><span class="p">,</span>
+    <span class="s1">'binding'</span> <span class="o">=&gt;</span> <span class="s1">'locality'</span><span class="p">,</span>
+    <span class="s1">'address_field'</span> <span class="o">=&gt;</span> <span class="s1">'address_ho'</span><span class="p">,</span> <span class="c1">// THIS</span>
+<span class="p">),</span>
+
+<span class="cd">/**
+ * A company branche
+ */</span>
+ 
+<span class="c1">// Address</span>
+<span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'address_br'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Address - Branch'</span><span class="p">,</span>
+<span class="p">),</span>
+<span class="c1">// City</span>
+<span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'city_br'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'City - Branch'</span><span class="p">,</span>
+    <span class="s1">'binding'</span> <span class="o">=&gt;</span> <span class="s1">'locality'</span><span class="p">,</span>
+    <span class="s1">'address_field'</span> <span class="o">=&gt;</span> <span class="s1">'address_br'</span><span class="p">,</span> <span class="c1">// THIS</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="google-api-key-in-old-versions">Google API Key in old versions</h2>
+
+<p>Prior version 1.2.0, you need to use a filter to <code class="highlighter-rouge">gmap_api_params</code> like so:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'gmap_api_params'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$params</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$params</span><span class="p">[</span><span class="s1">'key'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'YOUR API KEY'</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nv">$params</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Also notes that since version 1.2.1, if you use Geolocation with <code class="highlighter-rouge">map</code> field, you need to enter the Google API key only once, either for the Geolocation extension or for the <code class="highlighter-rouge">map</code>. No need to enter the same key for both of them.</p>
+:ET

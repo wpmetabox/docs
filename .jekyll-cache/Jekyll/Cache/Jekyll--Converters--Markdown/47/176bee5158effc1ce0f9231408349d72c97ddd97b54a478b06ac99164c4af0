@@ -1,0 +1,154 @@
+I"�<h2 id="overview">Overview</h2>
+
+<p>The sidebar field allows you to select one or multiple sidebars. This field has several settings that can be displayed as a: simple select dropdown, checkbox list, or beautiful select dropdown with select2 library.</p>
+
+<h2 id="screenshots">Screenshots</h2>
+
+<p>Beautiful select with select2 library (default):</p>
+
+<p><img src="https://i.imgur.com/VTvvKSR.png" alt="sidebar select" /></p>
+
+<p>Checkbox list:</p>
+
+<p><img src="https://i.imgur.com/WOcCGA5.png" alt="sidebar checkbox list" /></p>
+
+<p>Radio list:</p>
+
+<p><img src="https://i.imgur.com/jp9BFqE.png" alt="radio list" /></p>
+
+<p>Radio list inline:</p>
+
+<p><img src="https://i.imgur.com/KkX2kfQ.png" alt="radio list inline" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">placeholder</code></td>
+      <td>The placeholder for the select box. Default is “Select a sidebar”. Applied only when the <code class="highlighter-rouge">field_type</code> is a select field.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">field_type</code></td>
+      <td>How the sidebars are displayed? See below.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This field inherits the look and field (and settings) from other fields, depending on the <code class="highlighter-rouge">field_type</code>, which accepts the following value:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field type</th>
+      <th>Description</th>
+      <th>Settings inherited from</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">select</code></td>
+      <td>Simple select dropdown.</td>
+      <td><a href="/fields/select/">select</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">select_advanced</code></td>
+      <td>Beautiful select dropdown using the select2 library. This is the default value.</td>
+      <td><a href="/fields/select_advanced/">select_advanced</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">checkbox_list</code></td>
+      <td>Flatten list of checkboxes which allows to select multiple items.</td>
+      <td><a href="/fields/checkbox-list/">checkbox_list</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">radio_list</code></td>
+      <td>Flatten list of radio boxes which allows to select only 1 item.</td>
+      <td><a href="/fields/radio/">radio</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that for <code class="highlighter-rouge">checkbox_list</code>, the <code class="highlighter-rouge">multiple</code> setting is always set to <code class="highlighter-rouge">true</code>.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<p>This code shows sidebars in select2 dropdown:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span>        <span class="o">=&gt;</span> <span class="s1">'Sidebar'</span><span class="p">,</span>
+    <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'sidebar'</span><span class="p">,</span>
+    <span class="s1">'type'</span>        <span class="o">=&gt;</span> <span class="s1">'sidebar'</span><span class="p">,</span>
+
+    <span class="c1">// 'clone'    =&gt; true,</span>
+
+    <span class="c1">// Field type.</span>
+    <span class="s1">'field_type'</span>  <span class="o">=&gt;</span> <span class="s1">'select_advanced'</span><span class="p">,</span>
+
+    <span class="c1">// Placeholder.</span>
+    <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Select a sidebar'</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<p>The code below shows sidebars in a radio list format:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span>        <span class="o">=&gt;</span> <span class="s1">'User'</span><span class="p">,</span>
+    <span class="s1">'id'</span>          <span class="o">=&gt;</span> <span class="s1">'sidebar'</span><span class="p">,</span>
+    <span class="s1">'type'</span>        <span class="o">=&gt;</span> <span class="s1">'sidebar'</span><span class="p">,</span>
+
+    <span class="c1">// 'clone'    =&gt; true,</span>
+
+    <span class="c1">// Field type.</span>
+    <span class="s1">'field_type'</span>  <span class="o">=&gt;</span> <span class="s1">'radio_list'</span><span class="p">,</span>
+
+    <span class="c1">// Inline radios? Inheritted from radio field.</span>
+    <span class="s1">'inline'</span>      <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>This field saves sidebar ID(s) in the database.</p>
+
+<p>If field is not <code class="highlighter-rouge">multiple</code>, then a single sidebar ID is saved in the database. Otherwise, the field saves multiple sidebar IDs in the database, where each sidebar ID is store in a single row in the database with the same meta key (similar to what <code class="highlighter-rouge">add_post_meta</code> does with last parameter <code class="highlighter-rouge">false</code>).</p>
+
+<p>If the field is cloneable, then the value is stored as a serialized array in a single row in the database.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>If field is not <code class="highlighter-rouge">multiple</code>, getting value is simple:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$sidebar_id</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nx">is_active_sidebar</span><span class="p">(</span> <span class="nv">$sidebar_id</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">dynamic_sidebar</span><span class="p">(</span> <span class="nv">$sidebar_id</span> <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If field is <code class="highlighter-rouge">multiple</code>, you can loop through the returned values like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$sidebar_ids</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$sidebar_ids</span> <span class="k">as</span> <span class="nv">$sidebar_id</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">is_active_sidebar</span><span class="p">(</span> <span class="nv">$sidebar_id</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">'&lt;aside class="sidebar"&gt;'</span><span class="p">;</span>
+        <span class="nx">dynamic_sidebar</span><span class="p">(</span> <span class="nv">$sidebar_id</span> <span class="p">);</span>
+        <span class="k">echo</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If you just want to output selected sidebars in an unordered list, use this code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_the_value</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a> and <a href="/rwmb-the-value/">rwmb_the_value()</a>.</p>
+:ET

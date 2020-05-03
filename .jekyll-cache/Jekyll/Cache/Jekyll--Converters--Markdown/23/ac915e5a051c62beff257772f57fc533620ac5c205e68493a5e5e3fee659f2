@@ -1,0 +1,22 @@
+I"�<h2 id="requirements">Requirements</h2>
+
+<p>To run Meta Box, we recommend:</p>
+<ul>
+  <li>PHP 7.2 or greater</li>
+  <li>Latest version of WordPress</li>
+</ul>
+
+<p>While Meta Box also works with PHP 5.2 and older versions of WordPress, these versions have reached official End Of Life and as such may expose your site to security vulnerabilities.</p>
+
+<h2 id="installing-meta-box">Installing Meta Box</h2>
+
+<p>The Meta Box plugin is <a href="https://wordpress.org/plugins/meta-box/">available on wordpress.org</a>. To install it, go to <strong>Plugins → Add New</strong> and search for <strong>Meta Box</strong>.</p>
+
+<p><img src="https://i.imgur.com/MBrc6gJ.png" alt="install meta box plugin" /></p>
+
+<p>Then click the button <strong>Install</strong> to install it. After that, click the button <strong>Activate</strong> to activate the plugin.</p>
+
+<p>After installing Meta Box, you won’t see anything in the WordPress admin area. The plugin doesn’t have any admin page for configuration or settings. Instead of that, it provides an API that you can use to speed up the process of creating meta boxes and custom fields.</p>
+
+<p>To get started using the plugin, please see the <a href="https://docs.metabox.io/quick-start/">Quick Start guide</a>.</p>
+:ET

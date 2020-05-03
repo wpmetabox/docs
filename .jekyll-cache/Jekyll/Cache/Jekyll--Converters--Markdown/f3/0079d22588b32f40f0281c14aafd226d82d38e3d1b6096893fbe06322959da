@@ -1,0 +1,19 @@
+I"@<h2 id="overview">Overview</h2>
+
+<p>The divider field creates a simple horizontal line. It doesn’t have any value and is usually used to separate fields for better reading experience.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/JTIlECL.png" alt="divider" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>This field doesn’t have any specific settings. It only requires the <code class="highlighter-rouge">'type' =&gt; 'divider'</code>.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'divider'</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+:ET

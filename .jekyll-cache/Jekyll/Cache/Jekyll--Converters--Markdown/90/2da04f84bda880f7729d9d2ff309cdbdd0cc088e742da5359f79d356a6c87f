@@ -1,0 +1,497 @@
+I"��<h2 id="overview">Overview</h2>
+
+<p>Since WordPress 5.0, the block editor (Gutenberg) has been set as the default editor for WordPress. This block editor brings a lot of possibilities to create rich content visually. Users can preview the content exactly as it is on the front end.</p>
+
+<p>Gutenberg also gives WordPress developers a new API to create their own blocks using JavaScript. Because Gutenberg blocks are created using React, the process of creating a Gutenberg block might requires a lot of effort for WordPress developers to set up the environment and configure Webpack / Babel. That is not always possible for WordPress developers.</p>
+
+<p>With the help of MB Blocks, WordPress developers are now able to create Gutenberg blocks using PHP only. There is no JavaScript configuration and build process. Everything is just like <a href="https://docs.metabox.io/creating-meta-boxes/">creating a simple meta box</a>.</p>
+
+<p>Here is a screenshot of a custom Gutenberg block (hero area) that’s created using MB Blocks:</p>
+
+<p><img src="https://i.imgur.com/fVTmMWi.png" alt="custom Gutenberg block" /></p>
+
+<p>The preview of the block is displayed in the main content area while the block configuration is displayed on the right.  This allows you to edit the block content and live-preview the block in real-time. Later, you can also can change where the block settings are displayed (on the sidebar or right in the main content area).</p>
+
+<h2 id="creating-a-gutenberg-block">Creating A Gutenberg Block</h2>
+
+<p>(Scroll down to see a video tutorial and the code example).</p>
+
+<p>Creating a Gutenberg block with MB Blocks is similar to create a normal meta box. There are just a few different settings.</p>
+
+<p>Assumming we’re creating a hero area block (like the screenshot above). Open your theme’s <code class="highlighter-rouge">functions.php</code> file (or your plugin’s PHP file) and add the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+		<span class="s1">'title'</span>           <span class="o">=&gt;</span> <span class="s1">'Hero Content'</span><span class="p">,</span>
+		<span class="s1">'id'</span>              <span class="o">=&gt;</span> <span class="s1">'hero-content'</span><span class="p">,</span>
+		<span class="s1">'description'</span>     <span class="o">=&gt;</span> <span class="s1">'A custom hero content block'</span><span class="p">,</span>
+		<span class="s1">'type'</span>            <span class="o">=&gt;</span> <span class="s1">'block'</span><span class="p">,</span>
+		<span class="s1">'icon'</span>            <span class="o">=&gt;</span> <span class="s1">'awards'</span><span class="p">,</span>
+		<span class="s1">'category'</span>        <span class="o">=&gt;</span> <span class="s1">'layout'</span><span class="p">,</span>
+		<span class="s1">'context'</span>         <span class="o">=&gt;</span> <span class="s1">'side'</span><span class="p">,</span>
+		<span class="s1">'render_template'</span> <span class="o">=&gt;</span> <span class="nx">get_template_directory</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/blocks/hero/template.php'</span><span class="p">,</span>
+		<span class="s1">'enqueue_style'</span>   <span class="o">=&gt;</span> <span class="nx">get_template_directory_uri</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/blocks/hero/style.css'</span><span class="p">,</span>
+		<span class="s1">'supports'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+			<span class="s1">'align'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'wide'</span><span class="p">,</span> <span class="s1">'full'</span><span class="p">],</span>
+		<span class="p">],</span>
+
+		<span class="c1">// Block fields.</span>
+		<span class="s1">'fields'</span>          <span class="o">=&gt;</span> <span class="p">[</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'single_image'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'image'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Image'</span><span class="p">,</span>
+			<span class="p">],</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'title'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Title'</span><span class="p">,</span>
+			<span class="p">],</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'subtitle'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Subtitle'</span><span class="p">,</span>
+			<span class="p">],</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'textarea'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'content'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Content'</span><span class="p">,</span>
+			<span class="p">],</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'single_image'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'signature'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Signature'</span><span class="p">,</span>
+			<span class="p">],</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'button_text'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Button Text'</span><span class="p">,</span>
+			<span class="p">],</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'button_url'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Button URL'</span><span class="p">,</span>
+			<span class="p">],</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'color'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'background_color'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Background Color'</span><span class="p">,</span>
+			<span class="p">],</span>
+		<span class="p">],</span>
+	<span class="p">];</span>
+	<span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>You might notice that the syntax is very similar to <a href="https://docs.metabox.io/creating-meta-boxes/">creating a custom meta box</a>. You just need to define some settings and fields for the block.</p>
+
+<p>The block settings are inherited from the Block JavaScript API with a few difference. See <a href="https://developer.wordpress.org/block-editor/developers/block-api/block-registration/">Block Registration</a> page on the Gutenberg Handbook if you need more details.</p>
+
+<h3 id="title"><code class="highlighter-rouge">title</code></h3>
+
+<p>The block title. It’s used to dipslay the block when you click the Block Inserter in Gutenberg.</p>
+
+<h3 id="id"><code class="highlighter-rouge">id</code></h3>
+
+<p>The block ID. Must be unique.</p>
+
+<h3 id="icon"><code class="highlighter-rouge">icon</code></h3>
+
+<p>The block icon. Can be any of <a href="https://developer.wordpress.org/resource/dashicons/">WordPress’ Dashicons</a> (without the prefix <code class="highlighter-rouge">dashicons-</code>), or a custom <code class="highlighter-rouge">svg</code> element (string) or <a href="https://fontawesome.com/">FontAwesome 5 free icons</a> (added in version 1.2.0).</p>
+
+<p>Example:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Specifying a dashicon for the block</span>
+<span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'book-alt'</span><span class="p">,</span>
+
+<span class="c1">// FontAwesome 5 icon</span>
+<span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'fas fa-user'</span><span class="p">,</span>
+
+<span class="c1">// Specifying a custom svg for the block</span>
+<span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="s1">'&lt;svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path fill="none" d="M0 0h24v24H0V0z" /&gt;&lt;path d="M19 13H5v-2h14v2z" /&gt;&lt;/svg&gt;'</span><span class="p">,</span>
+</code></pre></div></div>
+
+<p>If you need an advanced configure for the icon, you can set <code class="highlighter-rouge">icon</code> as an array which can contain background and foreground colors, this colors will appear with the icon
+when they are applicable e.g.: in the inserter.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'icon'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="c1">// Specifying a background color to appear with the icon e.g.: in the inserter.</span>
+    <span class="s1">'background'</span> <span class="o">=&gt;</span> <span class="s1">'#7e70af'</span><span class="p">,</span>
+    <span class="c1">// Specifying a color for the icon (optional: if not set, a readable color will be automatically defined)</span>
+    <span class="s1">'foreground'</span> <span class="o">=&gt;</span> <span class="s1">'#fff'</span><span class="p">,</span>
+    <span class="c1">// Specifying a dashicon for the block</span>
+    <span class="s1">'src'</span> <span class="o">=&gt;</span> <span class="s1">'book-alt'</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<h3 id="description"><code class="highlighter-rouge">description</code></h3>
+
+<p>The block description. Optional.</p>
+
+<h3 id="type"><code class="highlighter-rouge">type</code></h3>
+
+<p>Tells Meta Box to register this as a Gutenberg block (not as a normal meta box). This must be set to <code class="highlighter-rouge">block</code>.</p>
+
+<h3 id="category"><code class="highlighter-rouge">category</code></h3>
+
+<p>Specify the block category, which is used to help users browse and discover them. Available values: <code class="highlighter-rouge">common</code>, <code class="highlighter-rouge">formatting</code>, <code class="highlighter-rouge">layout</code> (defaul), <code class="highlighter-rouge">widgets</code>, <code class="highlighter-rouge">embed</code>. If a theme or a plugin registers a custom category, you can also use it, too.</p>
+
+<h3 id="keywords"><code class="highlighter-rouge">keywords</code></h3>
+
+<p>List of keywords that users can use to search the block from the block inserter.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Make it easier to discover a block with keyword aliases.</span>
+<span class="s1">'keywords'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'image'</span><span class="p">,</span> <span class="s1">'photo'</span><span class="p">,</span> <span class="s1">'pics'</span><span class="p">],</span>
+</code></pre></div></div>
+
+<h3 id="context"><code class="highlighter-rouge">context</code></h3>
+
+<p>Where to show the block settings. If set to <code class="highlighter-rouge">side</code>, the block settings is displayed on the right sidebar when you select the block. If omitted (default), the block settings is displayed when you click the Edit icon in the block toolbar.</p>
+
+<p>See the short video below to understand.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FOw0bPG_jjw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<h3 id="supports"><code class="highlighter-rouge">supports</code></h3>
+
+<p>Custom supports for the block. This parameter accepts an array like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'supports'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+	<span class="s1">'align'</span>           <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'wide'</span><span class="p">,</span> <span class="s1">'full'</span><span class="p">],</span>
+	<span class="s1">'customClassName'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="s1">'anchor'</span>          <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div></div>
+
+<p>The following parameters are available for <code class="highlighter-rouge">supports</code>:</p>
+
+<h4 id="align"><code class="highlighter-rouge">align</code></h4>
+
+<p>Add supports for the block alignment. Note that your theme must add styling for the Gutenberg alignment.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Add the support for block's alignment (left, center, right, wide, full).</span>
+<span class="s1">'align'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+<span class="c1">// Pick which alignment options to display.</span>
+<span class="s1">'align'</span> <span class="o">=&gt;</span> <span class="p">[</span> <span class="s1">'left'</span><span class="p">,</span> <span class="s1">'right'</span><span class="p">,</span> <span class="s1">'full'</span> <span class="p">],</span>
+</code></pre></div></div>
+
+<h4 id="anchor"><code class="highlighter-rouge">anchor</code></h4>
+
+<p>Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'anchor'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+</code></pre></div></div>
+
+<h4 id="customclassname"><code class="highlighter-rouge">customClassName</code></h4>
+
+<p>This property adds a field to define a custom CSS class name for the block’s wrapper. It’s useful when you want to add custom styling for a specific instance of the block.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'customClassName'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+</code></pre></div></div>
+
+<h4 id="multiple"><code class="highlighter-rouge">multiple</code></h4>
+
+<p>If you want to have a block that can be inserted into each post one time only (like a hero area block), then set this parameter to <code class="highlighter-rouge">false</code>. A non-multiple block’s icon is automatically dimmed (unclickable) to prevent multiple instances.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Use the block just once per post</span>
+<span class="nx">multiple</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</code></pre></div></div>
+
+<h4 id="reusable"><code class="highlighter-rouge">reusable</code></h4>
+
+<p>A block may want to disable the ability of being converted into a reusable block. By default all blocks can be converted to a reusable block. If supports reusable is set to <code class="highlighter-rouge">false</code>, the option to convert the block into a reusable block will not appear.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Don't allow the block to be converted into a reusable block.</span>
+<span class="nx">reusable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</code></pre></div></div>
+
+<h3 id="render_callback"><code class="highlighter-rouge">render_callback</code></h3>
+
+<p>A custom PHP callback to display the block content. The callback accepts 2 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$attributes</code>: the block attributes, which has all the block settings and fields data.</li>
+  <li><code class="highlighter-rouge">$is_preview</code>: a boolean variable to let you know if you’re in the preview mode for Gutenberg or on the front end. It’s useful when you want to display a custom message to users when they edit the block on the back end.</li>
+  <li><code class="highlighter-rouge">$post_id</code>: the current post ID.</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Specify a custom PHP callback to display the block.</span>
+<span class="s1">'render_callback'</span> <span class="o">=&gt;</span> <span class="s1">'my_hero_callback'</span><span class="p">,</span>
+</code></pre></div></div>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="nf">my_hero_callback</span><span class="p">(</span> <span class="nv">$attributes</span><span class="p">,</span> <span class="nv">$is_preview</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">$post_id</span> <span class="o">=</span> <span class="kc">null</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// Fields data.</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="nb">empty</span><span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="c1">// Unique HTML ID if available.</span>
+	<span class="nv">$id</span> <span class="o">=</span> <span class="s1">'hero-'</span> <span class="o">.</span> <span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span> <span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">empty</span><span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'anchor'</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="nv">$id</span> <span class="o">=</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'anchor'</span><span class="p">];</span>
+	<span class="p">}</span>
+
+	<span class="c1">// Custom CSS class name.</span>
+	<span class="nv">$class</span> <span class="o">=</span> <span class="s1">'hero '</span> <span class="o">.</span> <span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'className'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span> <span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">empty</span><span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'align'</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+		<span class="nv">$class</span> <span class="o">.=</span> <span class="s2">" align</span><span class="si">{</span><span class="nv">$attributes</span><span class="p">[</span><span class="s1">'align'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="cp">?&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nv">$id</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">class=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nv">$class</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">style=</span><span class="s">"background-color: </span><span class="cp">&lt;?=</span> <span class="nx">mb_get_block_field</span><span class="p">(</span> <span class="s1">'background_color'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+		<span class="cp">&lt;?php</span> <span class="nv">$image</span> <span class="o">=</span> <span class="nx">mb_get_block_field</span><span class="p">(</span> <span class="s1">'image'</span> <span class="p">);</span> <span class="cp">?&gt;</span>
+		<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero__image"</span> <span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nv">$image</span><span class="p">[</span><span class="s1">'full_url'</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero__body"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;h2&gt;</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'title'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h2&gt;</span>
+			<span class="nt">&lt;h3&gt;</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'subtitle'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h3&gt;</span>
+			<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero__line"</span><span class="nt">&gt;&lt;/div&gt;</span>
+			<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero__content"</span><span class="nt">&gt;</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'content'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/div&gt;</span>
+
+			<span class="cp">&lt;?php</span> <span class="nv">$signature</span> <span class="o">=</span> <span class="nx">mb_get_block_field</span><span class="p">(</span> <span class="s1">'signature'</span> <span class="p">);</span> <span class="cp">?&gt;</span>
+			<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero__signature"</span> <span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nv">$signature</span><span class="p">[</span><span class="s1">'full_url'</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+
+			<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span> <span class="nx">mb_get_block_field</span><span class="p">(</span> <span class="s1">'button_url'</span> <span class="p">)</span> <span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+				<span class="nt">&lt;p&gt;&lt;a</span> <span class="na">class=</span><span class="s">"hero__button"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'button_url'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'button_text'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+			<span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="cp">&lt;?php</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>When using the callback, you can access to the block fields data via <code class="highlighter-rouge">$attribute['data'][$field_id]</code>. However, to make it’s convenient for you, we have created 2 helper functions: <code class="highlighter-rouge">mb_get_block_field()</code> and <code class="highlighter-rouge">mb_the_block_field()</code>.</p>
+
+<p>These functions work exactly like the <code class="highlighter-rouge">rwmb_get_value()</code> and <code class="highlighter-rouge">rwmb_the_value()</code>, but applied for the current block only. The first function returns the data stored for a block field, while the 2nd one outputs that data.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Get block image field.</span>
+<span class="nv">$image</span> <span class="o">=</span> <span class="nx">mb_get_block_field</span><span class="p">(</span> <span class="s1">'image'</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$image</span><span class="p">[</span><span class="s1">'full_url'</span><span class="p">];</span>
+
+<span class="c1">// Output the block content field.</span>
+<span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'content'</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="render_template"><code class="highlighter-rouge">render_template</code></h3>
+
+<p>Sometimes you might want to separate the code that output a custom Gutenberg block into a template part, then you can use <code class="highlighter-rouge">render_template</code> parameter to specify the full path to that template part.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'render_template'</span> <span class="o">=&gt;</span> <span class="nx">get_template_directory</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/blocks/hero/template.php'</span><span class="p">,</span>
+</code></pre></div></div>
+
+<p>Inside the template file, you have full access to the 3 parameters, just like <code class="highlighter-rouge">render_callback</code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$attributes</code>: the block attributes, which has all the block settings and fields data.</li>
+  <li><code class="highlighter-rouge">$is_preview</code>: a boolean variable to let you know if you’re in the preview mode for Gutenberg or on the front end. It’s useful when you want to display a custom message to users when they edit the block on the back end.</li>
+  <li><code class="highlighter-rouge">$post_id</code>: the current post ID.</li>
+</ul>
+
+<p>You also can use the new helper functions <code class="highlighter-rouge">mb_get_block_field()</code> and <code class="highlighter-rouge">mb_the_block_field()</code> to access the block fields data easier.</p>
+
+<p>So, inside the <code class="highlighter-rouge">blocks/hero/template.php</code>, you can write:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Fields data.</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nb">empty</span><span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Unique HTML ID if available.</span>
+<span class="nv">$id</span> <span class="o">=</span> <span class="s1">'hero-'</span> <span class="o">.</span> <span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">empty</span><span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'anchor'</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$id</span> <span class="o">=</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'anchor'</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="c1">// Custom CSS class name.</span>
+<span class="nv">$class</span> <span class="o">=</span> <span class="s1">'hero '</span> <span class="o">.</span> <span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'className'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">empty</span><span class="p">(</span> <span class="nv">$attributes</span><span class="p">[</span><span class="s1">'align'</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$class</span> <span class="o">.=</span> <span class="s2">" align</span><span class="si">{</span><span class="nv">$attributes</span><span class="p">[</span><span class="s1">'align'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nv">$id</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">class=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nv">$class</span> <span class="cp">?&gt;</span><span class="s">"</span> <span class="na">style=</span><span class="s">"background-color: </span><span class="cp">&lt;?=</span> <span class="nx">mb_get_block_field</span><span class="p">(</span> <span class="s1">'background_color'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+	<span class="cp">&lt;?php</span> <span class="nv">$image</span> <span class="o">=</span> <span class="nx">mb_get_block_field</span><span class="p">(</span> <span class="s1">'image'</span> <span class="p">);</span> <span class="cp">?&gt;</span>
+	<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero__image"</span> <span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nv">$image</span><span class="p">[</span><span class="s1">'full_url'</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero__body"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;h2&gt;</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'title'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h2&gt;</span>
+		<span class="nt">&lt;h3&gt;</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'subtitle'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/h3&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero__line"</span><span class="nt">&gt;&lt;/div&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"hero__content"</span><span class="nt">&gt;</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'content'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/div&gt;</span>
+
+		<span class="cp">&lt;?php</span> <span class="nv">$signature</span> <span class="o">=</span> <span class="nx">mb_get_block_field</span><span class="p">(</span> <span class="s1">'signature'</span> <span class="p">);</span> <span class="cp">?&gt;</span>
+		<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"hero__signature"</span> <span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?=</span> <span class="nv">$signature</span><span class="p">[</span><span class="s1">'full_url'</span><span class="p">]</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>
+
+		<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span> <span class="nx">mb_get_block_field</span><span class="p">(</span> <span class="s1">'button_url'</span> <span class="p">)</span> <span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span>
+			<span class="nt">&lt;p&gt;&lt;a</span> <span class="na">class=</span><span class="s">"hero__button"</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'button_url'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;?php</span> <span class="nx">mb_the_block_field</span><span class="p">(</span> <span class="s1">'button_text'</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+		<span class="cp">&lt;?php</span> <span class="k">endif</span> <span class="cp">?&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h3 id="enqueue_style"><code class="highlighter-rouge">enqueue_style</code></h3>
+
+<p>If you want to specify a custom styling for this specific block, then set this parameter the URL to the custom CSS file that will be used to style the block.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'enqueue_style'</span>   <span class="o">=&gt;</span> <span class="nx">get_template_directory_uri</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/blocks/hero/style.css'</span><span class="p">,</span>
+</code></pre></div></div>
+
+<p>If you have multiple blocks, then using multiple CSS files might hurt the performance of your website since you have many CSS files enqueued. In that case, please put the styles in your theme, and use the functions <a href="https://developer.wordpress.org/reference/hooks/enqueue_block_assets/">enqueue_block_assets()</a> and <a href="https://developer.wordpress.org/reference/hooks/enqueue_block_editor_assets/">enqueue_block_editor_assets()</a> to enqueue your styles.</p>
+
+<h3 id="enqueue_script"><code class="highlighter-rouge">enqueue_script</code></h3>
+
+<p>If your block requires custom JavaScript actions, then set this parameter the URL to the custom JavaScript file that will be used to do JavaScript tasks for the block (like initialize a slider).</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'enqueue_script'</span>   <span class="o">=&gt;</span> <span class="nx">get_template_directory_uri</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/blocks/hero/script.js'</span><span class="p">,</span>
+</code></pre></div></div>
+
+<p>Please note that this script should be run in 2 cases:</p>
+
+<ul>
+  <li>When the block is done loading on the front end</li>
+  <li>When the block preview is done loading in the block editor on the back end</li>
+</ul>
+
+<p>On the back end, everytime you modify the block settings, the block preview is re-rendered. The whole HTML of the block preview will be replaced by the new HTML.</p>
+
+<p>So, to trigger a custom code when the block preview is loaded, you need to add an event listener to the event <code class="highlighter-rouge">mb_blocks_preview/{$block_id}</code> and run your code there:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Run when a block preview is done loading.</span>
+<span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">).</span><span class="nx">on</span><span class="p">(</span> <span class="dl">'</span><span class="s1">mb_blocks_preview/hero-area</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span> <span class="p">);</span> <span class="c1">// e.target is the wrapper div of the block.</span>
+	<span class="c1">// Do something.</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>To make it works for both front end and back end, you can write your JavaScript like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">$</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Do something.</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Run when a document ready on the front end.</span>
+    <span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">).</span><span class="nx">ready</span><span class="p">(</span> <span class="nx">init</span> <span class="p">);</span>
+
+    <span class="c1">// Run when a block preview is done loading.</span>
+    <span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">).</span><span class="nx">on</span><span class="p">(</span> <span class="dl">'</span><span class="s1">mb_blocks_preview/hero-area</span><span class="dl">'</span><span class="p">,</span> <span class="nx">init</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">)(</span> <span class="nx">jQuery</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Note that jQuery is already added as a dependency for the script, so you can use it in your script.</p>
+
+<h3 id="enqueue_assets"><code class="highlighter-rouge">enqueue_assets</code></h3>
+
+<p>If your block has some CSS / JavaScript dependencies (such as a JavaScript library), then using <code class="highlighter-rouge">enqueue_style</code> and <code class="highlighter-rouge">enqueue_script</code> might not be a good option since it allows you to enqueue only one single CSS / JS file.</p>
+
+<p>In that case, use <code class="highlighter-rouge">enqueue_assets</code> to enqueue your assets. This parameter accept a PHP callback function, like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'enqueue_assets'</span> <span class="o">=&gt;</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">wp_enqueue_style</span><span class="p">(</span> <span class="s1">'slick'</span><span class="p">,</span> <span class="s1">'//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css'</span><span class="p">,</span> <span class="p">[],</span> <span class="s1">'1.8.1'</span> <span class="p">);</span>
+	<span class="nx">wp_enqueue_script</span><span class="p">(</span> <span class="s1">'slick'</span><span class="p">,</span> <span class="s1">'//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'jquery'</span><span class="p">],</span> <span class="s1">'1.8.1'</span><span class="p">,</span> <span class="kc">true</span> <span class="p">);</span>
+	<span class="nx">wp_enqueue_script</span><span class="p">(</span> <span class="s1">'my-custom-script'</span><span class="p">,</span> <span class="nx">get_template_directory_uri</span><span class="p">()</span> <span class="o">.</span> <span class="s1">'/blocks/hero/script.js'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'slick'</span><span class="p">],</span> <span class="s1">''</span><span class="p">,</span> <span class="kc">true</span> <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="preview"><code class="highlighter-rouge">preview</code></h3>
+
+<p>This attribute allows you to set preview data for the block, which will show when you click on the plus icon (+) on the toolbar:</p>
+
+<p><img src="https://i.imgur.com/bwMPY4t.png" alt="block preview" /></p>
+
+<p>The block preview is just the block rendered with a sample data. And you’ll just need to set the parameter <code class="highlighter-rouge">preview</code> as an array of that sample data.</p>
+
+<p>For example, if you have a “Team Member” block (as above) which has 3 fields: image, title and description, you can set the <code class="highlighter-rouge">preview</code> parameter as follows:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'preview'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+	<span class="s1">'image'</span>       <span class="o">=&gt;</span> <span class="s1">'http://domain.com/person.jpg'</span><span class="p">,</span> <span class="c1">// Image ID</span>
+	<span class="s1">'title'</span>       <span class="o">=&gt;</span> <span class="s1">'William Shakespeare'</span><span class="p">,</span>
+	<span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam'</span><span class="p">,</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="adding-fields-to-blocks">Adding Fields To Blocks</h2>
+
+<p>Each block can have unlimited fields. Adding fields to blocks is similar to adding fields to a custom meta box. All you need to do is specify the fields in the parameter <code class="highlighter-rouge">fields</code> from the block settings.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_meta_boxes'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$meta_boxes</span> <span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$meta_boxes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+		<span class="c1">// Other block settings.</span>
+
+		<span class="c1">// Block fields.</span>
+		<span class="s1">'fields'</span>          <span class="o">=&gt;</span> <span class="p">[</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'single_image'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'image'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Image'</span><span class="p">,</span>
+			<span class="p">],</span>
+			<span class="p">[</span>
+				<span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'text'</span><span class="p">,</span>
+				<span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'title'</span><span class="p">,</span>
+				<span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Title'</span><span class="p">,</span>
+			<span class="p">],</span>
+			<span class="c1">// Other fields,</span>
+		<span class="p">],</span>
+	<span class="p">];</span>
+	<span class="k">return</span> <span class="nv">$meta_boxes</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Each field is an array of its settings. See <a href="https://docs.metabox.io/field-settings/">this guide</a> for details about field settings.</p>
+
+<h2 id="block-data">Block Data</h2>
+
+<p>Unlike normal custom fields, Gutenberg blocks don’t save value in the post meta (or <a href="https://metabox.io/plugins/mb-custom-table/">custom table</a>). Each block created using MB Blocks is a <em>dynamic Gutenberg block</em>. And the block data is saved as a JSON string in the block content.</p>
+
+<p>If you view the post content via a tool like PHPMyAdmin, you’ll see the block is stored as a string like this:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- wp:meta-box/hero-content {"id":"block_jyqlhbauqz4jz51ahab","data":{"image":"10","title":"Hi, I’m Martin Green","subtitle":"WEB DEVELOPER \u0026 DESIGNER","content":"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusa ntium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta suntlo explica bo. Nemo enim ipsam voluptatem quia voluptas.","signature":"9","button_text":"Discover More","button_url":"#","background_color":"#f5f7f8"},"align":"wide"} /--&gt;</span>
+</code></pre></div></div>
+
+<p>When you decode the JSON string, you’ll see the block data as an object like this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"block_jyqlhbauqz4jz51ahab"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, I’m Martin Green"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB DEVELOPER </span><span class="se">\u</span><span class="s2">0026 DESIGNER"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusa ntium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta suntlo explica bo. Nemo enim ipsam voluptatem quia voluptas."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"button_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Discover More"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"button_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"background_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#f5f7f8"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"align"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wide"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>It has the following attribute:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">name</code>: the block name</li>
+  <li><code class="highlighter-rouge">id</code>: an unique ID for the block. Note that it’s different from the block settings ID. This ID can be used to set the <code class="highlighter-rouge">id</code> parameter in the HTML if you want.</li>
+  <li><code class="highlighter-rouge">align</code>: block alignment</li>
+  <li><code class="highlighter-rouge">anchor</code>: block anchor</li>
+  <li><code class="highlighter-rouge">className</code>: custom CSS class for the block</li>
+  <li><code class="highlighter-rouge">data</code>: an array of the block fields data, in format of <code class="highlighter-rouge">'field_id' =&gt; 'field_value'</code></li>
+</ul>
+
+<p>The data is passed to the <code class="highlighter-rouge">render_callback</code> or <code class="highlighter-rouge">render_template</code> as <code class="highlighter-rouge">$attributes</code> parameter. So you can use it to render the block.</p>
+
+<p>Note that: although you can access to the fields values via <code class="highlighter-rouge">$attributes['data]'</code>, it’s recommended to use the <code class="highlighter-rouge">mb_get_block_field()</code> and <code class="highlighter-rouge">mb_the_block_field()</code> functions.</p>
+
+<h2 id="video-tutorial">Video Tutorial</h2>
+
+<p><strong>Create Custom Gutenberg Blocks With Meta Box (only PHP)</strong></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PAisKy8eC2U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p><strong>Build Gutenberg Blocks Visually With Meta Box Builder</strong></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v3ke1DBlWuk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>See more details on <a href="https://metabox.io/build-gutenberg-blocks-visually-with-meta-box-builder/">using Meta Box Builder with MB Blocks</a>.</p>
+
+<h2 id="example">Example</h2>
+
+<p>The complete code example for the video (and used to write this tutorial) is <a href="https://github.com/wpmetabox/library/tree/master/extensions/mb-blocks/hero">available in the Library</a>. You can copy the code and put it in your theme. Then start to modify it to create your own Gutenberg blocks.</p>
+:ET

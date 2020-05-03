@@ -1,0 +1,85 @@
+I"É<h2 id="overview">Overview</h2>
+
+<p>The time field allows you to select a time via a friendly UI. This field uses jQuery UI time picker libraries.</p>
+
+<h2 id="screenshots">Screenshots</h2>
+
+<p>Default:</p>
+
+<p><img src="https://i.imgur.com/xwV5FN5.png" alt="time picker" /></p>
+
+<p>Time as select dropdowns:</p>
+
+<p><img src="https://i.imgur.com/S83Wpau.png" alt="time picker 2" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">size</code></td>
+      <td>size of the input box. Optional. Default 10.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">inline</code></td>
+      <td>Whether to display the date picker inline with the edit, e.g. do not require to click the input field to trigger the date picker? <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> (default).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">js_options</code></td>
+      <td>Time picker options. <a href="http://trentrichardson.com/examples/timepicker/">See here</a>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span>       <span class="o">=&gt;</span> <span class="s1">'Time picker'</span><span class="p">,</span>
+    <span class="s1">'id'</span>         <span class="o">=&gt;</span> <span class="s1">'field_id'</span><span class="p">,</span>
+    <span class="s1">'type'</span>       <span class="o">=&gt;</span> <span class="s1">'time'</span><span class="p">,</span>
+
+    <span class="c1">// Time options, see here http://trentrichardson.com/examples/timepicker/</span>
+    <span class="s1">'js_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'stepMinute'</span>      <span class="o">=&gt;</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s1">'controlType'</span>     <span class="o">=&gt;</span> <span class="s1">'select'</span><span class="p">,</span>
+        <span class="s1">'showButtonPanel'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s1">'oneLine'</span>         <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">),</span>
+
+    <span class="c1">// Display inline?</span>
+    <span class="s1">'inline'</span>     <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>This field simply saves a single entered time in the database.</p>
+
+<p>If the field is cloneable, then the value is stored as a serialized array in a single row in the database.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>To get the field value, use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>If field is cloneable:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$values</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$values</span> <span class="k">as</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a>.</p>
+:ET

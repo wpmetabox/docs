@@ -1,0 +1,188 @@
+I"�*<h2 id="overview">Overview</h2>
+
+<p>The file upload field displayes an inline upload area that you can drag and drop or select files to upload.</p>
+
+<p>Note that this field doesn’t open the Media Library popup for selecting existing files. You can upload new files only.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/yGNNhOg.png" alt="file upload" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">max_file_uploads</code></td>
+      <td>Max number of uploaded files. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">force_delete</code></td>
+      <td>Whether or not delete the files from Media Library when deleting them from post meta. <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> (default). Optional. Note: it might affect other posts if you use same file for multiple posts.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">mime_type</code></td>
+      <td>MIME type of files which we want to show in Media Library. Note: this is a filter for items in Media popup, it doesn’t restrict file types when upload.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">max_status</code></td>
+      <td>Display how many files uploaded/remaining. Applied only when <code class="highlighter-rouge">max_file_uploads</code> is defined. <code class="highlighter-rouge">true</code> (default) or <code class="highlighter-rouge">false</code>. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">max_file_size</code></td>
+      <td>Maximum file size that the user can upload, in bytes. Optionally supports b, kb, mb, gb, tb suffixes. e.g. “10mb” or “1gb”.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that the <code class="highlighter-rouge">multiple</code> setting is always set to <code class="highlighter-rouge">true</code> for this field.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>               <span class="o">=&gt;</span> <span class="s1">'file'</span><span class="p">,</span>
+    <span class="s1">'name'</span>             <span class="o">=&gt;</span> <span class="s1">'File upload'</span><span class="p">,</span>
+    <span class="s1">'type'</span>             <span class="o">=&gt;</span> <span class="s1">'file_upload'</span><span class="p">,</span>
+
+    <span class="c1">// Delete file from Media Library when remove it from post meta?</span>
+    <span class="c1">// Note: it might affect other posts if you use same file for multiple posts</span>
+    <span class="s1">'force_delete'</span>     <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+
+    <span class="c1">// Maximum file uploads.</span>
+    <span class="s1">'max_file_uploads'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+
+    <span class="c1">// File types.</span>
+    <span class="c1">// 'mime_type'        =&gt; 'application,audio,video',</span>
+
+    <span class="c1">// Do not show how many files uploaded/remaining.</span>
+    <span class="s1">'max_status'</span>       <span class="o">=&gt;</span> <span class="s1">'false'</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>Similar to file field, this field saves multiple values (attachment IDs) in the database. Each value (attachment ID) and is store in a single row in the database with the same meta key (similar to what <code class="highlighter-rouge">add_post_meta</code> does with last parameter <code class="highlighter-rouge">false</code>).</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>To get the uploaded files, use the helper function <a href="/rwmb-meta/">rwmb_meta()</a>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$files</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'field_id'</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$files</span> <span class="k">as</span> <span class="nv">$file</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="cp">?&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$file</span><span class="p">[</span><span class="s1">'url'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$file</span><span class="p">[</span><span class="s1">'name'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;?php</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This helper function returns an array of files, each file has the following information:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'ID'</span>    <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'intro.txt'</span><span class="p">,</span>
+    <span class="s1">'path'</span>  <span class="o">=&gt;</span> <span class="s1">'/var/www/wp-content/uploads/intro.txt'</span><span class="p">,</span>
+    <span class="s1">'url'</span>   <span class="o">=&gt;</span> <span class="s1">'https://example.com/wp-content/uploads/intro.txt'</span><span class="p">,</span>
+    <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Introduction'</span><span class="p">,</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>In case you want to get only 1 file, use the <code class="highlighter-rouge">limit</code> parameter for the helper function:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$files</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'field_id'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">);</span>
+<span class="nv">$file</span> <span class="o">=</span> <span class="nb">reset</span><span class="p">(</span> <span class="nv">$files</span> <span class="p">);</span>
+<span class="cp">?&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$file</span><span class="p">[</span><span class="s1">'url'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Download File<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<p>If you only want to display uploaded files in an unordered list, you can just use the <a href="/rwmb-the-value/">rwmb_the_value()</a>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_the_value</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>which outputs:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"link/to/file/"</span><span class="nt">&gt;</span>File 1<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"link/to/file/"</span><span class="nt">&gt;</span>File 2<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a> and <a href="/rwmb-the-value/">rwmb_the_value()</a>.</p>
+
+<h2 id="filters">Filters</h2>
+
+<p>This field has some filters to change the texts displayed on the screen..</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Filter</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_media_add_string</code></td>
+      <td>+ Add Media</td>
+      <td>Add new file string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_media_single_files_string</code></td>
+      <td>file</td>
+      <td>Singular “file” string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_media_multiple_files_string</code></td>
+      <td>files</td>
+      <td>Plural “files” string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_media_remove_string</code></td>
+      <td>Remove</td>
+      <td>File remove string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_media_edit_string</code></td>
+      <td>Edit</td>
+      <td>File edit string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_media_view_string</code></td>
+      <td>View</td>
+      <td>File view string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_media_select_string</code></td>
+      <td>Select Files</td>
+      <td>Select files string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_media_or_string</code></td>
+      <td>or</td>
+      <td>The string “or” in “Drop files here to upload or Select Files”</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_media_upload_instructions_string</code></td>
+      <td>Drop files here to upload</td>
+      <td>The upload instruction string</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The code below changes the “+ Add Media” string:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_media_add_string'</span><span class="p">,</span> <span class="s1">'prefix_change_add_string'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_change_add_string</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'+ New File'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

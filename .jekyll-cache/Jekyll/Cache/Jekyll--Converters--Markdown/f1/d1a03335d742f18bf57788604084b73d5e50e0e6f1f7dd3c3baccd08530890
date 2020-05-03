@@ -1,0 +1,102 @@
+I"t<h2 id="overview">Overview</h2>
+
+<p>The slider field creates a slider where you can select a number by dragging a control.</p>
+
+<p>This field uses jQuery UI library to create the UI.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/voHxzpJ.png" alt="slider" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">prefix</code></td>
+      <td>Text displayed before the field value. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">suffix</code></td>
+      <td>Text displayed after the field value. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">js_options</code></td>
+      <td>jQuery UI slider options. <a href="https://api.jqueryui.com/slider/">See here</a>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>By default, Meta Box applies these default options for <code class="highlighter-rouge">js_options</code>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">range</code></td>
+      <td><code class="highlighter-rouge">min</code></td>
+      <td>Create a range from the minimum value to one handle.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">value</code></td>
+      <td><code class="highlighter-rouge">$field['std']</code></td>
+      <td>Set the default field value.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If you set <code class="highlighter-rouge">range</code> to <code class="highlighter-rouge">true</code>, then the plugin will saves 2 values in the database, separated by pipe (<code class="highlighter-rouge">|</code>) character, e.g. <code class="highlighter-rouge">15|90</code>.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Slider'</span><span class="p">,</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'slider'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'slider'</span><span class="p">,</span>
+
+    <span class="c1">// Text labels displayed before and after value</span>
+    <span class="s1">'prefix'</span> <span class="o">=&gt;</span> <span class="s1">'$'</span><span class="p">,</span>
+    <span class="s1">'suffix'</span> <span class="o">=&gt;</span> <span class="s1">' USD'</span><span class="p">,</span>
+
+    <span class="c1">// jQuery UI slider options. See here http://api.jqueryui.com/slider/</span>
+    <span class="s1">'js_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'min'</span>   <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s1">'max'</span>   <span class="o">=&gt;</span> <span class="mi">255</span><span class="p">,</span>
+        <span class="s1">'step'</span>  <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="p">),</span>
+
+    <span class="s1">'std'</span> <span class="o">=&gt;</span> <span class="mi">150</span><span class="p">,</span>
+    <span class="c1">// 'clone' =&gt; true,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>This field simply saves a single selected value (without the prefix and suffix) in the database.</p>
+
+<p>If the field is cloneable, then the value is stored as a serialized array in a single row in the database.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>To get the field value, use the following code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a>.</p>
+:ET

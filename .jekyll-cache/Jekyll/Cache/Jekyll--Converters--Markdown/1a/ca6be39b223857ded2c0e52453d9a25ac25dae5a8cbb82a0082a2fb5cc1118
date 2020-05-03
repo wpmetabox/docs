@@ -1,0 +1,214 @@
+I"�.<h2 id="overview">Overview</h2>
+
+<p>MB Views is an extension for Meta Box, which helps you to get Meta Box fields and build your templates on the front end fast and easily.</p>
+
+<p>With MB Views, you can just select fields you want to show, fill in some parameters and done! The extension supports all custom fields built with Meta Box, and also post fields (such as post title and post content), site settings, user fields, and even query fields.</p>
+
+<p>You can also customize all templates in WordPress, even for post types that don’t have Meta Box fields.</p>
+
+<p>See more details on the <a href="https://metabox.io/plugins/mb-views/">plugin page</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<h2 id="video-tutorial">Video Tutorial</h2>
+
+<p>In this video, we show you step-by-step how to use <em>MB Views</em> to create singular and archive templates for a custom post type. We also show you the basis of Twig and how to set location rules.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4udvu8PqfkE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<h2 id="creating-a-view">Creating A View</h2>
+
+<p>To create a view, go to <strong>Meta Box &gt; Views</strong> and click the <strong>Add New</strong> button.</p>
+
+<p><img src="https://i.imgur.com/VO5oV2T.png" alt="creat a new view" /></p>
+
+<p>In the view screen, you’ll see 2 areas:</p>
+
+<ul>
+  <li>Template editors: where you can enter template code for the view. It contains 3 editors for the template, CSS and JavaScript.</li>
+  <li>Settings: where you can set location rules for the view.</li>
+</ul>
+
+<p>In the main editor, you can enter any HTML or <em>shortcodes</em> for the template. All shortcodes will be parsed automatically on the front end.</p>
+
+<h2 id="insert-a-field">Insert A Field</h2>
+
+<p>To insert a field, click the <strong>Insert Field</strong> button. It will open a panel on the right, where you can see all available fields.</p>
+
+<p>Fields are categorized into 4 tabs:</p>
+
+<ul>
+  <li>Post: contains all post fields and custom fields for posts.</li>
+  <li>Site: contains all site fields and settings fields (created by <a href="https://metabox.io/plugins/mb-settings-page/">MB Settings Page</a> plugin).</li>
+  <li>User: contains all user fields and custom fields for users (created by <a href="https://metabox.io/plugins/mb-user-meta/">MB User Meta</a> plugin).</li>
+  <li>Query: contains loop and pagination for archive pages.</li>
+</ul>
+
+<p>To insert a field, click on the field title to insert it. The field might have additional parameters (such as choose image size for image field). And in that case, the plugin will open a popup for you to enter or select options.</p>
+
+<p><img src="https://i.imgur.com/MUsLgWu.png" alt="enter field options" /></p>
+
+<p>When you’re done entering the field options, click <strong>Insert</strong> button to insert the field in the editor. The plugin will generate a snippet and insert it into the editor.</p>
+
+<p>If a field doesn’t have options, then the plugin will insert a snippet into the editor immediately without opening a popup.</p>
+
+<h3 id="cloneable-fields">Cloneable Fields</h3>
+
+<p>Cloneable fields are marked with a <em>repeat</em> icon, like this:</p>
+
+<p><img src="https://i.imgur.com/6KoyJGB.png" alt="cloneable group fields" /></p>
+
+<p>To insert a cloneable field, click on the field title, like inserting a normal field.</p>
+
+<p>The plugin will generate a snippet for the field, like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% for clone in post.tickets %}
+    Content here might be different depends on the field type
+{% endfor %}
+
+</code></pre></div></div>
+
+<p>This is a <code class="highlighter-rouge">for</code> loop, created using Twig template engine. You’ll find more details about it below. The content inside the <code class="highlighter-rouge">for</code> loop might be different depends on the field type.</p>
+
+<h3 id="group-fields">Group Fields</h3>
+
+<p>Group fields are marked with an arrow on the left, just like the image above. Clicking on the arrow will toggle the group sub-fields.</p>
+
+<p>To insert a sub-field, click on the sub-field title, like inserting a normal field. Depending on the field type, it will open a popup for additional options or not.</p>
+
+<div class="alert alert-warning">
+	
+		<svg class="icon icon-warning" aria-hidden="true" role="img"><use href="#icon-warning" xlink:href="#icon-warning"></use></svg>
+	
+	<p>Important: if you have a cloneable group, before inserting sub-fields, you MUST insert the <code class="highlighter-rouge">for</code> loop for the group first. To insert the group, click on the group title. See the Cloneable Fields section above for details.</p>
+
+</div>
+
+<h3 id="relationship-fields">Relationship Fields</h3>
+
+<p>Relationships created with <a href="https://metabox.io/plugins/mb-relationships/">MB Relationships</a> extension can be inserted in the tab <strong>Query</strong>.</p>
+
+<p>Once you registered a relationship, it will show 2 fields here: one for “from” side, and one for “to” side. Clicking a field will insert a loop of connected items, and inside the loop, you can insert post/term/user fields as usual.</p>
+
+<h2 id="running-php-functions">Running PHP functions</h2>
+
+<p>To run PHP functions, use the <code class="highlighter-rouge">mb</code> proxy. It acts as a transformer between views and PHP.</p>
+
+<p>Assume you want to get another post in WordPress with post ID 123, you can write a simple PHP code:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$post</span> <span class="o">=</span> <span class="nx">get_post</span><span class="p">(</span> <span class="mi">123</span> <span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">post_title</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>With the <code class="highlighter-rouge">mb</code> proxy, you can call the <code class="highlighter-rouge">get_post()</code> function like this:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% set post = mb.get_post( 123 ) %}
+{{ post.post_title }}
+
+</code></pre></div></div>
+
+<p>Here you see, the normal PHP function is prefixed by <code class="highlighter-rouge">mb.</code>, e.g. <code class="highlighter-rouge">get_post</code> becomes <code class="highlighter-rouge">mb.get_post</code>. So if you want to call a function <code class="highlighter-rouge">my_custom_function</code>, you need to write <code class="highlighter-rouge">mb.my_custom_function</code>. The parameters passed to the function remain the same.</p>
+
+<p>In case you want to set arguments for functions, use the <code class="highlighter-rouge">set</code> syntax. Twig allows you to set complex variables, like <a href="https://twig.symfony.com/doc/1.x/templates.html#literals">lists with keys and values</a> and then you can pass it to the function:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% set my_var = ["first", "second"] %}
+{% set my_var = {first: "first value", second: "second value"}
+
+{% set my_var = {first: "first value", second: "second value"}
+
+{% set value = mb.custom_function( my_var ) %}
+
+</code></pre></div></div>
+
+<h2 id="locations">Locations</h2>
+
+<p>Each view can serve multiple pages on your website. To set where the view appears, go to <strong>Settings</strong> meta box below the editor:</p>
+
+<p><img src="https://i.imgur.com/Szjmvnd.png" alt="view locations" /></p>
+
+<p>There are several options:</p>
+
+<h3 id="type">Type</h3>
+
+<p>What type of page do you want to set the view for? Supports singular, archive pages and custom locations, where you need to use a shortcode to insert the view to the location you want. The shortcode is available <em>after</em> you save the view.</p>
+
+<h3 id="location-rules">Location Rules</h3>
+
+<p>Where you set the rules for the singular and archive pages. Location rules are divided into groups, and in each group, you can set multiple rules.</p>
+
+<p>Rules inside a group are combined with <code class="highlighter-rouge">OR</code> logical operator, which means the views will serve this page if either condition is satisfied.</p>
+
+<p>Groups are combined with <code class="highlighter-rouge">AND</code> logical operator, which means the views will serve this page if all conditions are satisfied.</p>
+
+<p>With the combination of <code class="highlighter-rouge">OR</code> and <code class="highlighter-rouge">AND</code>, you can build complex rules for views.</p>
+
+<h3 id="render-type">Render type</h3>
+
+<p>After choosing location rules, you can decide where to render the view for those chosen pages. You have 2 options:</p>
+
+<ul>
+  <li>Render for the whole layout between header and footer. Using this option, you have full control to build the layout.</li>
+  <li>Render only for the post content area. Using this option, you leave the layout to the theme and control only the post content area.</li>
+</ul>
+
+<h3 id="position">Position</h3>
+
+<p>If you choose to render the view for the post content area, then you can set it to appear before, after or replace the content area.</p>
+
+<h3 id="order">Order</h3>
+
+<p>The order settings is used to set the loading order for views. If you have multiple views for the same page, then views with a lower order will render first.</p>
+
+<h2 id="twig">Twig</h2>
+
+<p>When editing a template for views, you can use any HTML/CSS/JavaScript.</p>
+
+<p>In some cases, when you need to set a condition for an HTML section or loop through all values of an array, then you can use Twig.</p>
+
+<p><a href="https://twig.symfony.com/">Twig</a> is a powerful template engine for PHP, which allows you to write conditions (<code class="highlighter-rouge">if..else</code>), control structure (<code class="highlighter-rouge">for</code>) and use filters to transform the output.</p>
+
+<p>For example, if you want to output an image if the post doesn’t have a featured image, then you can use the following snippet:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% if post.thumbnail.full %}
+    &lt;img src="{{ post.thumbnail.full.url }}"&gt;
+{% else %}
+    &lt;img src="https://via.placeholder.com/800x100"&gt;
+{% endif %}
+
+</code></pre></div></div>
+
+<p>If a field has multiple values, then you can use <code class="highlighter-rouge">for</code>-loop to render all the values, like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{% for country in post.countries %}
+    {{ country }}
+{% endfor %}
+
+</code></pre></div></div>
+
+<p>You can also use filter to transform the value, like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{ post.date | date( 'm/d/Y' ) }}
+</code></pre></div></div>
+
+<p>For details about using Twig, please see the <a href="https://twig.symfony.com/doc/1.x/templates.html">documentation</a>.</p>
+:ET

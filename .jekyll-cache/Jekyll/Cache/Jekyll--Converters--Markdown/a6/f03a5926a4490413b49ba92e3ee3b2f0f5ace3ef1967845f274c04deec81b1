@@ -1,0 +1,106 @@
+I"(<h2 id="overview">Overview</h2>
+
+<p>In addition to the <a href="https://docs.metabox.io/field-settings/">supported field types</a>, Meta Box also supports all HTML5 input types, such as <code class="highlighter-rouge">url</code> and <code class="highlighter-rouge">tel</code>. You can start using them without writing any extra code.</p>
+
+<h2 id="what-is-html5-input-types">What is HTML5 input types?</h2>
+
+<p><a href="http://html5doctor.com/html5-forms-input-types/">HTML5 input types</a> are types for the text input that are added to the HTML5 and are supported by all browsers. They act similar to <code class="highlighter-rouge">text</code> input, but for other data types, such as URL, email or date. Using HTML5 input types have some benefits:</p>
+
+<ul>
+  <li>You have built-in UI like the arrow up/down for <code class="highlighter-rouge">number</code> or a picker for date/time/week. The UI is various in different browsers, but it works. And it also supports mobile devices.</li>
+</ul>
+
+<p><img src="https://i.imgur.com/owRtMYv.png" alt="built-in UI for week input" /></p>
+
+<ul>
+  <li>You have built-in validation. If users enter invalid data (for <code class="highlighter-rouge">url</code> or <code class="highlighter-rouge">email</code>), the browser will throw an error.</li>
+</ul>
+
+<p><img src="https://i.imgur.com/vmUkaIP.png" alt="invalid email error" /></p>
+
+<ul>
+  <li>Finally, you have a semantic markup</li>
+</ul>
+
+<p>Here are the list of HTML5 input types that you can use:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Input Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">search</code></td>
+      <td>Search input field</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">email</code></td>
+      <td>Email input field, which has validation for email</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">url</code></td>
+      <td>URL input field, which has validation for URL (e.g. must starts with <code class="highlighter-rouge">http</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">tel</code></td>
+      <td>Telephone input field</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">number</code></td>
+      <td>Number input field, which has up/down arrows to increase/decrease the number.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">range</code></td>
+      <td>Range input field, which allows you select a number by dragging a control.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">date</code></td>
+      <td>Date input field, which has the built-in UI for picking a date</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">month</code></td>
+      <td>Month input field, which has the built-in UI for picking a month</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">week</code></td>
+      <td>Week input field, which has the built-in UI for picking a week</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">time</code></td>
+      <td>Time input field, which has the built-in UI for picking a time</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">datetime</code></td>
+      <td>Datetime input field, which has the built-in UI for picking both date and time</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">datetime-local</code></td>
+      <td>Datetime input field, which has the built-in UI for picking a date and time with the local timezone</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">color</code></td>
+      <td>Color input field, which has a color picker UI.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="using-html5-input-types-with-meta-box">Using HTML5 input types with Meta Box</h2>
+
+<p>Using HTML5 input types with Meta Box is as simple as <code class="highlighter-rouge">text</code> field. All you need to do is <strong>set the <code class="highlighter-rouge">type</code> attribute</strong> of the field to the corresponding HTML 5 input type.</p>
+
+<p>For example, the code below creates a <code class="highlighter-rouge">tel</code> field:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'field_id'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'tel'</span><span class="p">,</span> <span class="c1">// New HTML 5 input type</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Telephone'</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>That’s it.</p>
+
+<p>In order to customize the field, you might want to add some <a href="https://docs.metabox.io/custom-attributes/">custom attributes</a> to the input such as <code class="highlighter-rouge">size</code>, <code class="highlighter-rouge">pattern</code>. Even without custom attributes, the field work just fine and you’ll benefit from all things that HTML5 provide.</p>
+:ET

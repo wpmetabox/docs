@@ -1,0 +1,66 @@
+I"m<h2 id="overview">Overview</h2>
+
+<p>Meta Box AIO is a part of <a href="https://metabox.io/pricing/">Developer and Lifetime Bundles</a>, which contains all the extensions. This extension allows you to just install 1 plugin and have everything in hand. So you can shorten down the plugin list and never get lost in a lot of plugins provided by Meta Box.</p>
+
+<p>For more information, please see <a href="https://metabox.io/meta-box-aio-available/">this blog post</a>.</p>
+
+<h2 id="installation">Installation</h2>
+<p>Before installing the extension, you need to install Meta Box plugin first.</p>
+
+<ol>
+  <li>Go to <em>Plugins → Add New</em> and search for <strong>Meta Box</strong></li>
+  <li>Click <strong>Install Now</strong> button to install the plugin</li>
+  <li>After installing, click <strong>Activate Plugin</strong> to activate the plugin</li>
+</ol>
+
+<p>The extension is just a WordPress plugin, you can install it like a normal WordPress plugin.</p>
+
+<ol>
+  <li>Go to <em>Plugins</em>, click <strong>Add new</strong>, then click <strong>Upload plugin</strong>.</li>
+  <li>Choose the <code class="highlighter-rouge">.zip</code> file you downloaded and click <strong>Install now</strong></li>
+  <li>After finishing upload, click <strong>Activate</strong> to finish.</li>
+</ol>
+
+<p><strong>Important:</strong> Meta Box AIO still requires Meta Box to work.</p>
+
+<h2 id="settings-page">Settings page</h2>
+
+<p>The extension has a settings page under <em>Meta Box → Extensions</em>, where you can enable/disable the modules you need/don’t need.</p>
+
+<p><img src="https://imgur.com/gBFCrB1.png" alt="meta box aio settings page" /></p>
+
+<p>Simply check/uncheck the checkbox to enable/disable the corresponding extensions. Then click <strong>Save Changes</strong>.</p>
+
+<p>Please note that you still need to <a href="/installation/">install Meta Box</a> plugin to see the admin menu.</p>
+
+<h2 id="filters">Filters</h2>
+
+<p>While the settings page and the notification to install free extensions are great for users, developers might want to hide them from normal users. To do that, Meta Box AIO provides some filters:</p>
+
+<h3 id="mb_aio_show_settings"><code class="highlighter-rouge">mb_aio_show_settings</code></h3>
+
+<p>This filter is used to show/hide the settings page. The callback function should return <code class="highlighter-rouge">true</code> to show the settings page, or <code class="highlighter-rouge">false</code> to hide it.</p>
+
+<p>To hide the settings page, use the following code:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add_filter( 'mb_aio_show_settings', '__return_false' );
+</code></pre></div></div>
+
+<h3 id="mb_aio_extensions"><code class="highlighter-rouge">mb_aio_extensions</code></h3>
+
+<p>This filter allows you to change the list of enabled premium extensions. Thus, enable/disable modules by just coding.</p>
+
+<p>This filter takes a list of enabled extensions (their slugs), and returns the filtered list.</p>
+
+<p>For example, the code below enables only the <a href="https://metabox.io/plugins/meta-box-builder/">Meta Box Builder</a> extension:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'mb_aio_extensions'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span> <span class="nv">$extensions</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'meta-box-builder'</span><span class="p">];</span>
+    
+    <span class="c1">// You can also do</span>
+    <span class="c1">// $extensions[] = 'meta-box-builder';</span>
+    
+    <span class="k">return</span> <span class="nv">$extensions</span><span class="p">;</span>
+<span class="p">}</span> <span class="p">);</span>
+</code></pre></div></div>
+:ET

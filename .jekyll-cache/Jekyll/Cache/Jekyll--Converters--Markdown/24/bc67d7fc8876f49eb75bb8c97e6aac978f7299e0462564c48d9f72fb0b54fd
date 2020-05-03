@@ -1,0 +1,80 @@
+I"u<h2 id="overview">Overview</h2>
+
+<p><code class="highlighter-rouge">rwmb_the_value</code> is a helper function which outputs the HTML of the field.</p>
+
+<p>It’s very helpful in case you want to output a real Google maps for <code class="highlighter-rouge">map</code> field, or a player for <code class="highlighter-rouge">oembed</code> field.</p>
+
+<p>Unlike <a href="/rwmb-get-value/">rwmb_get_value()</a>, this function always outputs human-readable content. For example, for a checkbox list, it outputs the labels of the choices, not the values.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>To display field value in your theme, copy the following code and paste it in your theme’s template file:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_the_value</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>You can put it in the theme <code class="highlighter-rouge">single.php</code> or <code class="highlighter-rouge">template-parts/content.php</code> file, depending on your <a href="https://developer.wordpress.org/themes/basics/template-files/">theme structure</a>.</p>
+
+<h2 id="arguments">Arguments</h2>
+
+<p>This function accepts 4 arguments as below:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_the_value</span><span class="p">(</span> <span class="nv">$field_id</span><span class="p">,</span> <span class="nv">$args</span><span class="p">,</span> <span class="nv">$post_id</span><span class="p">,</span> <span class="nv">$echo</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">$field_id</code></td>
+      <td>The field ID. Required.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$args</code></td>
+      <td>Extra arguments for some field types (image, file, etc.). Optional. Can be array or a string in format <code class="highlighter-rouge">param1=value1&amp;param2=value2</code>. See more details in field types (on the left menu, section Fields). Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$post_id</code></td>
+      <td>Post ID that custom fields are get from. Optional. If not present, current post ID is used.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$echo</code></td>
+      <td>Echo the HTML output (<code class="highlighter-rouge">true</code> - default) or return it (<code class="highlighter-rouge">false</code>).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="returned-value">Returned value</h2>
+
+<p>By default, the function just outputs the HTML content of the field. If you set <code class="highlighter-rouge">$echo</code> to <code class="highlighter-rouge">false</code>, then it will return return the HTML as a string.</p>
+
+<p>For simple fields like <code class="highlighter-rouge">text</code>, <code class="highlighter-rouge">select</code>, HTML output is just the field value.</p>
+
+<p>For other fields, HTML can be unordered list (<code class="highlighter-rouge">checkbox_list</code>), Google maps (<code class="highlighter-rouge">map</code>), list of users (<code class="highlighter-rouge">user</code>), etc.</p>
+
+<div class="alert alert-warning">
+	
+		<svg class="icon icon-warning" aria-hidden="true" role="img"><use href="#icon-warning" xlink:href="#icon-warning"></use></svg>
+	
+	<p>Depends on the field types, the output can be different. See more details in field types (on the left menu, section Fields).</p>
+
+</div>
+
+<h2 id="undefined-function-error">Undefined function error</h2>
+
+<p>If you’re using <code class="highlighter-rouge">rwmb_the_value</code> in your theme, there may be a situation when an admin accidentally deactivate the Meta Box plugin and you will see error “Undefined function rwmb_the_value…” and your site will be broken.</p>
+
+<p>To prevent this problem, a simple fix for that is adding the following code into your theme’s <code class="highlighter-rouge">functions.php</code> file:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">function_exists</span><span class="p">(</span> <span class="s1">'rwmb_the_value'</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">function</span> <span class="nf">rwmb_the_value</span><span class="p">(</span> <span class="nv">$key</span><span class="p">,</span> <span class="nv">$args</span> <span class="o">=</span> <span class="s1">''</span><span class="p">,</span> <span class="nv">$post_id</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nv">$echo</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

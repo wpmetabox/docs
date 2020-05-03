@@ -1,0 +1,57 @@
+I"�<h2 id="overview">Overview</h2>
+
+<p>The password field creates a simple password input. The password is encrypted by <a href="https://codex.wordpress.org/Function_Reference/wp_hash_password">wp_hash_password()</a> before saving into the database to make sure it’s safe.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/xozZVMx.png" alt="password" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">size</code></td>
+      <td>Input size. Default <code class="highlighter-rouge">30</code>. Optional.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Password'</span><span class="p">,</span>
+    <span class="s1">'id'</span>   <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span>
+    <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>This field saves the encrypted password in the database for a better security. The password is encrypted by <a href="https://codex.wordpress.org/Function_Reference/wp_hash_password">wp_hash_password()</a> function.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>As the password is encrypted in the database, you cannot get the original password via code. There’s no reversing function that can turn a password hash into the original one. Otherwise, it will be insecure.</p>
+
+<p>Instead of trying to get the original password, you should check the saved password is correct, like this:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+<span class="c1">// Or if you want to get the field value from a specific post:</span>
+<span class="c1">// $value = rwmb_meta( $field_id, '', $post_id );</span>
+
+<span class="k">if</span> <span class="p">(</span> <span class="nx">wp_check_password</span><span class="p">(</span> <span class="s1">'password to check'</span><span class="p">,</span> <span class="nv">$value</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Password is correct'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a>.</p>
+:ET

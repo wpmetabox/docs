@@ -1,0 +1,175 @@
+I"�*<h2 id="overview">Overview</h2>
+
+<p>The file field creates a simple file upload with default UI like <code class="highlighter-rouge">&lt;input type="file"&gt;</code>. Unlike other media fields, this field doesn’t use Media Library UI to upload files.</p>
+
+<h2 id="screenshot">Screenshot</h2>
+
+<p><img src="https://i.imgur.com/LIWgUZW.png" alt="file upload" /></p>
+
+<h2 id="settings">Settings</h2>
+
+<p>Besides the <a href="/field-settings/">common settings</a>, this field has the following specific settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">max_file_uploads</code></td>
+      <td>Max number of uploaded files. Optional.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">force_delete</code></td>
+      <td>Whether or not delete the files from Media Library when deleting them from post meta. <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> (default). Optional. Note: it might affect other posts if you use same file for multiple posts.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">upload_dir</code></td>
+      <td>Full path to custom upload folder. Added in Meta Box 4.16.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that the <code class="highlighter-rouge">multiple</code> setting is always set to <code class="highlighter-rouge">true</code> for this field.</p>
+
+<h2 id="sample-code">Sample code</h2>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'id'</span>               <span class="o">=&gt;</span> <span class="s1">'file'</span><span class="p">,</span>
+    <span class="s1">'name'</span>             <span class="o">=&gt;</span> <span class="s1">'File'</span><span class="p">,</span>
+    <span class="s1">'type'</span>             <span class="o">=&gt;</span> <span class="s1">'file'</span><span class="p">,</span>
+
+    <span class="c1">// Delete file from Media Library when remove it from post meta?</span>
+    <span class="c1">// Note: it might affect other posts if you use same file for multiple posts</span>
+    <span class="s1">'force_delete'</span>     <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+
+    <span class="c1">// Maximum file uploads.</span>
+    <span class="s1">'max_file_uploads'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">),</span>
+</code></pre></div></div>
+
+<h2 id="data">Data</h2>
+
+<p>This field saves multiple values (attachment IDs) in the database. Each value (attachment ID) and is store in a single row in the database with the same meta key (similar to what <code class="highlighter-rouge">add_post_meta</code> does with last parameter <code class="highlighter-rouge">false</code>).</p>
+
+<h2 id="upload-to-custom-folder">Upload to custom folder</h2>
+
+<p>Since Meta Box 4.16, you’re able to upload files to custom folders rather than default WordPress <code class="highlighter-rouge">uploads</code> folder.</p>
+
+<p>To do that, simply set <code class="highlighter-rouge">'upload_dir' =&gt; '/full/path/to/folder/'</code> in your field settings.</p>
+
+<p>You can also use WordPress constants to specify the path easier, such as:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'upload_dir' =&gt; ABSPATH . '/invoices/',
+
+// or
+
+'upload_dir' =&gt; WP_CONTENT_DIR . '/invoices/',
+</code></pre></div></div>
+
+<p>The custom folder should be inside your your WordPress website’s root folder. So you can store it in <code class="highlighter-rouge">/uploads/</code>, <code class="highlighter-rouge">/downloads/</code> folders if you want. The configuration is <em>per</em> field, so you can has one field store files in <code class="highlighter-rouge">/downloads/</code> and another field in <code class="highlighter-rouge">/invoices/</code>.</p>
+
+<p>Unlike the normal case, where files are added to the WordPress Media Library, files uploaded to custom folders are not available in the Media Library. Thus, the data saved in the custom fields is <strong>file URL</strong>, not attachment ID.</p>
+
+<p>To get the field data, you can use <code class="highlighter-rouge">get_post_meta()</code> to get file URL, or use <code class="highlighter-rouge">rwmb_meta()</code> to get an array of file details which includes: <code class="highlighter-rouge">path</code>, <code class="highlighter-rouge">url</code> and <code class="highlighter-rouge">name</code>.</p>
+
+<h2 id="template-usage">Template usage</h2>
+
+<p>To get the uploaded files, use the helper function <a href="/rwmb-meta/">rwmb_meta()</a>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$files</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'field_id'</span> <span class="p">);</span>
+<span class="k">foreach</span> <span class="p">(</span> <span class="nv">$files</span> <span class="k">as</span> <span class="nv">$file</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="cp">?&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$file</span><span class="p">[</span><span class="s1">'url'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$file</span><span class="p">[</span><span class="s1">'name'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;?php</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This helper function returns an array of files, each file has the following information:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">array</span><span class="p">(</span>
+    <span class="s1">'ID'</span>    <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'intro.txt'</span><span class="p">,</span>
+    <span class="s1">'path'</span>  <span class="o">=&gt;</span> <span class="s1">'/var/www/wp-content/uploads/intro.txt'</span><span class="p">,</span>
+    <span class="s1">'url'</span>   <span class="o">=&gt;</span> <span class="s1">'https://example.com/wp-content/uploads/intro.txt'</span><span class="p">,</span>
+    <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Introduction'</span><span class="p">,</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>In case you want to get only 1 file, use the <code class="highlighter-rouge">limit</code> parameter for the helper function:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$files</span> <span class="o">=</span> <span class="nx">rwmb_meta</span><span class="p">(</span> <span class="s1">'field_id'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span> <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">);</span>
+<span class="nv">$file</span> <span class="o">=</span> <span class="nb">reset</span><span class="p">(</span> <span class="nv">$files</span> <span class="p">);</span>
+<span class="cp">?&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$file</span><span class="p">[</span><span class="s1">'url'</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="s">"</span><span class="nt">&gt;</span>Download File<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<p>If you only want to display uploaded files in an unordered list, you can just use the <a href="/rwmb-the-value/">rwmb_the_value()</a>:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">rwmb_the_value</span><span class="p">(</span> <span class="nv">$field_id</span> <span class="p">);</span>
+</code></pre></div></div>
+
+<p>which outputs:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"link/to/file/"</span><span class="nt">&gt;</span>File 1<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"link/to/file/"</span><span class="nt">&gt;</span>File 2<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div></div>
+
+<p>Read more about <a href="/rwmb-meta/">rwmb_meta()</a> and <a href="/rwmb-the-value/">rwmb_the_value()</a>.</p>
+
+<h2 id="filters">Filters</h2>
+
+<p>This field has some filters to change the texts displayed on the screen..</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Filter</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_file_upload_string</code></td>
+      <td>Upload Files</td>
+      <td>File upload string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_file_add_string</code></td>
+      <td>+ Add new file</td>
+      <td>Add new file string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_file_delete_string</code></td>
+      <td>Delete</td>
+      <td>File delete string</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rwmb_file_edit_string</code></td>
+      <td>Edit</td>
+      <td>File edit string</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All filters above accept 2 parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">$string</code>: the string need to be changed</li>
+  <li><code class="highlighter-rouge">$field</code>: array of field attribute</li>
+</ul>
+
+<p>The code below changes the “+ Add new file” string:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">add_filter</span><span class="p">(</span> <span class="s1">'rwmb_file_add_string'</span><span class="p">,</span> <span class="s1">'prefix_change_add_string'</span> <span class="p">);</span>
+<span class="k">function</span> <span class="nf">prefix_change_add_string</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'+ New File'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET
