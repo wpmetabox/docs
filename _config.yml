@@ -1,8 +1,11 @@
 title: Meta Box Documentation
 description: Documentation for Meta Box - a simple yet powerful WordPress plugin that helps developers build custom meta boxes and custom fields.
-author: MetaBox.io
+author:
+  twitter: wpmetabox
 twitter:
   username: wpmetabox
+facebook:
+  publisher: 1952571948302060
 social:
   name: Meta Box
   links:
