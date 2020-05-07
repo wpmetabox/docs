@@ -61,7 +61,7 @@ By default, Meta Box is not autoloaded. To make it autoloaded via Composer, you 
   },
   "autoload": {
     "files": [
-      "vendor/meta-box/meta-box/meta-box.php"
+      "vendor/wpmetabox/meta-box/meta-box.php"
     ]
   }
 }
