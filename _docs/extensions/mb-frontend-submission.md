@@ -57,8 +57,8 @@ Attributes|Description
 ---|---
 `id`|Meta box ID(s). If multiple meta boxes, enter their IDs separated by commas.
 `ajax`|Enable Ajax submission. `true` or `false` (default).
-`edit`|Allo users to edit the post after submitting. `true` or `false` (default).
-`allow_delete`|Allo users to delete the submitted post. `true` or `false` (default).
+`edit`|Allow users to edit the post after submitting. `true` or `false` (default).
+`allow_delete`|Allow users to delete the submitted post. `true` or `false` (default).
 `force_delete`|Whether to delete the submitted post permanently or temporarily (move to Trash).
 `post_type`|The submitted post type. Optional. Default is the first post type defined in the meta box. If meta box is made for multiple post types, you should set this attribute to the correct one.
 `post_id`|The post ID. Optional. Used when you want to update an existing post. If you want to pass the ID of the current post, set it to `current`.
