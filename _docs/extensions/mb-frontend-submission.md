@@ -412,7 +412,7 @@ This action fires before the post is created or updated.
 do_action( 'rwmb_frontend_before_save_post', $object );
 ```
 
-The action accepts 1 parameter: the instance of the `MB_Frontend_Post` class, which handles the submission. It has the following public properties that you can use:
+The action accepts 1 parameter: the instance of the `\MBFS\Post` class, which handles the submission. It has the following public properties that you can use:
 
 - `$post_type`: The current post type
 - `$post_id`: The submitted post ID
@@ -427,7 +427,7 @@ This action fires after the post is created or updated. At that time, all the cu
 do_action( 'rwmb_frontend_after_save_post', $object );
 ```
 
-The action accepts 1 parameter: the instance of the `MB_Frontend_Post` class, which handles the submission. It has the following public properties that you can use:
+The action accepts 1 parameter: the instance of the `\MBFS\Post` class, which handles the submission. It has the following public properties that you can use:
 
 - `$post_type`: The current post type
 - `$post_id`: The submitted post ID
