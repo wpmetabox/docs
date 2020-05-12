@@ -194,6 +194,7 @@ function your_prefix_register_meta_boxes( $meta_boxes ) {
             ),
         ),
     );
+    return $meta_boxes;
 }
 ```
 
