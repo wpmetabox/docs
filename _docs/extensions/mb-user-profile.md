@@ -307,7 +307,7 @@ Please note that this filter works only for default user fields such as user ema
 
 ### Form fields filters
 
-To modify the defautl register, login or edit profile form fields, please use the following filters:
+To modify the default register, login or edit profile form fields, please use the following filters:
 
 ```php
 $fields = apply_filters( 'rwmb_profile_register_fields', $fields );
