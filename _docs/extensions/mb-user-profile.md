@@ -168,7 +168,6 @@ In order to make the plugin recognize the user fields, you need to set correct I
 
 Field|ID
 ---|---
-User login|`user_login`
 User email|`user_email`
 User nicename|`user_nicename`
 User URL|`user_url`
