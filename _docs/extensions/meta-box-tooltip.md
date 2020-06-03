@@ -23,7 +23,7 @@ Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields
 To add a tooltip to a meta field, simply add `tooltip` parameter for that field. You can define tooltip in one of following formats:
 
 - `'tooltip' => 'Tooltip content',`
-- `'tooltip' => array( 'icon' => 'info', 'position' => 'top', 'content' => 'Tooltip content' )`
+- `'tooltip' => array( 'icon' => 'info', 'position' => 'top', 'content' => 'Tooltip content', 'allow_html' => true )`
 
 e.g. if the `tooltip` is a string, the plugin will use icon info and take the string as the tooltip content. If the `tooltip` is an array, then it accepts the following parameters:
 
@@ -32,6 +32,7 @@ Parameter|Description
 `icon`|The tooltip icon. It can be `info` (default), `help` or *URL to custom icon image*. Since version 0.1.1, you can *use any Dashicons* for the icon by specifying its name, for example `dashicons-email`. For full list of Dashicons, please read [this page](https://developer.wordpress.org/resource/dashicons/).
 `position`|The tooltip position. Can be `top` (default), `bottom`, `left` or `right`. Optional.
 `content`|Tooltip content.
+`allow_html`|Whether to render HTML in the tooltip content: `true` (default) or `false`.
 
 ## Sample code
 
