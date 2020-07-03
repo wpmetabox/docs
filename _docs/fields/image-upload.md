@@ -23,6 +23,7 @@ Name | Description
 `max_status` | Display how many files uploaded/remaining. Applied only when `max_file_uploads` is defined. `true` (default) or `false`. Optional.
 `max_file_size` | Maximum file size that the user can upload, in bytes. Optionally supports b, kb, mb, gb, tb suffixes. e.g. "10mb" or "1gb".
 `image_size` | Image size that displays in the edit page. Optional. Default `thumbnail`.
+`add_to` | Whether to add new images to the beginning or the end of the list. `beginning` or `end`. Default `end`. Optional.
 
 Note that the `multiple` setting is always set to `true` for this field.
 
