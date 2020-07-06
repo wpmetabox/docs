@@ -535,10 +535,16 @@ Name|Description
 This function adds a specific relationship for 2 objects.
 
 ```php
-MB_Relationships_API::add( $from, $to, $id );
+MB_Relationships_API::add( $from, $to, $id, $order_from = 1, $order_to = 1 );
 ```
 
 This function checks if the 2 objects already have a relationship and adds a new relationship only if they haven't.
+
+When calling `add` function, the plugin fires a hook as follow:
+
+```php
+do_action( 'mb_relationships_add', $from, $to, $id, $order_from, $order_to );
+```
 
 ### `delete`
 
@@ -549,6 +555,12 @@ MB_Relationships_API::delete( $from, $to, $id );
 ```
 
 This function checks if the 2 objects already have a relationship and delete that relationshp only if they have.
+
+When calling `add` function, the plugin fires a hook as follow:
+
+```php
+do_action( 'mb_relationships_delete', $from, $to, $id );
+```
 
 ## Shortcode
 
