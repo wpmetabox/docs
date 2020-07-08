@@ -328,7 +328,6 @@ Param|Description
 |`after`: Insert the column after an existing column
 |`replace`: Replace an existing column by the new one
 `column`|The target existing column
-`link`|Config the link for the items displayed in the admin column. Can be `view` (click to view item on the front end - default), `edit` (click to edit item) or `false` (no link).
 
 Using this configuration, you are able to insert the column in any position you want.
 
@@ -342,6 +341,7 @@ To add more rules for the admin column, you can declare `admin_column` parameter
 'admin_column' => [
     'position' => 'after title',
     'title'    => 'Price',
+    'link'     => 'edit',
 ],
 ```
 
@@ -351,6 +351,7 @@ Key|Description
 ---|---
 `position`|Specify where to insert the new column. It's exactly the same as described in the #2 method above.
 `title`|Column title. Optional. Default is the meta box title.
+`link`|Config the link for the items displayed in the admin column. Can be `view` (click to view item on the front end - default), `edit` (click to edit item) or `false` (no link).
 
 ## Post archive
 
