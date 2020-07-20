@@ -328,7 +328,6 @@ Param|Description
 |`after`: Insert the column after an existing column
 |`replace`: Replace an existing column by the new one
 `column`|The target existing column
-`link`|Config the link for the items displayed in the admin column. Can be `view` (click to view item on the front end - default), `edit` (click to edit item) or `false` (no link).
 
 Using this configuration, you are able to insert the column in any position you want.
 
@@ -342,6 +341,7 @@ To add more rules for the admin column, you can declare `admin_column` parameter
 'admin_column' => [
     'position' => 'after title',
     'title'    => 'Price',
+    'link'     => 'edit',
 ],
 ```
 
@@ -351,6 +351,7 @@ Key|Description
 ---|---
 `position`|Specify where to insert the new column. It's exactly the same as described in the #2 method above.
 `title`|Column title. Optional. Default is the meta box title.
+`link`|Config the link for the items displayed in the admin column. Can be `view` (click to view item on the front end - default), `edit` (click to edit item) or `false` (no link).
 
 ## Post archive
 
@@ -535,10 +536,16 @@ Name|Description
 This function adds a specific relationship for 2 objects.
 
 ```php
-MB_Relationships_API::add( $from, $to, $id );
+MB_Relationships_API::add( $from, $to, $id, $order_from = 1, $order_to = 1 );
 ```
 
 This function checks if the 2 objects already have a relationship and adds a new relationship only if they haven't.
+
+When calling `add` function, the plugin fires a hook as follow:
+
+```php
+do_action( 'mb_relationships_add', $from, $to, $id, $order_from, $order_to );
+```
 
 ### `delete`
 
@@ -549,6 +556,12 @@ MB_Relationships_API::delete( $from, $to, $id );
 ```
 
 This function checks if the 2 objects already have a relationship and delete that relationshp only if they have.
+
+When calling `add` function, the plugin fires a hook as follow:
+
+```php
+do_action( 'mb_relationships_delete', $from, $to, $id );
+```
 
 ## Shortcode
 

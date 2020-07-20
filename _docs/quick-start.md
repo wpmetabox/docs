@@ -10,12 +10,13 @@ After [installing Meta Box](/installation/), you won't see anything in the WordP
 
 The fastest way to getting started with Meta Box is use our [online generator](https://metabox.io/online-generator/) to generate meta boxes with custom fields. The online generator provides a powerful and friendly UI for you to create meta boxes and custom fields just by drag and drop fields.
 
-![online generator](https://i.imgur.com/Dlrs0IL.png)
+![online generator](https://i.imgur.com/McGrRT5.png)
 
 Please follow the steps below:
 
 - Go to [Online Generator](https://metabox.io/online-generator/)
-- Fill in all the info of meta boxes and custom fields
+- Add fields that you need
+- Edit the settings for the meta box
 - Click button **Generate Code** to get the code
 - Copy the code and paste into your theme's `functions.php` file (or into your plugin's file)
 

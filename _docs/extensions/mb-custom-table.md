@@ -165,6 +165,15 @@ function prefix_create_table() {
 }
 ```
 
+### Using existing tables
+
+Sometimes you already have custom tables created by other tools such as phpMyAdmin. In this case, you can still use MB Custom Table with your table.
+
+There are 2 requirements:
+
+- **The custom table must have the ID column**. It's required to connecting entries in the custom table with WordPress posts, terms or users table.
+- **The columns in the custom table much match the field IDs in your meta box**. See **Using custom tables** section below for details.
+
 ## Using custom tables
 
 To tell a meta box to use a custom table to store custom fields instead of default meta tables, you need to specify 2 parameters `storage_type` and `table` like this:

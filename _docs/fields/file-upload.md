@@ -45,7 +45,7 @@ array(
     // 'mime_type'        => 'application,audio,video',
 
     // Do not show how many files uploaded/remaining.
-    'max_status'       => 'false',
+    'max_status'       => false,
 ),
 ```
 
