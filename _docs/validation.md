@@ -94,10 +94,6 @@ Look at the example below:
 
 ## Notes
 
-### Gutenberg
-
-The validation hasn't worked for the block editor (Gutenberg) yet. This is a technical issue that we have with Gutenberg and is a known issue. We're trying to fix that.
-
 ### Input name
 
 The jQuery validation library actually uses **input name**, not input ID. In most cases, field ID is the same as field name. But for some cases such as field is a checkbox list or is a taxonomy with `field_type` is `checkbox_list`, e.g. where field has multiple inputs, then all those inputs don't have IDs.
