@@ -108,7 +108,7 @@ Since version 5.2, Meta Box uses Ajax to increase the performance for the field 
 
 See this video for demonstration:
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/0437f466379e4a328fb4fcae11cd3bf5" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/share/fd498ac492824be1bb345fb988546046" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 This feature is _available only for fields that set `field_type` to `select_advanced`_. There are some extra parameters for you to disable or customize it.
 
@@ -151,7 +151,7 @@ It also _doesn't affect the initial load_ of the field. When the field is loaded
 
 ### Searching Parameters
 
-You probably don't want to perform an Ajax request when open the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLengthfor` the input, as below:
+You probably don't want to perform an Ajax request when open the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLength` for the input, as below:
 
 ```php
 array(

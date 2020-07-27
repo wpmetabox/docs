@@ -97,7 +97,7 @@ Since version 5.2, Meta Box uses Ajax to increase the performance for the field 
 
 See this video for demonstration (made for posts, but works similar for taxonomies):
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/0437f466379e4a328fb4fcae11cd3bf5" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/share/fd498ac492824be1bb345fb988546046" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 This feature is available only for fields that set `field_type` to `select_advanced`. There are some extra parameters for you to disable or customize it.
 
