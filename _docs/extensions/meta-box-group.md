@@ -174,7 +174,7 @@ Name|Description
 `default_state`|Is the group collapsed or expanded by default (when page loads)? `collapsed` or `expanded` (default).
 `group_title`|The title of collapsible group.
 
-Since version 1.3.0, we have imporved the `group_title` settings so it is able to show static text, the group index (if group is cloneable), sub-field value or *any combination of them*. To do that, simply set a `group_title` as a text and use the following format:
+Since version 1.3.0, we have improved the `group_title` settings so it is able to show static text, the group index (if group is cloneable), sub-field value or *any combination of them*. To do that, simply set a `group_title` as a text and use the following format:
 
 ```
 'group_title' => 'Static text {#} {sub_field_1} {sub_field_2}',
