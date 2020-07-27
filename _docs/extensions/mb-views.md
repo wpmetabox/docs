@@ -86,6 +86,16 @@ Relationships created with [MB Relationships](https://metabox.io/plugins/mb-rela
 
 Once you registered a relationship, it will show 2 fields here: one for "from" side, and one for "to" side. Clicking a field will insert a loop of connected items, and inside the loop, you can insert post/term/user fields as usual.
 
+See tutorial: [How To Display Relationships?](https://metabox.io/mb-views-how-to-display-relationships/)
+
+## Include Other Views
+
+The plugin allows you to include other views, which helps you to break down a large templates into smaller ones and re-use them in other views.
+
+To insert a view, go to tab tab **Query**, and click on the view you want to insert. Note that when you include view into another view, they have access to the same context as the current view. This means that any variable defined in the main view will be available in the included view.
+
+See tutorial: [Creating and Including Template Parts in MB Views](https://metabox.io/mb-views-creating-including-template-parts/)
+
 ## Running PHP functions
 
 To run PHP functions, use the `mb` proxy. It acts as a transformer between views and PHP.
