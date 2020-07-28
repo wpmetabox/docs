@@ -33,7 +33,7 @@ In the view screen, you'll see 2 areas:
 
 In the main editor, you can enter any HTML or *shortcodes* for the template. All shortcodes will be parsed automatically on the front end.
 
-## Insert A Field
+## Insert Fields
 
 To insert a field, click the **Insert Field** button. It will open a panel on the right, where you can see all available fields.
 
@@ -86,6 +86,16 @@ Relationships created with [MB Relationships](https://metabox.io/plugins/mb-rela
 
 Once you registered a relationship, it will show 2 fields here: one for "from" side, and one for "to" side. Clicking a field will insert a loop of connected items, and inside the loop, you can insert post/term/user fields as usual.
 
+See tutorial: [How To Display Relationships?](https://metabox.io/mb-views-how-to-display-relationships/)
+
+## Include Other Views
+
+The plugin allows you to include other views, which helps you to break down a large templates into smaller ones and re-use them in other views.
+
+To insert a view, go to tab tab **Query**, and click on the view you want to insert. Note that when you include view into another view, they have access to the same context as the current view. This means that any variable defined in the main view will be available in the included view.
+
+See tutorial: [Creating and Including Template Parts in MB Views](https://metabox.io/mb-views-creating-including-template-parts/)
+
 ## Running PHP functions
 
 To run PHP functions, use the `mb` proxy. It acts as a transformer between views and PHP.
@@ -129,7 +139,12 @@ There are several options:
 
 ### Type
 
-What type of page do you want to set the view for? Supports singular, archive pages and custom locations, where you need to use a shortcode to insert the view to the location you want. The shortcode is available *after* you save the view.
+What type of page do you want to set the view for? Supports:
+
+- Singular pages
+- Archive pages
+- Hooks (actions): the view will display when an action fires
+- Custom locations: you need to use a shortcode to insert the view to the location you want. The shortcode is available *after* you save the view.
 
 ### Location Rules
 
@@ -145,6 +160,7 @@ With the combination of `OR` and `AND`, you can build complex rules for views.
 
 After choosing location rules, you can decide where to render the view for those chosen pages. You have 2 options:
 
+- Render for the whole page layout, including header and footer. This option is useful when you want to build a complete new page on your site.
 - Render for the whole layout between header and footer. Using this option, you have full control to build the layout.
 - Render only for the post content area. Using this option, you leave the layout to the theme and control only the post content area.
 
@@ -155,6 +171,58 @@ If you choose to render the view for the post content area, then you can set it 
 ### Order
 
 The order settings is used to set the loading order for views. If you have multiple views for the same page, then views with a lower order will render first.
+
+## Hooks
+
+The plugin provides 2 hooks:
+
+### `mbv_location_validate`:
+
+This filter is used to allow developers to create custom rules for location validation. It accepts 3 parameters:
+
+- `$result`: the validation result
+- `$view`: the view object (which is a post object)
+- `$type`: the view type
+
+For example, if you have a view that display for all archive pages, but you don't want it to appear on pages that have query string `?custom_var=1`, you can do like this:
+
+```php
+add_filter( 'mbv_location_validate', function( $result, $view, $type ) {
+    // Run for 'my-view-name' only.
+    if ( $view->post_name !== 'my-view-name' ) {
+        return $result;
+    }
+    
+    if ( isset( $_GET['custom_var'] ) && $_GET['custom_var'] == 1 ) {
+        return false;
+    }
+    return $result;
+} );
+```
+
+### `mbv_location_action_active`
+
+This filter is used to allow developers to create custom rules for location validation for the views that has display on a specific action (type = action). It accepts 3 parameters:
+
+- `$active`: is the view active
+- `$view`: the view object (which is a post object)
+- `$action`: the action name
+
+For example, if you have a view that display on `wp_footer`, but you don't want it to appear on pages that have query string `?custom_var=1`, you can do like this:
+
+```php
+add_filter( 'mbv_location_action_active', function( $active, $view, $action ) {
+    // Run for 'my-view-name' only.
+    if ( $view->post_name !== 'my-view-name' || $action !== 'wp_footer' ) {
+        return $active;
+    }
+    
+    if ( isset( $_GET['custom_var'] ) && $_GET['custom_var'] == 1 ) {
+        return false;
+    }
+    return $active;
+} );
+```
 
 ## Twig
 
