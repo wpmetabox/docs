@@ -59,6 +59,7 @@ Name|Description
 `recaptcha_key`|Google reCaptcha site key (version 3). Optional.
 `recaptcha_secret`|Google reCaptcha secret key (version 3). Optional.
 `show_if_user_can`|Always show the form if the current user has a proper capability. Should be a [WordPress capability](https://wordpress.org/support/article/roles-and-capabilities/). Useful if admins want to register for other people.
+`role`|Role for the new user. Default is subscriber (optional).
 
 ### Login form
 
