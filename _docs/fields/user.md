@@ -86,7 +86,7 @@ array(
     'inline'      => true,
 
     // Query arguments (optional). No settings means get all published users.
-    // @see https://codex.wordpress.org/Function_Reference/get_users
+    // @see https://developer.wordpress.org/reference/functions/get_users/
     'query_args'  => array(),
 ),
 ```
