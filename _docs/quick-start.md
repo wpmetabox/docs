@@ -2,9 +2,9 @@
 title: Quick start
 ---
 
-After [installing Meta Box](/installation/), you won't see anything in the WordPress admin area. The plugin doesn't have any admin page for configuration or settings. Instead of that, it provides an API that you can use to speed up the process of creating meta boxes and custom fields.
+After [installing](/installation/) the **free version** of Meta Box, you won't see anything in the WordPress admin area. The plugin doesn't have any admin page for configuration or settings. Instead of that, it provides an API that you can use to speed up the process of creating meta boxes and custom fields.
 
-{% include alert.html content="**Important**: That doesn't mean Meta Box doesn't have any UI. If you prefer UI to work, please use the [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/) extension which has drag-and-drop interface for building fields intuitively." %}
+{% include alert.html content="**Important**: That doesn't mean Meta Box doesn't have any UI. If you prefer UI to work, please [upgrade](https://metabox.io/pricing/) to the premium version which has drag-and-drop interface for building post types and custom fields intuitively." %}
 
 ## Getting started with online generator
 
