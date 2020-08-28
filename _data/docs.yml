@@ -131,3 +131,8 @@
   - /using-custom-html-to-output-anything/
   - title: See more tutorials &rarr;
     url: https://metabox.io/blog/
+- title: Compatibility
+  items:
+  - /compatible-themes/
+  - /compatible-plugins/
+  - /compatible-hostings/
