@@ -2,7 +2,7 @@
 title: Plugins
 ---
 
-## Page Builder plugin
+## Page Builder plugins
 
 - Beaver Builder
 - Divi Page Builder
@@ -12,7 +12,7 @@ title: Plugins
 - Visual Composer
 - Brizy
 
-## SEO plugin
+## SEO plugins
 
 - [Slim SEO](https://wpslimseo.com/)
 - All in One SEO Pack
@@ -21,7 +21,7 @@ title: Plugins
 - The SEO Framework
 - Yoast SEO
 
-## Optimization plugin
+## Optimization plugins
 
 - Asset CleanUp
 - Autoptimize
@@ -35,7 +35,7 @@ title: Plugins
 - WP Rocket
 - WP-Optimize
 
-## Security plugin
+## Security plugins
 
 - All In One WP Security & Firewall
 - Hide My WP Ghost
@@ -45,6 +45,7 @@ title: Plugins
 - Wordfence Security
 
 ## Others
+
 - [Auto Listings]((https://wpautolistings.com/))
 - BlogVault
 - BuddyBoss

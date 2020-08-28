@@ -2,7 +2,6 @@
 title: Hostings
 ---
 
-
 - A2Hosting
 - Blue Host
 - Cloudways

@@ -2,9 +2,8 @@
 title: Themes
 ---
 
-
-- [FitWP](https://fitwp.com/)
 - [GretaThemes](http://gretathemes.com/)
+- [FitWP](https://fitwp.com/)
 - 7Theme
 - aThemes
 - Bello (BoldThemes)
@@ -30,5 +29,3 @@ title: Themes
 - Themovation
 - Trucking
 - Zemez
-
-
