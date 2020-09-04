@@ -465,6 +465,32 @@ To do that, you need to change the field type for thumbnail from `image` to `sin
 
 Please note that, in order to open the media popup, users need to log in and have proper capability. See the section above for how to do that.
 
+## Embedding forms on other sites (via iframe)
+
+If you have a front-end submission form on site A, then you want to output it on site B by embedding the form within an iframe, there might be a problem with the cookie policy on browsers that prevent the from from submitting.
+
+To make it work please add this snippet to `functions.php` in your theme on site A:
+
+```
+add_action( 'template_redirect', 'your_prefix_init_session', 9 );
+function your_prefix_init_session() {
+       if ( session_status() === PHP_SESSION_NONE && ! headers_sent() ) {
+            $currentCookieParams = session_get_cookie_params();
+
+            session_set_cookie_params(
+                $currentCookieParams["lifetime"],
+                '/; samesite=None',
+                $_SERVER['HTTP_HOST'],
+                true,
+                false
+            );
+            session_start();
+        }
+}
+```
+
+The snippet above will set the cookie setting `samesite=None` and `Security=true`. Note that you can only use it on the sites that use HTTPS (connection security) and on Chrome and Firefox. It doesn't work on Safari because Safari is blocking third party cookies. Setting `samesite=None` also might be a security issue, so please be sure you really want to do that. For more details, please [see this article](https://web.dev/samesite-cookies-explained/).
+
 ## Notes
 
 ### Styling
