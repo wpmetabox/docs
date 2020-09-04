@@ -471,21 +471,21 @@ If you have a front-end submission form on site A, then you want to output it on
 
 To make it work please add this snippet to `functions.php` in your theme on site A:
 
-```
+```php
 add_action( 'template_redirect', 'your_prefix_init_session', 9 );
 function your_prefix_init_session() {
-       if ( session_status() === PHP_SESSION_NONE && ! headers_sent() ) {
-            $currentCookieParams = session_get_cookie_params();
+    if ( session_status() === PHP_SESSION_NONE && ! headers_sent() ) {
+        $currentCookieParams = session_get_cookie_params();
 
-            session_set_cookie_params(
-                $currentCookieParams["lifetime"],
-                '/; samesite=None',
-                $_SERVER['HTTP_HOST'],
-                true,
-                false
-            );
-            session_start();
-        }
+        session_set_cookie_params(
+            $currentCookieParams["lifetime"],
+            '/; samesite=None',
+            $_SERVER['HTTP_HOST'],
+            true,
+            false
+        );
+        session_start();
+    }
 }
 ```
 
