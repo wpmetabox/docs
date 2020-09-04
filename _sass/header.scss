@@ -8,6 +8,11 @@
 	background: #f6f6f6;
 	padding: 12px 15px;
 }
+@media (max-width: 767px) {
+	.top-bar .menu-item:nth-child(n+3) {
+		display: none;
+	}
+}
 
 /**
  * Side header
