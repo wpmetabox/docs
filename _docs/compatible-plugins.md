@@ -27,9 +27,9 @@ title: Plugins
 - Autoptimize
 - EWWW Image Optimizer
 - Flying Pages by WP Speed Matters
-- Hummingbird
+- [Hummingbird](https://premium.wpmudev.org/project/wp-hummingbird/)
 - LiteSpeed Cache
-- Smush
+- [Smush](https://premium.wpmudev.org/project/wp-smush-pro/)
 - W3 Total Cache
 - WP Fastest Cache
 - WP Rocket
