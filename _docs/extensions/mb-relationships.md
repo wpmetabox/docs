@@ -111,6 +111,7 @@ Name|Description
 -- `query_args`|Custom query arguments to get objects of `object_type`. These arguments will be passed to `WP_Query()`, `get_terms()` or `get_users()` depending what `object_type` is.
 -- `max_clone` | Maximum number of connections.
 
+The field settings apply from object `from` to object `to`. That means, the custom field (relationship) shows on the object `from` get object type, post type and field settings from object `to`.
 
 ### Reciprocal relationships
 
