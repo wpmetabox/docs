@@ -46,7 +46,7 @@ title: Plugins
 
 ## Others
 
-- [Auto Listings]((https://wpautolistings.com/))
+- [Auto Listings](https://wpautolistings.com/)
 - BlogVault
 - BuddyBoss
 - Click Ranger Pro
