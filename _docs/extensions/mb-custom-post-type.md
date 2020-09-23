@@ -58,3 +58,7 @@ These 2 steps will create the following capabilities for the post types:
 ```
 
 And thanks to `map_meta_cap`, standard admin role is able to edit the posts types.
+
+### Reserved terms
+
+There is a complete set of reserved keywords, or terms, in WordPress that should not be used in certain circumstances as they may conflict with core functionality. See more in [the documentation](https://codex.wordpress.org/Reserved_Terms).
