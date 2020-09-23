@@ -2,7 +2,7 @@
 title: Themes
 ---
 
-- [GretaThemes](http://gretathemes.com/)
+- [GretaThemes](https://gretathemes.com/)
 - [FitWP](https://fitwp.com/)
 - 7Theme
 - aThemes

@@ -19,7 +19,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 Name | Description
 --- | ---
 `raw` | If you want to save data in raw format, e.g. exactly the same as you enter in the editor without applying `wpautop()` function. Can be `true` or `false` (default). Optional.
-`options` | Array of editor options, which is the same as 3rd parameter for [wp_editor()](https://codex.wordpress.org/Function_Reference/wp_editor).
+`options` | Array of editor settings, [see the list of settings here](https://developer.wordpress.org/reference/classes/_WP_Editors/parse_settings/).
 
 By default, the plugin uses 2 options:
 
