@@ -4,9 +4,13 @@
     url: /
   - /installation/
   - /quick-start/
+- title: Online Tools
+  items:
+  - /post-type-generator/
+  - /taxonomy-generator/
+  - /online-generator/
 - title: Basics
   items:
-  - /online-generator/
   - /creating-meta-boxes/
   - /field-settings/
   - /displaying-fields/
