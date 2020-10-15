@@ -1,2 +1,0 @@
-I"<p>To make it easier for developers, I’ve created a composer.json file, which contains Meta Box plugin and all extensions. You can <a href="https://github.com/wpmetabox/library/blob/master/composer/composer.json">grab it here</a> and remove the extensions you don’t want to use.</p>
-:ET

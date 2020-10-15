@@ -1,2 +1,0 @@
-I"¯<p>Assuming you have a <code class="highlighter-rouge">date</code> field which allow users to choose a date for an event. You want to <strong>display date in a specific format</strong> which matches your country date format (for example <em>29 September, 2015</em>) and <strong>store the value in the database in another format</strong> (for example <em>2015-09-29</em>) to allow correct ordering and doing queries with dates.</p>
-:ET
