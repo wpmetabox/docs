@@ -35,7 +35,9 @@ defaults:
     values:
       layout: default
 
-plugins: [jekyll-seo-tag]
+plugins:
+  - jekyll-seo-tag
+  - jekyll-loading-lazy
 
 sass:
   style: compressed
