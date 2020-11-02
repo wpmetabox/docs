@@ -92,6 +92,14 @@ function copyToClipboard() {
 	});
 }
 
+function popupImage() {
+	$( '.entry-content img' ).each( function() {
+		const $img = $( this );
+		$img.attr( 'data-mfp-src', $img.attr( 'src' ) );
+		$img.magnificPopup( { type: 'image' } );
+	} );
+}
+
 docsearch({
 	apiKey: '97cd82eb9fd8fdde822c2a66377779a0',
 	indexName: 'metabox',
@@ -103,3 +111,4 @@ toggleMobileMenu();
 toggleDocsMenu();
 generateTOC();
 copyToClipboard();
+popupImage();

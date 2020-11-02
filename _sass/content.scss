@@ -105,6 +105,11 @@
 }
 .entry-content img {
 	box-shadow: 0 0 2px rgba(0, 0, 0, .3);
+	cursor: zoom-in;
+	transition: all .2s;
+	&:hover {
+		filter: brightness(.5);
+	}
 }
 .button--copy {
 	opacity: 0;
