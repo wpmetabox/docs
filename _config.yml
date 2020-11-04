@@ -37,6 +37,7 @@ defaults:
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
   - jekyll-loading-lazy
 
 sass:
