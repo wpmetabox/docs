@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: helaili/jekyll-action@master
+      - uses: helaili/jekyll-action@2.0.4
         env:
           JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
