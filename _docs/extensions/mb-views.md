@@ -135,7 +135,7 @@ The plugin allows you to pass custom data to the shortcode via custom attributes
 
 For example, you want to display user info in a view. While fetching custom user data is fine, you might want to set user details (like "name" and "age") in some specific cases. You can pass "name" and "age" to a view shortcode like this:
 
-```php
+```
 [mbv id="your-view-id" name="Brian" age="50"]
 ```
 
