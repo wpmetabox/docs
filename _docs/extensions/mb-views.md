@@ -129,6 +129,25 @@ In case you want to set arguments for functions, use the `set` syntax. Twig allo
 {% endraw %}
 ```
 
+## Custom data
+
+The plugin allows you to pass custom data to the shortcode via custom attributes. This allows you to buid flexible views and show them in multiple places with custom data.
+
+For example, you want to display user info in a view. While fetching custom user data is fine, you might want to set user details (like "name" and "age") in some specific cases. You can pass "name" and "age" to a view shortcode like this:
+
+```php
+[mbv id="your-view-id" name="Brian" age="50"]
+```
+
+And in your view template, you can use this data directly like this:
+
+```html
+{% raw %}
+<p><strong>Name:</strong> {{ name }}</p>
+<p><strong>Age:</strong> {{ age }}</p>
+{% endraw %}
+```
+
 ## Locations
 
 Each view can serve multiple pages on your website. To set where the view appears, go to **Settings** meta box below the editor:
