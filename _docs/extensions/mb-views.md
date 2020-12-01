@@ -163,7 +163,8 @@ What type of page do you want to set the view for? Supports:
 - Singular pages
 - Archive pages
 - Hooks (actions): the view will display when an action fires
-- Custom locations: you need to use a shortcode to insert the view to the location you want. The shortcode is available *after* you save the view.
+- Code: you can use PHP or [WordPress conditional tags](https://developer.wordpress.org/themes/basics/conditional-tags/) to set the rules where to show the view.
+- Custom: you need to use a shortcode to insert the view to the location you want. The shortcode is available *after* you save the view.
 
 ### Location Rules
 
