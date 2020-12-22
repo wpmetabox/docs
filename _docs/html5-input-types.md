@@ -30,13 +30,11 @@ Input Type | Description
 `tel`|Telephone input field
 `number`|Number input field, which has up/down arrows to increase/decrease the number.
 `range`|Range input field, which allows you select a number by dragging a control.
-`date`|Date input field, which has the built-in UI for picking a date
 `month`|Month input field, which has the built-in UI for picking a month
 `week`|Week input field, which has the built-in UI for picking a week
-`time`|Time input field, which has the built-in UI for picking a time
-`datetime`|Datetime input field, which has the built-in UI for picking both date and time
 `datetime-local`|Datetime input field, which has the built-in UI for picking a date and time with the local timezone
-`color`|Color input field, which has a color picker UI.
+
+Please note that some types such as `date`, `datetime`, `time` and `color` are already implemented with different UI. So they're not available as the custom HTML5 input types anymore.
 
 ## Using HTML5 input types with Meta Box
 
@@ -45,11 +43,11 @@ Using HTML5 input types with Meta Box is as simple as `text` field. All you need
 For example, the code below creates a `tel` field:
 
 ```php
-array(
+[
     'id'   => 'field_id',
     'type' => 'tel', // New HTML 5 input type
     'name' => 'Telephone',
-)
+]
 ```
 
 That's it.

@@ -1,2 +1,0 @@
-I"�<p>If you’re using <a href="https://metabox.io/plugins/meta-box-builder/">Meta Box Builder</a>, and you don’t find these settings, please go to <strong>Advanced</strong> tab and add a custom attribute with the setting name and custom value. See the screenshot below for setting <code class="highlighter-rouge">sanitize_callback</code> to <code class="highlighter-rouge">none</code>:</p>
-:ET

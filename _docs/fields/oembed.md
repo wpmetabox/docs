@@ -17,7 +17,7 @@ Besides the [common settings](/field-settings/), this field has the following sp
 Name | Description
 --- | ---
 `size` | Input size. Default `30`. Optional.
-`not_available_string` | The text message displayed to users when no the embed is not available. Accepts HTML.
+`not_available_string` | The text message displayed to users when the embed media is not available. Accepts HTML.
 
 ## Sample code
 

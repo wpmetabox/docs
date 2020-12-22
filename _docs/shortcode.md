@@ -20,4 +20,8 @@ Attribute|Description
 
 This shortcode works exactly like [rwmb_the_value()](/rwmb-the-value/) function with the same parameters.
 
-If you pass other attributes to the shortcode, those attributes will be passed to [rwmb_the_value()](/rwmb-the-value/) function as the 2nd parameter.
+Note: you can pass **other attributes** to the shortcode if you want. If you do so, those attributes will be passed to [rwmb_the_value()](/rwmb-the-value/) function as the 2nd parameter. For example, if you want to get value from a [custom table](https://metabox.io/plugins/mb-custom-table/), you can use the following shortcode:
+
+```php
+[rwmb_meta id="field_id" object_id="15" storage_type="custom_table" table="your_table_name"]
+```
