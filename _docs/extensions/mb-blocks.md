@@ -219,6 +219,14 @@ A block may want to disable the ability of being converted into a reusable block
 reusable: false,
 ```
 
+### `mode`
+
+Set to `edit` to have a block that do not render anything but store important data, `preview` is the default value.
+
+```php
+'mode' => 'edit',
+```
+
 ### `render_callback`
 
 A custom PHP callback to display the block content. The callback accepts 2 parameters:
