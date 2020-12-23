@@ -59,10 +59,18 @@ These 2 steps will create the following capabilities for the post types:
 
 And thanks to `map_meta_cap`, standard admin role is able to edit the posts types.
 
+### Block templates with MB Blocks
+
+Sometimes you want to load default blocks created by [MB Blocks](https://metabox.io/plugins/mb-blocks/) when creating a new post. Block templates allow to specify a default initial state for an editor session. Use the argument `template` when registering the post type:
+
+`'template'              => [
+    ['meta-box/{$block_id}']
+]`
+
 ### Reserved terms
 
 There is a complete set of reserved keywords, or terms, in WordPress that should not be used in certain circumstances as they may conflict with core functionality. See more in [the documentation](https://codex.wordpress.org/Reserved_Terms).
 
 ### Force migrate
 
-Since version 2.0.0, we've used the React JS when creating post types and taxonomies. If you update this extension from the older version 1.9.5 and face some errors like encoding characters or post types, taxonomies disappeared, please add the param mbcpt-force=1 to the URL and run it to force migrate post types and taxonomies to the new version. Example: http://domain.com/wp-admin/?mbcpt-force=1
+Since version 2.0.0, we've used the React JS when creating post types and taxonomies. If you update this extension from the older version 1.9.5 and face some errors like encoding characters or post types, taxonomies disappeared, please add the param mbcpt-force=1 to the URL and run it to force migrate post types and taxonomies to the new version. Example: [http://domain.com/wp-admin/?mbcpt-force=1](http://domain.com/wp-admin/?mbcpt-force=1)

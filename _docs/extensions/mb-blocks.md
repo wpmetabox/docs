@@ -465,6 +465,14 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
 
 Each field is an array of its settings. See [this guide](https://docs.metabox.io/field-settings/) for details about field settings.
 
+## Block templates
+
+Sometimes you want to load default blocks when creating a new post. Block templates allow to specify a default initial state for an editor session. Use the argument `template` when [registering the post type](https://developer.wordpress.org/reference/functions/register_post_type):
+
+`'template'              => [
+    ['meta-box/{$block_id}']
+]`
+
 ## Block Data
 
 Unlike normal custom fields, Gutenberg blocks don't save value in the post meta (or [custom table](https://metabox.io/plugins/mb-custom-table/)). Each block created using MB Blocks is a *dynamic Gutenberg block*. And the block data is saved as a JSON string in the block content.
