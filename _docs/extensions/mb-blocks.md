@@ -221,7 +221,7 @@ reusable: false,
 
 ### `mode`
 
-Set to `edit` to have a block that do not render anything but store important data, `preview` is the default value.
+The default mode of the block: `edit` to make it shows the edit fields when loaded, `preview` (default) to show the rendered HTML when loaded.
 
 ```php
 'mode' => 'edit',
