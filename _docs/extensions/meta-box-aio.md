@@ -6,15 +6,13 @@ title: Meta Box AIO
 
 Meta Box AIO is a part of [Developer and Lifetime Bundles](https://metabox.io/pricing/), which contains all the extensions. This extension allows you to just install 1 plugin and have everything in hand. So you can shorten down the plugin list and never get lost in a lot of plugins provided by Meta Box.
 
-For more information, please see [this blog post](https://metabox.io/meta-box-aio-available/).
-
 {% include installation.html %}
 
 **Important:** Meta Box AIO still requires Meta Box to work.
 
 ## Settings page
 
-The extension has a settings page under *Meta Box &rarr; Extensions*, where you can enable/disable the modules you need/don't need.
+The plugin has a settings page under *Meta Box &rarr; Extensions*, where you can enable/disable the extensions you need/don't need.
 
 ![meta box aio settings page](https://imgur.com/gBFCrB1.png)
 
@@ -54,3 +52,9 @@ add_filter( 'mb_aio_extensions', function( $extensions ) {
     return $extensions;
 } );
 ```
+
+## Notes
+
+When an extension is enabled in Meta Box AIO and is activated as an individual plugin, the individual plugin will has higher priority and will be used. The version bundled inside Meta Box AIO will not be used.
+
+This behavior is expected and has a good benefit: whenever we release a new version for individual extensions, you can try them first on your website to ensure compatibility before updating the whole Meta Box AIO package.
