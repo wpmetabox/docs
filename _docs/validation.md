@@ -4,7 +4,7 @@ title: Validation
 
 The Meta Box plugin has built-in validation module for all fields. You can use validation to make a field required, check password length, check phone number format, etc. The validation is done on the *client side*.
 
-There are 2 ways of doing validation: via input attributes (mostly for basic validation) and via jQuery validation plugin (for more advanced validation). They're both bundled in Meta Box and you can choose which one fits your needs.
+There are 2 ways of doing validation: via **input attributes** (mostly for basic validation) and via **jQuery validation plugin** (for more advanced validation). They're both bundled in Meta Box and you can choose which one fits your needs.
 
 ## Validation with input attributes
 
@@ -18,8 +18,8 @@ Meta Box supports [custom attributes](https://docs.metabox.io/custom-attributes/
     'name' => 'Phone number',
     
     // Attributes for validation.
-    'required' => true,
-    'pattern'  => '[0-9]{9}',
+    'required' => true,       // Make the field required.
+    'pattern'  => '[0-9]{9}', // Must have 9 digits
 ]
 ```
 
