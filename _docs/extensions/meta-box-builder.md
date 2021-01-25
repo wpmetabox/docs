@@ -196,7 +196,7 @@ Video tutorial:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BGVY-5W6d7g?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-## Create Gutenberg blocks
+## Creating Gutenberg blocks
 
 Since v3.1.0, Meta Box Builder allows you to create Gutenberg blocks visually, without writing code. See this video tutorial on how to do that:
 
@@ -232,7 +232,33 @@ Or this code will output the site title:
 {% endraw  %}
 ```
 
-## Further Reading
+## Creating settings pages
+
+This feature helps you to create custom settings pages (or Customize panels) with UI. It requires the [MB Settings Page](https://metabox.io/plugins/mb-settings-page/) extension.
+
+To start, go to **Meta Box > Settings Pages** and click **Add New**.
+
+![create settings pages](https://i.imgur.com/LXHfSkP.png)
+
+Here you can enter all the settings for the settings page. All settings are self-explained. Please see the [documentation of MB Settings Page](https://docs.metabox.io/extensions/mb-settings-page/) to understand them.
+
+## Creating relationships
+
+This feature helps you to create relationships between posts, terms and users with UI. It requires the [MB Relationships](https://metabox.io/plugins/relationships/) extension.
+
+To start, go to **Meta Box > Relationships** and click **Add New**.
+
+![create relationships](https://i.imgur.com/XLP48tU.png)
+
+Here you can enter all the settings for each side of the relationship (**From** and **To**). For each side, there are 3 tabs of settings:
+
+- General: for general settings such as object type and post type.
+- Meta Box: for extra meta box settings. These settings are the same as the field group settings when creating custom fields.
+- Field: for extra field settings. These settings are the same as the field settings (post, term or user depending on the object type).
+
+Please see the [documentation of MB Relationships](https://docs.metabox.io/extensions/mb-relationships/) to understand them.
+
+## Further reading
 
 - [How to Add and Configure Custom Fields Using Meta Box Builder](https://metabox.io/add-configure-custom-fields-meta-box-builder/)
 - [How to Export and Import Custom Fields with Meta Box Builder](https://metabox.io/export-import-custom-fields-meta-box-builder/)
