@@ -6,7 +6,7 @@ title: Meta Box Builder
 
 Meta Box Builder is the most popular extension for Meta Box users and is the mandatory tool for almost everyone.
 
-This extension creates an UI for you to add and manage your custom fields. So you don't need to [touch code again](https://docs.metabox.io/creating-meta-boxes/). It's helpful for both beginners (who have little knowlege about PHP coding) or experience developers (who want to save time). You can also use it to create [settings pages](https://metabox.io/plugins/mb-settings-page/) or [relationships](https://metabox.io/plugins/mb-relationships/).
+This extension creates an UI for you to add and manage your custom fields. So you don't need to [touch code again](https://docs.metabox.io/creating-meta-boxes/). It's helpful for both beginners (who have little knowlege about PHP coding) or experience developers (who want to save time). You can also use it to create [settings pages](#creating-settings-pages) or [relationships](#creating-relationships).
 
 If you already used our free [Online Generator](https://metabox.io/online-generator/), then this extension works similarly. But it has a better support (very much) for all field types and other extensions and it works right in the WordPress admin area.
 
@@ -258,7 +258,9 @@ Here you can enter all the settings for each side of the relationship (**From** 
 
 Please see the [documentation of MB Relationships](https://docs.metabox.io/extensions/mb-relationships/) to understand them.
 
-## Adding your own field settings
+## Extending the builder
+
+### Adding custom controls to fields
 
 If you develop [extra solutions for Meta Box](https://metabox.io/resources/), then you might need to add a custom settings for fields. Luckily, Meta Box Builder has API for you to create custom controls for these settings.
 
@@ -268,29 +270,28 @@ To add a control, use the following hook:
 add_filter( 'mbb_field_controls', 'your_prefix_add_field_controls', 10, 2 );
 
 function your_prefix_add_field_controls( $controls, $type ) {
-    // Add a checkbox control to the builder.
+	// Add a checkbox control.
+	$controls[] = \MBB\Control::Checkbox( 'custom_layout', __( 'Custom layout', 'your-text-domain' ) );
 
-    $controls[] = \MBB\Control::Checkbox( 'custom_layout', __( 'Custom layout', 'your-text-domain' ) );
+	// Add a select control.
+	$controls[] = \MBB\Control::Select(
+		'layout',
+		[
+			'label'   => __( 'Layout', 'your-text-domain' ),
+			'tooltip' => __( 'Select the layout for the field', 'your-text-domain' ),
+			'options' => [
+				'one-third'  => __( 'One-third', 'your-text-domain' ),
+				'one-half'   => __( 'One-half', 'your-text-domain' ),
+				'two-third'  => __( 'Two-third', 'your-text-domain' ),
+				'full-width' => __( 'Full-width', 'your-text-domain' ),
+			],
+			'dependency' => 'custom_layout:true',
+		],
+		'one-half',
+		'general'
+	);
 
-    // Add a select control to the builder.
-    $controls[] = \MBB\Control::Select(
-        'layout',
-        [
-            'label'   => __( 'Layout', 'your-text-domain' ),
-            'tooltip' => __( 'Select the layout for the field', 'your-text-domain' ),
-            'options' => [
-                'one-third'  => __( 'One-third', 'your-text-domain' ),
-                'one-half'   => __( 'One-half', 'your-text-domain' ),
-                'two-third'  => __( 'Two-third', 'your-text-domain' ),
-                'full-width' => __( 'Full-width', 'your-text-domain' ),
-            ],
-            'dependency' => 'custom_layout:true',
-        ],
-        'one-half',
-        'general'
-    );
-
-    return $controls;
+	return $controls;
 }
 ```
 
@@ -321,10 +322,124 @@ Name|Description
 `\MBB\Control::Select` | A select dropdown where you can select only a single value. You need to set `options` property for the control as shown in the above example.
 `\MBB\Control::ReactSelect` | A select dropdown where you can select multiple values. You need to set `options` property for the control and the default value must be an array.
 `\MBB\Control::Textarea` | A textarea.
+`\MBB\Control::Icon` | An icon picker. Supports only Dashicons.
 
 This is the result of the above example:
 
 ![custom field controls](https://i.imgur.com/dk7Pcrf.png)
+
+### Adding custom controls field groups
+
+Similarly, you can add custom controls for the whole field group. Here is how we do to add custom controls when [Meta Box Tabs](https://metabox.io/plugins/meta-box-tabs/) extension is activated.
+
+```php
+add_filter( 'mbb_settings_controls', 'your_prefix_add_settings_controls' );
+
+function your_prefix_add_settings_controls( $controls ) {
+	$controls[] = \MBB\Control::Select( 'tab_style', [
+		'label'   => __( 'Tab style', 'meta-box-builder' ),
+		'tooltip' => __( 'Change how look and feel of tabs in Meta Box Tabs', 'meta-box-builder' ),
+		'options' => [
+			'default' => __( 'Default', 'meta-box-builder' ),
+			'box'     => __( 'Box', 'meta-box-builder' ),
+			'left'    => __( 'Left', 'meta-box-builder' ),
+		],
+	] );
+	$controls[] = Control::Input( 'tab_default_active', __( 'Default active tab ID', 'meta-box-builder' ) );
+
+	return $controls;
+}
+```
+
+The filter `mbb_settings_controls` accepts only one parameter - an array of controls. Each control is defined similarly as for fields.
+
+### Adding your own field types
+
+As Meta Box allows you to [create your own field types](https://docs.metabox.io/custom-field-type/), it's able to create UI for your custom field types.
+
+To add UI for your custom field types, use the following hook:
+
+```php
+add_filter( 'mbb_field_types', 'your_prefix_add_field_type' );
+
+function your_prefix_add_field_type( $field_types ) {
+	$field_types['icon'] = [
+		'title'    => __( 'Icon', 'your-text-domain' ),
+		'category' => 'advanced',
+		'controls' => [
+			'name', 'id', 'type', 'label_description', 'desc',
+			\MBB\Control::Select( 'icon_type', [
+				'label'   => __( 'Icon type', 'your-text-domain' ),
+				'options' => [
+					'dashicons'   => __( 'Dashicons', 'your-text-domain' ),
+					'fontawesome' => __( 'Font Awesome', 'your-text-domain' ),
+					'url'         => __( 'Custom URL', 'your-text-domain' ),
+				],
+			], 'dashicons' ),
+			\MBB\Control::Icon( 'icon', [
+				'label'      => __( 'Icon', 'your-text-domain' ),
+				'dependency' => 'icon_type:dashicons',
+			] ),
+			\MBB\Control::Input( 'icon_fa', [
+				'label'      => '<a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank" rel="noopenner noreferrer">' . __( 'FontAwesome icon class', 'your-text-domain' ) . '</a>',
+				'dependency' => 'icon_type:fontawesome',
+			] ),
+			\MBB\Control::Input( 'icon_url', [
+				'label'      => __( 'Icon URL', 'your-text-domain' ),
+				'dependency' => 'icon_type:url',
+			] ),
+			'clone', 'sort_clone', 'clone_default', 'clone_as_multiple', 'max_clone', 'add_button',
+			'before', 'after', 'class', 'save_field', 'sanitize_callback', 'attributes', 'custom_settings',
+		],
+	];
+
+	return $field_types;
+}
+```
+
+This code creates a new field type `icon` under the category `advanced` with several controls. Here is how it looks when clicking **+ Add field** button:
+
+![adding new field type](https://i.imgur.com/Akuu1MZ.png)
+
+And here is how it looks when reveal the field settings:
+
+![custom field type settings](https://i.imgur.com/9uS9Lhh.png)
+
+{% include alert.html content="Note that this section describes how to create UI in the builder for your custom field types only. To make the new field works, please follow [this documentation](https://docs.metabox.io/custom-field-type/)." %}
+
+The filter `mbb_field_types` accepts only one paramerter, which is an associative array of registered field types. Each field type has the following parameters:
+
+- `title`: the field type title
+- `category`: where to put the field type in the inserter popup (appears when click the **+ Add field** button). Posible values are: `basic`, `advanced`, `html5`, `wordpress`, `upload`, `layout`.
+- `controls`: list of controls for the field type settings. All default controls for fields can be reference as strings like `name`, `id`, `type`. Custom controls are defined similarly as in the section "Adding your own field settings" above.
+
+### Changing the parsed settings
+
+In most cases, when adding a new control or a new field type, the settings are saved correctly. These settings will be parsed to a PHP array and is used by Meta Box and extensions. The parsed result is also used when you generate PHP code.
+
+In some specific cases, you might want to set custom value to the fields instead of the value set in the controls. To do that, use the following hook:
+
+```php
+// For fields.
+$field_settings = apply_filters( 'mbb_field_settings', $field_settings );
+$field_settings = apply_filters( "mbb_field_settings_{$field_type}", $field_settings );
+
+// For field group.
+$field_group_settings = apply_filters( 'mbb_meta_box_settings', $field_group_settings );
+```
+
+For example: you created 2 controls for `custom_layout` (checkbox) and `layout` (select) for fields (see example in the section "Adding your own field settings" above). When parsing, you don't want to set `custom_layout` to `true` if `layout` has a value as it's redundant. You can do that with:
+
+```php
+add_filter( 'mbb_field_settings', 'your_prefix_parse_field_settings' );
+
+function your_prefix_parse_field_settings( $field_settings ) {
+	if ( ! empty( $field_settings['layout'] ) ) {
+		unset( $field_settings['custom_layout'];
+	}
+	return $field_settings;
+}
+```
 
 ## Further reading
 
