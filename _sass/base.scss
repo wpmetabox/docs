@@ -99,7 +99,7 @@ code {
 pre {
 	padding: .6em 1em;
 	margin: 0 0 1.7em;
-	white-space: pre-wrap;
+	overflow: auto;
 	line-height: 1.4;
 	tab-size: 4;
 	-moz-tab-size: 4;
