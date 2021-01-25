@@ -6,15 +6,13 @@ title: Meta Box Builder
 
 Meta Box Builder is the most popular extension for Meta Box users and is the mandatory tool for almost everyone.
 
-This extension creates an UI for you to add and manage your custom fields. So you don't need to [touch code again](https://docs.metabox.io/creating-meta-boxes/). It's helpful for both beginners (who have little knowlege about PHP coding) or experience developers (who want to save time).
+This extension creates an UI for you to add and manage your custom fields. So you don't need to [touch code again](https://docs.metabox.io/creating-meta-boxes/). It's helpful for both beginners (who have little knowlege about PHP coding) or experience developers (who want to save time). You can also use it to create [settings pages](https://metabox.io/plugins/mb-settings-page/) or [relationships](https://metabox.io/plugins/mb-relationships/).
 
-If you already used our free [Online Generator](https://metabox.io/online-generator/), then this extension works very similarly. But it has a better support (very much) for all field types and other extensions and it works right in the WordPress admin area.
-
-Please note that, while Meta Box Builder supports most settings for custom fields and extensions, there are some advanced settings that need to be done in PHP code (such as [creating settings page](https://docs.metabox.io/extensions/mb-settings-page/) or [relationships](https://docs.metabox.io/extensions/mb-relationships/) if you use these extensions). But in 95% cases, you're fine with the extension.
+If you already used our free [Online Generator](https://metabox.io/online-generator/), then this extension works similarly. But it has a better support (very much) for all field types and other extensions and it works right in the WordPress admin area.
 
 Take a look at the screenshot:
 
-![meta box builder ui](https://i2.wp.com/metabox.io/wp-content/uploads/2015/01/meta-box-builder-field-edit.png)
+![meta box builder ui](https://i.imgur.com/DQBeWJN.png)
 
 For more information, please see the [extension page](https://metabox.io/plugins/meta-box-builder/).
 
@@ -34,106 +32,126 @@ Please note that the screen says **Field Groups** instead of **Meta Boxes**. We 
 
 To create a field group, go to *Meta Box &rarr; Custom Fields*. Then click the **Add New** button.
 
-On the add new field group screen, enter a name for your new field group in the **Title** box. The field group ID is then automatically generated. You can change the ID if you want, it's optional.
+![creating a meta box (field group)](https://i.imgur.com/atmAw8E.png)
 
-Then select the fields you want to add to the field group on the left. When click on a field, it will be automatically added to the list of fields in the field group. We'll see the settings of each fields in a section below.
+On the add new field group screen, enter the field group title in the **Title** box. The field group ID is then automatically generated. You can change the ID if you want, it's optional.
 
-![creating a meta box (field group)](https://i.imgur.com/K7BzNfZ.png)
+Then select the fields you want to add to the field group by clicking the **+ Add Field** button. When click on a field, it will be automatically added to the list of fields in the field group. We'll see the settings of each fields in a section below.
 
 {% include alert.html content="To find a field type quickly, type its name in the input box above the field list. The plugin will filter the fields and show only matched fields." %}
 
+While working on fields, you can:
+
+- Delete or duplicate a field by clicking the icons in the field title bar.
+- Reveal field settings by clicking anywhere in the field title bar.
+- Reorder fields by drag and drop fields to the new positions.
+
 When it's done, click button **Publish** to save the field group. You also can click on **Save as Draft** link if you don't want to publish it, e.g. making it not available in the edit post screen.
+
+## Field settings
+
+When adding fields to a field group, each field has its own settings. The list of settings with detailed explaination is [here](https://docs.metabox.io/field-settings/). Meta Box Builder simply creates UI for them.
+
+To view and edit field settings, click anywhere in the field title bar:
+
+![Edit field settings](blob:https://imgur.com/3a89bb1e-59de-9349-bba2-aabf89bfa0f7)
+
+Each field settings are self-explained. We also add some tooltips next to the setting title to give you more information if needed.
+
+All field settings are divided into 2 tabs: General, Advanced. The General tab has most settings you need. The Advanced tab has the following settings:
+
+- Before & after: For entering custom HTML that outputed before and after the field.
+- Custom CSS class: if you need to cusomize the style of the field.
+- Custom sanitize callback: if you need [custom sanitization](https://docs.metabox.io/sanitization/).
+- Save field value: if you don't want Meta Box to save the field value (which rarely happens) and you want to handle saving by yourself, then uncheck this checkbox.
+- Custom HTML5 attributes: helps you add [custom HTMl5 attributes](https://docs.metabox.io/custom-attributes/) to your input fields.
+- Validation: helps you to create [complex validation rules](https://docs.metabox.io/validation/).
+- Custom settings: if you want to add extra settings to the field. We'll cover it in a next section.
+- Conditional logic: if you install the [Meta Box Conditional Logic](https://metabox.io/plugins/meta-box-conditional-logic/), then this part is for creating rules with UI.
+
+![edit field advanced settings](https://i.imgur.com/jKU2B56.png)
+
+Note that: plugins and developers might add more settings for fields. We'll see how to do that later in this docs.
 
 ## Field group settings
 
 The field group settings are put in the tab **Settings**:
 
-![field group settings](https://i.imgur.com/CHosaVq.png)
+![field group settings](https://i.imgur.com/K3emckr.png)
 
-The list of field group settings are listed and explained [here](https://docs.metabox.io/creating-meta-boxes/). The Meta Box Builder plugin simply converts them into UI to make it easy for you to select/change them.
+There are several settings:
 
-{% include alert.html content="Note that, field groups also accept custom attributes, just like fields. It uses the same dot notation or JSON notation to define custom attributes. For more information, please see **Custom Attributes** section below." %}
+- Location: where you select this field group is for posts, terms, users, comments, blocks or settings pages. For each object type, you'll be able to select corresponding post types, taxonomies or settings pages. Please note that it's required to install and activate corresponding extensions: [MB Term Meta](https://metabox.io/plugins/mb-term-meta/), [MB User Meta](https://metabox.io/plugins/mb-term-meta/), [MB Comment Meta](https://metabox.io/plugins/mb-comment-meta/), [MB Blocks](https://metabox.io/plugins/mb-blocks/), and [MB Settings Page](https://metabox.io/plugins/mb-settings-page/).
+- Advanced location rules: allows you to add advanced rules for which category, post, user, ... the field group appears for. Requires the [Meta Box Include Exclude](https://metabox.io/plugins/meta-box-include-exclude/) extension.
+- Toggle rules: select which conditions to show or hide the field group. Requires the [Meta Box Show Hide](https://metabox.io/plugins/meta-box-show-hide/) extension.
+- Conditional Logic: setup the conditional logic rules to toggle the field group based on other fields' values. Requires the [Meta Box Conditional Logic](https://metabox.io/plugins/meta-box-conditional-logic/) extension.
+- Post settings, such as context, priority if you select the location is for posts.
+- Custom block settings, such as block icon, render callback if you select the location is for blocks, which means creating custom Gutenberg blocks. Requires [MB Blocks](https://metabox.io/plugins/mb-blocks/) extension. See the **Create Gutenberg blocks** section below.
+- Tab style and default active tab: these are the settings for [Meta Box Tabs](https://metabox.io/plugins/meta-box-tabs/) extension.
+- Custom table settings, including table name, table prefix and option to create custom table automatically. These are the settings for [MB Custom Table](https://metabox.io/plugins/mb-custom-table/) extension. Note that if you select to create the custom table automatically, all columns will have the data type `TEXT` to ensure maximum compatibility.
+- Custom CSS class: the custom CSS class for the wrapper `div` if you need to cusomize the style of the field group.
+- Field ID prefix: if you want to prefix all fields in the field group, then this settings is for that. It's optional, but a good practice to keep your custom fields separated from other custom fields. You can also use underscore `_` as prefix to keep your fields hidden in the default WordPress **Custom Fields** meta box.
+- Custom settings: if you want to add extra settings to the field group. See below for details.
 
-## Customizing field settings
+## Custom settings
 
-When adding fields to a field group, each field has its own settings. The list of settings with detailed explaination is [here](https://docs.metabox.io/field-settings/). Meta Box Builder simply creates UI for them.
+Custom settings is a feature for both fields and field groups, which allows you to add extra settings for them in case the builder doesn't have. It's useful when you want to add your own settings or the settings the builder hasn't added yet (in this case, please let us know).
 
-To view and edit field settings, click the arrow on the title panel:
+{% include alert.html content="What describes in this section is applied also for similar settings like Query args and Custom HTML5 attributes." %}
 
-![Edit field settings](https://i.imgur.com/X6BSk7g.png)
-
-Each field settings are self-explained. We also add some tooltips next to the setting title to give you more information if needed.
-
-All field settings are divided into 3 tabs: General, Appearance and Advanced. The General and Appearance tabs are common for all fields. The Advanced tab is for custom attributes (advanced settings - we'll talk about it in a section below) and for [Meta Box extensions](https://metabox.io/plugins/).
-
-{% include alert.html content="Besides common settings, each field has its own settings. Depend on the field type, the UI might be different to show specific settings for it." %}
-
-## Custom attributes
-
-You can also add an custom attributes which does not exist on the field UI window by click on Advanced tab, then click **+ Attribute** button:
-
-![custom attribute](https://i.imgur.com/spmhYCn.png)
-
-For example, if you want to create a text field like:
+To add custom settings, click on Advanced tab for fields or go to Settings tab for the field group. Then click **+ Add New** button and add new settings. For example, if you want to create a text field that has 2 extra settings:
 
 ```php
-'text' => array(
-    'foo' => 'bar',
-    'baz' => false
-)
+[
+    'id'   => 'new-your-phone',
+    'name' => 'New Your phone',
+    'type' => 'text',
+    
+    // Custom settings.
+    'mask'   => '012-345-6789',
+    'enable' => false
+],
 ```
 
-Just enter `foo` to the key, `bar` to the value, `baz` to the key and `false` to the value.
+Then enter as follows:
 
-Remember, Meta Box Builder will treat `true`, `false`, `0`, `1` values as `bool` type.
+![custom settings](https://i.imgur.com/WFRBdL4.png)
 
-If the field requires complex settings, like this:
+Remember, Meta Box Builder treats `true`, `false` as boolean values.
+
+If the field requires complex settings, like multi-dimentional arrays:
 
 ```php
-array(
-    'type' => 'post',
-    'id' => 'field_id',
-    'query_args' => array(
-        'tax_query' => array(
-            array(
+[
+    'type'       => 'post',
+    'id'         => 'field_id',
+    'query_args' => [
+        'tax_query' => [
+            [
                 'taxonomy' => 'category',
                 'field'    => 'slug',
                 'terms'    => 'technology',
-            ),
-        ),
-    ),
-)
+            ],
+        ],
+    ],
+],
 ```
 
 Then you can use the dot notation or JSON for custom attributes:
 
 ### Dot notation
 
-The dot notation is available since version 1.2. For the `tax_query` above, you can define with dot notation like so:
+The dot notation allows you to define the data structure with dots. For the `tax_query` above, you can define with dot notation like so:
 
-![dot notation](https://i.imgur.com/YbjBP7A.png)
+![dot notation](https://i.imgur.com/MPC06Fd.png)
 
-Please note that `tax_query.0.taxonomy`, `tax_query.0.field`, and `tax_query.0.terms` because the taxonomy named `category`, the field named `slug` and the term named technology are belong to the first (and only one) array of tax_query, not directly belongs to `tax_query`.
+Please note that `taxonomy`, `field`, and `terms` are children of the first child of `tax_query`, not direct children of `tax_query`, we need to use index `0`.
 
 ### JSON notation
 
-To create a nested array in Meta Box Builder, you can use JSON notation, encode the whole array of `tax_query` and paste to it value. Like so:
+Another way to enter nested array in Meta Box Builder, you can use JSON notation. Encode the whole array of `tax_query` and paste to it value. Like so:
 
-![json value](https://i.imgur.com/kJRrnd7.png)
-
-## Manipulating fields
-
-### Deleting or duplicating a field
-
-To delete or duplicate a field, simply clicking the icons in the toolbar:
-
-![delete or duplicate a field](https://i.imgur.com/98mSFzx.png)
-
-### Reordering fields
-
-Just drag your fields to the position that you want.
-
-[![reordering fields](https://i.imgur.com/ZOZD5aY.gif)](https://i.imgur.com/ZOZD5aY.gif)
+![json value](https://i.imgur.com/2eTlviV.png)
 
 ## Getting PHP code
 
@@ -141,12 +159,14 @@ For each field group, Meta Box Buider can create a PHP code that you can copy an
 
 This is helpful if you want to:
 
-- Share field groups to other websites which doesn't have Meta Box Builder installed.
+- [Share field groups to other websites](https://metabox.io/copy-custom-fields-with-meta-box-builder/) which doesn't have Meta Box Builder installed.
 - Improve the performance since field groups are loaded directly from your file.
 
-To get the code, click on the tab **Code**, then click the **Copy** button to copy the code. Then paste it into your theme's `functions.php` file.
+To get the code, click the **Get PHP Code** button on the toolbar:
 
-![export code](https://i.imgur.com/g6EnLns.png)
+![export code](https://i.imgur.com/hcYgYWk.png)
+
+On this screen, set the text domain (for field labels in case you want to translate them in a multilingual website) and the function name. Then click the **Generate** button to generate the code. Finally, click the **Copy** button to copy the code and paste it into your theme's `functions.php` file.
 
 When you copy PHP code and paste it into your theme's `functions.php` file, you can **safely deactivate Meta Box Builder** (do *not* deactivate Meta Box, it's still required).
 
@@ -168,7 +188,7 @@ Or you can export individual field group by clicking on **Export** link when hov
 
 To import field groups, select the *Import* button at the top of the page. Then choose the downloaded file in the previous step, then press **Upload file and import**. That’s all!
 
-![import field groups](https://i.imgur.com/bpf4acg.png)
+![import field groups](https://i.imgur.com/UvGpqO5.png)
 
 For detailed instruction, please see [this tutorial](https://metabox.io/export-import-custom-fields-meta-box-builder/).
 
