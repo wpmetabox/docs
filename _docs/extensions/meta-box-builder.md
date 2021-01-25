@@ -258,6 +258,74 @@ Here you can enter all the settings for each side of the relationship (**From** 
 
 Please see the [documentation of MB Relationships](https://docs.metabox.io/extensions/mb-relationships/) to understand them.
 
+## Adding your own field settings
+
+If you develop [extra solutions for Meta Box](https://metabox.io/resources/), then you might need to add a custom settings for fields. Luckily, Meta Box Builder has API for you to create custom controls for these settings.
+
+To add a control, use the following hook:
+
+```php
+add_filter( 'mbb_field_controls', 'your_prefix_add_field_controls', 10, 2 );
+
+function your_prefix_add_field_controls( $controls, $type ) {
+    // Add a checkbox control to the builder.
+
+    $controls[] = \MBB\Control::Checkbox( 'custom_layout', __( 'Custom layout', 'your-text-domain' ) );
+
+    // Add a select control to the builder.
+    $controls[] = \MBB\Control::Select(
+        'layout',
+        [
+            'label'   => __( 'Layout', 'your-text-domain' ),
+            'tooltip' => __( 'Select the layout for the field', 'your-text-domain' ),
+            'options' => [
+                'one-third'  => __( 'One-third', 'your-text-domain' ),
+                'one-half'   => __( 'One-half', 'your-text-domain' ),
+                'two-third'  => __( 'Two-third', 'your-text-domain' ),
+                'full-width' => __( 'Full-width', 'your-text-domain' ),
+            ],
+            'dependency' => 'custom_layout:true',
+        ],
+        'one-half',
+        'general'
+    );
+
+    return $controls;
+}
+```
+
+The filter `mbb_field_controls` accepts 2 parameters:
+
+- `$controls`: Array of controls.
+- `$type`: Field type, useful if you want to add controls to specific field types only.
+
+Each control has a specific type (`\MBB\Control::Select` in the above example, which is a select dropdown) and several parameters:
+
+1. Setting name
+1. Control properties, which is an array:
+    - `label`: the control label.
+    - `tooltip`: the content of the tooltip, if you want to explain what the control is for users.
+    - `options`: array of options for the select control, in format of `'value' => 'label'`.
+    - `dependency`: if you want to show the control only when another control has a specific value, then set this to `{$other_control_setting_name}:{$value}`. Optional.
+1. Default value. Optional.
+1. Settings tab: `general` (default) or `advanced`. Optional.
+
+In case your control has only `label` property, you can set the property as a string (see the checkbox control in the above example).
+
+List of supported control types:
+
+Name|Description
+---|---
+`\MBB\Control::Checkbox` | A checkbox
+`\MBB\Control::Input` | An input text. You can set the `'type' => 'number'` for the control property to make it accepts only numbers.
+`\MBB\Control::Select` | A select dropdown where you can select only a single value. You need to set `options` property for the control as shown in the above example.
+`\MBB\Control::ReactSelect` | A select dropdown where you can select multiple values. You need to set `options` property for the control and the default value must be an array.
+`\MBB\Control::Textarea` | A textarea.
+
+This is the result of the above example:
+
+![custom field controls](https://i.imgur.com/dk7Pcrf.png)
+
 ## Further reading
 
 - [How to Add and Configure Custom Fields Using Meta Box Builder](https://metabox.io/add-configure-custom-fields-meta-box-builder/)
