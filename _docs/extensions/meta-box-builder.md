@@ -54,7 +54,7 @@ When adding fields to a field group, each field has its own settings. The list o
 
 To view and edit field settings, click anywhere in the field title bar:
 
-![Edit field settings](blob:https://imgur.com/3a89bb1e-59de-9349-bba2-aabf89bfa0f7)
+![Edit field settings](https://i.imgur.com/UvWnRzT.png)
 
 Each field settings are self-explained. We also add some tooltips next to the setting title to give you more information if needed.
 
