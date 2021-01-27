@@ -142,7 +142,7 @@ Name|Description
 `menu_title`|Menu title. Optional. Takes `page_title` if missed.
 `page_title`|Page title. Optional. Takes `menu_title` if missed. Note: either `menu_title` or `page_title` (or both) must have value.
 `capability`|Required capability to access the settings page. Optional. Default `edit_theme_options`.
-`icon_url`|The icon for the menu. To use [a Dashicon](https://developer.wordpress.org/resource/dashicons/), set this to `dashicon-icon-name`. To use a SVG data image as a CSS background, set this to `data:image/svg+xml;base64...`. To use an image, set this to image URL. See `icon_url` parameter of [add_menu_page()](https://codex.wordpress.org/Function_Reference/add_menu_page) function.
+`icon_url`|The icon for the menu. To use [a Dashicon](https://developer.wordpress.org/resource/dashicons/), set this to `dashicons-icon-name`. To use a SVG data image as a CSS background, set this to `data:image/svg+xml;base64...`. To use an image, set this to image URL. See `icon_url` parameter of [add_menu_page()](https://codex.wordpress.org/Function_Reference/add_menu_page) function.
 `position`|Menu position. See `position` parameter of [add_menu_page()](https://codex.wordpress.org/Function_Reference/add_menu_page) function.
 `parent`|ID of the parent page. Optional. Can be WordPress menu or custom settings page menu. See examples below for more details.
 `submenu_title`|Set this to the default submenu title (first submenu) if the settings page is a top-level menu. Optional.
