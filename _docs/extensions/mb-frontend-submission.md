@@ -268,7 +268,7 @@ Note that `$config['post_id']` has the submitted post ID.
 
 Example: redirect to a page based on a submitted value:
 
-```
+```php
 add_filter( 'rwmb_frontend_redirect', function( $redirect, $config ) {
     // Make sure you work on the correct form.
     if ( 'my-id' !== $config['id'] ) {
