@@ -53,6 +53,12 @@ add_filter( 'mb_aio_extensions', function( $extensions ) {
 } );
 ```
 
+## Upgrade
+
+When updating from version 1.12 to version 1.13, the plugin automatically migrates data of field groups to compatible with the new React app. The migration process doesn't touch your existing data, so you're always safe.
+
+If you don't see any field in field groups after upgrading, then the migration process failed to run the job. To fix this problem, you can force the plugin migrate again by adding a query param `mbb_version=3.3` to your site URL. In short, please go to `https://yourdomain.com/wp-admin/?mbb_version=3.3` to run the migration.
+
 ## Notes
 
 When an extension is enabled in Meta Box AIO and is activated as an individual plugin, the individual plugin will has higher priority and will be used. The version bundled inside Meta Box AIO will not be used.
