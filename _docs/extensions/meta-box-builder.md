@@ -441,6 +441,12 @@ function your_prefix_parse_field_settings( $field_settings ) {
 }
 ```
 
+## Upgrade
+
+When updating from version 3 to version 4, the plugin automatically migrates data of field groups to compatible with the new React app. The migration process doesn't touch your existing data, so you're always safe.
+
+If you don't see any field in field groups after upgrading, then the migration process failed to run the job. To fix this problem, you can force the plugin migrate again by adding a query param `mbb_version=3.3` to your site URL. In short, please go to `https://yourdomain.com/wp-admin/?mbb_version=3.3` to run the migration.
+
 ## Further reading
 
 - [How to Add and Configure Custom Fields Using Meta Box Builder](https://metabox.io/add-configure-custom-fields-meta-box-builder/)
