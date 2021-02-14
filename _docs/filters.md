@@ -13,7 +13,7 @@ This is the most important filter of the plugin. It is used to add/remove/edit m
 This filter has 1 parameter - array of meta boxes.
 
 ```php
-apply_filters( 'rwmb_meta_boxes', array() );
+apply_filters( 'rwmb_meta_boxes', [] );
 ```
 
 ### `rwmb_shortcode`
@@ -76,9 +76,10 @@ This filter is used to change the visibility of a meta box (by default meta box 
 $show = apply_filters( 'rwmb_show', $show, $meta_box );
 ```
 
-### `rwmb_show_{$meta_box_id}`
+This filter has variations:
 
-This filter is the same as `rwmb_show` but is applied to a specific meta box (identified by ID). It accepts same parameters.
+- `rwmb_show`: apply for all meta boxes
+- `rwmb_show_{$meta_box_id}`: apply for a meta box with a particular id
 
 ### `rwmb_normalize_meta_box`
 
@@ -88,9 +89,10 @@ This filter is used to normalize a meta box's parameters. It's useful when you w
 $meta_box = apply_filters( 'rwmb_normalize_meta_box', $meta_box );
 ```
 
-### `rwmb_normalize_{$meta_box_id}_meta_box`
+This filter has variations:
 
-This filter is the same as `rwmb_normalize_meta_box` but is applied to a specific meta box (identified by ID). It accepts same parameters.
+- `rwmb_show`: apply for all meta boxes
+- `rwmb_normalize_{$meta_box_id}_meta_box`: apply for a meta box with a particular id
 
 ## Field general filters
 
@@ -102,13 +104,11 @@ This filter is used to normalize a field's parameters. It's useful when you want
 $meta_box = apply_filters( 'rwmb_normalize_field', $field );
 ```
 
-### `rwmb_normalize_{$field_type}_field`
+This filter has variations:
 
-This filter is the same as `rwmb_normalize_field` but is applied to fields with a specific type. It accepts same parameters.
-
-### `rwmb_normalize_{$field_id}_field`
-
-This filter is the same as `rwmb_normalize_field` but is applied to a specific field (identified by ID). It accepts same parameters.
+- `rwmb_normalize_field`: apply for all fields
+- `rwmb_normalize_{$field_type}_field`: apply for fields with a particular type
+- `rwmb_normalize_{$field_id}_field`: apply for a the field with a particular id
 
 ### `rwmb_field_meta`
 
@@ -122,14 +122,11 @@ This filter is used to change a field meta value before displaying it in the met
 $meta = apply_filters( 'rwmb_field_meta', $meta, $field, $saved );
 ```
 
-### `rwmb_{$field_type}_field_meta`
+This filter has variations:
 
-This filter is the same as `rwmb_field_meta` but is applied to fields with a specific type. It accepts same parameters.
-
-### `rwmb_{$field_id}_field_meta`
-
-This filter is the same as `rwmb_field_meta` but is applied to a specific field (identified by ID). It accepts same parameters.
-
+- `rwmb_field_meta`: apply for all fields
+- `rwmb_{$field_type}_field_meta`: apply for fields with a particular type
+- `rwmb_{$field_id}_field_meta`: apply for a the field with a particular id
 
 ### `rwmb_{$field_type}_value`
 
@@ -143,9 +140,10 @@ This filter is used to change a field meta value before saving it in the databas
 $new = apply_filters( "rwmb_{$field['type']}_value", $new, $field, $old );
 ```
 
-### `rwmb_{$field_id}_value`
+This filter has variations:
 
-This filter is the same as `rwmb_{$field_type}_value` but is applied to a specific field (identified by ID). It accepts same parameters.
+- `rwmb_{$field_type}_value`: apply for fields with a particular type
+- `rwmb_{$field_id}_value`: apply for a the field with a particular id
 
 ## Field appearance filters
 
@@ -172,13 +170,11 @@ This filter accepts 3 parameters:
 $begin = apply_filters( 'rwmb_begin_html', $begin, $field, $meta );
 ```
 
-### `rwmb_{$field_type}_begin_html`
+This filter has variations:
 
-This filter is the same as `rwmb_begin_html` but is applied to fields with a specific type. It accepts same parameters.
-
-### `rwmb_{$field_id}_begin_html`
-
-This filter is the same as `rwmb_begin_html` but is applied to a specific field (identified by ID). It accepts same parameters.
+- `rwmb_begin_html`: apply for all fields
+- `rwmb_{$field_type}_begin_html`: apply for fields with a particular type
+- `rwmb_{$field_id}_begin_html`: apply for a the field with a particular id
 
 ### `rwmb_end_html`
 
@@ -202,13 +198,11 @@ This filter accepts 3 parameters:
 $end = apply_filters( 'rwmb_end_html', $end, $field, $meta );
 ```
 
-### `rwmb_{$field_type}_end_html`
+This filter has variations:
 
-This filter is the same as `rwmb_end_html` but is applied to fields with a specific type. It accepts same parameters.
-
-### `rwmb_{$field_id}_end_html`
-
-This filter is the same as `rwmb_end_html` but is applied to a specific field (identified by ID). It accepts same parameters.
+- `rwmb_end_html`: apply for all fields
+- `rwmb_{$field_type}_end_html`: apply for fields with a particular type
+- `rwmb_{$field_id}_end_html`: apply for a the field with a particular id
 
 ### `rwmb_{$field_type}_html`
 
@@ -226,9 +220,10 @@ This filter accepts 3 parameters:
 $field_html = apply_filters( "rwmb_{$field_type}_html", $field_html, $field, $meta );
 ```
 
-### `rwmb_{$field_id}_html`
+This filter has variations:
 
-This filter is the same as `rwmb_{$field_type}_html` but is applied to a specific field (identified by ID). It accepts same parameters.
+- `rwmb_{$field_type}_html`: apply for fields with a particular type
+- `rwmb_{$field_id}_html`: apply for a the field with a particular id
 
 ### `rwmb_wrapper_html`
 
@@ -244,13 +239,11 @@ This filter accepts 3 parameters:
 $html = apply_filters( 'rwmb_wrapper_html', "{$begin}{$field_html}{$end}", $field, $meta );
 ```
 
-### `rwmb_{$field_type}_wrapper_html`
+This filter has variations:
 
-This filter is the same as `rwmb_wrapper_html` but is applied to fields with a specific type. It accepts same parameters.
-
-### `rwmb_{$field_id}_wrapper_html`
-
-This filter is the same as `rwmb_wrapper_html` but is applied to a specific field (identified by ID). It accepts same parameters.
+- `rwmb_wrapper_html`: apply for all fields
+- `rwmb_{$field_type}_wrapper_html`: apply for fields with a particular type
+- `rwmb_{$field_id}_wrapper_html`: apply for a the field with a particular id
 
 ### `rwmb_outer_html`
 
@@ -270,13 +263,11 @@ This filter accepts 3 parameters:
 $outer_html = apply_filters( 'rwmb_outer_html', $outer_html, $field, $meta );
 ```
 
-### `rwmb_{$field_type}_outer_html`
+This filter has variations:
 
-This filter is the same as `rwmb_outer_html` but is applied to fields with a specific type. It accepts same parameters.
-
-### `rwmb_{$field_id}_outer_html`
-
-This filter is the same as `rwmb_outer_html` but is applied to a specific field (identified by ID). It accepts same parameters.
+- `rwmb_outer_html`: apply for all fields
+- `rwmb_{$field_type}_outer_html`: apply for fields with a particular type
+- `rwmb_{$field_id}_outer_html`: apply for a the field with a particular id
 
 ### `rwmb_choice_label`
 
@@ -295,8 +286,8 @@ function some_user_filter( $label, $field, $object ) {
 add_filter( 'rwmb_some_user_choice_label', 'some_user_filter', 10, 3);
 ```
 
-This filter also has variations:
+This filter has variations:
 
-- `rwmb_choice_label`: which will effect labels for all choice fields
-- `rwmb_{$field_type}_choice_label`: which will effect all of a particular type
-- `rwmb_{$field_id}_choice_label`: which will effect all of a the field with a particular id
+- `rwmb_choice_label`: apply for all choice fields
+- `rwmb_{$field_type}_choice_label`: apply for choice fields with a particular type
+- `rwmb_{$field_id}_choice_label`: apply for a the field with a particular id
