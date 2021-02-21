@@ -4,7 +4,7 @@ title: Meta Box Geolocation
 
 ## Overview
 
-The Meta Box Geolocation is helpful if you have multiple custom fields for location such as address, zipcode, city, state and country. Letting users manually fill in these fields might be a boring time-consuming job. This extension helps you fill in these information quickly by using Geocoding API from Google. So that you just need to enter an address, it will autosuggest a complete address and fill all other fields.
+The Meta Box Geolocation is helpful if you have multiple custom fields for location such as address, zipcode, city, state and country. Letting users manually fill in these fields might be a boring time-consuming job. This extension helps you fill in these information quickly by using Geocoding API from Google Maps/Open Street Maps. So that you just need to enter an address, it will autosuggest a complete address and fill all other fields.
 
 Take a look at the screenshot:
 
@@ -16,11 +16,11 @@ For more information, please see the [extension page](https://metabox.io/plugins
 
 Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
-## Enabling geolocation
+## Enabling geolocation API
 
-### Google Maps API
+If you use Open Street Maps, then you can bypass this step. Open Street Maps doesn't require any extra API/configuration from you.
 
-Before enabling Geolocation, make sure you create a project for Google Maps in the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview). And don't forget to enable the following APIs:
+If you use Google Maps, make sure you create a project for Google Maps in the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview). And don't forget to enable the following APIs:
 
 - Google Maps API
 - Geocoding API
@@ -28,21 +28,27 @@ Before enabling Geolocation, make sure you create a project for Google Maps in t
 
 And then create an API key for Google Maps. See [here](https://developers.google.com/maps/documentation/javascript/get-api-key) for instruction. You'll need this key to perform any call to Google Maps platform.
 
-### Enable geolocation support for a meta box.
+## Enable geolocation support for a meta box
 
 To enable geolocation support for a meta box, add this line to your Meta Box (not field) settings:
 
 ```php
-'geo' => array(
+// For Open Street Maps.
+'geo' => true,
+
+// For Google Maps.
+'geo' => [
     'api_key' => 'YOUR API KEY',
-)
+],
 ```
 
-If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), then please go to tab *Settings* and add a custom attribute for the geolocation as follows:
+If you use Geolocation with `map` field, you need to enter the Google API key only once, either for the Geolocation extension (as above) or for the `map` field. No need to enter the same key for both of them.
 
-![adding google maps api key in builder](https://i.imgur.com/sk6NzTj.png)
+If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), then please go to tab *Settings* and add a custom settings for the geolocation as follows:
 
-You can also add options to Geolocation. Which can contains these properties:
+![adding google maps api key in builder](https://i.imgur.com/d5LZD4p.png)
+
+If you use Google Maps, you can also add options to Geolocation. Which can contains these properties:
 
 - `types`: array of geocode types:
     - `geocode`: only geocoding results, no business results.
@@ -62,24 +68,24 @@ Examples:
 
 ```php
 // Restrict the result in Australia only
-'geo' => array(
+'geo' => [
     'api_key' => 'YOUR API KEY',
-    'componentRestrictions' => array(
+    'componentRestrictions' => [
         'country' => 'au'
-    )
-)
+    ],
+],
 
 // Return only business results
-'geo' => array(
+'geo' => [
     'api_key' => 'YOUR API KEY',
-    'types' => array( 'establishment' )
-),
+    'types' => ['establishment'],
+],
 
 // Return only cities and business results
-'geo' => array(
+'geo' => [
     'api_key' => 'YOUR API KEY',
-    'types' => array( '(cities)', 'establishment' )
-),
+    'types' => ['(cities)', 'establishment'],
+],
 ```
 
 ## Adding autocomplete field
@@ -90,10 +96,10 @@ You can add auto complete to `textarea`, it works but will generate warning mess
 
 ## Populating field data
 
-### Address Components
-When you selected an address from Auto-Complete field. It returns an array of *Address Component Types*. Which you can use it to populate to other fields. The following types are supported by Google:
+### Address components
+When you selecte an address from autocomplete field, it returns an array of *address components*. Which you can use it to populate to other fields. The following components are supported by Google Maps:
 
-Type|Description
+Component|Description
 ---|---
 `street_address`|indicates a precise street address.
 `route`|indicates a named route (such as "US 101").
@@ -128,41 +134,54 @@ Type|Description
 
 For more information about address components visit: [Google Address Component Types](https://developers.google.com/maps/documentation/geocoding/intro#Types)
 
-### Auto Populate
+Add here are the address components supported by Open Street Maps (which are self-explained):
 
-To auto populate data to the field. Just set that field's ID same as one of Address Component Type above. For example, you create a `number` field with ID `postal_code`. The postal code type will auto populate to that field if exists.
+- `building`
+- `house_number`
+- `aeroway`
+- `road`
+- `neighbourhood`
+- `suburb`
+- `village`
+- `town`
+- `city`
+- `county`
+- `state`
+- `postcode`
+- `country`
+- `country_code`
 
-**Long name and Short Name**
+### Auto populate
+
+To auto populate data to the field. Just set that field's ID same as one of address component above. For example, you create a `number` field with ID `postal_code`. The postal code type will auto populate to that field if exists.
+
+**Long name and short name**
 
 Let's say we have a country named 'Australia'. The long name is 'Australia' and short name is 'AU'. And so on, if we have a state named 'Queensland', so 'Queensland' is the long name and 'QLD' is the short name.
 
-By default, Meta Box Geolocation will populate the long name of the field. But you can use the short name by adding `_short` at the end of field id. For example: `administrative_area_level_1_short`, `country_short`
+By default, Meta Box Geolocation will populate the long name of the field. But you can use the short name by adding `_short` at the end of field id. For example: `administrative_area_level_1_short`, `country_short`.
 
-### Binding Template
+Please note that this feature is available for Google Maps only.
 
-The power of Meta Box Geolocation is you can bind anything into a field. Let's say we have a field with id `dummy_field`, this field id is not in *Address Component Types* list so by default the plugin won't auto populate data to it. Now we'll bind `administrative_area_level_1` to that field. Just add
+### Binding template
+
+The power of Meta Box Geolocation is you can bind anything into a field. Let's say we have a field with id `dummy_field`, this field id is not in *address component* list so by default the plugin won't auto populate data to it. Now we'll bind `administrative_area_level_1` to that field. Just add
 
 ```php
-'binding' => 'administrative_area_level_1'
+'binding' => 'administrative_area_level_1', // returns 'Queensland'
 ```
-
-Example Result: `Queensland`
 
 You can tell that field to use short version by prepending `short:` keyword
 
 ```php
-'binding' => 'short:administrative_area_level_1'
+'binding' => 'short:administrative_area_level_1', // returns 'QLD'
 ```
-
-Example Result: `QLD`
 
 You can also merge two fields, add any character you want to bind to that field. Like so:
 
 ```php
-'binding' => 'short:administrative_area_level_1 + " " + country'
+'binding' => 'short:administrative_area_level_1 + " " + country', // returns QLD Australia
 ```
-
-Example Result: `QLD Australia`
 
 ## Multiple autocomplete addresses
 
@@ -176,49 +195,42 @@ In this case, please set another attribute `'address_field' => 'address_id'` for
  */
  
 // Address
-array(
+[
     'id' => 'address_ho',
     'type' => 'text',
     'name' => 'Address - Head Office',
-),
+],
 // City
-array(
+[
     'id' => 'city_ho',
     'type' => 'text',
     'name' => 'City - Head Office',
     'binding' => 'locality',
     'address_field' => 'address_ho', // THIS
-),
+],
 
 /**
  * A company branche
  */
  
 // Address
-array(
+[
     'id' => 'address_br',
     'type' => 'text',
     'name' => 'Address - Branch',
-),
+],
 // City
-array(
+[
     'id' => 'city_br',
     'type' => 'text',
     'name' => 'City - Branch',
     'binding' => 'locality',
     'address_field' => 'address_br', // THIS
-),
+],
 ```
 
-## Google API Key in old versions
+## Two-way binding data with map
 
-Prior version 1.2.0, you need to use a filter to `gmap_api_params` like so:
+If you have map field, then whenever you select an address, the pin on the map will change according to the new location. And whenever you change the location of the pin on the map, the new location will be updated to the latitude, longitude fields (if you have them). Moreover, the pin on the map will automatically populated when you change the value of latitude and longitude fields.
 
-```php
-add_filter( 'gmap_api_params', function( $params ) {
-    $params['key'] = 'YOUR API KEY';
-    return $params;
-});
-```
-
-Also notes that since version 1.2.1, if you use Geolocation with `map` field, you need to enter the Google API key only once, either for the Geolocation extension or for the `map`. No need to enter the same key for both of them.
+So the location is synchronize between address, latitude/longitude and map fields.

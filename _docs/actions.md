@@ -12,9 +12,10 @@ This action runs before any meta box is shown. It takes 1 parameter: the instanc
 do_action( 'rwmb_before', $this );
 ```
 
-## `rwmb_before_{$meta_box_id}`
+This action has variations:
 
-This action is the same as `rwmb_before` but is applied for a specific meta box (identified by ID). It accepts same parameters.
+- `rwmb_before`: apply for all meta boxes
+- `rwmb_before_{$meta_box_id}`: apply for a meta box with a particular id
 
 ## `rwmb_after`
 
@@ -24,9 +25,10 @@ This action runs after any meta box is shown. It takes 1 parameter: the instance
 do_action( 'rwmb_after', $this );
 ```
 
-## `rwmb_after_{$meta_box_id}`
+This action has variations:
 
-This action is the same as `rwmb_after` but is applied to a specific meta box (identified by ID). It accepts same parameters.
+- `rwmb_after`: apply for all meta boxes
+- `rwmb_after_{$meta_box_id}`: apply for a meta box with a particular id
 
 ## `rwmb_before_save_post`
 
@@ -36,9 +38,10 @@ This action runs before any meta box is saved into post meta. It takes 1 paramet
 do_action( 'rwmb_before_save_post', $object_id );
 ```
 
-## `rwmb_{$meta_box_id}_before_save_post`
+This action has variations:
 
-This action is the same as `rwmb_before_save_post` but is applied to a specific meta box (identified by ID). It accepts same parameters.
+- `rwmb_before_save_post`: apply for all meta boxes
+- `rwmb_{$meta_box_id}_before_save_post`: apply for a meta box with a particular id
 
 ## `rwmb_after_save_post`
 
@@ -48,9 +51,10 @@ This action runs after any meta box is saved into post meta. It takes 1 paramete
 do_action( 'rwmb_after_save_post', $object_id );
 ```
 
-## `rwmb_{$meta_box_id}_after_save_post`
+This action has variations:
 
-This action is the same as `rwmb_after_save_post` but is applied to a specific meta box (identified by ID). It accepts same parameters.
+- `rwmb_after_save_post`: apply for all meta boxes
+- `rwmb_{$meta_box_id}_after_save_post`: apply for a meta box with a particular id
 
 ## `rwmb_after_save_field`
 
@@ -72,13 +76,11 @@ Name|Description
 
 You can use this hook to perform extra action for a specific field. See [an example](https://metabox.io/support/topic/using-custom-attributes-from-rwmb_before_save_post-action/)
 
-## `rwmb_{$field_type}_after_save_field`
+This action has variations:
 
-This action is the same as `rwmb_after_save_field` but is applied to only a field type.
-
-## `rwmb_{$field_id}_after_save_field`
-
-This action is the same as `rwmb_after_save_field` but is applied to only a specific field.
+- `rwmb_after_save_field`: apply for all fields
+- `rwmb_{$field_type}_after_save_field`: apply for fields with a particular type
+- `rwmb_{$field_id}_after_save_field`: apply for a field with a particular id
 
 ## `rwmb_enqueue_scripts`
 

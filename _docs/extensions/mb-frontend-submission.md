@@ -266,6 +266,24 @@ $redirect = apply_filters( 'rwmb_frontend_redirect', $redirect, $config );
 
 Note that `$config['post_id']` has the submitted post ID.
 
+Example: redirect to a page based on a submitted value:
+
+```php
+add_filter( 'rwmb_frontend_redirect', function( $redirect, $config ) {
+    // Make sure you work on the correct form.
+    if ( 'my-id' !== $config['id'] ) {
+        return $redirect;
+    }
+    
+    // Get submitted data via $_POST.
+    $value = empty( $_POST['field_id'] ) ? null : $_POST['field_id'];
+    if ( 'yes' === $value ) {
+        $redirect = 'https://yourdomain.com/custom-page/';
+    }
+    return $redirect;
+}, 10, 2 );
+```
+
 ### Form actions
 
 `rwmb_frontend_before_process`
