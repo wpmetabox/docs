@@ -435,7 +435,22 @@ For example, if you have a "Team Member" block (as above) which has 3 fields: im
 ]
 ```
 
-## Adding Fields To Blocks
+### `storage_type`
+
+Sets the storage for the block fields. Default, it's `attributes`, which means saving block fields in the attributes.
+
+If you want to save the block fields into custom fields, set it to `post_meta`. Saving block fields in the custom fields make the block acts like a wrapper of custom fields. In this case, to prevent bugs, you *should* set `multiple` to `false` to prevent inserting the same block multiple times (see `supports` parameter above).
+
+If you want to save the block fields into custom tables, you need to activate the [MB Custom Table](https://metabox.io/plugins/mb-custom-table/) extension first. Then set `storage_type` and `table` as follows:
+
+```php
+'storage_type' => 'custom_table`,
+'table' => 'your table name',
+```
+
+See [MB Custom Table documentation](/extensions/mb-custom-table/) for more details.
+
+## Adding fields to blocks
 
 Each block can have unlimited fields. Adding fields to blocks is similar to adding fields to a custom meta box. All you need to do is specify the fields in the parameter `fields` from the block settings.
 
