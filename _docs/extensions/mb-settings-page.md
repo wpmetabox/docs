@@ -160,29 +160,29 @@ Name|Description
 
 ### Examples
 
-This example registers a top-level menu pages and 2 sub settings page:
+This example registers a top-level menu page and 2 sub settings pages:
 
 ```php
 add_filter( 'mb_settings_pages', function ( $settings_pages ) {
-    $settings_pages[] = array(
+    $settings_pages[] = [
         'id'            => 'my-options',
         'menu_title'    => 'Options',
         'option_name'   => 'my_options',
         'icon_url'      => 'dashicons-images-alt',
         'submenu_title' => 'Options', // Note this
-    );
-    $settings_pages[] = array(
+    ];
+    $settings_pages[] = [
         'id'          => 'my-options-im',
         'option_name' => 'my_options',
         'menu_title'  => 'Import',
         'parent'      => 'my-options', // Note this
-    );
-    $settings_pages[] = array(
+    ];
+    $settings_pages[] = [
         'id'          => 'my-options-ex',
         'option_name' => 'my_options',
         'menu_title'  => 'Export',
         'parent'      => 'my-options',
-    );
+    ];
     return $settings_pages;
 } );
 ```
