@@ -18,7 +18,7 @@ The Meta Box plugin is [available on wordpress.org](https://wordpress.org/plugin
 
 Then click the button **Install** to install it. After that, click the button **Activate** to activate the plugin.
 
-## Installing an extension
+## Installing extensions
 
 Before installing extensions, make sure you installed and activated the Meta Box plugin, even if you use Meta Box AIO (which contains all extensions into a single plugin) or solutions.
 
