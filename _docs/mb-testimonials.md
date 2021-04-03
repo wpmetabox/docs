@@ -12,9 +12,9 @@ MB Testimonials is a WordPress plugin that helps you add testimonials to your we
 
 First, you need to install and activate the Meta Box plugin from [wordpress.org](https://wordpress.org/plugins/meta-box/). Next, download MB Favorite Posts plugin from the [My Account](https://metabox.io/my-account/) page, then upload the .zip file from the **Admin Dashboard**.
 
-## How to Add Testimonials to Your WordPress Website
+**Note**: MB Testimonials and [other solutions](https://metabox.io/product-category/solutions/) are not included in Meta Box AIO, so you can install them independently without Meta Box AIO.
 
-### Add Testimonials
+## Add Testimonials
 
 Go to **Testimonials** > **Add New**:
 
@@ -32,7 +32,7 @@ In addition, you can drag and drop to arrange testimonials easily:
 
 ![Drag and drop to arrange testimonials](https://i.imgur.com/Ytwl4TC.gif)
 
-### Configure the Testimonials
+## Configure the Testimonials
 
 In the **Settings** section, choose a built-in template in the **Display** tab:
 
@@ -48,7 +48,7 @@ In the **Styling** tab, set up the parameters of the testimonials as you want:
 
 Finally, don’t forget to click **Publish**.
 
-### Display Testimonials on the Front End
+## Display Testimonials on the Front End
 
 After publishing, the plugin will generate a shortcode for the Testimonials post that we’ve created.
 

@@ -1,146 +1,146 @@
 - title: Getting Started
   items:
-  - title: Welcome
-    url: /
-  - /installation/
-  - /quick-start/
+    - title: Welcome
+      url: /
+    - /installation/
+    - /quick-start/
 - title: Online Tools
   items:
-  - /post-type-generator/
-  - /taxonomy-generator/
-  - /online-generator/
+    - /post-type-generator/
+    - /taxonomy-generator/
+    - /online-generator/
 - title: Basics
   items:
-  - /creating-meta-boxes/
-  - /field-settings/
-  - /displaying-fields/
-  - /shortcode/
-  - /validation/
-  - /sanitization/
-  - title: Cloning Fields
-    url: /cloning-fields/
+    - /creating-meta-boxes/
+    - /field-settings/
+    - /displaying-fields/
+    - /shortcode/
+    - /validation/
+    - /sanitization/
+    - title: Cloning Fields
+      url: /cloning-fields/
 - title: Advanced
   items:
-  - /custom-attributes/
-  - /integration/
-  - /database/
-  - /custom-field-type/
-  - /html5-input-types/
-  - /composer/
+    - /custom-attributes/
+    - /integration/
+    - /database/
+    - /custom-field-type/
+    - /html5-input-types/
+    - /composer/
 - title: Fields
   items:
-  - /fields/autocomplete/
-  - /fields/background/
-  - /fields/button/
-  - /fields/button-group/
-  - /fields/checkbox/
-  - /fields/checkbox-list/
-  - /fields/color/
-  - /fields/custom-html/
-  - /fields/date/
-  - /fields/datetime/
-  - /fields/divider/
-  - /fields/fieldset-text/
-  - /fields/file/
-  - /fields/file-advanced/
-  - /fields/file-input/
-  - /fields/file-upload/
-  - title: Google Maps
-    url: /fields/map/
-  - /fields/heading/
-  - /fields/hidden/
-  - /fields/image/
-  - /fields/image-advanced/
-  - /fields/image-select/
-  - /fields/image-upload/
-  - /fields/key-value/
-  - /fields/number/
-  - /fields/oembed/
-  - title: Open Street Map
-    url: /fields/osm/
-  - /fields/password/
-  - /fields/post/
-  - /fields/radio/
-  - /fields/range/
-  - /fields/select/
-  - /fields/select-advanced/
-  - /fields/sidebar/
-  - /fields/single-image/
-  - /fields/slider/
-  - /fields/switch/
-  - /fields/taxonomy/
-  - /fields/taxonomy-advanced/
-  - /fields/text/
-  - /fields/text-list/
-  - /fields/textarea/
-  - /fields/time/
-  - /fields/user/
-  - /fields/video/
-  - /fields/wysiwyg/
+    - /fields/autocomplete/
+    - /fields/background/
+    - /fields/button/
+    - /fields/button-group/
+    - /fields/checkbox/
+    - /fields/checkbox-list/
+    - /fields/color/
+    - /fields/custom-html/
+    - /fields/date/
+    - /fields/datetime/
+    - /fields/divider/
+    - /fields/fieldset-text/
+    - /fields/file/
+    - /fields/file-advanced/
+    - /fields/file-input/
+    - /fields/file-upload/
+    - title: Google Maps
+      url: /fields/map/
+    - /fields/heading/
+    - /fields/hidden/
+    - /fields/image/
+    - /fields/image-advanced/
+    - /fields/image-select/
+    - /fields/image-upload/
+    - /fields/key-value/
+    - /fields/number/
+    - /fields/oembed/
+    - title: Open Street Map
+      url: /fields/osm/
+    - /fields/password/
+    - /fields/post/
+    - /fields/radio/
+    - /fields/range/
+    - /fields/select/
+    - /fields/select-advanced/
+    - /fields/sidebar/
+    - /fields/single-image/
+    - /fields/slider/
+    - /fields/switch/
+    - /fields/taxonomy/
+    - /fields/taxonomy-advanced/
+    - /fields/text/
+    - /fields/text-list/
+    - /fields/textarea/
+    - /fields/time/
+    - /fields/user/
+    - /fields/video/
+    - /fields/wysiwyg/
 - title: Extensions
   items:
-  - /extensions/mb-admin-columns/
-  - title: MB Blocks
-    url: /extensions/mb-blocks/
-  - /extensions/mb-custom-post-type/
-  - /extensions/mb-custom-table/
-  - /extensions/mb-frontend-submission/
-  - /extensions/mb-relationships/
-  - /extensions/mb-rest-api/
-  - /extensions/mb-revision/
-  - /extensions/mb-settings-page/
-  - /extensions/mb-term-meta/
-  - /extensions/mb-user-meta/
-  - /extensions/mb-user-profile/
-  - title: MB Views
-    url: /extensions/mb-views/
-  - /extensions/meta-box-builder/
-  - /extensions/meta-box-columns/
-  - /extensions/meta-box-conditional-logic/
-  - /extensions/meta-box-yoast-seo/
-  - /extensions/meta-box-geolocation/
-  - /extensions/meta-box-group/
-  - /extensions/meta-box-include-exclude/
-  - /extensions/meta-box-show-hide/
-  - /extensions/meta-box-tabs/
-  - /extensions/meta-box-template/
-  - /extensions/meta-box-text-limiter/
-  - /extensions/meta-box-tooltip/
-  - /extensions/meta-box-updater/
-  - /extensions/meta-box-aio/
-  - /extensions/update/
-  - /extensions/integration/
-  - /extensions/composer/
-- title: References
-  items:
-  - /actions/
-  - /filters/
-  - /rwmb-field-class/
-  - /rwmb-meta/
-  - /rwmb-set-meta/
-  - /rwmb-the-value/
-  - /rwmb-get-value/
-  - /rwmb-get-object-fields/
-  - /rwmb-get-field-settings/
-  - /rwmb-get-registry/
-- title: Tutorials
-  items:
-  - /edit-meta-boxes/
-  - /custom-select-checkbox-tree/
-  - /include-exclude-show-hide-conditional-logic/
-  - /using-two-date-formats/
-  - /hide-tabs-with-conditional-logic/
-  - /create-columns-in-meta-box-builder/
-  - /save-wysiwyg-content-post-content/
-  - /using-custom-html-to-output-anything/
-  - title: See more tutorials &rarr;
-    url: https://metabox.io/blog/
-- title: Compatibility
-  items:
-  - /compatible-themes/
-  - /compatible-plugins/
-  - /compatible-hostings/
+    - /extensions/mb-admin-columns/
+    - title: MB Blocks
+      url: /extensions/mb-blocks/
+    - /extensions/mb-custom-post-type/
+    - /extensions/mb-custom-table/
+    - /extensions/mb-frontend-submission/
+    - /extensions/mb-relationships/
+    - /extensions/mb-rest-api/
+    - /extensions/mb-revision/
+    - /extensions/mb-settings-page/
+    - /extensions/mb-term-meta/
+    - /extensions/mb-user-meta/
+    - /extensions/mb-user-profile/
+    - title: MB Views
+      url: /extensions/mb-views/
+    - /extensions/meta-box-builder/
+    - /extensions/meta-box-columns/
+    - /extensions/meta-box-conditional-logic/
+    - /extensions/meta-box-yoast-seo/
+    - /extensions/meta-box-geolocation/
+    - /extensions/meta-box-group/
+    - /extensions/meta-box-include-exclude/
+    - /extensions/meta-box-show-hide/
+    - /extensions/meta-box-tabs/
+    - /extensions/meta-box-template/
+    - /extensions/meta-box-text-limiter/
+    - /extensions/meta-box-tooltip/
+    - /extensions/meta-box-updater/
+    - /extensions/meta-box-aio/
+    - /extensions/update/
+    - /extensions/integration/
+    - /extensions/composer/
 - title: Solutions
   items:
-  - /mb-favorite-posts/
-  - /mb-testimonials/
+    - /mb-favorite-posts/
+    - /mb-testimonials/
+- title: References
+  items:
+    - /actions/
+    - /filters/
+    - /rwmb-field-class/
+    - /rwmb-meta/
+    - /rwmb-set-meta/
+    - /rwmb-the-value/
+    - /rwmb-get-value/
+    - /rwmb-get-object-fields/
+    - /rwmb-get-field-settings/
+    - /rwmb-get-registry/
+- title: Tutorials
+  items:
+    - /edit-meta-boxes/
+    - /custom-select-checkbox-tree/
+    - /include-exclude-show-hide-conditional-logic/
+    - /using-two-date-formats/
+    - /hide-tabs-with-conditional-logic/
+    - /create-columns-in-meta-box-builder/
+    - /save-wysiwyg-content-post-content/
+    - /using-custom-html-to-output-anything/
+    - title: See more tutorials &rarr;
+      url: https://metabox.io/blog/
+- title: Compatibility
+  items:
+    - /compatible-themes/
+    - /compatible-plugins/
+    - /compatible-hostings/

@@ -6,7 +6,7 @@ title: MB Favorite Posts
 
 **MB Favorite Posts** is a WordPress plugin that helps you create the “Favorite Post” button easily. Users can click the button to **bookmark posts as favorites**, and then review them on a Dashboard page. You can enable this feature for **both guests and logged-in users**.
 
-![The Favorite button on the front end of a WordPress website](https://i.imgur.com/McGrRT5.png)
+![The Favorite button on the front end of a WordPress website](https://i.imgur.com/JIiikVW.png)
 
 **Note**: MB Favorite Posts plugin is only available for the [Lifetime Bundle](https://metabox.io/pricing/).
 
@@ -14,7 +14,7 @@ For more information, please see the [solution page](https://metabox.io/plugins/
 
 ## Installation
 
-First, you need to install and activate the Meta Box plugin from [wordpress.org](https://wordpress.org/plugins/meta-box/). Next, download MB Favorite Posts plugin from the [My Account](https://metabox.io/my-account/) page, then upload the .zip file from the **Admin Dashboard**.
+First, you need to install and activate the Meta Box plugin from [wordpress.org](https://wordpress.org/plugins/meta-box/). Next, download MB Favorite Posts plugin from the [My Account](https://metabox.io/my-account/) page, then upload the .zip file from the **Admin Dashboard**. MB Favorite Posts and [other solutions](https://metabox.io/product-category/solutions/) are not included in Meta Box AIO, so you can install them independently without Meta Box AIO.
 
 Upon finishing, the Favorite Posts Button will be automatically added to your WordPress website with the default settings:
 
