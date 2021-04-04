@@ -1,6 +1,6 @@
 - title: Getting Started
   items:
-    - title: Welcome
+    - title: Overview
       url: /
     - /installation/
     - /quick-start/
@@ -106,7 +106,6 @@
     - /extensions/meta-box-template/
     - /extensions/meta-box-text-limiter/
     - /extensions/meta-box-tooltip/
-    - /extensions/meta-box-updater/
     - /extensions/meta-box-aio/
     - /extensions/update/
     - /extensions/integration/
