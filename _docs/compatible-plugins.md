@@ -4,13 +4,10 @@ title: Plugins
 
 ## Page Builder plugins
 
-- Beaver Builder
-- Divi Page Builder
-- Elementor
-- SiteOrigin
-- Thrive Architect
-- Visual Composer
-- Brizy
+- Beaver Builder (via [Meta Box - Beaver Themer Integrator](https://metabox.io/plugins/meta-box-beaver-themer-integrator/))
+- Elementor (via [Meta Box - Elementor Integrator](https://metabox.io/plugins/mb-elementor-integrator/))
+- Brizy (official support from Brizy)
+- Bricks (official support from Bricks)
 
 ## SEO plugins
 
