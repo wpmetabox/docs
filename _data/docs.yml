@@ -3,6 +3,7 @@
     - title: Overview
       url: /
     - /installation/
+    - /updates/
     - /quick-start/
 - title: Online Tools
   items:
@@ -107,8 +108,6 @@
     - /extensions/meta-box-text-limiter/
     - /extensions/meta-box-tooltip/
     - /extensions/meta-box-aio/
-    - /extensions/update/
-    - /extensions/integration/
     - /extensions/composer/
 - title: Solutions
   items:

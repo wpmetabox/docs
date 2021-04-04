@@ -1,14 +1,14 @@
 ---
-title: Update
+title: Updates
 ---
 
-All [premium extensions](https://metabox.io/plugins/) for the Meta Box plugin can be updated automatically or manually. The automatic update uses WordPress update mechanism which checks for new versions twice a day. This is the recommended way to get new updates from our website.
+Meta Box and all extensions can be updated automatically or manually. The automatic update uses WordPress update mechanism which checks for new versions twice a day. This is the recommended way to get new updates from our website.
 
 ## Automatic update
 
 To enable automatic update, you need to have a valid license key. Go to [My Account](https://metabox.io/my-account/) page to get it. Of course, you have to buy at least one premium extension to have the license key.
 
-Then go to _Dash Board > Meta Box > License_ and enter your license key and click **Save Changes** button.
+Then go to **Dash Board > Meta Box > License** and enter your license key and click **Save Changes** button.
 
 From now on, when WordPress checks new versions for plugins, it will also check for new versions of Meta Box extensions. If there is any new update, you'll see this:
 
