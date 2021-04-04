@@ -8,7 +8,7 @@ All [premium extensions](https://metabox.io/plugins/) for the Meta Box plugin ca
 
 To enable automatic update, you need to have a valid license key. Go to [My Account](https://metabox.io/my-account/) page to get it. Of course, you have to buy at least one premium extension to have the license key.
 
-Then go to _Dash Board > Meta Box > License_ and enter your license key and click **Save Changes** button. Make sure you paste the correct API you just copied above. (If you see message _Invalid license key_, please try again one more time).
+Then go to _Dash Board > Meta Box > License_ and enter your license key and click **Save Changes** button.
 
 From now on, when WordPress checks new versions for plugins, it will also check for new versions of Meta Box extensions. If there is any new update, you'll see this:
 

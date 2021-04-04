@@ -2,21 +2,15 @@
 title: MB Rest API
 ---
 
-## Overview
+MB Rest API helps you retrieving and updating custom fields via the WordPress REST API. It's very helpful if you develop an application that uses WordPress as a back end such as a mobile app. Or you need to integrate WordPress with another system.
 
-The MB Rest API extension is a powerful tool for developers that help you manage your custom fields and custom data via REST API in WordPress. It's very helpful if you develop an application that uses WordPress as a back end such as a mobile app. Or you need to integrate WordPress with another system.
+The extension works only with custom fields created by the Meta Box plugin and extensions. For custom custom fields or fields created by other plugins, please refer to [WordPress documentation](https://developer.wordpress.org/rest-api/).
 
-The extension supports retrieving and updating custom fields for posts, terms and users via REST API. Please note that it works only with custom fields created by the Meta Box plugin and extensions. For custom custom fields or fields created by other plugins, please refer to [WordPress documentation](https://developer.wordpress.org/rest-api/).
-
-For more information, please see the [extension page](https://metabox.io/plugins/mb-rest-api/).
-
-## Video Tutorial
+## Video tutorial
 
 See how the plugin works in this quick video:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YMjAIZLUeF4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-{% include installation.html %}
 
 ## Getting custom fields' values in REST API responses
 

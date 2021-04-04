@@ -2,31 +2,9 @@
 title: Meta Box Builder
 ---
 
-## Overview
-
-Meta Box Builder is the most popular extension for Meta Box users and is the mandatory tool for almost everyone.
-
-This extension creates an UI for you to add and manage your custom fields. So you don't need to [touch code again](https://docs.metabox.io/creating-meta-boxes/). It's helpful for both beginners (who have little knowlege about PHP coding) or experience developers (who want to save time). You can also use it to create [settings pages](#creating-settings-pages) or [relationships](#creating-relationships).
-
-If you already used our free [Online Generator](https://metabox.io/online-generator/), then this extension works similarly. But it has a better support (very much) for all field types and other extensions and it works right in the WordPress admin area.
-
-Take a look at the screenshot:
+Meta Box Builder creates an UI for you to add and manage your custom fields, [settings pages](#creating-settings-pages) or [relationships](#creating-relationships).
 
 ![meta box builder ui](https://i.imgur.com/DQBeWJN.png)
-
-For more information, please see the [extension page](https://metabox.io/plugins/meta-box-builder/).
-
-This guide cover basic tasks a user may carry out when using our builder.
-
-{% include installation.html %}
-
-After installing, the plugin creates a sub-menu **Custom Fields** under the top-level menu **Meta Box** in the WordPress admin.
-
-![meta box builder menu](https://i.imgur.com/EHd1v23.png)
-
-Clicking on that menu will bring you to the screen where you can create meta boxes and custom fields.
-
-Please note that the screen says **Field Groups** instead of **Meta Boxes**. We think the term "meta box" might be confusing, since it's the name of the [Meta Box plugin](https://metabox.io). Besides, the meta box builder is for creating custom fields, using field group with a simple meaning of "set of custom fields" makes sense. This term also works in case you want to build [front-end forms](https://metabox.io/plugins/mb-frontend-submission/), [settings pages](https://metabox.io/plugins/mb-settings-page/) or [user fields](https://metabox.io/plugins/mb-user-meta/).
 
 ## Creating a field group
 
@@ -106,7 +84,7 @@ To add custom settings, click on Advanced tab for fields or go to Settings tab f
     'id'   => 'new-your-phone',
     'name' => 'New Your phone',
     'type' => 'text',
-    
+
     // Custom settings.
     'mask'   => '012-345-6789',
     'enable' => false

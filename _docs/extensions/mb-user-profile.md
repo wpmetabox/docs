@@ -2,29 +2,13 @@
 title: MB User Profile
 ---
 
-## Overview
-
-MB User Profile is an improvement for the [MB User Meta](https://metabox.io/plugins/mb-user-meta/) extension. It allows you to add information to user profile and edit these details on the front end.
-
-To be able to do the profile on the front end, the extension provides you a full toolkit that includes: register form, login form and edit profile form. You're able to embed these forms anywhere using shortcodes.
-
-Please note that this extension already includes **MB User Meta**. So, you can use it to add as many fields to user profile as you want.
-
-This is a screenshot of a user profile page:
+MB User Profile helps you to add information to user profile and edit these details on the front end. It also includes register form, login form and edit profile form that you can embed anywhere using shortcodes.
 
 ![user profile page](https://i.imgur.com/bqVnDDF.png)
 
-For more information, please see the [extension page](https://metabox.io/plugins/mb-user-profile/).
+Note: this extension already includes **MB User Meta**.
 
-{% include installation.html %}
-
-**Important:** This extension requires Meta Box version 4.11+. If you're using an older version of the plugin, please update.
-
-## Shortcodes
-
-The extension has the following shortcodes for 3 forms:
-
-### Registration form
+## Registration form
 
 ```php
 [mb_user_profile_register id="meta-box-id" label_submit="Register" confirmation="Your account has been created successfully."]
@@ -61,7 +45,7 @@ Name|Description
 `show_if_user_can`|Always show the form if the current user has a proper capability. Should be a [WordPress capability](https://wordpress.org/support/article/roles-and-capabilities/). Useful if admins want to register for other people.
 `role`|Role for the new user. Default is subscriber (optional).
 
-### Login form
+## Login form
 
 ```php
 [mb_user_profile_login label_submit="Submit" label_remember="Remember" label_lost_password="Lost Password?" confirmation="You are now logged in."]
@@ -92,7 +76,7 @@ Name|Description
 `recaptcha_secret`|Google reCaptcha secret key (version 3). Optional.
 
 
-### Edit profile form
+## Edit profile form
 
 ```php
 [mb_user_profile_info id="meta-box-id" submit_button="Submit" confirmation="Your information has been successfully submitted. Thank you."]
@@ -120,7 +104,7 @@ Name|Description
 `recaptcha_key`|Google reCaptcha site key (version 3). Optional.
 `recaptcha_secret`|Google reCaptcha secret key (version 3). Optional.
 
-#### Edit default fields
+### Edit default fields
 
 By default, the user profile form doesn't include any default user fields, such as first name, last name or biography. To be able to edit these fields, please [create a meta box for users](/extensions/mb-user-meta/) and add those fields to that meta box. Keep the same field ID.
 
@@ -182,7 +166,7 @@ Admin color|`admin_color`
 Comment shortcuts|`comment_shortcuts`
 Show admin bar on the front|`admin_bar_front`
 
-#### Edit user password
+### Edit user password
 
 To let users change their password, please use the meta box ID `rwmb-user-info` in the shortcode as below:
 
@@ -190,18 +174,7 @@ To let users change their password, please use the meta box ID `rwmb-user-info` 
 [mb_user_profile_info id="rwmb-user-info"]
 ```
 
-## Usage
-
-To use the shortcodes, add them into a page content or in a widget. If you want to embed the form using code, please use the following code:
-
-```php
-$form = '[mb_user_profile_register]';
-echo do_shortcode( $form );
-```
-
 ## Hooks
-
-In order to allow developers to do other things with the user form, we have created some actions and filters.
 
 ### General hooks
 

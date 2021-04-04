@@ -2,15 +2,9 @@
 title: Meta Box Group
 ---
 
-## Overview
-
-The **Meta Box Group** extensions helps you to organizing custom fields into repeatable and collapsible groups. You can use this extension to group similar fields into one group to create hierarchy. You can clone the whole group, or sub-group. There's no limitation on the nesting level.
+**Meta Box Group** helps you to organize custom fields into repeatable and collapsible groups. You can use this extension to group similar fields into one group to create hierarchy. You can clone the whole group, or sub-group. There's no limitation on the nesting level.
 
 ![meta box group example](https://i1.wp.com/metabox.io/wp-content/uploads/2015/02/meta-box-group-example.png)
-
-For more information, please see the [extension page](https://metabox.io/plugins/meta-box-group/).
-
-{% include installation.html %}
 
 ## Tutorial
 
@@ -21,8 +15,6 @@ If this is the first time you use [Meta Box Group](https://metabox.io/plugins/me
 The documentation below is like a detailed reference that you can use anytime you want to look for something in Meta Box Group.
 
 ## Settings
-
-Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
 The Meta Box Group adds a new field type `group`. This field type has following settings:
 
@@ -427,13 +419,13 @@ add_shortcode( 'my_group', function() {
 	if ( empty( $group ) ) {
 		return '';
 	}
-	
+
 	$output = '';
-	
+
 	// Sub-field title.
 	$title = $group['title'] ?? '';
 	$output .= '<h3 class="my-title">' . $title . '</h3>';
-	
+
 	// Sub-field image_advanced.
 	$image_ids = $group['images'] ?? [];
 	if ( $image_ids ) {
@@ -444,11 +436,11 @@ add_shortcode( 'my_group', function() {
 		}
 		$output .= '</div>';
 	}
-	
+
 	// Sub-field description.
 	$desc = $group['desc'] ?? '';
 	$output .= '<div class="my-description">' . wpautop( $desc ). '</div>';
-	
+
 	return $output;
 } );
 
@@ -546,7 +538,7 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
 						'name' => 'Email',
 					],
 				],
-				
+
 				// THIS
 				'std' => [
 					'name' => 'My name',

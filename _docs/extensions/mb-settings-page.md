@@ -2,13 +2,11 @@
 title: MB Settings Page
 ---
 
-## Overview
+MB Settings Page helps you to create settings pages for your website. You can use it to create a theme options page, or a settings page for your plugin, or a custom settings page for clients' websites.
 
-The MB Settings Page extension helps you to create one or multiple settings pages for your website. You can use it to create a theme options page, or a settings page for your plugin, or a custom settings page for clients' websites.
+It supports all the field types in Meta Box as well as other [extensions](https://metabox.io/plugins/).
 
-It's a wrapper of [Settings API](https://codex.wordpress.org/Settings_API) (provided by WordPress) and Meta Box, that combines the power of both platforms and provides an better and simpler way to create a settings page. Briefly, it helps you create a settings page via a short and beautiful PHP syntax without going through all the low-level functions of the Settings API. Besides it supports all the field types in Meta Box as well as other [extensions](https://metabox.io/plugins/).
-
-These are the screenshots:
+Screenshots:
 
 **Tab style** (the default WordPress style for settings page):
 
@@ -22,15 +20,9 @@ These are the screenshots:
 
 ![settings page boxed style](https://i0.wp.com/metabox.io/wp-content/uploads/2015/12/settings-page.jpg)
 
-For more info, please see the [extension page](https://metabox.io/plugins/mb-settings-page/).
-
-{% include installation.html %}
-
-After installing, you need to register a settings page and register meta boxes (and fields) for that settings page.
-
 ## Quick example
 
-Just copy and paste the code below to your theme's `functions.php` file, or your plugin file:
+Copy and paste the code below to your theme's `functions.php` file, or your plugin file:
 
 ```php
 // Register a theme options page

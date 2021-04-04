@@ -2,23 +2,13 @@
 title: MB Custom Table
 ---
 
-## Overview
-
-The **MB Custom Table** extension helps you to save custom fields' values to custom table instead of the default WordPress meta table. All custom fields for a post are saved in a single row, where and each column contains the value of a corresponding field.
+**MB Custom Table** helps you to save custom fields' values to custom table instead of the default WordPress meta table. All custom fields for a post are saved in a single row, where and each column contains the value of a corresponding field.
 
 This reduces the number of rows in the database which can cause a performance issue when the data grows. And let you have all of your data in one place, so you can easily view, edit, import, export it.
 
 ![custom table overview](https://i.imgur.com/BzE1Fvx.png)
 
-For more information, please see the [extension page](https://metabox.io/plugins/mb-custom-table/).
-
-{% include installation.html %}
-
-**Important:** This extension requires Meta Box version 4.12.3+. If you're using an older version of the plugin, please update.
-
-## Video Tutorial
-
-Here is a quick video tutorial on how to use the plugin:
+## Video tutorial
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/o8ICxe8nbrI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

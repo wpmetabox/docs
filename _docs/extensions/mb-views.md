@@ -2,25 +2,19 @@
 title: MB Views - Creating WordPress templates without touching theme files
 ---
 
-## Overview
-
-MB Views is an extension for Meta Box, which helps you to get Meta Box fields and build your templates on the front end fast and easily.
+MB Views helps you to get Meta Box fields and build your templates on the front end fast and easily.
 
 With MB Views, you can just select fields you want to show, fill in some parameters and done! The extension supports all custom fields built with Meta Box, and also post fields (such as post title and post content), site settings, user fields, and even query fields.
 
-You can also customize all templates in WordPress, even for post types that don’t have Meta Box fields.
+You can also customize all templates in WordPress, even for post types that don't have Meta Box fields.
 
-See more details on the [plugin page](https://metabox.io/plugins/mb-views/).
-
-{% include installation.html %}
-
-## Video Tutorial
+## Video tutorial
 
 In this video, we show you step-by-step how to use *MB Views* to create singular and archive templates for a custom post type. We also show you the basis of Twig and how to set location rules.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4udvu8PqfkE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Creating A View
+## Creating a view
 
 To create a view, go to **Meta Box > Views** and click the **Add New** button.
 
@@ -33,7 +27,7 @@ In the view screen, you'll see 2 areas:
 
 In the main editor, you can enter any HTML or *shortcodes* for the template. All shortcodes will be parsed automatically on the front end.
 
-## Insert Fields
+## Insert fields
 
 To insert a field, click the **Insert Field** button. It will open a panel on the right, where you can see all available fields.
 
@@ -52,7 +46,7 @@ When you're done entering the field options, click **Insert** button to insert t
 
 If a field doesn't have options, then the plugin will insert a snippet into the editor immediately without opening a popup.
 
-### Cloneable Fields
+### Cloneable fields
 
 Cloneable fields are marked with a *repeat* icon, like this:
 
@@ -72,7 +66,7 @@ The plugin will generate a snippet for the field, like this:
 
 This is a `for` loop, created using Twig template engine. You'll find more details about it below. The content inside the `for` loop might be different depends on the field type.
 
-### Group Fields
+### Group fields
 
 Group fields are marked with an arrow on the left, just like the image above. Clicking on the arrow will toggle the group sub-fields.
 
@@ -80,7 +74,7 @@ To insert a sub-field, click on the sub-field title, like inserting a normal fie
 
 {% include alert.html type="warning" content="Important: if you have a cloneable group, before inserting sub-fields, you MUST insert the `for` loop for the group first. To insert the group, click on the group title. See the Cloneable Fields section above for details." %}
 
-### Relationship Fields
+### Relationship fields
 
 Relationships created with [MB Relationships](https://metabox.io/plugins/mb-relationships/) extension can be inserted in the tab **Query**.
 
@@ -88,7 +82,7 @@ Once you registered a relationship, it will show 2 fields here: one for "from" s
 
 See tutorial: [How To Display Relationships?](https://metabox.io/mb-views-how-to-display-relationships/)
 
-## Include Other Views
+## Include other views
 
 The plugin allows you to include other views, which helps you to break down a large templates into smaller ones and re-use them in other views.
 
@@ -162,9 +156,9 @@ What type of page do you want to set the view for? Supports:
 
 - Singular pages
 - Archive pages
-- Hooks (actions): the view will display when an action fires
+- Action: the view will display when an action fires
 - Code: you can use PHP or [WordPress conditional tags](https://developer.wordpress.org/themes/basics/conditional-tags/) to set the rules where to show the view.
-- Custom: you need to use a shortcode to insert the view to the location you want. The shortcode is available *after* you save the view.
+- Shortcode: you need to use a shortcode to insert the view to the location you want. The shortcode is available *after* you save the view.
 
 ### Location Rules
 
@@ -212,7 +206,7 @@ add_filter( 'mbv_location_validate', function( $result, $view, $type ) {
     if ( $view->post_name !== 'my-view-name' ) {
         return $result;
     }
-    
+
     if ( isset( $_GET['custom_var'] ) && $_GET['custom_var'] == 1 ) {
         return false;
     }
@@ -236,7 +230,7 @@ add_filter( 'mbv_location_action_active', function( $active, $view, $action ) {
     if ( $view->post_name !== 'my-view-name' || $action !== 'wp_footer' ) {
         return $active;
     }
-    
+
     if ( isset( $_GET['custom_var'] ) && $_GET['custom_var'] == 1 ) {
         return false;
     }

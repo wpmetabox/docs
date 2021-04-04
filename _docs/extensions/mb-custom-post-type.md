@@ -2,23 +2,29 @@
 title: MB Custom Post Type
 ---
 
-## Overview
+MB Custom Post Type helps you create custom post types and custom taxonomies with a user-friendly interface.
 
-The MB Custom Post Type extension is a powerful tool that helps you manage your custom post types and custom taxonomies via a user-friendly interface. It's very helpful when you want to create or edit a custom post type / custom taxonomy without touching code.
+![screenshot](https://i.imgur.com/hppj98e.png)
 
-![screenshot](https://i.imgur.com/mmbVRPn.png)
+## Creating post types
 
-For more information, please see the [extension page](https://metabox.io/plugins/custom-post-type/).
+Go to **Meta Box &rarr; Post Types** and click **Add New** (see screenshot above). The settings are divided into 4 tabs:
 
-{% include installation.html %}
+- General: the post type names and slug
+- Labels: all labels for the post type
+- Advanced: advanced settings for the post types, including menu position, menu icon, REST API support, rewrite rules, etc.
+- Supports: the features that the post type supports
+- Taxonomies: the taxonomies that connect to the post type
 
-## Usage
+After set all the settings, click **Publish** button to register the post type. Or click the **Get PHP Code** button to get the PHP code that you can insert into your theme's `functions.php` file (or your plugin's file). After inserting, you can deactivate the extension to make your site a little bit faster.
 
-After installing and activating the plugin, you'll see new menu items **Meta Box &rarr; Post Types** and **Meta Box &rarr; Taxonomies**. Clicking on each menu will go to the admin page where you can create/edit custom post types and custom taxonomies.
+## Creating taxonomies
 
-Here is the video tutorial on using the plugin to create a custom post type:
+Go to **Meta Box &rarr; Taxonomies** and click **Add New**.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/9c4w5zdeTJI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+![create taxonomies](https://i.imgur.com/yy7wy9w.png)
+
+The settings are similar to creating post types above.
 
 ## Notes
 

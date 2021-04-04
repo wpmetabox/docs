@@ -2,11 +2,7 @@
 title: Meta Box AIO
 ---
 
-## Overview
-
-Meta Box AIO is a part of [Developer and Lifetime Bundles](https://metabox.io/pricing/), which contains all the extensions. This extension allows you to just install 1 plugin and have everything in hand. So you can shorten down the plugin list and never get lost in a lot of plugins provided by Meta Box.
-
-{% include installation.html %}
+Meta Box AIO is a specal plugin that contains all the extensions. It allows you to install only one plugin and have everything, so you can have the plugin list short and clean.
 
 **Important:** Meta Box AIO still requires Meta Box to work.
 
@@ -45,10 +41,10 @@ For example, the code below enables only the [Meta Box Builder](https://metabox.
 ```php
 add_filter( 'mb_aio_extensions', function( $extensions ) {
     $extensions = ['meta-box-builder'];
-    
+
     // You can also do
     // $extensions[] = 'meta-box-builder';
-    
+
     return $extensions;
 } );
 ```

@@ -2,25 +2,11 @@
 title: MB Frontend Submission
 ---
 
-## Overview
-
-MB Frontend Submission is a Meta Box extension which lets developers create custom forms so users can submit posts on the front end of a website.
-
-The extension supports both traditional post fields and custom fields, and you can also embed forms anywhere on your site using shortcodes — with no extra coding required.
-
-Here is a screenshot of a front-end form:
+MB Frontend Submission lets you put forms on the front end via shortcode so users can submit posts.
 
 ![submission form](https://i.imgur.com/jfXHqSc.png)
 
-MB Frontend Submission brings the meta boxes and custom fields to the front end. It supports all field types and all Meta Box extensions (columns, group, conditional logic, etc.).
-
-Using this extension, you can create powerful forms for users to submit posts on the front end and control how it work effortlessly.
-
-For more information, please see the [extension page](https://metabox.io/plugins/mb-frontend-submission/).
-
-{% include installation.html %}
-
-**Important:** This extension requires Meta Box version 4.11+. If you're using an older version of the plugin, please update.
+The extension supports post fields and all Meta Box field types and extensions (columns, group, conditional logic, etc.).
 
 ## Creating post forms
 
@@ -274,7 +260,7 @@ add_filter( 'rwmb_frontend_redirect', function( $redirect, $config ) {
     if ( 'my-id' !== $config['id'] ) {
         return $redirect;
     }
-    
+
     // Get submitted data via $_POST.
     $value = empty( $_POST['field_id'] ) ? null : $_POST['field_id'];
     if ( 'yes' === $value ) {

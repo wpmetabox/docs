@@ -2,25 +2,11 @@
 title: Meta Box Columns
 ---
 
-## Overview
-
-Meta Box Columns is an UI extension which helps you put custom fields into columns. The extension creates a 12-column grid and allows you to specify where a custom field should be.
-
-The concept of the extension is rather simple. But the power of this extension comes when you combine it with [groups](https://metabox.io/plugins/meta-box-group/). So that you can create nested columns for sub-fields as well. You can also put multiple fields into one column if you want.
-
-Screenshot:
+Meta Box Columns helps you put custom fields into columns in a 12-column grid. You can create nested columns for sub-fields in [groups](/extensions/meta-box-group/) or put multiple fields into one column.
 
 ![put custom fields in columns](https://i2.wp.com/metabox.io/wp-content/uploads/2014/07/meta-box-columns-screenshot.png)
 
-For more information about the extension, please see the [extension page](https://metabox.io/plugins/meta-box-columns/).
-
-{% include installation.html %}
-
-## Usage
-
-Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
-
-### Simple syntax
+## Simple syntax
 
 To specify number of columns for each field, simply add `columns` parameter for that field. The plugin will automatically calculate number of columns and wrap fields into a div "row" and apply styles for them.
 
@@ -57,7 +43,7 @@ function prefix_columns_demo_register( $meta_boxes ) {
 }
 ```
 
-### Advanced syntax
+## Advanced syntax
 
 The advanced syntax is helpful if you need to put **multiple fields in 1 column**.
 

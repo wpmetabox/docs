@@ -2,19 +2,13 @@
 title: MB Blocks - Creating Gutenberg Blocks With PHP
 ---
 
-## Overview
-
-Since WordPress 5.0, the block editor (Gutenberg) has been set as the default editor for WordPress. This block editor brings a lot of possibilities to create rich content visually. Users can preview the content exactly as it is on the front end.
-
-Gutenberg also gives WordPress developers a new API to create their own blocks using JavaScript. Because Gutenberg blocks are created using React, the process of creating a Gutenberg block might requires a lot of effort for WordPress developers to set up the environment and configure Webpack / Babel. That is not always possible for WordPress developers.
-
 With the help of MB Blocks, WordPress developers are now able to create Gutenberg blocks using PHP only. There is no JavaScript configuration and build process. Everything is just like [creating a simple meta box](https://docs.metabox.io/creating-meta-boxes/).
 
 Here is a screenshot of a custom Gutenberg block (hero area) that's created using MB Blocks:
 
 ![custom Gutenberg block](https://i.imgur.com/fVTmMWi.png)
 
-The preview of the block is displayed in the main content area while the block configuration is displayed on the right.  This allows you to edit the block content and live-preview the block in real-time. Later, you can also can change where the block settings are displayed (on the sidebar or right in the main content area).
+The preview of the block is displayed in the main content area while the block configuration is displayed on the right. This allows you to edit the block content and live-preview the block in real-time. Later, you can also can change where the block settings are displayed (on the sidebar or right in the main content area).
 
 ## Creating A Gutenberg Block
 
@@ -246,7 +240,7 @@ function my_hero_callback( $attributes, $is_preview = false, $post_id = null ) {
 	if ( empty( $attributes['data'] ) ) {
 		return;
 	}
-	
+
 	// Unique HTML ID if available.
 	$id = 'hero-' . ( $attributes['id'] ?? '' );
 	if ( ! empty( $attributes['anchor'] ) ) {

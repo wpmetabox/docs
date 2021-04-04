@@ -2,46 +2,18 @@
 title: MB Admin Columns
 ---
 
-## Overview
-
-The **MB Admin Columns** extension helps you display the custom fields' values in the table of the post list in **All Posts** screen in the **back end**. It works with any custom post types and supports for terms and users as well (requires [MB Term Meta](https://metabox.io/plugins/mb-term-meta/) and [MB User Meta](https://metabox.io/plugins/mb-user-meta/) correspondingly).
+**MB Admin Columns** helps you display the custom fields' values in the table of the post list in **All Posts** screen in the **back end**. It works with any custom post types and supports for terms and users as well (requires [MB Term Meta](https://metabox.io/plugins/mb-term-meta/) and [MB User Meta](https://metabox.io/plugins/mb-user-meta/) correspondingly).
 
 Showing fields' values in the post table give users a better overview of the posts without going to edit each post. It saves you time to verify / view the data.
 
 ![meta box admin columns](https://i.imgur.com/7joEGrL.png)
 
-For more details, please see the [extension page](https://metabox.io/plugins/mb-admin-columns/).
+## Quick sample
 
-{% include installation.html %}
-
-## Example
-
-Assuming we have a custom post type 'Book' registered with the following code:
+This is the code to register admin columns for custom fields of a post type `book`:
 
 ```php
-add_action( 'init', 'prefix_register_book_post_type' );
-function prefix_register_book_post_type() {
-    $labels = array(
-        'name'          => 'Books',
-        'singular_name' => 'Book',
-        'menu_name'     => 'Book',
-    );
-    $args   = array(
-        'labels'     => $labels,
-        'supports'   => array( 'title', 'editor', ),
-        'public'     => true,
-        'taxonomies' => array( 'category' ),
-        'menu_icon'  => 'dashicons-book-alt',
-    );
-    register_post_type( 'book', $args );
-}
-```
-
-Here is the code to register a meta box, custom fields with additional parameters for admin columns:
-
-```php
-add_filter( 'rwmb_meta_boxes', 'prefix_book_meta_boxes' );
-function prefix_book_meta_boxes( $meta_boxes ) {
+add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
     $meta_boxes[] = array(
         'title'      => 'Book Info',
         'post_types' => 'book',
@@ -100,9 +72,7 @@ Here is the result:
 
 ![meta box admin columns](https://i.imgur.com/7joEGrL.png)
 
-## Usage
-
-**Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!**
+## Settings
 
 To show the admin column for a field, simply add `admin_columns` setting for that field. The setting can be in one of 3 following formats:
 
@@ -225,27 +195,26 @@ In this example, let's use the [Code Snippets](https://wordpress.org/plugins/cod
 So, install that plugin and add the following code:
 
 ```php
+class My_Featured_Image_Columns extends \MBAC\Post {
+    public function columns( $columns ) {
+        $columns  = parent::columns( $columns );
+        $position = 'before';
+        $target   = 'title';
+        $this->add( $columns, 'featured_image', 'Featured Image', $position, $target );
+        // Add more if you want
+        return $columns;
+    }
+    public function show( $column, $post_id ) {
+        switch ( $column ) {
+            case 'featured_image':
+                the_post_thumbnail( [40, 40] );
+                break;
+            // More columns
+        }
+    }
+}
 add_action( 'admin_init', function() {
-	class My_Featured_Image_Columns extends \MBAC\Post {
-		public function columns( $columns ) {
-			$columns  = parent::columns( $columns );
-			$position = 'before';
-			$target   = 'title';
-			$this->add( $columns, 'featured_image', 'Featured Image', $position, $target );
-			// Add more if you want
-			return $columns;
-		}
-		public function show( $column, $post_id ) {
-			switch ( $column ) {
-				case 'featured_image':
-					the_post_thumbnail( [40, 40] );
-					break;
-				// More columns
-			}
-		}
-	}
-
-	new My_Featured_Image_Columns( 'post', array() );
+	new My_Featured_Image_Columns( 'post', [] );
 } );
 ```
 

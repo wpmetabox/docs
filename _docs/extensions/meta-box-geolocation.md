@@ -2,25 +2,15 @@
 title: Meta Box Geolocation
 ---
 
-## Overview
-
-The Meta Box Geolocation is helpful if you have multiple custom fields for location such as address, zipcode, city, state and country. Letting users manually fill in these fields might be a boring time-consuming job. This extension helps you fill in these information quickly by using Geocoding API from Google Maps/Open Street Maps. So that you just need to enter an address, it will autosuggest a complete address and fill all other fields.
-
-Take a look at the screenshot:
+Meta Box Geolocation helps you fill in address fields (street address, zipcode, city, state and country) quickly by using Geocoding API from Google Maps/Open Street Maps.
 
 ![auto suggest geolocation data](https://i1.wp.com/metabox.io/wp-content/uploads/2016/03/meta-box-geolocation.gif)
-
-For more information, please see the [extension page](https://metabox.io/plugins/meta-box-geolocation/).
-
-{% include installation.html %}
-
-Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
 ## Enabling geolocation API
 
 If you use Open Street Maps, then you can bypass this step. Open Street Maps doesn't require any extra API/configuration from you.
 
-If you use Google Maps, make sure you create a project for Google Maps in the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview). And don't forget to enable the following APIs:
+If you use Google Maps, create a project for Google Maps in the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview). And don't forget to enable the following APIs:
 
 - Google Maps API
 - Geocoding API
@@ -193,7 +183,7 @@ In this case, please set another attribute `'address_field' => 'address_id'` for
 /**
  * Head office
  */
- 
+
 // Address
 [
     'id' => 'address_ho',
@@ -212,7 +202,7 @@ In this case, please set another attribute `'address_field' => 'address_id'` for
 /**
  * A company branche
  */
- 
+
 // Address
 [
     'id' => 'address_br',

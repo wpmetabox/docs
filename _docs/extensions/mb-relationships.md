@@ -2,19 +2,9 @@
 title: MB Relationships
 ---
 
-## Overview
+MB Relationships helps you to create many-to-many relationships between posts, terms and users in WordPress.
 
-The MB Relationships extension helps you to create many-to-many relationships between posts, terms and users in WordPress. Creating and managing relationships between objects is a missing feature in WordPress and this extension resolves it.
-
-MB Relationships creates an UI when you edit a post, a term or an user and let you select related objects. Then you can show them in the front end.
-
-The extension is built with performance in mind. It creates a custom table for storing relationships and integrates with default WordPress's queries to retrieve the connected items easily.
-
-For more information about the extension, please see the [extension page](https://metabox.io/plugins/mb-relationships/).
-
-This documentation will show you how to create relationships between posts, terms, users, and how to display connected items in the frontend.
-
-{% include installation.html %}
+It creates a custom table for storing relationships and integrates with default WordPress's queries to retrieve the connected items easily.
 
 ## Creating relationships
 
