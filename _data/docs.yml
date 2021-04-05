@@ -5,11 +5,6 @@
     - /installation/
     - /updates/
     - /quick-start/
-- title: Online Tools
-  items:
-    - /post-type-generator/
-    - /taxonomy-generator/
-    - /online-generator/
 - title: Basics
   items:
     - /creating-meta-boxes/
@@ -28,6 +23,11 @@
     - /custom-field-type/
     - /html5-input-types/
     - /composer/
+- title: Online Tools
+  items:
+    - /post-type-generator/
+    - /taxonomy-generator/
+    - /online-generator/
 - title: Fields
   items:
     - /fields/autocomplete/
