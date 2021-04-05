@@ -7,6 +7,8 @@
     - /quick-start/
 - title: Basics
   items:
+    - /creating-post-types/
+    - /creating-taxonomies/
     - /creating-meta-boxes/
     - /field-settings/
     - /displaying-fields/
