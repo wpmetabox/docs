@@ -4,17 +4,17 @@ title: Displaying fields
 
 There are 4 ways to display a field created by Meta Box:
 
-- Using a page builder: which helps you to select and display fields visually anywhere on your site when the page builder is active.
-- Using MB Views: a powerful and flexible way to select and display fields with Twig (a template engine). It supports conditions, loops, and shortcode that can be embedded anywhere.
-- Using code via helper functions: the best way to display fields if you're familiar with editing theme/plugin PHP files.
-- Using our shortcode
+- **Using a page builder**: which helps you to select and display fields visually anywhere on your site when the page builder is active.
+- **Using MB Views**: a powerful and flexible way to select and display fields with Twig (a template engine). It supports conditions, loops, and shortcode that can be embedded anywhere.
+- **Using code** via helper functions: the best way to display fields if you're familiar with editing theme/plugin PHP files.
+- **Using shortcode**
 
 ## Using a page builder
 
 If you use a page builder like Elementor to build your website, then using it to display Meta Box fields is the most intuitive way. Meta Box integrates well with:
 
 - Elementor: via [our free integration extension](https://metabox.io/plugins/mb-elementor-integrator/)
-- Beaver Builder: via [our free integration extension](https://metabox.io/plugins/meta-box-beaver-themer-integrator/).
+- Beaver Builder: via [our free integration extension](https://metabox.io/plugins/meta-box-beaver-themer-integrator/)
 - Brizy: official support by Brizy
 - Bricks: official support by Bricks
 
@@ -124,10 +124,13 @@ If you do, then please remove all the conditions. The conditions might prevent t
 
 To make it easy for users to insert custom fields' values inside post content/widget or anywhere, Meta Box provides a shortcode to help you get and display field values.
 
+To display a field value for the curren post:
+
 ```
 [rwmb_meta id="field_id"]
+```
 
-// or
+To display a field value for a specific post:
 
 [rwmb_meta id="field_id" object_id="123"]
 ```
