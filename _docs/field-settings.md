@@ -2,41 +2,62 @@
 title: Field settings
 ---
 
-## Overview
+Each field contains settings to determine where and how data is loaded and saved. All fields share some common settings, but also offer unique settings per field type. These unique settings can be found by reading more about the field type.
 
-Fields are added to a meta box via the key `fields`. Each field is an array which contains settings to determine where and how data is loaded and saved. All fields share some common settings, but also offer unique settings per field type.
+Field settings can be customized when editing a field group in Meta Box Builder or the `fields` array if you use code to create a field group. In Meta Box Builder, settings are put into 2 tabs: General and Advanced.
+
+Below are the screenshots of text field settings:
+
+![general settings](https://i.imgur.com/BZUoeuu.png)
+
+![advanced settings](https://i.imgur.com/shRPaYD.png)
 
 ## Common settings
 
-Name | Description
+Each field setting in the Meta Box Builder has a proper label and tooltip (if necessary) to explain what it is. Below is the table of common settings for all fields with the corresponding setting ID in case you use code.
+
+### General
+
+These are common field settings in the General tab in Meta Box Builder.
+
+Name (in Meta Box Builder) | ID (in code) | Description
 --- | ---
-`name` | Field label. Optional. If empty, the field input is 100% width.
-`id` | Field ID. Required and must be unique. **It will be used as `meta_key` when saving to the database**. It's a good practice to use only numbers, letters, and underscores.
-`type` | Field type. Required. See below.
-`desc` | Field description, displayed below the field input. Optional.
-`label_description` | Label description, displayed below the field label. Optional.
-`std` | Default value. Optional.
-`multiple`|Does the field have multiple values (like the `select` field)? Optional. Default `false`.
-`class` | Custom CSS class, in case you want to customize the field. Optional.
-`before` | Custom HTML outputted before field's HTML.
-`after` | Custom HTML outputted after field's HTML.
-`clone` | Is the field clonable (repeatable)? `true` or `false`. Optional. Default `false`.
-`max_clone`|Maximum number of clones. Optional. Default `0` (unlimited).
-`sort_clone`|Ability to drag-and-drop reorder clones (`true` or `false`). Optional. Default `false`.
-`clone_default`|Clone the default value of fields? `true` or `false` (default).
-`add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
-`clone_as_multiple`|Whether to store clone values in multiple rows in the database? Optional. Default `false`. See [this post](https://metabox.io/introducing-clone-as-multiple-feature/) for details.
-`attributes` | Custom attributes for inputs. See [more details](/custom-attributes/).
-`save_field` | Whether to save field value. Optional. Default `true`. This option doesn't work in the block editor (Gutenberg).
-`sanitize_callback` | Custom PHP callback for sanitizing field value before saving into the database. Set it to `none` to bypass the sanitization. See [more details](/sanitization/).
+Label | `name` | Field label. Optional. If empty, the field input is 100% width.
+ID | `id` | Field ID. Required and must be unique. **It will be used as `meta_key` when saving to the database**. It's a good practice to use only numbers, letters, and underscores.
+Type | `type` | Field type. Required. In Meta Box Builder, you can switch field type if needed. The list of field types is already available in the Meta Box Builder and is showed below for reference.
+Label description | `label_description` | Label description, displayed below the field label. Optional.
+Input description | `desc` | Field description, displayed below the field input. Optional.
+Default value | `std` | Default value. Optional.
+Placeholder | `placeholder` | Placeholder text for the input or select box. Optional.
+Required | `required` | Whether the field is required (`true` or `false`). Optional. Default `false`.
+Disabled | `disabled` | Whether the field is disabled (`true` or `false`). Optional. Default `false`.
+Read only | `readonly` | Whether the field is read only (`true` or `false`). Optional. Default `false`.
+Multiple | `multiple`|Does the field have multiple values (like the `select` field)? Optional. Default `false`.
+Cloneable | `clone` | Is the field clonable (repeatable)? `true` or `false`. Optional. Default `false`.
+Sortable | `sort_clone`|Ability to drag-and-drop reorder clones (`true` or `false`). Optional. Default `false`.
+Clone default value | `clone_default`|Clone the default value of fields? `true` or `false` (default).
+Clone as multiple | `clone_as_multiple`|Whether to store clone values in multiple rows in the database? Optional. Default `false`. See [this post](https://metabox.io/introducing-clone-as-multiple-feature/) for details.
+Max number of clones | `max_clone`|Maximum number of clones. Optional. Default `0` (unlimited).
+Add more text | `add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
 
-{% include alert.html type="info" content="If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), and you don't find these settings, please go to **Advanced** tab and add a custom attribute with the setting name and custom value. See the screenshot below for setting `sanitize_callback` to `none`:" %}
+### Advanced
 
-![adding sanitize callback to fields](https://imgur.com/9UyYN71.png)
+These are common field settings in the Advanced tab in Meta Box Builder.
+
+Name (in Meta Box Builder) | (in code) | Description
+--- | ---
+Before | `before` | Custom HTML outputted before field's HTML.
+After | `after` | Custom HTML outputted after field's HTML.
+Custom CSS class | `class` | Custom CSS class, in case you want to customize the field. Optional.
+Custom sanitize callback | `sanitize_callback` | Custom PHP callback for sanitizing field value before saving into the database. Set it to `none` to bypass the sanitization. See [more details](/sanitization/).
+Save field value | `save_field` | Whether to save field value. Optional. Default `true`. This option doesn't work in the block editor (Gutenberg).
+Custom HTML5 attributes | `attributes` | Custom attributes for inputs. See [more details](/custom-attributes/).
+Validation | `validation` | Validation rules for fields. Optional. See [more details](/validation/).
+Custom settings | N/A | Custom field settings, useful when you want to add your settings to fields.
 
 ### Field types
 
-Below is the list of all supported field types with brief description:
+Below is the list of all supported field types with a brief description:
 
 Field Type | Description
 --- | ---
@@ -89,16 +110,33 @@ Field Type | Description
 
 ## Default value
 
-The mechanism of `std` in Meta Box works only if the **meta box has not been saved before**. Here "meta box" means all fields in that meta box, not just the specific field that you set the `std` for. So if there's any field that already has value, then `std` won't work for other fields, even new fields you've just added.
+The mechanism of `std` in Meta Box works only if the **field group has not been saved before**. It means all fields in that field group, not just the specific field that you set the `std` for. So if there's any field that already has value, then `std` won't work for other fields, even new fields you've just added.
 
 Examples:
 
 When you create a new post, then no fields have values (of course), then `std` works for all fields.
 
-When you edit an existing post that has a meta box, then some fields might have values. Therefore, `std` doesn't work for all fields. In this case, if you edit the meta box and add a new field, `std` still doesn't work for that new field (even it has no value before), because the meta box has been saved before.
+When you edit an existing post that has a field group, then some fields might have values. Therefore, `std` doesn't work for all fields. In this case, if you edit the field group and add a new field, `std` still doesn't work for that new field (even it has no value before), because the field group has been saved before.
 
 ## Field-specific settings
 
 Besides all common settings, each field type can have its own settings. Please see more details for each field type on the left menu (section "Fields").
 
 {% include alert.html content="To save time read and write settings for fields, we've already prepared some code examples that you can get from [Meta Box Code Snippet Library](https://github.com/wpmetabox/library/)." %}
+
+## Customize field settings
+
+Outside of the "Edit field group" UI, it is possible to modify a field's settings via the [`rwmb_normalize_field`](https://docs.metabox.io/filters/#rwmb_normalize_field) filter. This filter exposes the `$field` settings array for each field and allows customization to all settings.
+
+This example shows how to modify a specific field (called `customer_name`) via this filter to customize settings unavailable to the UI.
+
+```php
+add_filter( 'rwmb_normalize_customer_name_field', function( $field ) {
+	$field['required'] = true;
+	$field['size'] = 20;
+	$field['placeholder'] = 'Mark Cuban';
+
+	return $field;
+} );
+
+```
