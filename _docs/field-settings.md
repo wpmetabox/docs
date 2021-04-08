@@ -20,7 +20,7 @@ Each field setting in the Meta Box Builder has a proper label and tooltip (if ne
 
 These are common field settings in the General tab in Meta Box Builder.
 
-Name (in Meta Box Builder) | ID (in code) | Description
+Name | ID | Description
 --- | ---
 Label | `name` | Field label. Optional. If empty, the field input is 100% width.
 ID | `id` | Field ID. Required and must be unique. **It will be used as `meta_key` when saving to the database**. It's a good practice to use only numbers, letters, and underscores.
@@ -44,7 +44,7 @@ Add more text | `add_button`|The text for **Add more** clone button. Optional. D
 
 These are common field settings in the Advanced tab in Meta Box Builder.
 
-Name (in Meta Box Builder) | (in code) | Description
+Name | ID | Description
 --- | ---
 Before | `before` | Custom HTML outputted before field's HTML.
 After | `after` | Custom HTML outputted after field's HTML.
@@ -126,7 +126,7 @@ Besides all common settings, each field type can have its own settings. Please s
 
 ## Customize field settings
 
-Outside of the "Edit field group" UI, it is possible to modify a field's settings via the [`rwmb_normalize_field`](https://docs.metabox.io/filters/#rwmb_normalize_field) filter. This filter exposes the `$field` settings array for each field and allows customization to all settings.
+Outside of the "Edit field group" UI, it is possible to modify a field's settings via the [rwmb_normalize_field](https://docs.metabox.io/filters/#rwmb_normalize_field) filter. This filter exposes the `$field` settings array for each field and allows customization to all settings.
 
 This example shows how to modify a specific field (called `customer_name`) via this filter to customize settings unavailable to the UI.
 
