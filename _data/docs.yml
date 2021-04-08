@@ -13,12 +13,12 @@
     - /field-settings/
     - /displaying-fields/
     - /shortcode/
-    - /validation/
-    - /sanitization/
-    - title: Cloning Fields
-      url: /cloning-fields/
 - title: Advanced
   items:
+    - title: Cloning Fields
+      url: /cloning-fields/
+    - /validation/
+    - /sanitization/
     - /custom-attributes/
     - /integration/
     - /database/
