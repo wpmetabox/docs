@@ -10,13 +10,13 @@ To create a new custom post type, go to **Meta Box &rarr; Post Types** and click
 
 ![creating a post type](https://i.imgur.com/hppj98e.png)
 
-The settings are divided into 4 tabs (explained in details below):
+The settings are divided into 5 tabs (explained in details below):
 
-- General: the post type names and slug
-- Labels: all labels for the post type
-- Advanced: advanced settings for the post types, including menu position, menu icon, REST API support, rewrite rules, etc.
-- Supports: the features that the post type supports
-- Taxonomies: the taxonomies that connect to the post type
+- **General**: the post type names and slug
+- **Labels**: all labels for the post type
+- **Advanced**: advanced settings for the post types, including menu position, menu icon, REST API support, rewrite rules, etc.
+- **Supports**: the features that the post type supports
+- **Taxonomies**: the taxonomies that connect to the post type
 
 After done, click the **Publish** button to register the post type. Or click the **Get PHP Code** button to get the PHP code that you can insert into your theme's `functions.php` file (or your plugin's file). After inserting, you can deactivate the extension to make your site a little bit faster.
 
@@ -46,7 +46,7 @@ Edit item | Label for adding a new singular item. Default is 'Add New Post' / 'A
 New item | Label for editing a singular item. Default is 'Edit Post' / 'Edit Page'.
 View item | Label for viewing a singular item. Default is 'View Post' / 'View Page'.
 View items | Label for viewing post type archives. Default is 'View Posts' / 'View Pages'.
-Search items | Label for searching plural items. Default is 'Search Posts' / 'Search Pages'.
+Search items | Label for searching items. Default is 'Search Posts' / 'Search Pages'.
 Not found | Label used when no items are found. Default is 'No posts found' / 'No pages found'.
 Not found in trash | Label used when no items are in the Trash. Default is 'No posts found in Trash' / 'No pages found in Trash'.
 Parent items | Label used to prefix parents of hierarchical items. Not used on non-hierarchical post types. Default is 'Parent Page:'.
