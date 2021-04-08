@@ -2,11 +2,11 @@
 title: Creating a field group
 ---
 
-There are 3 ways to create a field group:
+Meta Box uses field groups to attach custom fields to posts, terms, or users. There are 3 ways to create a field group:
 
-- Using Meta Box Builder: it has a user-friendly UI and supports other extensions.
-- Using Online Generator: the slim version of Meta Box Builder that supports only custom fields (no support for extensions) and export PHP code.
-- Using code
+- **Using Meta Box Builder**: it has a user-friendly UI and supports other extensions.
+- **Using Online Generator**: the slim version of Meta Box Builder that supports only custom fields (no support for extensions) and export PHP code.
+- **Using code**
 
 ## Using Meta Box Builder
 
