@@ -4,7 +4,13 @@ title: Creating a post type
 
 WordPress houses lots of different types of content and they are divided into something called **post types﻿**. Whilst there are already some built-in post types within WordPress (such as post, page, or attachment), you may want to create custom post types if you want to break things down into smaller categories. For example, if you want to have a section on Books or Events, it would be better suited to creating a custom post type for them.
 
-Creating a custom post type is done via UI with our free MB Custom Post Types & Custom Taxonomies extension. This extension is already bundled in Meta Box AIO/MB Core, or you can install it from [WordPress.org](https://wordpress.org/plugins/mb-custom-post-type/).
+Creating a custom post type is done by either of the following methods:
+
+- **Using MB Custom Post Types & Custom Taxonomies**. This extension is already bundled in Meta Box AIO/MB Core, or you can install it for free from [WordPress.org](https://wordpress.org/plugins/mb-custom-post-type/).
+- **Using our Post Type Generator**.
+- **Using code** with the `register_post_type()` function.
+
+This documentation shows you how to create post types with **MB Custom Post Types & Custom Taxonomies** extension, as it's the best way. To use the Post Type Generator, please follow [this guide](/post-type-generator/). To use the `register_post_type()`, please see [WordPress documentation](https://developer.wordpress.org/reference/functions/register_post_type/).
 
 To create a new custom post type, go to **Meta Box &rarr; Post Types** and click **Add New**:
 

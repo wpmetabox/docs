@@ -4,7 +4,13 @@ title: Creating a taxonomy
 
 A taxonomy within WordPress is a way of grouping posts together. By default, a standard post will have two taxonomy types called Categories and Tags which are a handy way of ensuring related content on your website is easy for visitors to find. You can add more custom taxonomies if you like.
 
-Creating a custom taxonomy is done via UI with our free MB Custom Post Types & Custom Taxonomies extension. This extension is already bundled in Meta Box AIO/MB Core, or you can install it from [WordPress.org](https://wordpress.org/plugins/mb-custom-post-type/).
+Creating a custom post type is done by either of the following methods:
+
+- **Using MB Custom Post Types & Custom Taxonomies**. This extension is already bundled in Meta Box AIO/MB Core, or you can install it for free from [WordPress.org](https://wordpress.org/plugins/mb-custom-post-type/).
+- **Using our Taxonomy Generator**.
+- **Using code** with the `register_taxonomy()` function.
+
+This documentation shows you how to create taxonomies with **MB Custom Post Types & Custom Taxonomies** extension, as it's the best way. To use the Taxonomy Generator, please follow [this guide](/taxonomy-generator/). To use the `register_taxonomy()`, please see [WordPress documentation](https://developer.wordpress.org/reference/functions/register_taxonomy/).
 
 To create a new custom taxonomy, go to **Meta Box &rarr; Taxonomies** and click **Add New**:
 
