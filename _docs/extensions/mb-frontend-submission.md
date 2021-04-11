@@ -33,7 +33,7 @@ Then change the shortcode to:
 If you want to embed the form using code, please use the following code:
 
 ```php
-$form = 'mb_frontend_form id="meta-box-id" post_fields="title,content"]';
+$form = '[mb_frontend_form id="meta-box-id" post_fields="title,content"]';
 echo do_shortcode( $form );
 ```
 
