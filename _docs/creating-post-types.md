@@ -48,8 +48,8 @@ Name | Description
 ---|---
 Add new | Label for adding a new singular item. Default is 'Add New' for both hierarchical and non-hierarchical types.
 Add new item | Label for adding a new singular item. Default is 'Add New Post' / 'Add New Page'.
-Edit item | Label for adding a new singular item. Default is 'Add New Post' / 'Add New Page'.
-New item | Label for editing a singular item. Default is 'Edit Post' / 'Edit Page'.
+Edit item | Label for editing a singular item. Default is 'Edit Post' / 'Edit Page'.
+New item | Label for the new item page title. Default is 'New Post' / 'New Page'.
 View item | Label for viewing a singular item. Default is 'View Post' / 'View Page'.
 View items | Label for viewing post type archives. Default is 'View Posts' / 'View Pages'.
 Search items | Label for searching items. Default is 'Search Posts' / 'Search Pages'.
