@@ -159,7 +159,7 @@ User URL|`user_url`
 Display name|`display_name`
 First name|`first_name`
 Last name|`last_name`
-Registered date|`user_registered`
+Registration date|`user_registered`
 Biography|`description`
 Rich editing|`rich_editing`
 Syntax highlighting|`syntax_highlighting`
