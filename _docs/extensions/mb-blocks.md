@@ -438,7 +438,7 @@ If you want to save the block fields into custom fields, set it to `post_meta`. 
 If you want to save the block fields into custom tables, you need to activate the [MB Custom Table](https://metabox.io/plugins/mb-custom-table/) extension first. Then set `storage_type` and `table` as follows:
 
 ```php
-'storage_type' => 'custom_table`,
+'storage_type' => 'custom_table',
 'table' => 'your table name',
 ```
 
