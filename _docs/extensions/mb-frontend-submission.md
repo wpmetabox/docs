@@ -222,7 +222,22 @@ To let users **view and edit their submitted posts**, just create a normal WordP
 [mb_frontend_dashboard edit_page="124"]
 ```
 
-Where `124` is the ID of the page, where you already have to let users submit posts. And when users visit this page, they'll see a dashboard like this:
+**Shortcode attributes**
+
+Attributes|Description
+---|---
+`edit_page`|The ID of the page, where users can submit posts.
+`post_type`|The post type to be shown (default: post).
+`show_welcome_message`|Show the welcome message `true` (default) or `false`.
+`columns`|List of columns to be displayed in the dashboard, separated by comma. Supported values are: `title`, `date`, `status`.
+`label_title`|The header label for the title column.
+`label_date`|The header label for the date column.
+`label_status`|The header label for the status column.
+`label_actions`|The header label for the actions column.
+`title_link`|The link action for the post titles. Supported values are: `edit` or `view` (default)
+`add_new`|Label for the add new button.
+
+And when users visit this page, they'll see a dashboard like this:
 
 ![user posts dashboard](https://i.imgur.com/LxPh4xH.png)
 
