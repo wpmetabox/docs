@@ -37,9 +37,10 @@ add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
             // Register a wysiwyg field of which the content is saved as post content.
             [
                 'type' => 'wysiwyg',
-                'id'   => 'content', // This is the must!
+                'id'   => 'content', // This is a must!
                 'name' => 'Fake content',
                 'std'  => $post_content,
+                'save_field' => false, // This is a must!
             ],
             // Custom style to overwrite the editor style set by WordPress.
             [
@@ -57,9 +58,6 @@ add_filter( 'rwmb_content_field_meta', function() {
     $post_id = filter_input( INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT );
     return get_post_field( 'post_content', $post_id );
 } );
-
-// Do not save 'content' field to post meta.
-add_filter( 'rwmb_content_value', '__return_empty_string' );
 ```
 
 There are 2 things important in the code above:
