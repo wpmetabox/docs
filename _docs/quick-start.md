@@ -4,7 +4,7 @@ title: Quick start
 
 ## Premium users
 
-If you're a premium user, then please follow this video tutorial helps you get started with Meta Box and extensions:
+If you're a premium user, then please follow this video tutorial to get started with Meta Box and extensions:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/M0nEF7b0woU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
