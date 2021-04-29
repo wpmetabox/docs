@@ -12,6 +12,10 @@ Creating a custom post type is done by either of the following methods:
 
 This documentation shows you how to create post types with **MB Custom Post Types & Custom Taxonomies** extension, as it's the best way. To use the Post Type Generator, please follow [this guide](/post-type-generator/). To use the `register_post_type()`, please see [WordPress documentation](https://developer.wordpress.org/reference/functions/register_post_type/).
 
+Here is a video tutorial on creating custom post types and custom taxonomies with MB Custom Post Types & Custom Taxonomies extension (text version below):
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-oYrHGOri4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 To create a new custom post type, go to **Meta Box &rarr; Post Types** and click **Add New**:
 
 ![creating a post type](https://i.imgur.com/hppj98e.png)
