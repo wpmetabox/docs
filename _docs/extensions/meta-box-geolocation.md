@@ -87,7 +87,7 @@ You can add auto complete to `textarea`, it works but will generate warning mess
 ## Populating field data
 
 ### Address components
-When you selecte an address from autocomplete field, it returns an array of *address components*. Which you can use it to populate to other fields. The following components are supported by Google Maps:
+When you select an address from autocomplete field, it returns an array of *address components*. Which you can use it to populate to other fields. The following components are supported by Google Maps:
 
 Component|Description
 ---|---
