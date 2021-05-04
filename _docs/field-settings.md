@@ -23,7 +23,7 @@ These are common field settings in the General tab in Meta Box Builder.
 Name | ID | Description
 --- | ---
 Label | `name` | Field label. Optional. If empty, the field input is 100% width.
-ID | `id` | Field ID. Required and must be unique. **It will be used as `meta_key` when saving to the database**. It's a good practice to use only numbers, letters, and underscores.
+ID | `id` | Field ID. Required and must be unique. **It will be used as `meta_key` when saving to the database**. Use only numbers, letters, and underscores (and rarely dashes).
 Type | `type` | Field type. Required. In Meta Box Builder, you can switch field type if needed. The list of field types is already available in the Meta Box Builder and is showed below for reference.
 Label description | `label_description` | Label description, displayed below the field label. Optional.
 Input description | `desc` | Field description, displayed below the field input. Optional.
