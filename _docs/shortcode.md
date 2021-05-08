@@ -25,31 +25,31 @@ Note: you can pass **other attributes** to the shortcode if you want. If you do 
 
 ## Examples
 
-### Getting the value of a text field
+Getting the value of a text field
 
 ```php
 [rwmb_meta id="phone"]
 ```
 
-### Getting image URL (single_image)
+Getting image URL (single_image)
 
 ```php
 [rwmb_meta id="company_logo" attribute="url" size="thumbnail"]
 ```
 
-### Getting a term meta
+Getting a term meta
 
 ```php
 [rwmb_meta id="color" object_id="15" object_type="term"]
 ```
 
-### Getting a settings
+Getting a settings
 
 ```php
 [rwmb_meta id="phone" object_id="site_option" object_type="setting"]
 ```
 
-### Getting a field value from a custom table
+Getting a field value from a custom table
 
 ```php
 [rwmb_meta id="area" object_id="15" storage_type="custom_table" table="properties"]
