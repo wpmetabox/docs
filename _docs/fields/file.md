@@ -18,14 +18,15 @@ Name | Description
 --- | ---
 `max_file_uploads` | Max number of uploaded files. Optional.
 `force_delete` | Whether or not delete the files from Media Library when deleting them from post meta. `true` or `false` (default). Optional. Note: it might affect other posts if you use same file for multiple posts.
-`upload_dir` | Full path to custom upload folder. Added in Meta Box 4.16.
+`upload_dir` | Full path to custom upload folder. Added in version 4.16.
+`unique_filename_callback` | Your custom callback to set the uploaded file name. Works only when uploading to a custom folder. Added in version 5.4.0.
 
 Note that the `multiple` setting is always set to `true` for this field.
 
 ## Sample code
 
 ```php
-array(
+[
     'id'               => 'file',
     'name'             => 'File',
     'type'             => 'file',
@@ -36,7 +37,7 @@ array(
 
     // Maximum file uploads.
     'max_file_uploads' => 2,
-),
+],
 ```
 
 ## Data
@@ -57,9 +58,12 @@ You can also use WordPress constants to specify the path easier, such as:
 // or
 
 'upload_dir' => WP_CONTENT_DIR . '/invoices/',
+'unique_filename_callback' => 'my_function',
 ```
 
 The custom folder should be inside your your WordPress website's root folder. So you can store it in `/uploads/`, `/downloads/` folders if you want. The configuration is *per* field, so you can has one field store files in `/downloads/` and another field in `/invoices/`.
+
+The uploaded file name is normally the original file name and maybe with suffix `-1`, `-2` to prevent duplicated names. In case you want to set custom names for files, pass your custom callback to the setting `unique_filename_callback`.
 
 Unlike the normal case, where files are added to the WordPress Media Library, files uploaded to custom folders are not available in the Media Library. Thus, the data saved in the custom fields is **file URL**, not attachment ID.
 
@@ -88,8 +92,7 @@ All filters above accept 2 parameters:
 The code below changes the "+ Add new file" string:
 
 ```php
-add_filter( 'rwmb_file_add_string', 'prefix_change_add_string' );
-function prefix_change_add_string() {
+add_filter( 'rwmb_file_add_string', function () {
     return '+ New File';
-}
+} );
 ```
