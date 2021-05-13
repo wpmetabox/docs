@@ -20,23 +20,29 @@ And then create an API key for Google Maps. See [here](https://developers.google
 
 ## Enable geolocation support for a meta box
 
-To enable geolocation support for a meta box, add this line to your Meta Box (not field) settings:
+If you use Open Street Maps for geolocation, you need to add a Open Street Maps field to your field group. Then add `geo` to your field group custom settings in the Meta Box Builder like this:
+
+![enable geolocation for open street maps](https://i.imgur.com/M5ar5i2.png)
+
+If you use code, then add this line to your field group settings:
 
 ```php
-// For Open Street Maps.
 'geo' => true,
+```
 
-// For Google Maps.
+If you use Google Maps, it's _not_ required to add a Google Maps field to your field group. To enable geolocation, add the following custom settings in the field group settings in the Meta Box Builder like this:
+
+![enable geolocation for google maps](https://i.imgur.com/XII5Kyw.png)
+
+If you use code, then add this line to your field group settings:
+
+```php
 'geo' => [
     'api_key' => 'YOUR API KEY',
 ],
 ```
 
-If you use Geolocation with `map` field, you need to enter the Google API key only once, either for the Geolocation extension (as above) or for the `map` field. No need to enter the same key for both of them.
-
-If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), then please go to tab *Settings* and add a custom settings for the geolocation as follows:
-
-![adding google maps api key in builder](https://i.imgur.com/d5LZD4p.png)
+If you has a Google Maps field in your field group, then you can set the Google API key once, either for the Geolocation extension (as above) or for the `map` field. No need to enter the same key for both of them.
 
 If you use Google Maps, you can also add options to Geolocation. Which can contains these properties:
 
