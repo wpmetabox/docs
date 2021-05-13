@@ -226,7 +226,7 @@ This feature helps you to create relationships between posts, terms and users wi
 
 To start, go to **Meta Box > Relationships** and click **Add New**.
 
-![create relationships](https://i.imgur.com/XLP48tU.png)
+![create relationships](https://i.imgur.com/aV0N0e2.png)
 
 Here you can enter all the settings for each side of the relationship (**From** and **To**). For each side, there are 3 tabs of settings:
 
