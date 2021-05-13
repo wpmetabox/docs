@@ -411,7 +411,7 @@ Function|Description
 [`get_queried_object_id()`](https://developer.wordpress.org/reference/functions/get_queried_object_id/)|Get the current-queried object ID. Similar to the above function but returns only object ID.
 [`get_current_user_id()`](https://developer.wordpress.org/reference/functions/get_current_user_id/)|Get current user ID.
 
-### Getting sibling items
+## Getting sibling items
 
 Assume you have 2 custom post types: student and class. Each student can join 1 or more class (many-to-many relationship). Now how to get the classmate of the given student A?
 
