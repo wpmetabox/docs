@@ -40,7 +40,7 @@ array(
     'max_file_uploads' => 2,
 
     // Do not show how many images uploaded/remaining.
-    'max_status'       => 'false',
+    'max_status'       => false,
 
     // Image size that displays in the edit page. Possible sizes small,medium,large,original
     'image_size'       => 'thumbnail',
