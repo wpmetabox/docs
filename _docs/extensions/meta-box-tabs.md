@@ -2,21 +2,11 @@
 title: Meta Box Tabs
 ---
 
-## Overview
-
-The Meta Box Tabs extension is an UI extension for Meta Box, which helps you to put custom fields into tabs for a better view. It's extremely useful when you have many custom fields (which can lead to a super long page).
+Meta Box Tabs helps you to put custom fields into tabs for a better view.
 
 ![tab styles](https://i.imgur.com/7Oi5dx1.jpg)
 
-The tabs can be used with [columns](https://metabox.io/plugins/meta-box-columns/) to structure your fields in a better way.
-
-For more information, please see the [extension page](https://metabox.io/plugins/meta-box-tabs/).
-
-{% include installation.html %}
-
-## Usage
-
-Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continue!
+## Settings
 
 To create tabs for your meta box, you need to add these parameters to your meta box settings:
 

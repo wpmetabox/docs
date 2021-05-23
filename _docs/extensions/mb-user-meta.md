@@ -2,33 +2,21 @@
 title: MB User Meta
 ---
 
-## Overview
-
-MB User Meta is an extension for the Meta Box plugin which allows you to add custom fields to user profile like user address, user billing info or custom avatar. With MB User Meta, you're able to add and edit a lot of additional information for users or customers.
-
-See this screenshot for a demo:
+MB User Meta helps you to add custom fields to user profile.
 
 ![user meta](https://i1.wp.com/metabox.io/wp-content/uploads/2016/07/user-meta-1.png)
 
-Please note that the extension works only on the back end. If you want to edit user profile on the front end, please see [MB User Profile](https://metabox.io/plugins/mb-user-profile/).
-
-For more information about the extension, please see the [extension page](https://metabox.io/plugins/mb-user-meta/).
-
-{% include installation.html %}
+The extension works only on the back end. If you want to edit user profile on the front end, please see [MB User Profile](/extensions/mb-user-profile/).
 
 ## Adding fields to user profile
 
-Registering custom fields for user is similar to posts. See [this documentation](/creating-meta-boxes/) to know how to create a meta box, and [this documentation](/field-settings/) to know how to define fields. The only difference here is when you register a meta box for user profile, you need to specify a parameter `'type' => 'user'`. That's all!
-
-## Example
-
-The code below register 2 meta boxes (sections) for user profile:
+Registering custom fields for users is similar to posts. The only difference here is you need to specify a parameter `'type' => 'user'`:
 
 ```php
 add_action( 'rwmb_meta_boxes', function( $meta_boxes ) {
     $meta_boxes[] = array(
         'title' => 'Contact Info',
-        'type'  => 'user', // Specifically for user
+        'type'  => 'user', // THIS: Specifically for user
 
         'fields' => array(
             array(
@@ -59,7 +47,7 @@ add_action( 'rwmb_meta_boxes', function( $meta_boxes ) {
     );
     $meta_boxes[] = array(
         'title' => 'Custom avatar',
-        'type'  => 'user', // Specifically for user
+        'type'  => 'user', // THIS: Specifically for user
 
         'fields' => array(
             array(
@@ -88,7 +76,7 @@ WordPress provides an identical way to store values in the meta tables for post 
 You're able to use helper function [rwmb_meta()](/rwmb-meta/) to get field value:
 
 ```php
-$value = rwmb_meta( $field_id, array( 'object_type' => 'user' ), $user_id );
+$value = rwmb_meta( $field_id, ['object_type' => 'user'], $user_id );
 echo $value;
 ```
 

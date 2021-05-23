@@ -2,34 +2,20 @@
 title: MB Term Meta
 ---
 
-## Overview
-
-The MB Term Meta helps you to add custom fields to taxonomy terms like categories, tags or any custom taxonomy. It makes custom fields work not only for posts (which is supported by Meta Box), but also for terms. See this screenshot for a demo:
+MB Term Meta helps you to add custom fields to taxonomies.
 
 ![category custom fields](https://i0.wp.com/metabox.io/wp-content/uploads/2016/01/term-meta.png?resize=768%2C576&ssl=1)
 
-The plugin is simple and supports all the field types in Meta Box. It also uses the same syntax as for custom fields for posts, so you unlikely have to learn a new thing.
+## Settings
 
-For more information, please see the [extension page](https://metabox.io/plugins/mb-term-meta/).
-
-{% include installation.html %}
-
-## Creating meta boxes
-
-Creating custom meta boxes and custom fields for taxonomy terms is similar to posts. See [this documentation](/creating-meta-boxes/) to know how to create a meta box, and [this documentation](/field-settings/) to know how to define fields.
-
-The only difference here is when you create a meta box for a taxonomy, you need to specify a parameter `taxonomies` which the meta box will be added to. This parameter can be an array of taxonomy slugs or a string of single taxonomy slug. And you have to remove the parameter `post_types`.
-
-## Example
-
-The code below register a meta box for category which has 4 custom fields:
+Creating custom meta boxes for taxonomies is similar to posts. The only difference is you need to specify `taxonomies` settings which the meta box will be added to:
 
 ```php
 add_filter( 'rwmb_meta_boxes', 'prefix_register_taxonomy_meta_boxes' );
 function prefix_register_taxonomy_meta_boxes( $meta_boxes ){
     $meta_boxes[] = array(
         'title'      => 'Standard Fields',
-        'taxonomies' => 'category', // List of taxonomies. Array or string
+        'taxonomies' => 'category', // THIS: List of taxonomies. Array or string
 
         'fields' => array(
             array(
@@ -71,7 +57,7 @@ WordPress provides an identical way to store values in the meta tables for post 
 You're able to use helper function [rwmb_meta()](/rwmb-meta/) to get field value for terms.
 
 ```php
-$value = rwmb_meta( $field_id, array( 'object_type' => 'term' ), $term_id );
+$value = rwmb_meta( $field_id, ['object_type' => 'term'], $term_id );
 echo $value;
 ```
 
@@ -84,7 +70,7 @@ To get the `$term_id` for the current category/term page, please use the functio
 
 ```php
 $term_id = get_queried_object_id();
-$value = rwmb_meta( $field_id, array( 'object_type' => 'term' ), $term_id );
+$value = rwmb_meta( $field_id, ['object_type' => 'term'], $term_id );
 echo $value;
 ```
 

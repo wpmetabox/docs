@@ -2,15 +2,9 @@
 title: Meta Box Group
 ---
 
-## Overview
-
-The **Meta Box Group** extensions helps you to organizing custom fields into repeatable and collapsible groups. You can use this extension to group similar fields into one group to create hierarchy. You can clone the whole group, or sub-group. There's no limitation on the nesting level.
+**Meta Box Group** helps you to organize custom fields into repeatable and collapsible groups. You can use this extension to group similar fields into one group to create hierarchy. You can clone the whole group, or sub-group. There's no limitation on the nesting level.
 
 ![meta box group example](https://i1.wp.com/metabox.io/wp-content/uploads/2015/02/meta-box-group-example.png)
-
-For more information, please see the [extension page](https://metabox.io/plugins/meta-box-group/).
-
-{% include installation.html %}
 
 ## Tutorial
 
@@ -21,8 +15,6 @@ If this is the first time you use [Meta Box Group](https://metabox.io/plugins/me
 The documentation below is like a detailed reference that you can use anytime you want to look for something in Meta Box Group.
 
 ## Settings
-
-Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
 The Meta Box Group adds a new field type `group`. This field type has following settings:
 
@@ -114,9 +106,9 @@ Here is how it appears:
 
 ![clone group (repeater)](https://i.imgur.com/KVIJzSa.png)
 
-### Multi-level nested groups
+### Nested groups
 
-Since version 1.1, the Meta Box Group extension supports multi-level nested groups. To add nested groups to a group, simply register a new field with type `group` and add subfields to it. Here is an example:
+To add nested groups to a group, simply register a new field with type `group` and add subfields to it. Here is an example:
 
 ```php
 add_filter( 'rwmb_meta_boxes', 'demo_nested_groups' );
@@ -164,7 +156,9 @@ Result:
 
 ![multi-level nested groups](https://i.imgur.com/gWazAFA.png)
 
-### Collapsible Groups
+The plugin supports unlimited nesting levels.
+
+### Collapsible groups
 
 To make a group collapsible, you need to set the settings `'collapsible' => true`. The collapsible group also has the following settings:
 
@@ -174,13 +168,13 @@ Name|Description
 `default_state`|Is the group collapsed or expanded by default (when page loads)? `collapsed` or `expanded` (default).
 `group_title`|The title of collapsible group.
 
-Since version 1.3.0, we have improved the `group_title` settings so it is able to show static text, the group index (if group is cloneable), sub-field value or *any combination of them*. To do that, simply set a `group_title` as a text and use the following format:
+The `group_title` settings can show static text, the group index (if group is cloneable), sub-field value or *any combination of them*. To do that, simply set a `group_title` as a text and use the following format:
 
 ```
 'group_title' => 'Static text {#} {sub_field_1} {sub_field_2}',
 ```
 
-To specify the group index, use `{#}`. To specify a sub field value, use `{sub_field_id}`. You can add as many sub fields as you want. The order of elements in the group title is not important. You can mix them in any way.
+To specify the group index, use `{#}`. To specify a sub field value, use `{sub_field_id}`. You can add as many sub fields as you want and mix them in any way.
 
 This is an example of a collapsible group:
 
@@ -240,7 +234,7 @@ add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
 } );
 ```
 
-## Getting sub-field value
+## Getting sub-field values
 
 To get sub-field value, you need to get meta value of the group. This is done with following code:
 
@@ -414,7 +408,7 @@ foreach ( $sectors as $sector ) {
 
 If you want to output a group in a page builder like [Beaver Builder](https://metabox.io/recommends/beaver-builder/) or [Elementor](https://metabox.io/recommends/elementor/), please understand that there's no way to output each sub-field in a group as a element in these page builders.
 
-In order to display group value, the recommended way is creating a shortcode to display the group. Then you can insert the shortcode anywhere with the page builder.
+In order to display group value, the recommended way is creating [a view](https://metabox.io/plugins/mb-views/) or a shortcode to display the group. Then you can insert the view/shortcode anywhere with the page builder.
 
 Here is an example of a custom shortcode for a group with 3 fields: title (`text`), images (`image_advanced`) and description (`wysiwyg`). You can use it as a start:
 
@@ -425,13 +419,13 @@ add_shortcode( 'my_group', function() {
 	if ( empty( $group ) ) {
 		return '';
 	}
-	
+
 	$output = '';
-	
+
 	// Sub-field title.
 	$title = $group['title'] ?? '';
 	$output .= '<h3 class="my-title">' . $title . '</h3>';
-	
+
 	// Sub-field image_advanced.
 	$image_ids = $group['images'] ?? [];
 	if ( $image_ids ) {
@@ -442,11 +436,11 @@ add_shortcode( 'my_group', function() {
 		}
 		$output .= '</div>';
 	}
-	
+
 	// Sub-field description.
 	$desc = $group['desc'] ?? '';
 	$output .= '<div class="my-description">' . wpautop( $desc ). '</div>';
-	
+
 	return $output;
 } );
 
@@ -544,7 +538,7 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
 						'name' => 'Email',
 					],
 				],
-				
+
 				// THIS
 				'std' => [
 					'name' => 'My name',
@@ -613,38 +607,25 @@ See this video for demonstration:
 
 ## Changing clone button text
 
-Since Meta Box version 4.11, you can change the clone button text by using `add_button` parameter for fields, like below:
+To change the clone button text, set use the `add_button` parameter like below:
 
 ```php
-array(
-    'type' => 'group',
-    'name' => 'Tracks',
-    'id' => 'tracks',
-    'add_button' => 'Add another track',
-    'fields' => array(
-        // Sub-fields here.
-    ),
-),
+[
+	'type' => 'group',
+	'name' => 'Tracks',
+	'id' => 'tracks',
+	'add_button' => 'Add another track',
+	'fields' => [
+		// Sub-fields here.
+	],
+],
 ```
 
-If you're using Meta Box prior to 4.11, you can use a filter to change the add clone button text. There are 3 filters that you can use:
+## Clone default values
 
-```php
-rwmb_add_clone_button_text
-rwmb_group_clone_button_text
-rwmb_{$field_id}_add_clone_button_text
-```
+When clone a group, if the group has `clone_default` set to `true`, then all sub-fields will have their default values. The exception is if a sub-field is cloneable, then its `clone_default` will take the higher priority and comes to effect. In this case, the sub-field `clone_default` is used, no matter the settings of the outer group.
 
-Each filter receives 2 parameters: `$text` - the clone button text and `$field` - the group field parameters.
-
-To use the filter, add the following code to your theme `functions.php` file or inside your plugin:
-
-```php
-add_filter( 'rwmb_tracks_add_clone_button_text', 'prefix_tracks_add_clone_button_text', 10, 2 );
-function prefix_group_add_clone_button_text( $text, $field ) {
-    return 'Add another track';
-}
-```
+Learn more about [`clone_default` parameter](https://docs.metabox.io/cloning-fields/).
 
 ## Known issues
 

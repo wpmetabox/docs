@@ -2,33 +2,11 @@
 title: Meta Box Conditional Logic
 ---
 
-## Overview
-
-The **Meta Box Conditional Logic** extension is one of the most popular plugins of Meta Box. It helps you to show or hide meta boxes, custom fields or any elements based on other fields' values. Developers can control the relations between fields powerfully and create connections and perform any logic between them.
-
-See this video below to understand how it works:
+**Meta Box Conditional Logic** helps you to show or hide meta boxes, custom fields or any elements based on other fields' values.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/m_FtbydM_-I?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-The extension is super useful when you want to:
-
-- Show a meta box only for a specific post format
-- Show page settings (a meta box) for only a specific page template
-- Show a group of fields when users select a specific value from a dropdown
-
-and a lot more.
-
-You can also combine these options to build complex conditions. It works not only for meta boxes or custom fields, but also other HTML elements. It's really powerful.
-
-For more info, please see the [extension page](https://metabox.io/plugins/meta-box-conditional-logic/).
-
-
-{% include installation.html %}
-
-
-Like the Meta Box plugin, Conditional Logic was created without any options. You can start using it right after activating.
-
-If you're confused whilst reading this tutorial. Please refer to [creating meta box](/creating-meta-boxes/).
+You can also combine conditions. It works not only for meta boxes or custom fields, but also other HTML elements.
 
 ## Getting started
 
@@ -38,10 +16,10 @@ The code below registers a meta box that is hidden when the post format is `asid
 add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
     $meta_boxes[] = array(
         'title' => 'Brands and Products',
-        
+
         // Hide this meta box when post format is aside
         'hidden' => array( 'post_format', 'aside' ),
-        
+
         'fields' => array(
             array(
                 'id'    => 'brand',
@@ -64,7 +42,7 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
                     'Macbook'   => 'Macbook',
                     'iWatch'    => 'iWatch'
                 ),
-                
+
                 // Hide this field when user selected a brand that's not 'Apple'
                 'hidden' => array( 'brand', '!=', 'Apple' )
             )

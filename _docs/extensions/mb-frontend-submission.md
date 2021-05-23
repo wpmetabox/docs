@@ -2,25 +2,11 @@
 title: MB Frontend Submission
 ---
 
-## Overview
-
-MB Frontend Submission is a Meta Box extension which lets developers create custom forms so users can submit posts on the front end of a website.
-
-The extension supports both traditional post fields and custom fields, and you can also embed forms anywhere on your site using shortcodes — with no extra coding required.
-
-Here is a screenshot of a front-end form:
+MB Frontend Submission lets you put forms on the front end via shortcode so users can submit posts.
 
 ![submission form](https://i.imgur.com/jfXHqSc.png)
 
-MB Frontend Submission brings the meta boxes and custom fields to the front end. It supports all field types and all Meta Box extensions (columns, group, conditional logic, etc.).
-
-Using this extension, you can create powerful forms for users to submit posts on the front end and control how it work effortlessly.
-
-For more information, please see the [extension page](https://metabox.io/plugins/mb-frontend-submission/).
-
-{% include installation.html %}
-
-**Important:** This extension requires Meta Box version 4.11+. If you're using an older version of the plugin, please update.
+The extension supports post fields and all Meta Box field types and extensions (columns, group, conditional logic, etc.).
 
 ## Creating post forms
 
@@ -47,7 +33,7 @@ Then change the shortcode to:
 If you want to embed the form using code, please use the following code:
 
 ```php
-$form = 'mb_frontend_form id="meta-box-id" post_fields="title,content"]';
+$form = '[mb_frontend_form id="meta-box-id" post_fields="title,content"]';
 echo do_shortcode( $form );
 ```
 
@@ -236,7 +222,22 @@ To let users **view and edit their submitted posts**, just create a normal WordP
 [mb_frontend_dashboard edit_page="124"]
 ```
 
-Where `124` is the ID of the page, where you already have to let users submit posts. And when users visit this page, they'll see a dashboard like this:
+**Shortcode attributes**
+
+Attributes|Description
+---|---
+`edit_page`|The ID of the page, where users can submit posts.
+`post_type`|The post type to be shown (default: post).
+`show_welcome_message`|Show the welcome message `true` (default) or `false`.
+`columns`|List of columns to be displayed in the dashboard, separated by comma. Supported values are: `title`, `date`, `status`.
+`label_title`|The header label for the title column.
+`label_date`|The header label for the date column.
+`label_status`|The header label for the status column.
+`label_actions`|The header label for the actions column.
+`title_link`|The link action for the post titles. Supported values are: `edit` or `view` (default)
+`add_new`|Label for the add new button.
+
+And when users visit this page, they'll see a dashboard like this:
 
 ![user posts dashboard](https://i.imgur.com/LxPh4xH.png)
 
@@ -274,7 +275,7 @@ add_filter( 'rwmb_frontend_redirect', function( $redirect, $config ) {
     if ( 'my-id' !== $config['id'] ) {
         return $redirect;
     }
-    
+
     // Get submitted data via $_POST.
     $value = empty( $_POST['field_id'] ) ? null : $_POST['field_id'];
     if ( 'yes' === $value ) {

@@ -6,7 +6,7 @@ title: Image Upload
 
 The image upload field displayes an inline upload area that you can drag and drop images into. You can also select images from the Media Library.
 
-This field is very similar to [image advanced](/fields/image-advanced/). The only different is the image advanced shows a **+ Add Media** button instead of the inline upload area.
+This field is very similar to [image advanced](/fields/image-advanced/). The only difference is the image advanced shows a **+ Add Media** button instead of the inline upload area.
 
 ## Screenshot
 

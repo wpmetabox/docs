@@ -18,6 +18,13 @@ The Meta Box plugin is [available on wordpress.org](https://wordpress.org/plugin
 
 Then click the button **Install** to install it. After that, click the button **Activate** to activate the plugin.
 
-After installing Meta Box, you won't see anything in the WordPress admin area. The plugin doesn't have any admin page for configuration or settings. Instead of that, it provides an API that you can use to speed up the process of creating meta boxes and custom fields.
+## Installing extensions
 
-To get started using the plugin, please see the [Quick Start guide](https://docs.metabox.io/quick-start/).
+Before installing extensions, make sure you installed and activated the Meta Box plugin, even if you use Meta Box AIO (which contains all extensions into a single plugin) or solutions.
+
+Meta Box extensions are normal WordPress plugin, you can install them like a normal WordPress plugin:
+
+- Go to [My Account](https://metabox.io/my-account/) and download the extensions you want to use.
+- Go to **Plugins**, click **Add new**, then click **Upload plugin**.
+- Choose the `.zip` file you downloaded and click **Install now**
+- After finishing upload, click **Activate** to finish.

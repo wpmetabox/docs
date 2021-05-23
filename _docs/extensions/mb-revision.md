@@ -2,17 +2,7 @@
 title: MB Revision
 ---
 
-## Overview
-
-While editing posts, you want to track what has been changed between edits. WordPress lets you do that via a feature called [revision](https://codex.wordpress.org/Revisions). Unfortunately, WordPress revision only supports post title and post content. That might be a problem since you might have content in custom fields (which can be many).
-
-The MB Revision resolves this problem by adding support for custom fields in WordPress revision. You're able to track changes that you or others have made in custom fields. It works with all field types in Meta Box, even with [groups](https://metabox.io/plugins/meta-box-group/). Using this extension, you will never wonder when you changed or deleted a field.
-
-For more information, please see the [extension page](https://metabox.io/plugins/mb-revision/).
-
-{% include installation.html %}
-
-**Important:** This extension requires Meta Box version 4.12+. If you're using an older version of the plugin, please update.
+MB Revision adds support for custom fields in WordPress revision that helps you to track changes of custom fields.
 
 ## Enabling revision support
 
@@ -24,9 +14,7 @@ define( 'WP_POST_REVISIONS', false );
 
 If you can't find it, that means revision is turned on, which is great!
 
-Now back to Meta Box. Please make sure you understand how to [create meta boxes](/creating-meta-boxes/) before continuing.
-
-To enable revision support for a meta box, simply add a new setting to the meta box as follows:
+To enable revision support for a meta box, add a new setting to the meta box as follows:
 
 ```php
 'revision' => true,

@@ -2,25 +2,15 @@
 title: Meta Box Geolocation
 ---
 
-## Overview
-
-The Meta Box Geolocation is helpful if you have multiple custom fields for location such as address, zipcode, city, state and country. Letting users manually fill in these fields might be a boring time-consuming job. This extension helps you fill in these information quickly by using Geocoding API from Google Maps/Open Street Maps. So that you just need to enter an address, it will autosuggest a complete address and fill all other fields.
-
-Take a look at the screenshot:
+Meta Box Geolocation helps you fill in address fields (street address, zipcode, city, state and country) quickly by using Geocoding API from Google Maps/Open Street Maps.
 
 ![auto suggest geolocation data](https://i1.wp.com/metabox.io/wp-content/uploads/2016/03/meta-box-geolocation.gif)
-
-For more information, please see the [extension page](https://metabox.io/plugins/meta-box-geolocation/).
-
-{% include installation.html %}
-
-Make sure you know how to [create meta boxes](/creating-meta-boxes/) and [fields](/field-settings/) before continuing!
 
 ## Enabling geolocation API
 
 If you use Open Street Maps, then you can bypass this step. Open Street Maps doesn't require any extra API/configuration from you.
 
-If you use Google Maps, make sure you create a project for Google Maps in the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview). And don't forget to enable the following APIs:
+If you use Google Maps, create a project for Google Maps in the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview). And don't forget to enable the following APIs:
 
 - Google Maps API
 - Geocoding API
@@ -30,23 +20,29 @@ And then create an API key for Google Maps. See [here](https://developers.google
 
 ## Enable geolocation support for a meta box
 
-To enable geolocation support for a meta box, add this line to your Meta Box (not field) settings:
+If you use Open Street Maps for geolocation, you need to add a Open Street Maps field to your field group. Then add `geo` to your field group custom settings in the Meta Box Builder like this:
+
+![enable geolocation for open street maps](https://i.imgur.com/M5ar5i2.png)
+
+If you use code, then add this line to your field group settings:
 
 ```php
-// For Open Street Maps.
 'geo' => true,
+```
 
-// For Google Maps.
+If you use Google Maps, it's _not_ required to add a Google Maps field to your field group. To enable geolocation, add the following custom settings in the field group settings in the Meta Box Builder like this:
+
+![enable geolocation for google maps](https://i.imgur.com/XII5Kyw.png)
+
+If you use code, then add this line to your field group settings:
+
+```php
 'geo' => [
     'api_key' => 'YOUR API KEY',
 ],
 ```
 
-If you use Geolocation with `map` field, you need to enter the Google API key only once, either for the Geolocation extension (as above) or for the `map` field. No need to enter the same key for both of them.
-
-If you're using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), then please go to tab *Settings* and add a custom settings for the geolocation as follows:
-
-![adding google maps api key in builder](https://i.imgur.com/d5LZD4p.png)
+If you has a Google Maps field in your field group, then you can set the Google API key once, either for the Geolocation extension (as above) or for the `map` field. No need to enter the same key for both of them.
 
 If you use Google Maps, you can also add options to Geolocation. Which can contains these properties:
 
@@ -97,7 +93,7 @@ You can add auto complete to `textarea`, it works but will generate warning mess
 ## Populating field data
 
 ### Address components
-When you selecte an address from autocomplete field, it returns an array of *address components*. Which you can use it to populate to other fields. The following components are supported by Google Maps:
+When you select an address from autocomplete field, it returns an array of *address components*. Which you can use it to populate to other fields. The following components are supported by Google Maps:
 
 Component|Description
 ---|---
@@ -193,7 +189,7 @@ In this case, please set another attribute `'address_field' => 'address_id'` for
 /**
  * Head office
  */
- 
+
 // Address
 [
     'id' => 'address_ho',
@@ -212,7 +208,7 @@ In this case, please set another attribute `'address_field' => 'address_id'` for
 /**
  * A company branche
  */
- 
+
 // Address
 [
     'id' => 'address_br',
