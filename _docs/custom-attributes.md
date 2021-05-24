@@ -11,17 +11,17 @@ Creating custom attributes is done by either of the following methods:
 
 ## Using Meta Box Builder
 
-To add custom attributes to the fields, click on the tab **Advanced** in each field and click **Add New** custom settings. Using the [dot notation](https://docs.metabox.io/extensions/meta-box-builder/#dot-notation) on the Builder documentation.
+To add custom attributes to the fields, click on the tab **Advanced** in each field and click **Add New** custom settings. Using [Dot notation](https://docs.metabox.io/extensions/meta-box-builder/#dot-notation) on the Builder documentation.
 
-![create custom attributes](https://share.getcloudapp.com/9ZudvzOd)
+![create custom attributes](https://imgur.com/UIdseik)
 
-Add custom `data-*` attribute using [JSON notation](https://docs.metabox.io/extensions/meta-box-builder/#json-notation):
+Add custom HTML5 attributes `data-*`, click **Add New** Custom HTML5 Attributes. Using [JSON notation](https://docs.metabox.io/extensions/meta-box-builder/#json-notation):
 
-![create custom attributes data](https://share.getcloudapp.com/mXur9bOJ)
+![create custom HTML5 attributes](https://imgur.com/a/hAPK4LO)
 
 Create common attributes `disabled`, `required`, `readonly`, `maxlength` and `pattern`:
 
-![create common attributes](https://share.getcloudapp.com/lluNxgq4)
+![create common attributes](https://imgur.com/N2Zfh06)
 
 ## Using code
 
