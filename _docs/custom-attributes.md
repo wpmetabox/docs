@@ -13,15 +13,15 @@ Creating custom attributes is done by either of the following methods:
 
 To add custom attributes to the fields, click on the tab **Advanced** in each field and click **Add New** custom settings. Using [Dot notation](https://docs.metabox.io/extensions/meta-box-builder/#dot-notation) on the Builder documentation.
 
-![create custom attributes](https://imgur.com/UIdseik)
+![create custom attributes](https://i.imgur.com/UIdseik.png)
 
 Add custom HTML5 attributes `data-*`, click **Add New** Custom HTML5 Attributes. Using [JSON notation](https://docs.metabox.io/extensions/meta-box-builder/#json-notation):
 
-![create custom HTML5 attributes](https://imgur.com/a/hAPK4LO)
+![create custom HTML5 attributes](https://i.imgur.com/Hn14j8u.png)
 
 Create common attributes `disabled`, `required`, `readonly`, `maxlength` and `pattern`:
 
-![create common attributes](https://imgur.com/N2Zfh06)
+![create common attributes](https://i.imgur.com/N2Zfh06.png)
 
 ## Using code
 
