@@ -166,6 +166,7 @@ Syntax highlighting|`syntax_highlighting`
 Admin color|`admin_color`
 Comment shortcuts|`comment_shortcuts`
 Show admin bar on the front|`admin_bar_front`
+User role|`role`
 
 ### Edit user password
 
