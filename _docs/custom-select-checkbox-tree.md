@@ -21,6 +21,7 @@ add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
                     array( 'value' => 'sub1', 'label' => 'Sub 1', 'parent' => 'value1' ),
                     array( 'value' => 'sub2', 'label' => 'Sub 2', 'parent' => 'value1' ),
                 ),
+                'placeholder' => 'Select an item',
                 'flatten' => false,
             ),
         ),
