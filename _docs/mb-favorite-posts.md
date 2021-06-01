@@ -14,7 +14,7 @@ For more information, please see the [solution page](https://metabox.io/plugins/
 
 ## Installation
 
-First, you need to install and activate the Meta Box plugin from [wordpress.org](https://wordpress.org/plugins/meta-box/). Next, download MB Favorite Posts plugin from the [My Account](https://metabox.io/my-account/) page, then upload the .zip file from the **Admin Dashboard**. MB Favorite Posts and [other solutions](https://metabox.io/product-category/solutions/) are not included in Meta Box AIO, so you can install them independently without Meta Box AIO.
+First, you need to install and activate the Meta Box plugin from [wordpress.org](https://wordpress.org/plugins/meta-box/). Next, download MB Favorite Posts plugin from the [My Account](https://metabox.io/my-account/) page, then upload the <code>.zip</code> file from the **Admin Dashboard**. MB Favorite Posts and [other solutions](https://metabox.io/product-category/solutions/) are not included in Meta Box AIO, so you can install them independently without Meta Box AIO.
 
 Upon finishing, the Favorite Posts Button will be automatically added to your WordPress website with the default settings:
 
@@ -22,7 +22,7 @@ Upon finishing, the Favorite Posts Button will be automatically added to your Wo
 
 To configure the Favorite Posts button to fit your needs, move to the next step.
 
-## Set up the Favorite Posts Button
+## Settings
 
 Go to **Settings** > **Favorite Posts**. You will see the UI with sections as follows:
 
@@ -98,3 +98,12 @@ The Register page and the Dashboard page will be displayed on the front end as f
 To delete a post from the favorite list, just click the icon on the right of the post name:
 
 ![Delete a post from the favorite list.](https://i.imgur.com/KxbKTyf.png)
+
+## Shortcodes
+
+The plugin provides 2 shortcodes:
+
+- `[mbfp-button]`: to show the "Add to favorite" button, and
+- `[mbfp-posts]`: to show the list of favorite posts
+
+Both shortcodes doesn't have any attributes. They use the settings from the plugin settings page. You can put them anywhere on the website (sidebar, page content, etc.).
