@@ -46,6 +46,12 @@ When you're done entering the field options, click **Insert** button to insert t
 
 If a field doesn't have options, then the plugin will insert a snippet into the editor immediately without opening a popup.
 
+### Main query
+
+The items on the Insert Field tab only works with the main query. We can understand when setting Type and Location for the View. For example: You can only use the item "Term ID" when Type is Archive and Location is Taxonomy Archive, if you use the item "Post ID", it will not work.
+
+![main query](https://i.imgur.com/HAkP7Ci.png)
+
 ### Cloneable fields
 
 Cloneable fields are marked with a *repeat* icon, like this:
@@ -111,6 +117,56 @@ With the `mb` proxy, you can call the `get_post()` function like this:
 ```
 
 Here you see, the normal PHP function is prefixed by `mb.`, e.g. `get_post` becomes `mb.get_post`. So if you want to call a function `my_custom_function`, you need to write `mb.my_custom_function`. The parameters passed to the function remain the same.
+
+### Custom query
+
+Relate to the Main query above, if you use the function `get_posts()` or `get_post()`, it will return [post object](https://developer.wordpress.org/reference/classes/wp_post/). 
+
+```php
+WP_Post Object
+(
+    [ID] =>
+    [post_author] =>
+    [post_date] => 
+    [post_date_gmt] => 
+    [post_content] => 
+    [post_title] => 
+    [post_excerpt] => 
+    [post_status] =>
+    [comment_status] =>
+    [ping_status] => 
+    [post_password] => 
+    [post_name] =>
+    [to_ping] => 
+    [pinged] => 
+    [post_modified] => 
+    [post_modified_gmt] =>
+    [post_content_filtered] => 
+    [post_parent] => 
+    [guid] => 
+    [menu_order] =>
+    [post_type] =>
+    [post_mime_type] => 
+    [comment_count] =>
+    [filter] =>
+)
+```
+
+These properties are different from the Post items in the Insert Field tab and you can only use these properties to get the post information. For the post meta, you can use the helper function `rwmb_meta()` or WordPress functions to retrieve it.
+
+```html
+{% set args = { post_type: 'post', posts_per_page: -1 } %}
+{% set posts = mb.get_posts( args ) %}
+{% for post in posts %}
+    Post title: {{ post.post_title }} 
+    
+    Single image:
+    {% set image = mb.rwmb_meta( 'single_image', '', post.ID ) %}
+    <img src="{{ image['full_url'] }} "> 
+
+    Post thumbnail: {{ mb.get_the_post_thumbnail( post.ID, 'thumbnail' ) }}
+{% endfor %}   
+```
 
 In case you want to set arguments for functions, use the `set` syntax. Twig allows you to set complex variables, like [lists with keys and values](https://twig.symfony.com/doc/1.x/templates.html#literals) and then you can pass it to the function:
 
