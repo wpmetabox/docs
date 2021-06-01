@@ -155,6 +155,7 @@ WP_Post Object
 These properties are different from the Post items in the Insert Field tab and you can only use these properties to get the post information. For the post meta, you can use the helper function `rwmb_meta()` or WordPress functions to retrieve it.
 
 ```html
+{% raw %}
 {% set args = { post_type: 'post', posts_per_page: -1 } %}
 {% set posts = mb.get_posts( args ) %}
 {% for post in posts %}
@@ -166,6 +167,7 @@ These properties are different from the Post items in the Insert Field tab and y
 
     Post thumbnail: {{ mb.get_the_post_thumbnail( post.ID, 'thumbnail' ) }}
 {% endfor %}   
+{% endraw %}
 ```
 
 In case you want to set arguments for functions, use the `set` syntax. Twig allows you to set complex variables, like [lists with keys and values](https://twig.symfony.com/doc/1.x/templates.html#literals) and then you can pass it to the function:
