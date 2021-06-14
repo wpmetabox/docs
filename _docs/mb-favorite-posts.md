@@ -112,13 +112,14 @@ You can put them anywhere on the website (sidebar, page content, etc.).
 [mbfp-button id="custom_id" class="custom_class" add="add_text" added="added_text" show_count="true"]
 ```
 It accepts the following parameters:
+
 Name|Description
 ---|---
 `id`|Custom ID name. Optional. If missed, the shortcode will get the current object ID.
 `class`|Custom class name. Optional.
 `add`|Custom button text when the post isn't added to favorites. Optional. If missed, the shortcode will get the value from the plugin settings.
 `added`|Custom button text when the post is added to favorites. Optional. If missed, the shortcode will get the value from the plugin settings.
-`show_count`|Show the total favorites of a post. Optional. Default false
+`show_count`|Show the total favorites of a post. Optional. Default false.
 
 
 `[mbfp-count]`: to show the total number favorite of a object
@@ -126,6 +127,7 @@ Name|Description
 [mbfp-count id="custom_id" ]
 ```
 It accepts the following parameters:
+
 Name|Description
 ---|---
 `id`|Custom ID name. Optional. If missed, the shortcode will get the current object ID.
