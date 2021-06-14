@@ -26,7 +26,7 @@ MB ACF Migration tries to migrate all the following data from ACF to Meta Box. P
 
 ACF field groups are migrated to Meta Box's field groups, which requires [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/). Most of the field group settings are the same as [in Meta Box](https://docs.metabox.io/creating-meta-boxes/).
 
-{% include alert.html type="alert" content="**We do not remove ACF field groups** after migration, for safety. Instead, we changed their status to "Inactive". You can remove them later after all the data is processed." %}
+{% include alert.html type="warning" content="**We do not remove ACF field groups** after migration, for safety. Instead, we changed their status to "Inactive". You can remove them later after all the data is processed." %}
 
 For **field group locations**, the basic rules are already supported in Meta Box and extensions. You might need extensions such as:
 
@@ -44,3 +44,39 @@ Besides, if you use complex locations, then you'll need [Meta Box Include Exclud
 - If there's only one location group: the plugin will migrate all rules with operator `AND`.
 - If there are multiple location groups: the plugin will take the first rule of each group and combine them with operator `OR`.
 
+### Settings pages
+
+ACF requires you to use code to register settings pages. In Meta Box, thanks to [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), you can create and manage settings pages with UI.
+
+During the migration, the plugin will try to create settings pages with UI if you have settings pages registered with ACF.
+
+### Custom fields data
+
+Most ACF field types work well with Meta Box, such as text, radio, select, etc. However, there's still a difference in how plugins store values in the database. Because of that, we'll process as the following:
+
+1. **Remove all extra keys** in the database. ACF stores an extra meta in the database for field reference. It has the format `_{$field_id}`. This is redundant and causes the database to bloat. We don't need them and thus, we remove them.
+2. For **fields that have multiple values** such as gallery, select (with multiple options), ACF saves their values as serialized arrays. We'll migrate them multiple rows in the database (similar to what `add_post_meta` does with the last parameter `false`).
+3. For **layout fields**, ACF saves values of each sub-fields in a row in the database. We'll migrate them into groups (which requires [Meta Box Group](https://metabox.io/plugins/meta-box-group/)).
+
+Details are below:
+
+Field type | Meta Box's equivalent
+--- | ---
+Gallery | Image advanced
+Select | Select advanced if stylised UI is enabled, normal select otherwise
+Checkbox | Checkbox list
+Post, Page link, Relationship | Post. In the case of page link, it works only with a post is selected, archive links don't work.
+Taxonomy | Taxonomy advanced
+Google maps | A pair of address field - which is a text field, and a Google maps field
+Group | Non-cloneable group. Requires [Meta Box Group](https://metabox.io/plugins/meta-box-group/).
+Repeater | Cloneable group. Requires [Meta Box Group](https://metabox.io/plugins/meta-box-group/).
+Flexible content | Cloneable group with 2 sub-fields: a select field for selecting a layout, and a non-cloneable group for data. Requires [Meta Box Group](https://metabox.io/plugins/meta-box-group/) and [Meta Box Conditional Logic](https://metabox.io/plugins/meta-box-conditional-logic/).
+
+{% include alert.html type="info" content="For these fields, as the data format is different, for the safety, we create a backup for each field value. The new field value is stored with the key `_acf_bak_{$field_id}`." %}
+
+However, the following field types are not supported, because there're no equivalent field types in Meta Box:
+- Link
+- Accordion
+- Clone
+
+For other field types, the data is untouched.
