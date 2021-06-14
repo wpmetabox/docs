@@ -101,9 +101,31 @@ To delete a post from the favorite list, just click the icon on the right of the
 
 ## Shortcodes
 
-The plugin provides 2 shortcodes:
+The plugin provides 3 shortcodes:
+You can put them anywhere on the website (sidebar, page content, etc.).
 
-- `[mbfp-button]`: to show the "Add to favorite" button, and
-- `[mbfp-posts]`: to show the list of favorite posts
+- `[mbfp-posts]`: to show the list of favorite objects
 
-Both shortcodes doesn't have any attributes. They use the settings from the plugin settings page. You can put them anywhere on the website (sidebar, page content, etc.).
+- `[mbfp-button]`: to show the "Add to favorite" button
+
+```php
+[mbfp-button id="custom_id" class="custom_class" add="add_text" added="added_text" show_count=1]
+```
+It accepts the following parameters:
+Name|Description
+---|---
+`id`|Custom ID name. Optional. If missed, the shortcode will get the current object ID.
+`class`|Custom class name. Optional.
+`add`|Custom text if object wasn't add to favorite. Optional. If missed, the shortcode will get from mb-favorite-post plugin settings.
+`added`|Custom text if object was added to favorite. Optional. If missed, the shortcode will get from mb-favorite-post plugin settings.
+`show_count`|Set show total number favorite or not. Optional. Default 0
+
+
+- `[mbfp-count]`: to show the total number favorite of a object
+```php
+[mbfp-button id="custom_id" ]
+```
+It accepts the following parameters:
+Name|Description
+---|---
+`id`|Custom ID name. Optional. If missed, the shortcode will get the current object ID.
