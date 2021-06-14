@@ -44,9 +44,3 @@ Besides, if you use complex locations, then you'll need [Meta Box Include Exclud
 - If there's only one location group: the plugin will migrate all rules with operator `AND`.
 - If there are multiple location groups: the plugin will take the first rule of each group and combine them with operator `OR`.
 
-### Settings pages
-
-ACF requires you to use code to register settings pages. In Meta Box, thanks to [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/), you can create and manage settings pages with UI.
-
-During the migration, the plugin will try to create settings pages with UI if you have settings pages registered with ACF.
-
