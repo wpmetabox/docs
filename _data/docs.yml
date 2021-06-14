@@ -82,6 +82,7 @@
     - /fields/wysiwyg/
 - title: Extensions
   items:
+    - /extensions/mb-acf-migration/
     - /extensions/mb-admin-columns/
     - title: MB Blocks
       url: /extensions/mb-blocks/
