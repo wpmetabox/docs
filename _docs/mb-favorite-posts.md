@@ -123,7 +123,7 @@ Name|Description
 
 - `[mbfp-count]`: to show the total number favorite of a object
 ```php
-[mbfp-button id="custom_id" ]
+[mbfp-count id="custom_id" ]
 ```
 It accepts the following parameters:
 Name|Description
