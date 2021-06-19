@@ -120,7 +120,8 @@ Name|Description
 `add`|Custom button text when the post isn't added to favorites. Optional. If missed, the shortcode will get the value from the plugin settings.
 `added`|Custom button text when the post is added to favorites. Optional. If missed, the shortcode will get the value from the plugin settings.
 `show_count`|Show the total favorites of a post. Optional. Default false.
-`show_icon`|Show icon in button. Optional. Default heart icon.
+`show_icon`|Show icon in button. Optional. Default false.
+`icon`|Custom icon. You can choose one of these [ heart, star, pin, like, awards ]. Optional. Default heart icon.
 `icon_only`|Show icon only. Optional. Default false.
 
 
