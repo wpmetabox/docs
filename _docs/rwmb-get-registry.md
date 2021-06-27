@@ -40,7 +40,7 @@ To get meta boxes by some attributes, use this method:
 ```php
 $args = [
     'object_type' => 'post',
-    'post_type'   => ['post'],
+    'post_types'  => ['post'],
 ];
 $meta_boxes = $meta_box_registry->get_by( $args );
 ```
