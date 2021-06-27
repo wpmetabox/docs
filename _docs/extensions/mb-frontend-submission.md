@@ -227,7 +227,6 @@ To let users **view and edit their submitted posts**, just create a normal WordP
 Attributes|Description
 ---|---
 `edit_page`|The ID of the page, where users can submit posts.
-`post_type`|The post type to be shown (default: post).
 `show_welcome_message`|Show the welcome message `true` (default) or `false`.
 `columns`|List of columns to be displayed in the dashboard, separated by comma. Supported values are: `title`, `date`, `status`.
 `label_title`|The header label for the title column.
