@@ -4,6 +4,12 @@ title: MB ACF Migration
 
 MB ACF Migration extension helps you to migrate field groups and custom field data from Advanced Custom Fields (ACF) to Meta Box. It works with both free and pro versions of Advanced Custom Fields.
 
+## Video tutorial
+
+This is the walkthrough video created by David McCan that shows you how to migrate data from ACF to Meta Box:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JD75cXNmIso" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Backup the database
 
 Before migrating data, make sure you have a backup of your database. During the migration process, because of the difference in [data format](https://docs.metabox.io/database/), the plugin will attempt to modify the existing data in custom fields created by ACF. We try to do it at a very minimum level and create a backup of fields for some specific cases, but it's still important to make a backup just in case something goes wrong.
