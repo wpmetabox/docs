@@ -22,6 +22,10 @@ Name | Description
 `js_options`|Date picker options. [See here](http://api.jqueryui.com/datepicker).
 `save_format`|Custom PHP format for the datetime saved in the custom fields. See PHP’s function date() for the list of formats.
 
+### Note
+
+This field uses our JS library to get the current time of your computer and generates it to the timestamp value then the PHP code helps to save this value to the database. That means the Unix timestamp saved is the "timezone (UTC) + offset".
+
 ## Sample code
 
 ```php
