@@ -109,7 +109,7 @@ You can put them anywhere on the website (sidebar, page content, etc.).
 `[mbfp-button]`: to show the "Add to favorite" button
 
 ```php
-[mbfp-button id="custom_id" class="custom_class" add="add_text" added="added_text" show_count="true"]
+[mbfp-button id="post_id" class="custom_class" add="add_text" added="added_text" show_count="true"]
 ```
 It accepts the following parameters:
 
@@ -119,15 +119,17 @@ Name|Description
 `class`|Custom class name. Optional.
 `add`|Custom button text when the post isn't added to favorites. Optional. If missed, the shortcode will get the value from the plugin settings.
 `added`|Custom button text when the post is added to favorites. Optional. If missed, the shortcode will get the value from the plugin settings.
+`font_size`|Size of text. Optional. Default 14px.
 `show_count`|Show the total favorites of a post. Optional. Default false.
 `show_icon`|Show icon in button. Optional. Default false.
-`icon`|Custom icon. You can choose one of these [ heart, star, pin, like, awards ]. Optional. Default heart icon.
+`icon`|Custom icon. You can choose one of these [ heart, star, pin, like, award ]. Optional. Default heart icon.
 `icon_only`|Show icon only. Optional. Default false.
+`icon_size`|Size of icon. Optional. Default 16px.
 
 
 `[mbfp-count]`: to show the total number favorite of a object
 ```php
-[mbfp-count id="custom_id" ]
+[mbfp-count id="post_id" ]
 ```
 It accepts the following parameters:
 
