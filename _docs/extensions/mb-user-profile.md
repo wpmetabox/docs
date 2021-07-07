@@ -103,6 +103,7 @@ Name|Description
 `confirmation`|Confirmation message if registrion is succesful.
 `recaptcha_key`|Google reCaptcha site key (version 3). Optional.
 `recaptcha_secret`|Google reCaptcha secret key (version 3). Optional.
+`password_strength`|Set the required password strength. Available options: `strong`, `medium`, `weak`, `very-weak` or `false` to disable password strength meter.
 
 ### Edit default fields
 
