@@ -6,7 +6,15 @@ Meta Box Tabs helps you to put custom fields into tabs for a better view.
 
 ![tab styles](https://i.imgur.com/7Oi5dx1.jpg)
 
-## Settings
+## Using Meta Box Builder
+
+Tab field must be added first then other fields.
+
+![tab field](https://i.imgur.com/R2N75ny.png)
+
+## Using code
+
+### Settings
 
 To create tabs for your meta box, you need to add these parameters to your meta box settings:
 
@@ -37,7 +45,7 @@ If you want to use another icon (not Dashicons), either:
 
 Then for each field in the meta box, you need to specify which tab it belongs to by adding a parameter `'tab' => 'tab-id'` where `tab-id` is one of the tab IDs you have registered above.
 
-## Sample code
+### Sample code
 
 ```php
 add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
