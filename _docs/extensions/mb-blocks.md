@@ -539,7 +539,7 @@ When inserting a field in the admin, you'll see the block like this:
 
 As you can see the InnerBlocks on the left, where the usual placeholder is displayed "Type / to choose a block". And you can insert heading (of any type H1, H2, H3, etc.) and the content very easily.
 
-![inner blocks in action](blob:https://imgur.com/a83e89d1-dbd3-4fbc-8307-e5cfff5b4124)
+![inner blocks in action](https://i.imgur.com/GckMMnA.png)
 
 (Note: I use [Wayfinder](https://wordpress.org/plugins/wayfinder/) plugin to show the block outline, which makes us easier to see which blocks are being edited).
 
@@ -597,7 +597,7 @@ If the block is a top level block: the locking of the Custom Post Type is used.
 
 ### Example
 
-This is a more complete example of the testimonial block with more properties (here I insert inline style into the block for demo purpose, you should separate it into a CSS file using the `enqueue_style` parameter):
+This is a more complete example of the testimonial block with more properties (here I insert inline style into the block for the demo purpose, you should separate it into a CSS file using the `enqueue_style` parameter):
 
 ```php
 <?php
