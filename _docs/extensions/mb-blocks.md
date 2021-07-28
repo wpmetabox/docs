@@ -474,6 +474,204 @@ add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
 
 Each field is an array of its settings. See [this guide](https://docs.metabox.io/field-settings/) for details about field settings.
 
+## Nested blocks (InnerBlocks)
+
+WordPress has an amazing feature for Gutenberg blocks called [InnerBlocks](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/nested-blocks-inner-blocks/), which allows you to insert other blocks inside a block. Since version 1.4, MB Blocks also supports this feature.
+
+Assuming you want to create a custom testimonial block, which has the following data:
+
+- An image
+- A title
+- A paragraph for the testimonial content
+- And a select field for the testimonial style (something like image on the right or above the content)
+
+It's easy to make those fields with MB Blocks. However, it might be less flexible than using default Gutenberg heading and paragraph blocks for the title and content field. So, we might want to wrap those 2 fields into a `InnerBlocks` like this:
+
+- Image
+- InnerBlocks
+- Style
+
+This is an example code of the block:
+
+```php
+add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
+	$meta_boxes[] = [
+		'title'           => 'Testimonial',
+		'id'              => 'testimonial',
+		'type'            => 'block',
+		'context'         => 'side',
+		'render_callback' => function( $attributes, $preview, $post_id ) {
+			?>
+			<div class="testimonial testimonial--<?= mb_get_block_field( 'style' ) ?>">
+				<div class="testimonial__text">
+					<InnerBlocks />
+				</div>
+				<div class="testimonial__image">
+					<?php mb_the_block_field( 'image' ) ?>
+				</div>
+			</div>
+			<?php
+		},
+		'fields'          => [
+			[
+				'type' => 'select',
+				'id'   => 'style',
+				'name' => 'Style',
+				'options' => [
+					'default'     => 'Default',
+					'image_above' => 'Image above',
+				],
+			],
+			[
+				'type' => 'single_image',
+				'id'   => 'image',
+				'name' => 'Image',
+			],
+		],
+	];
+	return $meta_boxes;
+} );
+```
+
+When inserting a field in the admin, you'll see the block like this:
+
+![inner blocks](https://i.imgur.com/p42aGbT.png)
+
+As you can see the InnerBlocks on the left, where the usual placeholder is displayed "Type / to choose a block". And you can insert heading (of any type H1, H2, H3, etc.) and the content very easily.
+
+![inner blocks in action](blob:https://imgur.com/a83e89d1-dbd3-4fbc-8307-e5cfff5b4124)
+
+(Note: I use [Wayfinder](https://wordpress.org/plugins/wayfinder/) plugin to show the block outline, which makes us easier to see which blocks are being edited).
+
+To make it more powerful, MB Blocks supports the following properties of InnerBlocks. They're exactly the same as in the [block handbook](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/nested-blocks-inner-blocks/).
+
+### `allowedBlocks`
+
+`allowedBlocks` helps you to restrict blocks that are available to insert into the InnerBlocks. The blocks that are not specified, will be not available to be inserted.
+
+In your template (or render callback), you can set `allowedBlocks` like this:
+
+```php
+<InnerBlocks
+	allowedBlocks="<?= esc_attr( json_encode( [
+		'core/heading',
+		'core/paragraph',
+	] ) ) ?>"
+/>
+```
+
+This allows you to insert only heading and paragraph blocks.
+
+### `orientation`
+
+By default, InnerBlocks expects its blocks to be shown in a vertical list. A valid use-case is to style InnerBlocks to appear horizontally. When blocks are styled in such a way, the orientation prop can be used to indicate a horizontal layout:
+
+```php
+<InnerBlocks orientation="horizontal" />
+```
+
+### `template`
+
+Use the template property to define a set of blocks that prefill the InnerBlocks component when inserted. You can set attributes on the blocks to define their use. The example below shows a book review template using InnerBlocks component and setting placeholders values to show the block usage.
+
+```php
+<InnerBlocks
+	template="<?= esc_attr( json_encode( [
+		[ 'core/heading',   [ 'placeholder' => 'Enter testimonial title...' ] ],
+		[ 'core/paragraph', [ 'placeholder' => 'Enter testimonial content...' ] ],
+	] ) ) ?>"
+/>
+```
+
+### `templateLock`
+
+Template locking allows locking the InnerBlocks area for the current template. Options:
+
+- 'all' — prevents all operations. It is not possible to insert new blocks. Move existing blocks or delete them.
+- 'insert' — prevents inserting or removing blocks, but allows moving existing ones.
+- false — prevents locking from being applied to an InnerBlocks area even if a parent block contains locking. ( Boolean )
+
+If locking is not set in an InnerBlocks area: the locking of the parent InnerBlocks area is used.
+
+If the block is a top level block: the locking of the Custom Post Type is used.
+
+### Example
+
+This is a more complete example of the testimonial block with more properties (here I insert inline style into the block for demo purpose, you should separate it into a CSS file using the `enqueue_style` parameter):
+
+```php
+<?php
+add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
+	$meta_boxes[] = [
+		'title'           => 'Testimonial',
+		'id'              => 'testimonial',
+		'type'            => 'block',
+		'context'         => 'side',
+		'render_callback' => function( $attributes, $preview, $post_id ) {
+			?>
+			<div class="testimonial testimonial--<?= mb_get_block_field( 'style' ) ?>">
+				<div class="testimonial__text">
+					<InnerBlocks
+						allowedBlocks="<?= esc_attr( json_encode( [
+							'core/heading',
+							'core/paragraph',
+						] ) ) ?>"
+						orientation="vertical"
+						template="<?= esc_attr( json_encode( [
+							[ 'core/heading',   [ 'placeholder' => 'Enter testimonial title...' ] ],
+							[ 'core/paragraph', [ 'placeholder' => 'Enter testimonial content...' ] ],
+						] ) ) ?>"
+						templateLock="insert"
+					/>
+				</div>
+				<div class="testimonial__image">
+					<?php mb_the_block_field( 'image' ) ?>
+				</div>
+			</div>
+			<style>
+				.testimonial {
+					padding: 16px;
+					display: flex;
+					justify-content: space-between;
+					align-items: flex-start;
+				}
+				.testimonial__text {
+					flex: 1;
+					margin-right: 12px;
+				}
+				.testimonial--image_above {
+					flex-direction: column-reverse;
+					text-align: center;
+					align-items: stretch;
+				}
+				.testimonial--image_above .testimonial__text {
+					margin-right: 0;
+					margin-top: 12px;
+				}
+			</style>
+			<?php
+		},
+		'fields'          => [
+			[
+				'type' => 'select',
+				'id'   => 'style',
+				'name' => 'Style',
+				'options' => [
+					'default'     => 'Default',
+					'image_above' => 'Image above',
+				],
+			],
+			[
+				'type' => 'single_image',
+				'id'   => 'image',
+				'name' => 'Image',
+			],
+		],
+	];
+	return $meta_boxes;
+} );
+```
+
 ## Block templates
 
 Sometimes you want to load default blocks when creating a new post. Block templates allow to specify a default initial state for an editor session. Use the argument `template` when [registering the post type](https://developer.wordpress.org/reference/functions/register_post_type):
