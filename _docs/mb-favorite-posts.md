@@ -26,48 +26,17 @@ To configure the Favorite Posts button to fit your needs, move to the next step.
 
 Go to **Settings** > **Favorite Posts**. You will see the UI with sections as follows:
 
-![Go to the settings page of MB Favorite Posts plugin](https://i.imgur.com/CwacJMk.png)
+![plugin settings](https://i.imgur.com/xLgurGV.png)
 
-### Enable for non-logged in users
+Here you can change the style for the button. We create 3 predefined styles for you to choose from:
 
-When you enable this feature, users don’t have to log in to add the post to their favorite list.
+- Default: which has a form of a button
+- Like: a simple like icon (similar to Facebook like button)
+- Rounded: a rounded button with an icon only
 
-![Enable the Favorite Posts feature for non-logged in users](https://i.imgur.com/SzBkWZL.png)
+You can customize the style for all elements of the button, such as text, text color, icon, etc.
 
-If you don’t enable this feature, the following message will show up when users click the favorite post button:
-
-![The message that shows up when users click the favorite post button](https://i.imgur.com/3U8quMe.png)
-
-### Button Text and Button Added Text
-
-In these two sections, you can enter the button labels. For example, I set the button labels as follows:
-
-![Change the Button Text and Button Added Text](https://i.imgur.com/bWebSSZ.png)
-
-This is how the Favorite Posts button displays on the front end:
-![Favorite Posts button](https://i.imgur.com/kPiUUb1.gif)
-
-### Position
-
-In this section, you can choose to display the button in the following places:
-
-- Before Content
-- After Content
-- Both
-
-![Choose the position to display the button](https://i.imgur.com/4I3Kpxn.png)
-
-This is how the button display on the front end:
-
-![The button display on the front end of the WordPress website](https://i.imgur.com/cIVh7pm.png)
-
-### Post Types
-
-In this section, choose the post type you want to display the Favorite Posts button.
-
-![Choose the post type you want to display the Favorite Posts button](https://i.imgur.com/EpEIgih.png)
-
-You can also **disable the Favorite Posts button** by unticking all post types in this section.
+There are also options to let you specify where and when the button is displayed.
 
 ### Dashboard Page and Register Page
 
@@ -136,3 +105,31 @@ It accepts the following parameters:
 Name|Description
 ---|---
 `id`|The ID of the post. Optional. If missed, the shortcode will get the current object ID.
+
+## Data
+
+The data of favorites is stored in 2 places:
+
+- User meta: the plugin stores array (serialized) of favorite post IDs in the user meta with key `mbfp_posts`. If you enable for non-logged in users, then the array of favorite post IDs is stored in the cookie.
+- Post meta: the plugin also stores array (serialized) of user IDs, who added a post to their favorites, in the post meta with key `mbfp_count`. This post meta is used to count how many favorites a post has.
+
+So if you want to query favorite posts of an user, you can do the following:
+
+```php
+$post_ids = get_user_meta( $user_id, 'mbfp_posts', true );
+$query = new WP_Query( [
+    'post_type' => 'post',
+    'post__in'  => $post_ids,
+] );
+// Do something with $query.
+```
+
+You can also query which users favorite a post:
+
+```php
+$user_ids = get_post_meta( $post_id, 'mbfp_count', true );
+$users = get_users( [
+    'include' => $user_ids,
+] );
+// Do something with $users.
+```
