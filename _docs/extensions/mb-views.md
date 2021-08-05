@@ -246,8 +246,6 @@ The order settings is used to set the loading order for views. If you have multi
 
 ## Hooks
 
-The plugin provides 2 hooks:
-
 ### `mbv_location_validate`:
 
 This filter is used to allow developers to create custom rules for location validation. It accepts 3 parameters:
@@ -269,7 +267,7 @@ add_filter( 'mbv_location_validate', function( $result, $view, $type ) {
         return false;
     }
     return $result;
-} );
+}, 10, 3 );
 ```
 
 ### `mbv_location_action_active`
@@ -293,7 +291,31 @@ add_filter( 'mbv_location_action_active', function( $active, $view, $action ) {
         return false;
     }
     return $active;
+}, 10, 3 );
+```
+
+### `mbv_twig_env`
+
+This filter allows you to change the Twig instance to render the view.
+
+```php
+add_filter( 'mbv_twig_env', function( $twig ) {
+    // return your own $twig instance.
+    return $twig;
 } );
+```
+
+### `mbv_data`
+
+This filter allows you to add/change/remove data sent to Twig to render the view.
+
+```php
+add_filter( 'mbv_data', function( $data, $twig ) {
+    $data['custom_var1'] = 'Value 1';
+    $data['custom_var2'] = 'Value 2';
+    
+    return $data;
+}, 10, 2 );
 ```
 
 ## Twig
@@ -332,4 +354,4 @@ You can also use filter to transform the value, like this:
 {% raw %}{{ post.date | date( 'm/d/Y' ) }}{% endraw %}
 ```
 
-For details about using Twig, please see the [documentation](https://twig.symfony.com/doc/1.x/templates.html).
+For details about using Twig, please see the [documentation](https://twig.symfony.com/doc/3.x/templates.html).
