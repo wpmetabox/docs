@@ -39,7 +39,7 @@ The code will generate a SQL query for creating a custom table like this:
 ```php
 $sql = "CREATE TABLE my_custom_table (
   ID int(11) unsigned NOT NULL,
-  addresss TEXT NOT NULL,
+  address TEXT NOT NULL,
   phone TEXT NOT NULL,
   email VARCHAR(20) NOT NULL
   PRIMARY KEY  (ID)
@@ -67,7 +67,7 @@ Which generates:
 ```php
 $sql = "CREATE TABLE my_custom_table (
   ID int(11) unsigned NOT NULL,
-  addresss TEXT NOT NULL,
+  address TEXT NOT NULL,
   phone TEXT NOT NULL,
   email VARCHAR(20) NOT NULL
   PRIMARY KEY  (ID)
