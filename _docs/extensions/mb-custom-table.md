@@ -349,7 +349,7 @@ function prefix_register_transaction_table() {
 
 Do **NOT** create a ID column. It's automatically created (primary key, auto increment).
 
-#### Step 4: Register fields for model, corresponding to the custom table structure
+#### Step 3: Register fields for model, corresponding to the custom table structure
 
 Registering fields for models is exactly the same as for posts. You just need to specify which model the meta box for.
 
