@@ -254,3 +254,231 @@ if ( empty( $ids ) ) {
 ```
 
 This technique also works with terms and users.
+
+## Custom models
+
+Besides custom tables for built-in WordPress posts, terms and users, the plugin allows you to create custom models, which mimic the WordPress posts, but store the data completely in custom tables. So you don't need to connect to posts, terms or users anymore. And the data is stored only in one table, which is more efficient.
+
+Pros:
+
+- Better data structure, because you can define the custom table to match your needs.
+- Don't mess with WordPress tables. You manage data on your own.
+- Complete CRUD for models so you can create/edit/delete them easily.
+- Compatible with all Meta Box field types.
+- Use the similar Meta Box and WordPress API/UI to show list of models or edit models.
+- Compatible with MB Admin Columns extension to show fields in admin columns.
+
+Cons:
+
+- Models don't have front-end templates like posts. You won't have permalinks for each model and their archive. Models should be used for managing data. If you want to have the power of the templates, then you should use normal custom tables above.
+- Limited compatibility with some extensions such as MB Relationships, MB Views.
+
+### Usage
+
+To create and use custom models, you need to follow 3 steps below:
+
+#### Step 1: Register a model
+
+Registering a model is very similar to a custom post type in WordPress, with less parameters. The code below registers a custom model `transaction`.
+
+```php
+// Step 1: Register a model.
+add_action( 'init', 'prefix_register_transaction_model' );
+function prefix_register_transaction_model() {
+	mb_register_model( 'transaction', [
+		'table'  => 'transactions',
+		'labels' => [
+			'name'          => 'Transactions',
+			'singular_name' => 'Transaction',
+		],
+		'menu_icon' => 'dashicons-money-alt',
+	] );
+}
+```
+
+Parameter | Description
+---|---
+`table`|Custom table for the model. Required.
+`labels`|An array of labels for this model. Required. See below for list of labels.
+`show_in_menu`|Where to show the menu in the admin menu. Optional. Default `true`.
+`menu_position`|The position in the menu order the model should appear. Optional. Default `null` (at the bottom).
+`menu_icon`|The url to the icon to be used for this menu. Pass a base64-encoded SVG using a data URI, which will be colored to match the color scheme -- this should begin with 'data:image/svg+xml;base64,'. Pass the name of a Dashicons helper class to use a font icon, e.g. 'dashicons-chart-pie'. Pass 'none' to leave div.wp-menu-image empty so an icon can be added via CSS. Defaults to use the posts icon.
+`parent`|Menu parent, if you want to show model as a sub-menu. Optional.
+`capability`|The capability to access the menu and create/edit/delete models. Default `edit_posts`.
+
+List of labels:
+
+Name|Description
+---|---
+`name`|General name for the model, usually plural.
+`menu_name`|Label for the menu name. Default is the same as name.
+`singular_name`|Name for one item of this model.
+`add_new`|Label for 'Add New' models.
+`add_new_item`|Label for adding a new singular item.
+`edit_item`|Label for editing a singular item.
+`search_items`|Label for searching plural items.
+`not_found`|Label used when no items are found.
+`all_items`|Label to signify all items in the page title.
+`item_updated`|Label used when an item is updated.
+`item_added`|Label used when an item is added.
+`item_deleted`|Label used when an item is deleted.
+
+#### Step 2: Create a custom table for the model
+
+Creating a custom table is similar to the section above, except one thing: you must specify the 4th parameter as `true` to indicate this is a table for models.
+
+```php
+// Step 2: Create a custom table for the model.
+add_action( 'init', 'prefix_register_transaction_table' );
+function prefix_register_transaction_table() {
+	MetaBox\CustomTable\API::create(
+		'transactions',                    // Table name.
+		[                                  // Table columns (without ID).
+			'created_at' => 'DATETIME',
+			'amount'     => 'BIGINT',
+			'email'      => 'VARCHAR(20)',
+			'gateway'    => 'TEXT',
+			'status'     => 'VARCHAR(20)',
+			'screenshot' => 'TEXT',
+		],
+		['email', 'status'],               // List of index keys.
+		true                               // THIS: Must be true for models.
+	);
+}
+```
+
+Do **NOT** create a ID column. It's automatically created (primary key, auto increment).
+
+#### Step 4: Register fields for model, corresponding to the custom table structure
+
+Registering fields for models is exactly the same as for posts. You just need to specify which model the meta box for.
+
+If your custom table has many fields, you can split them into multiple meta boxes, to enter the data more conveniently. The order of fields doesn't matter when saving.
+
+```php
+// Step 3: Register fields for model, corresponding to the custom table structure.
+add_filter( 'rwmb_meta_boxes', 'prefix_register_transaction_fields' );
+function prefix_register_transaction_fields( $meta_boxes ) {
+	$meta_boxes[] = [
+		'title'        => 'Transaction Details',
+		'models'       => ['transaction'], // Model name
+		'storage_type' => 'custom_table',  // Must be 'custom_table'
+		'table'        => 'transactions',  // Custom table name
+		'fields'       => [
+			[
+				'id'          => 'created_at',
+				'type'        => 'datetime',
+				'name'        => 'Created at',
+				'js_options'  => [
+					'timeFormat' => 'HH:mm:ss',
+				],
+				'admin_columns' => true,
+			],
+			[
+				'id'     => 'amount',
+				'type'   => 'number',
+				'name'   => 'Amount',
+				'append' => 'USD',
+				'admin_columns' => [
+					'position' => 'after id',
+					'sort'     => true,
+				],
+			],
+			[
+				'id'   => 'gateway',
+				'name' => 'Gateway',
+				'admin_columns' => true,
+			],
+			[
+				'id'   => 'status',
+				'type' => 'select',
+				'name' => 'Status',
+				'options' => [
+					'pending'   => 'Pending',
+					'completed' => 'Completed',
+					'refunded'  => 'Refunded',
+				],
+				'admin_columns' => true,
+			],
+		],
+	];
+
+	$meta_boxes[] = [
+		'title'        => 'Additional Transaction Details',
+		'models'       => ['transaction'], // Model name
+		'storage_type' => 'custom_table',  // Must be 'custom_table'
+		'table'        => 'transactions',  // Custom table name
+		'fields'       => [
+			[
+				'id'   => 'email',
+				'type' => 'email',
+				'name' => 'Email',
+				'admin_columns' => [
+					'position'   => 'after amount',
+					'searchable' => true,
+				],
+			],
+			[
+				'id'            => 'screenshot',
+				'type'          => 'image_advanced',
+				'name'          => 'Screenshots',
+				'admin_columns' => true,
+			],
+		],
+	];
+
+	return $meta_boxes;
+} );
+```
+
+After completing 3 steps, you'll see the Transactions menu on the left and you can add/edit/delete models easily as follows:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FenYCOFdCLI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Getting field values for models
+
+To get a field value for models, you can use 2 method:
+
+Using custom table API to get the raw value in the custom table.
+
+```php
+$value = \MetaBox\CustomTable\API::get_value( $field_id, $model_id, $table_name );
+
+// Example: returns 'completed'
+$status = \MetaBox\CustomTable\API::get_value( 'status', 3, 'transactions' );
+```
+
+Using the helper function to get the formated value:
+
+```php
+$value = rwmb_meta( $field_id, [
+	'object_type' => 'model', // THIS must be set to 'model',
+	'type'        => $model,
+], $model_id );
+
+// Example: returns 'Completed'
+$status = rwmb_meta( 'status', [
+	'object_type' => 'model',
+	'type'        => 'transaction',
+], 3 );
+```
+
+### Compatibility
+
+This feature currently works with the following extensions:
+
+- MB Admin Columns
+- Meta Box Group
+- Meta Box Columns
+- Meta Box Tabs
+- Meta Box Tooltip
+- Meta Box Geolocation
+- Meta Box Text Limiter
+- Meta Box Conditional Logic
+- Meta Box Show Hide
+
+### Notes
+
+Each model can have only one custom table.
+
+While models work with all Meta Box field types, the data of cloneable/multiple/group fields is always an array, thus it's saved as an serialized array in the model table column.
