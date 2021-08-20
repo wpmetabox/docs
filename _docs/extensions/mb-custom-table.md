@@ -482,3 +482,75 @@ This feature currently works with the following extensions:
 Each model can have only one custom table.
 
 While models work with all Meta Box field types, the data of cloneable/multiple/group fields is always an array, thus it's saved as an serialized array in the model table column.
+
+## API
+
+The plugin has the following APIs for you to work with the data in custom tables. These APIs work well with both custom tables for posts/terms/users and for models.
+
+### `exists`
+
+Check if a custom table has a row for an object. In other words, check if an object has data stored in a custom table.
+
+```php
+$exists = \MetaBox\CustomTable\API::exists( $object_id, $table );
+
+if ( $exists ) {
+	// Do something.
+}
+```
+
+### `get`
+
+Get all custom fields data for an object from a custom table. The returned data is an array, where keys are custom field IDs, and values are custom field values.
+
+The data is raw, meaning it's not formatted yet. For example: for images, you'll get the attachment IDs instead of an array of URL, width, height, size, etc. as you get via `rwmb_the_value` function.
+
+```php
+$data = \MetaBox\CustomTable\API::exists( $object_id, $table );
+
+// Inspect the data.
+print_r( $data );
+
+/*
+Result:
+[
+	'field_1' => 'value 1',
+	'field_2' => 'value 2',
+	'field 3' => ['one', 'two', 'three'],
+]
+*/
+```
+
+### `add`
+
+Add an array of custom field values for an object. Make sure the data for the object doesn't exists yet in the database.
+
+```php
+$data = [
+	'field_1' => 'value 1',
+	'field_2' => 'value 2',
+	'field 3' => ['one', 'two', 'three'],
+];
+\MetaBox\CustomTable\API::add( $object_id, $table, $data );
+```
+
+### `update`
+
+Update the data for an object. Works similarly to `add`. Make sure the data for object exists in the database.
+
+```php
+$data = [
+	'field_1' => 'value 1',
+	'field_2' => 'value 2',
+	'field 3' => ['one', 'two', 'three'],
+];
+\MetaBox\CustomTable\API::update( $object_id, $table, $data );
+```
+
+### `delete`
+
+Delete all data for an object in the custom table.
+
+```php
+\MetaBox\CustomTable\API::delete( $object_id, $table );
+```
