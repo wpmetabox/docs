@@ -541,7 +541,17 @@ As you can see the InnerBlocks on the left, where the usual placeholder is displ
 
 ![inner blocks in action](https://i.imgur.com/GckMMnA.png)
 
-(Note: I use [Wayfinder](https://wordpress.org/plugins/wayfinder/) plugin to show the block outline, which makes us easier to see which blocks are being edited).
+### Note: 
+
+I use [Wayfinder](https://wordpress.org/plugins/wayfinder/) plugin to show the block outline, which makes us easier to see which blocks are being edited.
+
+`<InnerBlocks />` must be wrapped in a `<div>` tag to avoid breaking the DOM nodes in the Block Editor. Get more details [here](https://github.com/WordPress/gutenberg/blob/ab1380cd41d261c91d45a0299dc4af527219e089/packages/block-editor/src/components/inner-blocks/README.md).
+
+```html
+<div class="my-inner-blocks">
+	<InnerBlocks />
+</div>
+```
 
 To make it more powerful, MB Blocks supports the following properties of InnerBlocks. They're exactly the same as in the [block handbook](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/nested-blocks-inner-blocks/).
 
