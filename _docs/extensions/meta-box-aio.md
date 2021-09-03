@@ -2,7 +2,7 @@
 title: Meta Box AIO
 ---
 
-Meta Box AIO is a specal plugin that contains all the extensions. It allows you to install only one plugin and have everything, so you can have the plugin list short and clean.
+Meta Box AIO is a special plugin that contains all the extensions. It allows you to install only one plugin and have everything, so you can have the plugin list short and clean.
 
 **Important:** Meta Box AIO still requires Meta Box to work.
 
