@@ -169,7 +169,7 @@ Comment shortcuts|`comment_shortcuts`
 Show admin bar on the front|`admin_bar_front`
 User role|`role`
 
-<strong>Note:</strong> These default fields do not work as sub-fields in a group.
+**Note:** These default fields do not work as sub-fields in a group.
 
 ### Edit user password
 

@@ -88,7 +88,7 @@ Name|Description
 
 For more details about validation rules, please read the [jQuery validation documentation](https://jqueryvalidation.org/documentation/).
 
-**Notes**
+## Notes
 
 The jQuery validation library actually uses **input name**, not input ID. In most cases, field ID is the same as field name. But for some cases such as field is a checkbox list or is a taxonomy with `field_type` is `checkbox_list`, e.g. where field has multiple inputs, then all those inputs don't have IDs.
 
@@ -104,6 +104,30 @@ In this case, **you need to use input name for the rules**. For example, if you 
     'messages' => [
         'my_taxonomy[]' => [
             'required'  => 'You must select a tag to proceed',
+        ],
+    ],
+],
+```
+
+For the field types `file` and `image`, the input name has the format `_file_fieldID[]`, you should set validation rules as follows:
+
+```php
+'fields'     => [
+    [
+        'name'             => 'Uploaded Files',
+        'id'               => 'uploaded_files',
+        'type'             => 'file',
+    ],
+],
+'validation' => [
+    'rules'    => [
+        '_file_uploaded_files[]' => [
+            'extension' => 'pdf',
+        ],
+    ],
+    'messages' => [
+        '_file_uploaded_files[]' => [
+            'extension' => 'file extension not allowed',
         ],
     ],
 ],
