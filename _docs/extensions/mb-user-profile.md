@@ -169,6 +169,8 @@ Comment shortcuts|`comment_shortcuts`
 Show admin bar on the front|`admin_bar_front`
 User role|`role`
 
+**Note:** These default fields do not work as sub-fields in a group.
+
 ### Edit user password
 
 To let users change their password, please use the meta box ID `rwmb-user-info` in the shortcode as below:

@@ -325,6 +325,46 @@ Similarly to post category, it works with `slug`, too.
 'hidden' => ['slug:tax_input[product]', '!=', 'drones']
 ```
 
+## Using with Group
+
+The extension MB Conditional Logic uses jQuery to check the field ID and value to match the condition. For the sub-fields in a group, the field ID actually has the format `groupID_fieldID` and called input ID. In this case, you need to add the input ID to the condition like this:
+
+```php
+'fields' => array(
+    array(
+        'id' => 'group',
+        'type' => 'group',
+        'fields' => array(
+            array(
+                'id'    => 'brand',
+                'name'  => 'Brand',
+                'desc'  => 'Pick Your Favourite Brand',
+                'type'  => 'select',
+                'options' => array(
+                    'apple'         => 'Apple',
+                    'google'        => 'Google',
+                    'microsoft'     => 'Microsoft'
+                )
+            ),
+            array(
+                'id'    => 'apple_products',
+                'name'  => 'Which Apple product that you love?',
+                'type'  => 'radio',
+                'options' => array(
+                    'iPhone'    => 'iPhone',
+                    'iPad'      => 'iPad',
+                    'Macbook'   => 'Macbook',
+                    'iWatch'    => 'iWatch'
+                ),
+
+                // Hide this field when user selected a brand that's not 'Apple'
+                'hidden' => array( 'group_brand', '!=', 'apple' )
+            )
+        )
+    )
+)
+```
+
 ## Custom callback
 
 Since 1.3, you can set conditional logic with custom JavaScript callback, just put your function call in the first parameter. Like so:
