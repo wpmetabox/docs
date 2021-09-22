@@ -38,6 +38,7 @@ Name|Description
 `label_password2`|Label for the confirm password input field.
 `label_submit`|Label for the submit button.
 `confirmation`|Confirmation message if registrion is succesful.
+`email_confirmation`|Send confirmation email when register (you need to setup an email SMTP to make this function work properly). If this param is `true`, system will also check confirmation status when user login. All previous users are set confirmed.
 `password_strength`|Set the required password strength. Available options: `strong`, `medium`, `weak`, `very-weak` or `false` to disable password strength meter.
 `email_as_username`|Use email for username. If this param is `true`, then the username field will disappear.
 `recaptcha_key`|Google reCaptcha site key (version 3). Optional.
