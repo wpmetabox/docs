@@ -51,6 +51,8 @@ This action runs after any meta box is saved into post meta. It takes 1 paramete
 do_action( 'rwmb_after_save_post', $object_id );
 ```
 
+You can use this hook to perform extra action after saving any metabox, like combining values of 2 fields into another one. See [an example](https://metabox.io/support/topic/edit-_post-custom-field-combine-2-field-and-add-to-a-field/)
+
 This action has variations:
 
 - `rwmb_after_save_post`: apply for all meta boxes
