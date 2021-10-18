@@ -284,6 +284,18 @@ add_filter( 'rwmb_frontend_redirect', function( $redirect, $config ) {
 }, 10, 2 );
 ```
 
+`mbfs_dashboard_query_args`
+
+This filter is used for changing the query args for getting posts in the dashboard page. By default, the plugin will get posts that have the same author as the current user. If you want to change this query, then use this filter.
+
+```php
+add_filter( 'mbfs_dashboard_query_args', function( $args ) {
+    $args['cat'] = 1; // Get only posts in category ID = 1.
+    
+    return $args;
+} );
+```
+
 ### Form actions
 
 `rwmb_frontend_before_process`
