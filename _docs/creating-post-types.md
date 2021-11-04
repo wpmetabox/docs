@@ -18,7 +18,7 @@ Here is a video tutorial on creating custom post types and custom taxonomies wit
 
 To create a new custom post type, go to **Meta Box &rarr; Post Types** and click **Add New**:
 
-![creating a post type](https://i.imgur.com/hppj98e.png)
+![creating a post type](https://i.imgur.com/GhMqEU4.png)
 
 The settings are divided into 5 tabs (explained in details below):
 
@@ -32,7 +32,7 @@ After done, click the **Publish** button to register the post type. Or click the
 
 ## General settings
 
-![creating a post type](https://i.imgur.com/hppj98e.png)
+![creating a post type](https://i.imgur.com/GhMqEU4.png)
 
 Name | Description
 ---|---
@@ -46,7 +46,7 @@ When entering a singular name for the post type, the slug is automatically gener
 
 Labels are automatically generated from the post type's plural and singular names.
 
-![label settings](https://ps.w.org/mb-custom-post-type/assets/screenshot-3.png)
+![label settings](https://i.imgur.com/h3pXR2Y.png)
 
 Name | Description
 ---|---
@@ -82,7 +82,7 @@ Item updated | Label used when an item is updated. Default is 'Post updated.' / 
 
 ## Advanced settings
 
-![advanced settings](https://ps.w.org/mb-custom-post-type/assets/screenshot-4.png)
+![advanced settings](https://i.imgur.com/AzdNBWH.png)
 
 Name | Description
 ---|---
@@ -112,7 +112,7 @@ Delete with user | Whether to delete posts of this type when deleting a user.
 
 These are core feature(s) the post type supports/has.
 
-![supports settings](https://ps.w.org/mb-custom-post-type/assets/screenshot-5.png)
+![supports settings](https://i.imgur.com/Fk9dp5w.png)
 
 Name | Description
 ---|---
@@ -132,4 +132,4 @@ Post formats | Enable post format for posts
 
 This is the list of taxonomies that are registered for the post type. Simply select the taxonomies you want to use for the post type.
 
-![taxonomies settings](https://ps.w.org/mb-custom-post-type/assets/screenshot-6.png)
+![taxonomies settings](https://i.imgur.com/aggYlsw.png)
