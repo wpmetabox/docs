@@ -10,7 +10,7 @@ For all custom fields, the `id` is always the `meta_key` and the value is the `m
 
 ## Non-cloneable fields
 
-For non-cloneable fields, the plugin stores field value in the data base in a WordPress-compatible way as following:
+For non-cloneable fields, the plugin stores field value in the database in a WordPress-compatible way as following:
 
 - If field has single value, it will be saved in single row in the post meta table.
 - If field has multiple values (set by `'multiple' => true` like `select`, `checkbox_list`, `file`, `image`, etc.), each value will be saved in single row in the post meta table.
