@@ -14,7 +14,7 @@ While Meta Box also works with PHP 5.2 and older versions of WordPress, these ve
 
 The Meta Box plugin is [available on wordpress.org](https://wordpress.org/plugins/meta-box/). To install it, go to **Plugins &rarr; Add New** and search for **Meta Box**.
 
-![install meta box plugin](https://i.imgur.com/MBrc6gJ.png)
+![install meta box plugin](https://imgur.com/Y6m8Dqq)
 
 Then click the button **Install** to install it. After that, click the button **Activate** to activate the plugin.
 
