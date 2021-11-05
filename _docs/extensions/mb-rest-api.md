@@ -32,7 +32,7 @@ And you get the post fields via REST API with URL `http://yourdomain.com/wp-json
 
 (The response is an JSON string. The screenshot above uses Firefox browser to beautify the result. You can see similar result in Google Chrome as well)
 
-If you have multiple meta boxes, the plugin will merge all fields in those meta boxes and returns a single array in the `meta_box` field of the response.
+If you have multiple meta boxes, the plugin will merge all fields in those meta boxes and return a single array in the `meta_box` field of the response.
 
 Please note that the similar result will be returned for single post, terms, single term, users, single user. E.g. it works with the following endpoint in REST API:
 
