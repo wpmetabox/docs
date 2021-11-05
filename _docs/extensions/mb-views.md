@@ -2,7 +2,7 @@
 title: MB Views - Creating WordPress templates without touching theme files
 ---
 
-MB Views helps you to get Meta Box fields and build your templates on the front end fast and easily.
+MB Views helps you to get Meta Box fields and build your templates in the front end fast and easily.
 
 With MB Views, you can just select fields you want to show, fill in some parameters and done! The extension supports all custom fields built with Meta Box, and also post fields (such as post title and post content), site settings, user fields, and even query fields.
 
@@ -25,7 +25,7 @@ In the view screen, you'll see 2 areas:
 - Template editors: where you can enter template code for the view. It contains 3 editors for the template, CSS and JavaScript.
 - Settings: where you can set location rules for the view.
 
-In the main editor, you can enter any HTML or *shortcodes* for the template. All shortcodes will be parsed automatically on the front end.
+In the main editor, you can enter any HTML or *shortcodes* for the template. All shortcodes will be parsed automatically in the front end.
 
 ## Insert fields
 
@@ -70,7 +70,7 @@ The plugin will generate a snippet for the field, like this:
 {% endraw %}
 ```
 
-This is a `for` loop, created using Twig template engine. You'll find more details about it below. The content inside the `for` loop might be different depends on the field type.
+This is a `for` loop, created by using Twig template engine. You'll find more details about it below. The content inside the `for` loop might be different depending on the field type.
 
 ### Group fields
 
