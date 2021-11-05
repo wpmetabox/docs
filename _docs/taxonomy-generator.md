@@ -8,7 +8,7 @@ title: Taxonomy Generator
 
 ### Set up General Options
 
-Open this tool [here](https://metabox.io/taxonomy-generator/) and put the **Plural Name, Singular Name** and **Slug** of your custom taxonomy in the **General** tab. The **Function name** and **Text domain name** already have default values, but you can change them as well.
+Open this tool [here](https://metabox.io/taxonomy-generator/) and put the **Plural Name, Singular Name** and **Slug** of your custom taxonomy in the **General** tab. The **Function name** and **Text domain** already have default values, but you can change them as well.
 
 ![Set up general information of your custom taxonomy created with Meta Box Taxonomy Generator tool](https://i.imgur.com/eJdGyjQ.png)
 
