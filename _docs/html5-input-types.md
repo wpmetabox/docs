@@ -26,7 +26,7 @@ Input Type | Description
 ---|---
 `search`|Search input field
 `email`|Email input field, which has validation for email
-`url`|URL input field, which has validation for URL (e.g. must starts with `http`)
+`url`|URL input field, which has validation for URL (e.g. must starts with `https`)
 `tel`|Telephone input field
 `number`|Number input field, which has up/down arrows to increase/decrease the number.
 `range`|Range input field, which allows you select a number by dragging a control.
