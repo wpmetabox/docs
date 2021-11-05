@@ -60,7 +60,7 @@ add_filter( 'rwmb_content_field_meta', function() {
 } );
 ```
 
-There are 2 things important in the code above:
+There are 2 important things in the code above:
 
 1. To make Meta Box save the wysiwyg content to post content, we have to set it `'id' => 'content'`. This `id` is used to tell WordPress to get the submitted value and save it to post content.
 1. Because we use the WordPress's id for the field, some WordPress style is applied and makes the field look weird. We have to use a `custom_html` field to output some CSS to fix it. Note that you might want to enqueue another stylesheet to do the same job. Here we use the `custom_html` for the quick fix, it just works.
