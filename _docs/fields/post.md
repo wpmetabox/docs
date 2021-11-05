@@ -6,7 +6,7 @@ title: Post
 
 The post field allows you to select one or multiple post (or any custom post type) objects. This field has several settings that can be displayed as a: simple select dropdown, checkbox list, or beautiful select dropdown with select2 library.
 
-If the post type is hierarchical, you are able to display the field as a select or checkbox tree, e.g. show childen posts when parent post is selected.
+If the post type is hierarchical, you are able to display the field as a select or checkbox tree, e.g. showing childen posts when parent post is selected.
 
 ## Screenshots
 
@@ -104,7 +104,7 @@ array(
 
 ## Ajax Load
 
-Since version 5.2, Meta Box uses Ajax to increase the performance for the field query. Instead of fetching all posts at once, the plugin now fetches only some posts when the page is loaded, and then fetches more posts when users scroll down to the list.
+Since version 5.2, Meta Box uses Ajax to increase the performance for the field query. Instead of fetching all posts at once, the plugin now fetches only some posts when the page is loaded, and then it fetches more posts when users scroll down to the list.
 
 See this video for demonstration:
 
@@ -151,7 +151,7 @@ It also _doesn't affect the initial load_ of the field. When the field is loaded
 
 ### Searching Parameters
 
-You probably don't want to perform an Ajax request when open the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLength` for the input, as below:
+You probably don't want to perform an Ajax request when opening the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLength` for the input, as below:
 
 ```php
 array(
@@ -175,7 +175,7 @@ This parameter sets the minimum number of characters required to start a search.
 
 This field saves post ID(s) in the database.
 
-If field is not `multiple`, then a single post ID is saved in the database. Otherwise, the field saves multiple post IDs in the database, where each post ID is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+If field is not `multiple`, a single post ID is saved in the database. Otherwise, the field saves multiple post IDs in the database, where each post ID is stored in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
 
 If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
 
