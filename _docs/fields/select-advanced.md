@@ -62,11 +62,11 @@ array(
 
 ## Data
 
-If `multiple` is `false`, this field simply saves the selected value in the database. The value saved is the `value` in the `options` array (not label).
+If `multiple` is `false`, this field simply saves the selected value in the database. The saved value is the `value` in the `options` array (not label).
 
-If `multiple` is `true`, this field saves multiple values in the database, where ech value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+If `multiple` is `true`, this field saves multiple values in the database, where aech value is stored in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
 
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+If the field is cloneable, the value is stored as a serialized array in a single row in the database.
 
 ## Template usage
 
@@ -103,6 +103,6 @@ The function [rwmb_meta()](/rwmb-meta/) only returns the value of the field, e.g
 rwmb_the_value( $field_id );
 ```
 
-Depends on the value is a single value or an array (multiple or cloneable or both), this function outputs a simple string or an unordered list.
+Depending on the value is a single value or an array (multiple or cloneable or both), this function outputs a simple string or an unordered list.
 
 Read more about [rwmb_meta()](/rwmb-meta/) and [rwmb_the_value()](/rwmb-the-value/).
