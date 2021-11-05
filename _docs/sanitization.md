@@ -4,7 +4,7 @@ title: Sanitization
 
 To ensure the user input is safe to save to the database, Meta Box provides a mechanism to sanitize fields' values. The sanitization is automatically applied for all built-in field types. For some fields such as select or radio, Meta Box also validates the submitted value to ensure it's a valid value (e.g. available in the field options).
 
-The sanitization is applied for both single and cloneable fields. With cloneable fields, the sanitization is applied for each clone value.
+The sanitization is applied for both single and cloneable fields. With cloneable fields, the sanitization is applied for each cloned value.
 
 ## Default sanitize callbacks
 
