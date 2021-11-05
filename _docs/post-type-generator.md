@@ -11,7 +11,7 @@ One notable feature of this tool is that it can be used independently from Meta 
 
 ### Set up General Options
 
-After opening this tool [here](https://metabox.io/post-type-generator/), fill in the basic information for your new custom post type like **Plural name, Singular name** and **Slug** in the **General** tab. The **Function** name and **Text domain name** already have default values, but you can change them as well.
+After opening this tool [here](https://metabox.io/post-type-generator/), fill in the basic information for your new custom post type like **Plural name, Singular name** and **Slug** in the **General** tab. The **Function name** and **Text domain** already have default values, but you can change them as well.
 
 ![Set up General information of your custom post type created with Meta Box Post Type Generator tool](https://i.imgur.com/WZsxlhE.png)
 
