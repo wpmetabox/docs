@@ -43,7 +43,7 @@ array(
 
 ## Data
 
-This field always stored the value as a serialized array in a single row in the database. Each element of that array will have the key as specified in the field's `options`.
+This field always stores the value as a serialized array in a single row in the database. Each element of that array will have the key as specified in the field's `options`.
 
 ## Template usage
 
