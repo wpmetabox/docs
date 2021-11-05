@@ -12,7 +12,7 @@ Each parameter (`include`, `exclude`) is an array and has the same following ele
 
 - `relation`: The logical operator to combine conditions: `AND` or `OR`. Default is `OR`. Case insensitive. Optional.
 
-If one of the following conditions matched (`relation` = `OR`) or all of the following conditions matched (`relation` = `AND`), then the meta box is shown (`include`) or hid (`exclude`).
+If one of the following conditions matched (`relation` = `OR`) or all of the following conditions matched (`relation` = `AND`), then the meta box is shown (`include`) or hidden (`exclude`).
 
 Parameter | Description
 --- | ---
