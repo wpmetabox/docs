@@ -31,7 +31,7 @@ Name|Description
 
 ## Default values
 
-When making a field cloneable, its data is an [array of clone values](https://docs.metabox.io/database/#cloneable-fields). So, the `std` parameter (default value) should represents this structure, e.g. array of clone values.
+When making a field cloneable, its data is an [array of cloned values](https://docs.metabox.io/database/#cloneable-fields). So, the `std` parameter (default value) should represent this structure, e.g. array of cloned values.
 
 For example:
 
