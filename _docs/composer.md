@@ -108,7 +108,7 @@ Now go to *Dashboard &rarr; Posts &rarr; Add New* and we'll see:
 
 ## Conclusion
 
-This tutorial is a very simple example of using Meta Box with Composer. You can learn more about Composer by reading its [documentation](https://getcomposer.org/doc/) and [browser packages at packagist.org](https://packagist.org/). Although this is not a traditional way to develop plugins for WordPress, using a modern PHP tool like Composer benefits us a lot because of 2 reasons:
+This tutorial is a very simple example of using Meta Box with Composer. You can learn more about Composer by reading its [documentation](https://getcomposer.org/doc/) and [browser packages at packagist.org](https://packagist.org/). Although this is not a traditional way to develop plugins for WordPress, using a modern PHP tool like Composer is of much benefit for us because of 2 reasons:
 
 - Dependency management: it's always a headache for managing dependencies in WordPress. There are some works around that like TGM Plugin Activation class and Plugin Dependency. But it's still far from perfect. Not all plugins are be able to be included inside another plugin like Meta Box.
 - Vast amount of libraries: this is a huge advantage of using Composer. With these well-coded libraries, your development process will be easier, faster and thus, it saves you tons of time.
@@ -117,7 +117,7 @@ So, enjoy Composer and Meta Box! And share with us how you use them in your proj
 
 ## Video
 
-This video demonstrates how to install Meta Box extensions from wordpress.org. The approach is slightly different, but it show you the idea of using Composer with Meta Box plugins.
+This video demonstrates how to install Meta Box extensions from wordpress.org. The approach is slightly different, but it shows you the idea of using Composer with Meta Box plugins.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/khiCSMh3DY0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
