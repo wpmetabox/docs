@@ -40,7 +40,7 @@ array(
 
 ## Data
 
-This field saves value(s) in the database. If field is `multiple`, then each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+This field saves value(s) in the database. If field is `multiple`, then each value is stored in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
 
 If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
 
@@ -52,7 +52,7 @@ If field is not multiple, to get the field value, use this code:
 $value = rwmb_meta( $field_id );
 echo $value;
 ```
-The [rwmb_meta()](/rwmb-meta/) function returns the value saved in the database (the value in the options array). If you want to display the label, use this code:
+The [rwmb_meta()](/rwmb-meta/) function returns the saved value in the database (the value in the options array). If you want to display the label, use this code:
 
 ```php
 rwmb_the_value( $field_id );
