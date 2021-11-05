@@ -42,7 +42,7 @@ Note that the `multiple` setting is always set to `true` for this field.
 
 ## Data
 
-This field saves multiple values (attachment IDs) in the database. Each value (attachment ID) and is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+This field saves multiple values (attachment IDs) in the database. Each value (attachment ID) is stored in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
 
 ## Upload to custom folder
 
@@ -61,7 +61,7 @@ You can also use WordPress constants to specify the path easier, such as:
 'unique_filename_callback' => 'my_function',
 ```
 
-The custom folder should be inside your your WordPress website's root folder. So you can store it in `/uploads/`, `/downloads/` folders if you want. The configuration is *per* field, so you can has one field store files in `/downloads/` and another field in `/invoices/`.
+The custom folder should be inside your your WordPress website's root folder. So you can store it in `/uploads/`, `/downloads/` folders if you want. The configuration is *per* field, so you can have one field storing files in `/downloads/` and another field in `/invoices/`.
 
 The uploaded file name is normally the original file name and maybe with suffix `-1`, `-2` to prevent duplicated names. In case you want to set custom names for files, pass your custom callback to the setting `unique_filename_callback`.
 
