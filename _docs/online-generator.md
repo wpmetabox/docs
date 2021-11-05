@@ -35,7 +35,7 @@ Once you complete adding fields, click the **Settings** tab to add settings for 
 Parameter|Description
 ---|---
 Meta box title| Meta box title. Required.
-Meta box ID| Meta box ID. If you didn’t type anything in here, the meta box ID would be automatically created from the title. Optional.
+Meta box ID| Meta box ID. If you didn’t type anything here, the meta box ID would be automatically created from the title. Optional.
 Post types|Custom post types which the meta box is for.
 Position|Where the meta box is displayed.
 Priority|Priority within the context where the box is displayed
