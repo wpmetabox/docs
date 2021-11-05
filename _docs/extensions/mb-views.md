@@ -70,7 +70,7 @@ The plugin will generate a snippet for the field, like this:
 {% endraw %}
 ```
 
-This is a `for` loop, created using Twig template engine. You'll find more details about it below. The content inside the `for` loop might be different depends on the field type.
+This is a `for` loop, created by using Twig template engine. You'll find more details about it below. The content inside the `for` loop might be different depends on the field type.
 
 ### Group fields
 
