@@ -22,7 +22,7 @@ Screenshots:
 
 Creating a setting page is done by either of the following methods:
 
-- **Using Meta Box Builder extension**, which helps you creating settings pages with UI. This extension is already bundled in Meta Box AIO/MB Core.
+- **Using Meta Box Builder extension**, which helps you create settings pages with UI. This extension is already bundled in Meta Box AIO/MB Core.
 - **Using code**.
 
 ### Using Meta Box Builder
@@ -272,7 +272,7 @@ This is a quick video that demonstrates how to use MB Settings Page to create cu
 
 ### Creating a Customizer panel
 
-The idea behind Customizer support is to map a settings page to a Customizer panel. And each meta box in the settings page will be a Customizer section. The mapping is quite simple, clear, but very powerful. It allows you to bring everything in a settings page into the Customizer with a single line of code.
+The idea behind Customizer support is to map a settings page to a Customizer panel. And each meta box in the settings page will be a Customizer section. The mapping is quite simple, clear, and extreme powerful. It allows you to bring everything in a settings page into the Customizer with a single line of code.
 
 To bring a settings page to the Customizer, simply select the "Customizer" settings if you use Meta Box Builder, or add `'customizer' => true` if you use code as follows:
 
