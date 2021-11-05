@@ -29,7 +29,7 @@ Name | Value | Description
 `range` | `min` | Create a range from the minimum value to one handle.
 `value` | `$field['std']` | Set the default field value.
 
-If you set `range` to `true`, then the plugin will saves 2 values in the database, separated by pipe (`|`) character, e.g. `15|90`.
+If you set `range` to `true`, the plugin will save 2 values in the database, separated by pipe (`|`) character, e.g. `15|90`.
 
 ## Sample code
 
@@ -39,7 +39,7 @@ array(
     'id'   => 'slider',
     'type' => 'slider',
 
-    // Text labels displayed before and after value
+    // Text labels display before and after value
     'prefix' => '$',
     'suffix' => ' USD',
 
@@ -59,7 +59,7 @@ array(
 
 This field simply saves a single selected value (without the prefix and suffix) in the database.
 
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
+If the field is cloneable, the value is stored as a serialized array in a single row in the database.
 
 ## Template usage
 
