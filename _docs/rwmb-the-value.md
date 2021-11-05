@@ -12,7 +12,7 @@ Unlike [rwmb_get_value()](/rwmb-get-value/), this function always outputs human-
 
 ## Usage
 
-To display field value in your theme, copy the following code and paste it in your theme's template file:
+To display field's value in your theme, copy the following code and paste it in your theme's template file:
 
 ```php
 rwmb_the_value( $field_id );
@@ -37,7 +37,7 @@ Name|Description
 
 ## Returned value
 
-By default, the function just outputs the HTML content of the field. If you set `$echo` to `false`, then it will return return the HTML as a string.
+By default, the function just outputs the HTML content of the field. If you set `$echo` to `false`, then it will return the HTML as a string.
 
 For simple fields like `text`, `select`, HTML output is just the field value.
 
