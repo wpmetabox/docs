@@ -6,7 +6,7 @@ title: Image
 
 The image field creates a simple image upload with default UI like `<input type="file">`. Unlike other media fields, this field doesn't use Media Library UI to upload images.
 
-This field is very similar to [file](/fields/file/). The only difference is the file field allows to upload all file types while this field allows only images.
+This field is very similar to [file](/fields/file/). The only difference is that the file field allows to upload all file types while this field allows only images.
 
 ## Screenshot
 
@@ -42,7 +42,7 @@ array(
 
 ## Data
 
-This field saves multiple values (attachment IDs) in the database. Each value (attachment ID) and is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+This field saves multiple values (attachment IDs) in the database. Each value (attachment ID) is stored in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
 
 ## Template usage
 
