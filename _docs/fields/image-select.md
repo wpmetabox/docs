@@ -41,7 +41,7 @@ array(
 
 ## Data
 
-If field has multiple value, then it each value in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`). Otherwise, the field saves its single value in the post meta.
+If field has multiple value, each value is stored in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`). Otherwise, the field saves its single value in the post meta.
 
 The value saved in the database is the value defined in the `options` table, not the image URL.
 
