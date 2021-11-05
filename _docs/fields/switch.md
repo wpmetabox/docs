@@ -4,7 +4,7 @@ title: Switch
 
 ## Overview
 
-The switch field shows a on/off switch for you to enable/disable something. It supports 2 styles (rounded or square) and custom text/icon labels.
+The switch field shows a on/off switch for you to enable/disable something. It allows editor to select styles (rounded or square) and custom text/icon labels.
 
 ## Screenshot
 
@@ -67,6 +67,6 @@ Or if you only want to display "On/Off":
 rwmb_the_value( $field_id ); // echo 'On' or 'Off'
 ```
 
-When using `rwmb_the_value`, it displays the `on_label` or `off_label` depends on the field value. In case those labels are omited, it uses "On/Off" as the default text.
+When using `rwmb_the_value`, displaying the `on_label` or `off_label` depends on the field value. In case those labels are omited, it uses "On/Off" as the default text.
 
 Read more about [rwmb_meta()](/rwmb-meta/) and [rwmb_the_value()](/rwmb-the-value/).
