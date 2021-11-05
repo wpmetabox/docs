@@ -148,7 +148,7 @@ It also _doesn't affect the initial load_ of the field. When the field is loaded
 
 ### Searching Parameters
 
-You probably don't want to perform an Ajax request when open the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLengthfor` the input, as below:
+You probably don't want to perform an Ajax request when opening the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLengthfor` the input, as below:
 
 ```php
 array(
@@ -172,7 +172,7 @@ This parameter sets the minimum number of characters required to start a search.
 
 Unlike the [taxonomy](/fields/taxonomy/) field, this field saves terms' IDs in the database.
 
-If field is not `multiple`, then a single term ID is saved in the database. Otherwise, the field saves multiple term IDs in a single row in the database in the comma separated strings (e.g. format `1,2,3`).
+If field is not `multiple`, a single term ID is saved in the database. Otherwise, the field saves multiple term IDs in a single row in the database in the comma separated strings (e.g. format `1,2,3`).
 
 If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
 
@@ -189,7 +189,7 @@ if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 }
 ```
 
-If the field is neither cloneable or multiple, e.g. it has single value, then the [rwmb_meta()](/rwmb-meta/) function returns the single term object:
+If the field is neither cloneable nor multiple, e.g. it has single value, then the [rwmb_meta()](/rwmb-meta/) function returns the single term object:
 
 ```php
 $term = rwmb_meta( $field_id );
