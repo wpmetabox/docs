@@ -93,7 +93,7 @@ array(
 
 ## Ajax Load
 
-Since version 5.2, Meta Box uses Ajax to increase the performance for the field query. Instead of fetching all users at once, the plugin now fetches only some users when the page is loaded, and then fetches more users when users scroll down to the list.
+Since version 5.2, Meta Box uses Ajax to increase the performance for the field query. Instead of fetching all users at once, the plugin now fetches only some users when the page is loaded, and then it fetches more users when users scroll down to the list.
 
 See this video for demonstration (made for posts, but works similar for taxonomies):
 
@@ -138,7 +138,7 @@ It also _doesn't affect the initial load_ of the field. When the field is loaded
 
 ### Searching Parameters
 
-You probably don't want to perform an Ajax request when open the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLengthfor` the input, as below:
+You probably don't want to perform an Ajax request when opening the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLengthfor` the input, as below:
 
 ```php
 array(
@@ -161,7 +161,7 @@ This parameter sets the minimum number of characters required to start a search.
 
 This field saves user ID(s) in the database.
 
-If field is not `multiple`, then a single user ID is saved in the database. Otherwise, the field saves multiple user IDs in the database, where each user ID is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+If field is not `multiple`, a single user ID is saved in the database. Otherwise, the field saves multiple user IDs in the database, where each user ID is stored in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
 
 If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
 
