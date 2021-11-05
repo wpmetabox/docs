@@ -82,9 +82,9 @@ Note that the data returned must be in JSON format as above. The ajax request al
 
 ## Data
 
-This field saves multiple values in the database. Each value is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+This field saves multiple values in the database. Each value is stored in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
 
-If the field is cloneable, then the value is stored as a serialized array in a single row in the database. Each value of that array is an array of clone's values.
+If the field is cloneable, then the value is stored as a serialized array in a single row in the database. Each value of that array is an array of cloned values.
 
 Note that this field stores the options' values, not labels.
 
@@ -110,6 +110,6 @@ foreach ( $values as $clone ) {
 }
 ```
 
-The values get and displayed here are the options' values, not labels.
+The values got and displayed here are the options' values, not labels.
 
 Read more about [rwmb_meta()](/rwmb-meta/).
