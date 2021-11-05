@@ -2,7 +2,7 @@
 title: MB User Profile
 ---
 
-MB User Profile helps you to add information to user profile and edit these details on the front end. It also includes register form, login form and edit profile form that you can embed anywhere using shortcodes.
+MB User Profile helps you to add information to user profile and edit these details in the front end. It also includes register form, login form and edit profile form that you can embed anywhere using shortcodes.
 
 ![user profile page](https://i.imgur.com/bqVnDDF.png)
 
@@ -18,7 +18,7 @@ This shortcode shows the user register form. If you want to add more fields in t
 
 If you have multiple meta boxes that you want to display in the register form, enter their IDs separated by commas.
 
-If the `id` has no value, then it shows the default registration form.
+If the `id` has no value, it shows the default registration form.
 
 **Shortcode attributes**
 
