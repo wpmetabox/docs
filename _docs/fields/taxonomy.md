@@ -6,7 +6,7 @@ title: Taxonomy
 
 The taxonomy field allows you to select one or multiple taxonomy terms. This field has several settings that can be displayed as a: simple select dropdown, checkbox list, or beautiful select dropdown with select2 library.
 
-If the taxonomy is hierarchical, you are able to display the field as a select or checkbox tree, e.g. show childen terms when parent term is selected.
+If the taxonomy is hierarchical, you are able to display the field as a select or checkbox tree, e.g. showing childen terms when parent term is selected.
 
 ## Screenshots
 
@@ -96,7 +96,7 @@ array(
 
 ## Ajax Load
 
-Since version 5.2, Meta Box uses Ajax to increase the performance for the field query. Instead of fetching all terms at once, the plugin now fetches only some terms when the page is loaded, and then fetches more terms when users scroll down to the list.
+Since version 5.2, Meta Box uses Ajax to increase the performance for the field query. Instead of fetching all terms at once, the plugin now fetches only some terms when the page is loaded, and then it fetches more terms when users scroll down to the list.
 
 See this video for demonstration (made for posts, but works similar for taxonomies):
 
@@ -143,7 +143,7 @@ It also _doesn't affect the initial load_ of the field. When the field is loaded
 
 ### Searching Parameters
 
-You probably don't want to perform an Ajax request when open the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLengthfor` the input, as below:
+You probably don't want to perform an Ajax request when opening the dropdown at first. You might want to _make Ajax requests only when users type something_ and search for that. To do that, you need to set the `minimumInputLengthfor` the input, as below:
 
 ```php
 array(
@@ -169,7 +169,7 @@ This field **does not save any value** in the database. Instead of that, it **se
 
 The purpose of this field is to replace the default WordPress meta box for taxonomy and offer more options to control how it displays.
 
-For this reason, if you have 2 `taxonomy` field, and select different values for them, after saving, they still show the same value.
+For this reason, if you have 2 `taxonomy` fields, and select different values for them, after saving, they still show the same value.
 
 If you prefer saving data, check out [taxonomy advanced](/fields/taxonomy-advanced/).
 
