@@ -86,7 +86,7 @@ array(
 
 This field saves sidebar ID(s) in the database.
 
-If field is not `multiple`, then a single sidebar ID is saved in the database. Otherwise, the field saves multiple sidebar IDs in the database, where each sidebar ID is store in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
+If field is not `multiple`, a single sidebar ID is saved in the database. Otherwise, the field saves multiple sidebar IDs in the database, where each sidebar ID is stored in a single row in the database with the same meta key (similar to what `add_post_meta` does with last parameter `false`).
 
 If the field is cloneable, then the value is stored as a serialized array in a single row in the database.
 
