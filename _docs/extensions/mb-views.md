@@ -183,7 +183,7 @@ In case you want to set arguments for functions, use the `set` syntax. Twig allo
 
 ## Custom data
 
-The plugin allows you to pass custom data to the shortcode via custom attributes. This allows you to buid flexible views and show them in multiple places with custom data.
+The plugin allows you to pass custom data to the shortcode via custom attributes. This allows you to build flexible views and show them in multiple places with custom data.
 
 For example, you want to display user info in a view. While fetching custom user data is fine, you might want to set user details (like "name" and "age") in some specific cases. You can pass "name" and "age" to a view shortcode like this:
 
@@ -272,7 +272,7 @@ add_filter( 'mbv_location_validate', function( $result, $view, $type ) {
 
 ### `mbv_location_action_active`
 
-This filter is used to allow developers to create custom rules for location validation for the views that has display on a specific action (type = action). It accepts 3 parameters:
+This filter is used to allow developers to create custom rules for location validation for the views that has displayed on a specific action (type = action). It accepts 3 parameters:
 
 - `$active`: is the view active
 - `$view`: the view object (which is a post object)
