@@ -1,12 +1,12 @@
 ---
-title: Open Street Map
+title: Open Street Maps
 ---
 
 ## Overview
 
-The `osm` field creates a [OpenStreetMap](https://openstreetmap.org) where you can select a location. This field is very similar to [map](/fields/map) field, and provides an alternative solution for displaying maps, since [Google requires developers to enter credit card ](https://metabox.io/meta-box-weekly-updates-july-2018/) details.
+The `osm` field creates a [OpenStreetMap](https://openstreetmap.org) where you can select a location. This field is very similar to [map](/fields/map) field, and provides an alternative solution for displaying maps, then [Google requires developers to enter credit card ](https://metabox.io/meta-box-weekly-updates-july-2018/) details.
 
-This field supports all features that the [Google Maps](/fields/map) field has. It comes along with a text field for address input, which has the autocomplete feature. The data for address autocomplete is get from [Nominatum](https://wiki.openstreetmap.org/wiki/Nominatim) geocoding service.
+This field supports all features that the [Google Maps](/fields/map) field has. It comes along with a text field for address input, which has the autocomplete feature. The data for address autocomplete is to get from [Nominatum](https://wiki.openstreetmap.org/wiki/Nominatim) geocoding service.
 
 You also can pick a location simply by clicking on the map or drag and drop the marker. Note that when you drag and drop the marker, the location (latitude and longitude) is saved automatically in the field value.
 
@@ -118,7 +118,7 @@ Read more about [rwmb_get_value()](/rwmb-get-value/).
 
 ### Outputting a map in a group
 
-If you have a map inside a cloneable/non-cloneable group, then the helper functions above doesn't work. In that case, you can use a helper function in the plugin to show the map.
+If you have a map inside a cloneable/non-cloneable group, the helper functions above doesn't work. In that case, you can use a helper function in the plugin to show the map.
 
 ```php
 $group_values = rwmb_meta( 'group_id' );
