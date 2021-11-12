@@ -4,6 +4,10 @@ title: Field settings
 
 Each field contains settings to determine where and how data is loaded and saved. All fields share some common settings, but also offer unique settings per field type. These unique settings can be found by reading more about the field type.
 
+To understand field types and settings for each type, please see this video below:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WWeaM5vIAwM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Field settings can be customized when editing a field group in Meta Box Builder or the `fields` array if you use code to create a field group. In Meta Box Builder, settings are put into 2 tabs: General and Advanced.
 
 Below are the screenshots of text field settings:
