@@ -6,6 +6,12 @@ Meta Box Builder creates an UI for you to add and manage your custom fields, [se
 
 ![meta box builder ui](https://i.imgur.com/DQBeWJN.png)
 
+## Video tutorial
+
+Here is a quick video showing how to use the Meta Box Builder to create custom fields in WordPress:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_DaFUt92kYY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Creating a field group
 
 To create a field group, go to *Meta Box &rarr; Custom Fields*. Then click the **Add New** button.
