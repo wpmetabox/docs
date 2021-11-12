@@ -34,6 +34,10 @@ While working on fields, you can:
 
 Each field settings are self-explained. We also add some tooltips next to the setting title to give you more information if needed. All field settings are divided into 2 tabs: General, Advanced. These settings are explained in detailed [here](https://docs.metabox.io/field-settings/). Some settings are for other extensions which are explained on each extension docs.
 
+To understand field types and settings for each type, please see this video below:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WWeaM5vIAwM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Settings
 
 The field group settings are put in the tab **Settings**:
