@@ -42,6 +42,7 @@ Sortable | `sort_clone`|Ability to drag-and-drop reorder clones (`true` or `fals
 Clone default value | `clone_default`|Clone the default value of fields? `true` or `false` (default).
 Clone as multiple | `clone_as_multiple`|Whether to store clone values in multiple rows in the database? Optional. Default `false`. See [this post](https://metabox.io/introducing-clone-as-multiple-feature/) for details.
 Max number of clones | `max_clone`|Maximum number of clones. Optional. Default `0` (unlimited).
+Min number of clones | `min_clone`|Minimum number of clones. Optional. Default `0`.
 Add more text | `add_button`|The text for **Add more** clone button. Optional. Default "+ Add more".
 
 ### Advanced
