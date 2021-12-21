@@ -227,6 +227,8 @@ In this case, please set another attribute `'address_field' => 'address_id'` for
 
 ## Two-way binding data with map
 
-If you have map field, then whenever you select an address, the pin on the map will change according to the new location. And whenever you change the location of the pin on the map, the new location will be updated to the latitude, longitude fields (if you have them). Moreover, the pin on the map will automatically populated when you change the value of latitude and longitude fields.
+If you have a map field, then whenever you *change an address or manually change the value of latitude and longitue fields, the pin on the map will change* according to the new location.
 
-So the location is synchronize between address, latitude/longitude and map fields.
+And whenever you *change the pin location, the latitude and longitude will change* (if you have these fields).
+
+However, if you change the pin location, the address field will *NOT* change.
