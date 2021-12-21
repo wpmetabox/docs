@@ -6,11 +6,23 @@ Meta Box Geolocation helps you fill in address fields (street address, zipcode, 
 
 ![auto suggest geolocation data](https://i1.wp.com/metabox.io/wp-content/uploads/2016/03/meta-box-geolocation.gif)
 
-## Enabling geolocation API
 
-If you use Open Street Maps, then you can bypass this step. Open Street Maps doesn't require any extra API/configuration from you.
+## Configuration
 
-If you use Google Maps, create a project for Google Maps in the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview). And don't forget to enable the following APIs:
+To make the geolocation work, you need to configure 4 things:
+
+- Enable the geolocation API
+- Setup the field group settings
+- Setup the ID for the address field to make it suggests addresses from geolocation API
+- Setup the ID (or binding ID) for other fields to retrieve data from geolocation API when selecting an address
+
+Follow each step below.
+
+### Geolocation API
+
+If you use **Open Street Maps**, then you can bypass this step. Open Street Maps doesn't require any extra configuration from you.
+
+If you use **Google Maps**, create a project for Google Maps in the [Google Cloud Platform Console](https://console.cloud.google.com/google/maps-apis/overview). And don't forget to enable the following APIs:
 
 - Google Maps API
 - Geocoding API
@@ -18,9 +30,9 @@ If you use Google Maps, create a project for Google Maps in the [Google Cloud Pl
 
 And then create an API key for Google Maps. See [here](https://developers.google.com/maps/documentation/javascript/get-api-key) for instruction. You'll need this key to perform any call to Google Maps platform.
 
-## Enable geolocation support for a meta box
+### Field group settings
 
-If you use Open Street Maps for geolocation, you need to add a Open Street Maps field to your field group. Then add `geo` to your field group custom settings in the Meta Box Builder like this:
+If you use **Open Street Maps**, you need to *add a Open Street Maps field* to your field group. Then add `geo` to your field group custom settings in the Meta Box Builder like this:
 
 ![enable geolocation for open street maps](https://i.imgur.com/M5ar5i2.png)
 
@@ -30,7 +42,7 @@ If you use code, then add this line to your field group settings:
 'geo' => true,
 ```
 
-If you use Google Maps, it's _not_ required to add a Google Maps field to your field group. To enable geolocation, add the following custom settings in the field group settings in the Meta Box Builder like this:
+If you use **Google Maps**, it's _not_ required to add a Google Maps field to your field group. To enable geolocation, add the following custom settings in the field group settings in the Meta Box Builder like this:
 
 ![enable geolocation for google maps](https://i.imgur.com/XII5Kyw.png)
 
@@ -84,16 +96,17 @@ Examples:
 ],
 ```
 
-## Adding autocomplete field
+### Address field
 
-To add an auto complete field. Simply add a `text` field and set it id starts with `address`. Like `address` or `address_something`... The plugin will treat that field as auto complete address field.
+The address field is used to retrieve the suggestions from geolocation API. To add an address field, simply add a text field **with ID starts with `address`** (like `address` or `address_something`)...
 
-You can add auto complete to `textarea`, it works but will generate warning messages.
+### Other fields
 
-## Populating field data
+When you select an address from autocomplete list, the geolocation API will return a list of address components. To make the field retrieve the data, **set the field's ID same as one of address component**.
 
-### Address components
-When you select an address from autocomplete field, it returns an array of *address components*. Which you can use it to populate to other fields. The following components are supported by Google Maps:
+For example, you create a text field with ID `city`, when you select an address, the city of the address will be filled into this text field.
+
+Here is the list of components for **Google Maps**:
 
 Component|Description
 ---|---
@@ -130,7 +143,7 @@ Component|Description
 
 For more information about address components visit: [Google Address Component Types](https://developers.google.com/maps/documentation/geocoding/intro#Types)
 
-Add here are the address components supported by Open Street Maps (which are self-explained):
+Here are the address components for **Open Street Maps** (which are self-explained):
 
 - `building`
 - `house_number`
@@ -147,27 +160,35 @@ Add here are the address components supported by Open Street Maps (which are sel
 - `country`
 - `country_code`
 
-### Auto populate
+## Advanced
 
-To auto populate data to the field. Just set that field's ID same as one of address component above. For example, you create a `number` field with ID `postal_code`. The postal code type will auto populate to that field if exists.
+Sometimes you don't want the fields to have the *exact* ID as the address components, or you want to combine multiple components into one field, then follow the guides below.
 
-**Long name and short name**
+### Long and short names
 
-Let's say we have a country named 'Australia'. The long name is 'Australia' and short name is 'AU'. And so on, if we have a state named 'Queensland', so 'Queensland' is the long name and 'QLD' is the short name.
+Let's say we have a country named 'Australia'. The long name is 'Australia' and short name is 'AU'. If we have a state named 'Queensland', so 'Queensland' is the long name and 'QLD' is the short name.
 
-By default, Meta Box Geolocation will populate the long name of the field. But you can use the short name by adding `_short` at the end of field id. For example: `administrative_area_level_1_short`, `country_short`.
+By default, Meta Box Geolocation will populate the long name of the field. But you can use the short name by **adding `_short` at the end of field ID**. For example: `administrative_area_level_1_short`, `country_short`.
 
-Please note that this feature is available for Google Maps only.
+Note: this feature is available for **Google Maps** only.
 
-### Binding template
+### Custom binding
 
-The power of Meta Box Geolocation is you can bind anything into a field. Let's say we have a field with id `dummy_field`, this field id is not in *address component* list so by default the plugin won't auto populate data to it. Now we'll bind `administrative_area_level_1` to that field. Just add
+Let's say we have a field with id `dummy_field`, this field ID is not in *address component* list so the plugin won't auto populate data to it. To make the plugin auto populate data (`administrative_area_level_1`) to that field, add the following parameter to the field:
+
+With Meta Box Builder:
+
+![custom binding](https://i.imgur.com/DuvReWa.png)
+
+or with code:
 
 ```php
 'binding' => 'administrative_area_level_1', // returns 'Queensland'
 ```
 
-You can tell that field to use short version by prepending `short:` keyword
+You can tell that field to use short version by prepending `short:` keyword:
+
+![custom binding short](https://i.imgur.com/Q3mXgMP.png)
 
 ```php
 'binding' => 'short:administrative_area_level_1', // returns 'QLD'
@@ -175,15 +196,21 @@ You can tell that field to use short version by prepending `short:` keyword
 
 You can also merge two fields, add any character you want to bind to that field. Like so:
 
+![merge fields](https://i.imgur.com/iowxhWs.png)
+
 ```php
-'binding' => 'short:administrative_area_level_1 + " " + country', // returns QLD Australia
+'binding' => 'city + " " + country', // returns QLD Australia
 ```
 
-## Multiple autocomplete addresses
+### Multiple addresses
 
 In case you have multiple "group" of address fields, such as address details for head office and address details for a company branch. In each group, there are an autocomplete address field. And it will autopopulate only fields in the group, e.g. the address for head office only populates the fields in the head office group, not in the company branch.
 
 In this case, please set another attribute `'address_field' => 'address_id'` for *each* field in the group. See an example code below:
+
+![specify address field](https://i.imgur.com/azK52Y5.png)
+
+If you do with code, then your field group looks like this:
 
 ```php
 /**
@@ -193,13 +220,11 @@ In this case, please set another attribute `'address_field' => 'address_id'` for
 // Address
 [
     'id' => 'address_ho',
-    'type' => 'text',
     'name' => 'Address - Head Office',
 ],
 // City
 [
     'id' => 'city_ho',
-    'type' => 'text',
     'name' => 'City - Head Office',
     'binding' => 'locality',
     'address_field' => 'address_ho', // THIS
@@ -212,20 +237,18 @@ In this case, please set another attribute `'address_field' => 'address_id'` for
 // Address
 [
     'id' => 'address_br',
-    'type' => 'text',
     'name' => 'Address - Branch',
 ],
 // City
 [
     'id' => 'city_br',
-    'type' => 'text',
     'name' => 'City - Branch',
     'binding' => 'locality',
     'address_field' => 'address_br', // THIS
 ],
 ```
 
-## Two-way binding data with map
+## Two-way data binding
 
 If you have a map field, then whenever you *change an address or manually change the value of latitude and longitue fields, the pin on the map will change* according to the new location.
 
