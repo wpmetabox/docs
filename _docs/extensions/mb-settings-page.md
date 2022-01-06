@@ -484,7 +484,7 @@ echo $value;
 
 Notes:
 
-- In the 2nd parameter, you need to pass `'object_type' => 'setting'` or `'object_type' => 'network_setting'`, and
+- In the 2nd parameter, you need to pass `'object_type' => 'setting'` or `'object_type' => 'network_setting'`
 - In the last parameter, you need to pass the option name for the settings page
 
 Other parameters are the same as for posts. Please see [this documentation](/displaying-fields/) for details.
