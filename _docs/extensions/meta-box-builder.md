@@ -81,9 +81,13 @@ There are several settings:
 
 Custom settings is a feature for both fields and field groups, which allows you to add extra settings for them in case the builder doesn't have. It's useful when you want to add your own settings or the settings the builder hasn't added yet (in this case, please let us know).
 
-{% include alert.html content="What describes in this section is applied also for similar settings like Query args and Custom HTML5 attributes." %}
+{% include alert.html content="What describes in this section is applied also for similar settings, including: choice field options, JavaScript options (date, datepicker, slider, ...), query args (post, taxonomy, taxonomy advanced, user) and custom HTML5 attributes." %}
 
-To add custom settings, click on Advanced tab for fields or go to Settings tab for the field group. Then click **+ Add New** button and add new settings. For example, if you want to create a text field that has 2 extra settings:
+To add custom settings, click on the Advanced tab for fields or go to the Settings tab for the field group. Then click **+ Add New** button and add new settings. Like this:
+
+![custom settings](https://i.imgur.com/WFRBdL4.png)
+
+Which will produce the result like this:
 
 ```php
 [
@@ -97,13 +101,9 @@ To add custom settings, click on Advanced tab for fields or go to Settings tab f
 ],
 ```
 
-Then enter as follows:
-
-![custom settings](https://i.imgur.com/WFRBdL4.png)
-
 Remember, Meta Box Builder treats `true`, `false` as boolean values.
 
-If the field requires complex settings, like multi-dimentional arrays:
+If you want to add complex custom settings, like multi-dimentional arrays:
 
 ```php
 [
@@ -125,15 +125,91 @@ Then you can use the dot notation or JSON for custom attributes:
 
 ### Dot notation
 
-The dot notation allows you to define the data structure with dots. For the `tax_query` above, you can define with dot notation like so:
+Dot notation is a way that let you define structural data (hierarchical data) with dots (.). Each dot (.) defines a level in your data.
 
-![dot notation](https://i.imgur.com/MPC06Fd.png)
+If you want to enter a structural custom settings for a field like:
 
-Please note that `taxonomy`, `field`, and `terms` are children of the first child of `tax_query`, not direct children of `tax_query`, we need to use index `0`.
+```php
+'my_prop' => [
+    'param1' => 'Value 1',
+    'param2' => 'Value 2',
+    'param3' => 'Value 3',
+]
+```
+
+This can be understood like this:
+
+```php
+"my_prop.param1": "Value 1",
+"my_prop.param1": "Value 2",
+"my_prop.param1": "Value 3",
+```
+
+Here the params name, age, gender are sub-params of the author and they're defined with a dot prefixed.
+
+Implementing that in Meta Box Builder as follows:
+
+![implement structural custom settings](https://i.imgur.com/PfVoIV7.png)
+
+Another case is when you want to add a set of data without keys. The data in PHP looks like this:
+
+```php
+'my_prop' => [
+    'Value 1',
+    'Value 2',
+    'Value 3',
+]
+```
+
+Although keys are not implemented, we can understand that this list (array) uses numeric keys: 0, 1, 2. So we can rewrite it as:
+
+```php
+'my_prop': [
+    0: 'Value 1',
+    1: 'Value 2',
+    2: 'Value 3',
+]
+```
+
+Similar to above, this can be understood as:
+
+```
+"my_prop.0": "Value 1",
+"my_prop.1": "Value 2",
+"my_prop.2": "Value 3",
+```
+
+And can be implemented as follows in Meta Box Builder:
+
+![adding array of data for custom settings](https://i.imgur.com/53Duf3A.png)
+
+Combining these, you can define a complex data structure as follows (this is a post field with advanced query args):
+
+```php
+[
+    'type'       => 'post',
+    'id'         => 'field_id',
+    'query_args' => [
+        'tax_query' => [
+            [
+                'taxonomy' => 'category',
+                'field'    => 'slug',
+                'terms'    => 'technology',
+            ],
+        ],
+    ],
+],
+```
+
+In Meta Box Builder:
+
+![dot notation for advanced query args](https://i.imgur.com/MPC06Fd.png)
 
 ### JSON notation
 
-Another way to enter nested array in Meta Box Builder, you can use JSON notation. Encode the whole array of `tax_query` and paste to it value. Like so:
+Another way to enter nested array in Meta Box Builder, you can use JSON notation. Simply paste the JSON string into the value input, and this JSON will be parsed into an array in PHP.
+
+For example, the `tax_query` above can be implemented like this:
 
 ![json value](https://i.imgur.com/2eTlviV.png)
 
