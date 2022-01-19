@@ -145,7 +145,7 @@ This can be understood like this:
 "my_prop.param1": "Value 3",
 ```
 
-Here the params name, age, gender are sub-params of the author and they're defined with a dot prefixed.
+Here the params param1, param2, param3 are sub-params of the my_prop and they're defined with a dot prefixed.
 
 Implementing that in Meta Box Builder as follows:
 
