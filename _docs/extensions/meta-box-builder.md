@@ -81,7 +81,7 @@ There are several settings:
 
 Custom settings is a feature for both fields and field groups, which allows you to add extra settings for them in case the builder doesn't have. It's useful when you want to add your own settings or the settings the builder hasn't added yet (in this case, please let us know).
 
-{% include alert.html content="What describes in this section is applied also for similar settings, including: choice field options, JavaScript options (date, datepicker, slider, ...), query args (post, taxonomy, taxonomy advanced, user) and custom HTML5 attributes." %}
+{% include alert.html content="What describes in this section is applied also for similar key-value settings, including: choice field options, JavaScript options (date, datepicker, slider, ...), query args (post, taxonomy, taxonomy advanced, user) and custom HTML5 attributes." %}
 
 To add custom settings, click on the Advanced tab for fields or go to the Settings tab for the field group. Then click **+ Add New** button and add new settings. Like this:
 
