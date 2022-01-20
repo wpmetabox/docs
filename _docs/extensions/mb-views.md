@@ -355,3 +355,104 @@ You can also use filter to transform the value, like this:
 ```
 
 For details about using Twig, please see the [documentation](https://twig.symfony.com/doc/3.x/templates.html).
+
+## External template files
+
+Since version 1.10, MB Views allows you to write template in the extenal files in your themes/plugins and include or use it inside views or with `[mbv]` shortcode.
+
+Using external template files has some benefits:
+
+- You can write templates in Twig instead of PHP, which is a beautiful syntax. Twig templates also support getting WordPress and Meta Box's values easier
+- You can put template files under a version control like Git to track changes and never loose anything
+- You can deploy (upload) templates to other websites with ease via (S)FTP, Git or any CI/CD
+
+Let's see how to do that:
+
+### Adding template paths
+
+First, you need to register the paths, where the plugin looks for template files. Simply use the `mbv_fs_paths` as follows:
+
+```php
+// Load template files from the 'views' folder in your theme.
+add_filter( 'mbv_fs_paths', function( $paths ) {
+    $paths[] = get_template_directory() . '/views';
+    return $paths;
+} );
+
+// Or shorter
+add_filter( 'mbv_fs_paths' , function( $paths ) { 
+    return array_merge( $paths, [ get_template_directory() . '/views' ] );
+} );
+
+// Shortest with arrow functions in PHP 7.4+
+add_filter( 'mbv_fs_paths' , fn( $paths ) => array_merge( $paths, [ get_template_directory() . '/views' ] ) );
+```
+
+You can also register multiple paths, the plugin will try to load templates from these paths, in the registered order:
+
+```php
+add_filter( 'mbv_fs_paths' , function( $paths ) { 
+    return array_merge( $paths, [
+        get_template_directory() . '/views',
+        get_template_directory() . '/default',
+    ] );
+} );
+```
+
+Or you can use the filesystem loader to add paths:
+
+```php
+add_action( 'mbv_fs_loader_init', function( $fs_loader ) {
+    // Add a path.
+	$fs_loader->addPath( get_template_directory() . '/views' );
+    
+    // Prepent a path, which change the order of registered paths and thus the order to load template files.
+    $fs_loader->prepend( get_template_directory() . '/default' );
+} );
+```
+
+### Using extenal views
+
+You can include external views in your views using this snippet:
+
+```
+{% include 'header.twig' %}
+```
+
+This snippet will load the `header.twig` template from the registered paths (in the examples above - the `views` directory in your theme). If you register multiple paths, then the plugin will search for the template in these paths and return the first found template file. So, pay attention to the order of registered paths.
+
+You can also render the template with the `[mbv]` shortcode as follows:
+
+```
+[mbv name="header.twig"]
+```
+
+Note that the file extension doesn't matter. You can name the file `header.twig`, `header.html` or anything. It's only used to search for the template files.
+
+### Namespace
+
+When loading template files, the order of registered paths define the order of paths where the plugin search for a template. However, there are some cases when you have templates with a same name, but used for different purpose, such as a `header.twig` for the homepage and another `header.twig` for the rest of the website. You might use different names for files, but there's a better option is using namespace.
+
+To add a template with a namespace, use the code below:
+
+```php
+add_action( 'mbv_fs_loader_init', function( $fs_loader ) {
+    // Add 'views/home' folder under the namespace 'home'
+	$fs_loader->addPath( get_template_directory() . '/views/home', 'home' );
+    
+    // Add another namespace
+    $fs_loader->addPath( get_template_directory() . '/views/default', 'default' );
+} );
+```
+
+Usage:
+
+```
+{% include '@home/header.twig' %}
+{% include '@default/header.twig' %}
+
+// or with shortcode
+
+[mbv name="@home/header.twig"]
+[mbv name="@default/header.twig"]
+```
