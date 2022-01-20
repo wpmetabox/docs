@@ -416,7 +416,9 @@ add_action( 'mbv_fs_loader_init', function( $fs_loader ) {
 You can include external views in your views using this snippet:
 
 ```
+{% raw %}
 {% include 'header.twig' %}
+{% endraw %}
 ```
 
 This snippet will load the `header.twig` template from the registered paths (in the examples above - the `views` directory in your theme). If you register multiple paths, then the plugin will search for the template in these paths and return the first found template file. So, pay attention to the order of registered paths.
@@ -448,6 +450,7 @@ add_action( 'mbv_fs_loader_init', function( $fs_loader ) {
 Usage:
 
 ```
+{% raw %}
 {% include '@home/header.twig' %}
 {% include '@default/header.twig' %}
 
@@ -455,4 +458,5 @@ Usage:
 
 [mbv name="@home/header.twig"]
 [mbv name="@default/header.twig"]
+{% endraw %}
 ```
