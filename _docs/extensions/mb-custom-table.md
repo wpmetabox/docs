@@ -477,6 +477,76 @@ This feature currently works with the following extensions:
 - Meta Box Conditional Logic
 - Meta Box Show Hide
 
+### Hooks
+
+`mbct_{$model}_query_where`
+
+Filters the where statement in query in the custom model table list. Accepts one parameter - the where statement.
+
+`mbct_{$model}_query_order`
+
+Filters the order statement in query in the custom model table list. Accepts one parameter - the order statement.
+
+`mbct_{$model}_columns`
+
+Filters the list of columns in the custom model table list. Accepts one parameter - the array of columns.
+
+`mbct_{$model}_sortable_columns`
+
+Filters the list of sortable columns in the custom model table list. Accepts one parameter - the array of sortable columns.
+
+`mbct_{$model}_column_output`
+
+Filters the output of a column in the custom model table list. Accepts 4 parameters:
+
+- `$output`: the output
+- `$column_name`: the column name
+- `$item`: the array of the item data
+- `$model`: the model name
+
+`mbct_{$model}_row_actions`
+
+Filters the list of actions for each row item in the custom model table list (default is Edit and Delete). Accepts one parameter - an associate array of actions.
+
+`mbct_restrict_manage_posts`
+
+Fires after the bulk action for the custom model table list, usually used to output custom filters for the table. Accepts 2 parameters:
+
+- `$model`: the model name
+- `$which`: `top` or `bottom` - the position of the filters
+
+`mbct_manage_posts_extra_tablenav`
+
+Fires after the bulk action and after `mbct_restrict_manage_posts`. Accepts one parameter - `$which` which can be `top` or `bottom` - the position in the table.
+
+`mbct_submit_box`
+
+Filters the output of the submit meta box. Accepts 2 parameter:
+
+- `$output`: the HTML output
+- `$model`: the model name
+
+`mbct_before_submit_box`
+
+Fires before the output of the submit meta box. Accepts one parameter - the model name.
+
+`mbct_after_submit_box`
+
+Fires after the output of the submit meta box. Accepts one parameter - the model name.
+
+`mbct_before_add`
+`mbct_after_add`
+`mbct_before_update`
+`mbct_after_update`
+`mbct_before_delete`
+`mbct_after_delete`
+
+Fire before/after adding/updating/deleting data in a custom table via the API. Accepts 3 parameters:
+
+- `$object_id`: the object ID
+- `$table`: the table name
+- `$row`: the associate array of data
+
 ### Notes
 
 Each model can have only one custom table.
