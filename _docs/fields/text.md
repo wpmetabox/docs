@@ -28,8 +28,8 @@ Name | Description
 --- | ---
 `placeholder` | Placeholder for the input. Optional.
 `size` | Size of input box. Optional. Default 30.
-`prepend`|Prepend text for the input.
-`append`|Append text for the input.
+`prepend`|Prepend text for the input. The prepend text should be considered as an informative label. It's not saved in the database with the input value.
+`append`|Append text for the input. The append text should be considered as an informative label. It's not saved in the database with the input value.
 `datalist` | Predefined values that users can select from (users still can enter text if they want). Optional. This parameter has the following sub-parameters:
 |`id`: ID of the div that stores the options. Usually not used and auto-generated as `{$field['id']_list`. Useful if you have several text input with same datalist.
 |`options`: Array of predefined values to select from.
