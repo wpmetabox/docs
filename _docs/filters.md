@@ -130,14 +130,15 @@ This filter has variations:
 
 ### `rwmb_{$field_type}_value`
 
-This filter is used to change a field meta value before saving it in the database. It accepts 3 parameters:
+This filter is used to change a field meta value before saving it in the database. It accepts 4 parameters:
 
 - `$new`: field meta value which will be saved in the database
 - `$field`: array of field attributes
 - `$old`: old meta value of field
+- `$object_id`: the object ID, which can be post ID, term ID (if editing a term) or user ID (if editing a user)
 
 ```php
-$new = apply_filters( "rwmb_{$field['type']}_value", $new, $field, $old );
+$new = apply_filters( "rwmb_{$field['type']}_value", $new, $field, $old, $object_id );
 ```
 
 This filter has variations:
