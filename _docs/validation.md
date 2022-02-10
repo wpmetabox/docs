@@ -8,20 +8,7 @@ There are 2 ways of doing validation: via **input attributes** (mostly for basic
 
 ## Validation with input attributes
 
-Meta Box supports [custom attributes](https://docs.metabox.io/custom-attributes/) for all input fields. You can use these attributes to add validation rules like this:
-
-```php
-// This is an array settings of a text field.
-[
-    'type' => 'text',
-    'id'   => 'phone',
-    'name' => 'Phone number',
-    
-    // Attributes for validation.
-    'required' => true,       // Make the field required.
-    'pattern'  => '[0-9]{9}', // Must have 9 digits
-]
-```
+Meta Box supports [custom attributes](https://docs.metabox.io/custom-attributes/) for all input fields. You can use these attributes to validate values of fields.
 
 These are the available attributes that you can use for validation:
 
@@ -36,11 +23,50 @@ Attribute| Description
 `step` | Match the step increment
 `type` | Match the [input type](https://docs.metabox.io/html5-input-types/)
 
+To implement these validation rules for fields, you can use either [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/) or code.
+
+### Using Meta Box Builder
+
+If you're using the Meta Box Builder extension to create fields, switch to the **Advanced** tab of the field, and scroll down to the **Custom HTML5 attributes**. Then click **Add New** button to add a new rule.
+
+![validation with html5 attributes](https://i.imgur.com/Cewt9OG.png)
+
+In the **Key** input box, you can select any rule from the dropdown (if you don't see the dropdown, simply press the down arrow button), or enter the attribute name manually. And then enter the desired value in the **Value** input box.
+
+### Using code
+
+To define validation rules with code, simply add pairs of `'key' => 'value'` rules for the [field settings](https://docs.metabox.io/field-settings/) array:
+
+```php
+// This is an array settings of a text field.
+[
+    'type' => 'text',
+    'id'   => 'phone',
+    'name' => 'Phone number',
+    
+    // Attributes for validation.
+    'required' => true,       // Make the field required.
+    'pattern'  => '[0-9]{9}', // Must have 9 digits
+]
+```
+
 ## Validation with jQuery validation plugin
 
 For more advanced validation, including new rules and custom error messages, you might want to use the validation module, powered by the popular [jQuery validation plugin](https://jqueryvalidation.org/). It comes bundled with a useful set of validation methods and an API to write your own methods. All methods come with default error messages in English and translations into 37 other languages.
 
-To use it, you need to add a key `validation` to the [meta box settings](https://docs.metabox.io/creating-meta-boxes/). This key has a parameter `rules` for validation rules and `messages` for error messages.
+Again, to implement these validation rules for fields, you can use either [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/) or code.
+
+### Using Meta Box Builder
+
+To use the Meta Box Builder extension to define validation rules, switch to the **Advanced** tab of the field, and scroll down to the **Validation**. Then click **Add New** button to add a new rule.
+
+![validation with validation library](https://i.imgur.com/qAvW1LC.png)
+
+For each rule, the list of types is available as a dropdown, so you can simply select it. Depends on the rule type, you can enter value and/or custom error message.
+
+### Using code
+
+To define validation rules with code, you need to add a key `validation` to the [meta box settings](https://docs.metabox.io/creating-meta-boxes/). This key has a parameter `rules` for validation rules and `messages` for error messages.
 
 ```php
 // This is a part of the meta box settings
@@ -114,9 +140,9 @@ For the field types `file` and `image`, the input name has the format `_file_fie
 ```php
 'fields'     => [
     [
-        'name'             => 'Uploaded Files',
-        'id'               => 'uploaded_files',
-        'type'             => 'file',
+        'name' => 'Uploaded Files',
+        'id'   => 'uploaded_files',
+        'type' => 'file',
     ],
 ],
 'validation' => [
