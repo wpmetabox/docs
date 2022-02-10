@@ -6,7 +6,7 @@ The Meta Box plugin has built-in validation module for all fields. You can use v
 
 There are 2 ways of doing validation: via **input attributes** (mostly for basic validation) and via **jQuery validation plugin** (for more advanced validation). They're both bundled in Meta Box and you can choose which one fits your needs.
 
-## Validation with input attributes
+## Basic validation with input attributes
 
 Meta Box supports [custom attributes](https://docs.metabox.io/custom-attributes/) for all input fields. You can use these attributes to validate values of fields.
 
@@ -50,7 +50,7 @@ To define validation rules with code, simply add pairs of `'key' => 'value'` rul
 ]
 ```
 
-## Validation with jQuery validation plugin
+## Advanced validation with jQuery validation plugin
 
 For more advanced validation, including new rules and custom error messages, you might want to use the validation module, powered by the popular [jQuery validation plugin](https://jqueryvalidation.org/). It comes bundled with a useful set of validation methods and an API to write your own methods. All methods come with default error messages in English and translations into 37 other languages.
 
