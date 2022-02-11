@@ -11,7 +11,7 @@ Note: this extension already includes **MB User Meta**.
 ## Registration form
 
 ```php
-[mb_user_profile_register id="meta-box-id" label_submit="Register" confirmation="Your account has been created successfully."]
+[mb_user_profile_register id="meta-box-id"]
 ```
 
 This shortcode shows the user register form. If you want to add more fields in this form, [create a meta box for users](/extensions/mb-user-meta/) with some fields. Then add the meta box ID in the `id` attribute of the shortcode.
@@ -49,7 +49,7 @@ Name|Description
 ## Login form
 
 ```php
-[mb_user_profile_login label_submit="Submit" label_remember="Remember" label_lost_password="Lost Password?" confirmation="You are now logged in."]
+[mb_user_profile_login]
 ```
 
 This shortcode shows the normal login form. You can use either this shortcode or the WordPress's built-in function `wp_login_form()`.
@@ -80,7 +80,7 @@ Name|Description
 ## Edit profile form
 
 ```php
-[mb_user_profile_info id="meta-box-id" submit_button="Submit" confirmation="Your information has been successfully submitted. Thank you."]
+[mb_user_profile_info id="meta-box-id"]
 ```
 
 This shortcode shows the user profile form that allows users to edit their information. If you want to add more fields in this form, [create a meta box for users](/extensions/mb-user-meta/) with some fields. Then add the meta box ID in the `id` attribute of the shortcode.
