@@ -36,7 +36,7 @@ If you need to limit by words, just add `'limit_type' => 'word'`:
 	'id'         => 't',
 	'type'       => 'text',
 	'limit'      => 40,
-	'limit type' => 'word',
+	'limit_type' => 'word',
 ],
 ```
 
