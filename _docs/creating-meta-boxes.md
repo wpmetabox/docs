@@ -70,7 +70,7 @@ function prefix_register_meta_boxes( $meta_boxes ) {
     $meta_boxes[] = [
         'title'      => 'Personal Information',
         'post_types' => 'post',
-
+        'id'         => 'personal-information',
         'fields' => [
             [
                 'name'  => 'Full name',
