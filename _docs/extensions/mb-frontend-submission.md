@@ -346,6 +346,17 @@ This action fires before the submit button is displayed. It accepts one paramete
 
 This action fires after the submit button is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
 
+`rwmb_frontend_before_delete`
+
+This action fires before the post is deleted. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
+
+`rwmb_frontend_after_delete`
+
+This action fires after the post is deleted. It accepts 2 parameters:
+
+- `$config` - the form configuration, taken from the shortcode attributes.
+- `$post_id` - the deleted post ID
+
 ### Form filters
 
 `rwmb_frontend_validate`
