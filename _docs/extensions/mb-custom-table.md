@@ -576,7 +576,7 @@ Get all custom fields data for an object from a custom table. The returned data 
 The data is raw, meaning it's not formatted yet. For example: for images, you'll get the attachment IDs instead of an array of URL, width, height, size, etc. as you get via `rwmb_the_value` function.
 
 ```php
-$data = \MetaBox\CustomTable\API::exists( $object_id, $table );
+$data = \MetaBox\CustomTable\API::get( $object_id, $table );
 
 // Inspect the data.
 print_r( $data );
