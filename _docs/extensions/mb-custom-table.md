@@ -604,6 +604,8 @@ $data = [
 \MetaBox\CustomTable\API::add( $object_id, $table, $data );
 ```
 
+In case you want to add a row for a custom model, set `$object_id` to `null`.
+
 ### `update`
 
 Update the data for an object. Works similarly to `add`. Make sure the data for object exists in the database.
