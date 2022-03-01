@@ -10,46 +10,56 @@ You can also combine conditions. It works not only for meta boxes or custom fiel
 
 ## Getting started
 
-The code below registers a meta box that is hidden when the post format is `aside`. The meta box also have 2 custom fields: Brand and Product. The Product field will be hidden if user select a brand that's not "Apple".
+### With Meta Box Builder
+
+If you are using [Meta Box Builder](https://metabox.io/plugins/meta-box-builder/) extension, you can set conditional logic for a specific field by going to the tab **Advanced** and add rules in the **Conditional Logic** section:
+
+![conditional logic in Meta Box Builder](https://i.imgur.com/xOPcH0N.png)
+
+In this section, you can choose to show or hide a field when all or any conditions match. For each rule, you need to select a dependency field ID, the operator and enter the field value. The dependency field ID is auto-suggested from the list of current fields and you can add as many rules as you want:
+
+![conditional logic rules](https://i.imgur.com/WzTf0Ka.png)
+
+### With code
+
+In case you use code to register meta boxes, you need to add an extra parameter `visible` or `hide` to a field (or a meta box if you want to hide the whole meta box) to set the conditional logic for it.
+
+For example, Tthe code below registers a meta box that is hidden when the post format is `aside`. The meta box also have 2 custom fields: Brand and Product. The Product field will be hidden if user select a brand that's not "Apple".
 
 ```php
 add_filter( 'rwmb_meta_boxes', function( $meta_boxes ) {
-    $meta_boxes[] = array(
-        'title' => 'Brands and Products',
+	$meta_boxes[] = [
+		'title' => 'Brands and Products',
 
-        // Hide this meta box when post format is aside
-        'hidden' => array( 'post_format', 'aside' ),
+		// Hide this meta box when post format is aside
+		'hidden' => [ 'post_format', 'aside' ],
 
-        'fields' => array(
-            array(
-                'id'    => 'brand',
-                'name'  => 'Brand',
-                'desc'  => 'Pick Your Favourite Brand',
-                'type'  => 'select',
-                'options' => array(
-                    'Apple'         => 'Apple',
-                    'Google'        => 'Google',
-                    'Microsoft'     => 'Microsoft'
-                )
-            ),
-            array(
-                'id'    => 'apple_products',
-                'name'  => 'Which Apple product that you love?',
-                'type'  => 'radio',
-                'options' => array(
-                    'iPhone'    => 'iPhone',
-                    'iPad'      => 'iPad',
-                    'Macbook'   => 'Macbook',
-                    'iWatch'    => 'iWatch'
-                ),
+		'fields' => [
+			[
+				'id'      => 'brand',
+				'name'    => 'Brand',
+				'type'    => 'select',
+				'options' => [
+					'Apple'  => 'Apple',
+					'Google' => 'Google',
+				],
+			],
+			[
+				'id'      => 'apple_products',
+				'name'    => 'Which Apple product that you love?',
+				'type'    => 'radio',
+				'options' => [
+					'iPhone' => 'iPhone',
+					'iPad'   => 'iPad',
+				],
 
-                // Hide this field when user selected a brand that's not 'Apple'
-                'hidden' => array( 'brand', '!=', 'Apple' )
-            )
-        )
-    );
+				// Hide this field when user selected a brand that's not 'Apple'
+				'hidden' => [ 'brand', '!=', 'Apple' ]
+			],
+		],
+	];
 
-    return $meta_boxes;
+	return $meta_boxes;
 } );
 ```
 
@@ -327,71 +337,72 @@ Similarly to post category, it works with `slug`, too.
 
 ## Using with Group
 
-The extension MB Conditional Logic uses jQuery to check the field ID and value to match the condition. For the sub-fields in a group, the field ID actually has the format `groupID_fieldID` and called input ID. In this case, you need to add the input ID to the condition like this:
+The extension MB Conditional Logic uses jQuery to check the field ID and value to match the condition. For the sub-fields in a **non-cloneable** group, the field ID actually has the format `groupID_fieldID` and called input ID. In this case, you need to add the input ID to the condition like this:
 
 ```php
-'fields' => array(
-    array(
-        'id' => 'group',
-        'type' => 'group',
-        'fields' => array(
-            array(
-                'id'    => 'brand',
-                'name'  => 'Brand',
-                'desc'  => 'Pick Your Favourite Brand',
-                'type'  => 'select',
-                'options' => array(
-                    'apple'         => 'Apple',
-                    'google'        => 'Google',
-                    'microsoft'     => 'Microsoft'
-                )
-            ),
-            array(
-                'id'    => 'apple_products',
-                'name'  => 'Which Apple product that you love?',
-                'type'  => 'radio',
-                'options' => array(
-                    'iPhone'    => 'iPhone',
-                    'iPad'      => 'iPad',
-                    'Macbook'   => 'Macbook',
-                    'iWatch'    => 'iWatch'
-                ),
+[
+	'id'     => 'group',
+	'type'   => 'group',
+	'fields' => [
+		[
+			'id'    => 'brand',
+			'name'  => 'Brand',
+			'type'  => 'select',
+			'options' => [
+				'apple'     => 'Apple',
+				'google'    => 'Google',
+				'microsoft' => 'Microsoft'
+			],
+		),
+		[
+			'id'    => 'apple_products',
+			'name'  => 'Which Apple product that you love?',
+			'type'  => 'radio',
+			'options' => [
+				'iPhone'  => 'iPhone',
+				'iPad'    => 'iPad',
+				'Macbook' => 'Macbook',
+			],
 
-                // Hide this field when user selected a brand that's not 'Apple'
-                'hidden' => array( 'group_brand', '!=', 'apple' )
-            )
-        )
-    )
-)
+			// Show this field when user selected a brand 'Apple'
+			'visible' => [ 'group_brand', '=', 'apple' ]
+		],
+	],
+],
 ```
+If the group is **cloneable**, the conditional logic runs inside the clone only. In this case you **don't** have to change the sub-field IDs like above.
 
 ## Custom callback
 
-Since 1.3, you can set conditional logic with custom JavaScript callback, just put your function call in the first parameter. Like so:
+To set conditional logic with custom JavaScript callback, just put your function call in the first parameter. Like so:
 
 In your JavaScript file:
 
 ```js
 // Your custom JavaScript function that checks the condition
-function my_custom_callback() { return true; }
+function my_custom_callback() {
+    return true;
+}
 ```
 
 In your PHP file:
 
 ```php
-'visible' => array( 'my_custom_callback()', true )
+'visible' => [ 'my_custom_callback()', true ]
 ```
 
 Please note that your function can return anything you want and you can use any operator to compare. For example
 
 ```js
 // Your js
-function dummy_function(){ return ['foo', 'bar', 'baz]; }
+function dummy_function() {
+    return ['foo', 'bar', 'baz];
+}
 ```
 
 ```php
 // Your field or meta box
-'hidden' => array( 'dummy_function()', 'contains', 'bar' );
+'hidden' => [ 'dummy_function()', 'contains', 'bar' ];
 ```
 
 ## Toggle types
@@ -429,9 +440,18 @@ A | | C
 
 So, basically, we have to use CSS `visibility` property instead of `display` property. To do so, just add `'toggle_type' => 'visibility'` to your Meta Box.
 
-Since 1.5, we do support `slideUp`, `slideDown`, `fadeIn`, `fadeOut` animation. In order to use these animation just set `toggle_type` to `slide` or `fade`.
+Since v1.5, we support `slideUp`, `slideDown`, `fadeIn`, `fadeOut` animation. In order to use these animation just set `toggle_type` to `slide` or `fade`.
 
 In short, we supports 4 toggle types to: `visibility`, `display`, `slide`, `fade`.
+
+## Running conditional logic manually
+
+Since v1.6.17, you can manually run (trigger) conditional logic for a scope with this code:
+
+```js
+let $scope = $( '.scope' );
+rwmb.runConditionalLogic( $scope );
+```
 
 ## Known issues
 
