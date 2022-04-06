@@ -42,7 +42,7 @@ To output the media in the frontend, use the [rwmb_meta()](/rwmb-meta/) helper f
 
 ```php
 $media = rwmb_meta( $field_id );
-echo $value;
+echo $media;
 ```
 
 This helper function will display the oembed content, e.g. if the value is a Youtube URL, it will display the full Youtube video player.
